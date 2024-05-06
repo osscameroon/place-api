@@ -1,22 +1,18 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-## husky task runner examples -------------------
-## Note : for local installation use 'dotnet' prefix. e.g. 'dotnet husky'
+echo 'Ready to commit changes!'
 
-## run all tasks
-#husky run
+echo 'Format'
 
-### run all tasks with group: 'group-name'
-#husky run --group group-name
+dotnet husky run --name dotnet-format
 
-## run task with name: 'task-name'
-#husky run --name task-name
+echo 'Build'
 
-## pass hook arguments to task
-#husky run --args "$1" "$2"
+dotnet build --no-restore
 
-## or put your custom commands -------------------
-#echo 'Husky.Net is awesome!'
+echo 'Test'
 
-echo 'Welcome to our project'
+dotnet test --no-restore
+
+echo 'Completed pre-commit changes'
