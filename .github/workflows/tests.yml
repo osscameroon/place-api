@@ -10,7 +10,7 @@ on:
 
 jobs:
   call-build:
-    uses: osscameroon/place/.github/workflows/build.yml@main
+    uses: osscameroon/place-api/.github/workflows/build.yml@main
   tests:
     runs-on: ubuntu-latest
     steps:
