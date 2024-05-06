@@ -1,8 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DF65A9DD-4A89-40F0-9983-8FB98C9186F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.Web", "src\PlaceApi.Web\PlaceApi.Web.csproj", "{7E44AED4-0B0D-4F41-AD9C-D3B961929AEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1769BFA7-3ABE-457B-878A-B6BAB2FF2436}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "externals", "externals", "{8A57F513-0E1E-490A-A9A7-84F61059BDDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7E44AED4-0B0D-4F41-AD9C-D3B961929AEA} = {DF65A9DD-4A89-40F0-9983-8FB98C9186F6}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E44AED4-0B0D-4F41-AD9C-D3B961929AEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E44AED4-0B0D-4F41-AD9C-D3B961929AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E44AED4-0B0D-4F41-AD9C-D3B961929AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E44AED4-0B0D-4F41-AD9C-D3B961929AEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
