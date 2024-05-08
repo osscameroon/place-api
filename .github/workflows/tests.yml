@@ -13,6 +13,7 @@ jobs:
   build:
     uses: osscameroon/place-api/.github/workflows/build.yml@main
   tests:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
