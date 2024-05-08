@@ -6,6 +6,7 @@ echo 'Ready to commit changes!'
 echo 'Format'
 
 dotnet husky run --name dotnet-format
+dotnet husky run --name dotnet-format-csharpier
 
 echo 'Build'
 

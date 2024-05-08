@@ -8,6 +8,13 @@
        "include": ["**/*.cs"]
      },
      {
+       "name": "dotnet-format-csharpier",
+       "command": "dotnet",
+       "group": "format",
+       "args": [ "csharpier", "${staged}" ],
+       "include": ["**/*.cs"]
+     },
+     {
        "name": "commit-message-linter",
        "command": "dotnet",
        "args": [
