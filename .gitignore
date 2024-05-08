@@ -1,5 +1,5 @@
 ﻿*.swp
-*.*~
+
 project.lock.json
 .DS_Store
 *.pyc
@@ -9,7 +9,7 @@ nupkg/
 .vscode/
 
 # Rider
-.idea/
+#.idea/
 
 # Visual Studio
 .vs/
