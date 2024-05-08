@@ -4,7 +4,7 @@
        "name": "dotnet-format",
        "command": "dotnet",
        "group": "format",
-       "args": ["dotnet-format", "--include", "${staged}"],
+       "args": ["format", "--include", "${staged}"],
        "include": ["**/*.cs"]
      },
      {
