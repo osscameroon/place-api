@@ -1,17 +1,19 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: Build
+name: Tests
 
 on:
-  workflow_call:
   push:
+  workflow_dispatch:
   pull_request:
     branches: [ "main" ]
 
 jobs:
   build:
-
+    uses: osscameroon/place-api/.github/workflows/build.yml@main
+  tests:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -21,6 +23,4 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
+      run: dotnet test --no-build
