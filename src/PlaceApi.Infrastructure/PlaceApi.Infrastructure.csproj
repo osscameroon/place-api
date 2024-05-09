@@ -8,5 +8,13 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="FluentEmail.Core" />
+        <PackageReference Include="FluentEmail.Razor" />
+        <PackageReference Include="FluentEmail.Smtp" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\PlaceApi.Domain\PlaceApi.Domain.csproj" />
     </ItemGroup>
 </Project>

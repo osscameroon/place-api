@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
     </PropertyGroup>
     
@@ -10,6 +11,13 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="ErrorOr" />
+        <PackageReference Include="MediatR" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\PlaceApi.Domain\PlaceApi.Domain.csproj" />
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
 </Project>
