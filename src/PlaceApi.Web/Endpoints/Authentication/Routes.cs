@@ -27,4 +27,17 @@ public static class Routes
                 "Confirm user email to validate and activate her account.";
         }
     }
+
+    public class Login
+    {
+        public static string Endpoint => "/login";
+        public static string Name => "Login";
+
+        public static class OpenApi
+        {
+            public static string Summary => "Login user";
+            public static string Description =>
+                "Authenticate registered user with email and password and generate bearer token";
+        }
+    }
 }

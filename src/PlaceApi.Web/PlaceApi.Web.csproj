@@ -25,9 +25,4 @@
       <ProjectReference Include="..\PlaceApi.Infrastructure\PlaceApi.Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Abstractions\" />
-      <Folder Include="Authentication\" />
-    </ItemGroup>
-
 </Project>
