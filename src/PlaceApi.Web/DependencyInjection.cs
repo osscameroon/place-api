@@ -40,7 +40,9 @@ public static class DependencyInjection
             .WithApiVersionSet(apiVersionSet);
 
         app.MapEndpoints(versionedGroup);
+        app.UseOpenApi().UseHttpsRedirection();
+        app.UseInfrastructure();
 
-        return app.UseOpenApi().UseHttpsRedirection();
+        return app;
     }
 }

@@ -18,7 +18,7 @@ public class ConfirmEmailCommandHandler(UserManager<ApplicationUser> userManager
         CancellationToken cancellationToken
     )
     {
-        var code = request.Code;
+        string code = request.Code;
 
         if (await userManager.FindByIdAsync(request.UserId) is not { } user)
         {

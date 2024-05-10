@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Hangfire;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -36,10 +37,10 @@ public class SendConfirmationEmailHandler(
             routeValues.Add("changedEmail", notification.Email);
         }
 
-        var confirmEmailEndpoint = linkGenerator.GetUriByName(
+        string? confirmEmailEndpoint = linkGenerator.GetUriByName(
             httpContextAccessor.HttpContext!,
-            "ConfirmEmail",
-            routeValues
+            endpointName: "ConfirmEmail",
+            values: routeValues
         );
         string confirmEmailUrl =
             confirmEmailEndpoint
@@ -47,10 +48,13 @@ public class SendConfirmationEmailHandler(
                 $"Could not find endpoint named '{confirmEmailEndpoint}'."
             );
 
-        await emailSender.SendConfirmationLinkAsync(
-            notification.User,
-            notification.Email,
-            confirmEmailUrl
+        BackgroundJob.Enqueue(
+            () =>
+                emailSender.SendConfirmationLinkAsync(
+                    notification.User,
+                    notification.Email,
+                    confirmEmailUrl
+                )
         );
     }
 }

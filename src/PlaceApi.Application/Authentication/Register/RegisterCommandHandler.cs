@@ -51,7 +51,7 @@ public class RegisterCommandHandler(
             return CreateValidationProblem(result);
         }
 
-        var registered = await userManager.FindByEmailAsync(request.Email);
+        ApplicationUser? registered = await userManager.FindByEmailAsync(request.Email);
 
         await publisher.Publish(
             new SendConfirmationEmail(registered!, registered!.Email!),

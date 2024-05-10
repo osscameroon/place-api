@@ -8,7 +8,7 @@ IServiceCollection services = builder.Services;
 
 services.AddWebApplication(builder.Configuration);
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.UseWebApplication();
 

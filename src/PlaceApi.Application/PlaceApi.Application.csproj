@@ -13,6 +13,7 @@
         </PackageReference>
         <PackageReference Include="ErrorOr" />
         <PackageReference Include="MediatR" />
+        <PackageReference Include="Hangfire.Core" />
     </ItemGroup>
     
     <ItemGroup>

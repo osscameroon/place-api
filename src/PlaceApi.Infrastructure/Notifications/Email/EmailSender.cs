@@ -1,13 +1,21 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using FluentEmail.Core;
+using Hangfire;
 using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace PlaceApi.Infrastructure.Notifications.Email;
 
 public class EmailSender(IFluentEmail fluentEmail) : IEmailSender
 {
-    public async Task SendEmailAsync(string email, string subject, string htmlMessage)
+    public Task SendEmailAsync(string email, string subject, string htmlMessage)
     {
-        await fluentEmail.To(email).Subject(subject).Body(htmlMessage).SendAsync();
+        fluentEmail
+            .To(email)
+            .Subject(subject)
+            .Body(htmlMessage, true)
+            .SendAsync(CancellationToken.None);
+
+        return Task.CompletedTask;
     }
 }
