@@ -35,4 +35,4 @@ jobs:
             @semantic-release/exec
             @semantic-release/changelog 
         env:
-          GITHUB_TOKEN: ${{ secrets.GA_WORKFLOW_DEPLOYMENTS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
