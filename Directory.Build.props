@@ -9,12 +9,6 @@
         <CSharpier_Check>true</CSharpier_Check>
         <CSharpier_FrameworkVersion>net8.0</CSharpier_FrameworkVersion>
     </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="StyleCop.Analyzers" >
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
+    
 
 </Project>

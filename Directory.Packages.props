@@ -4,14 +4,28 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Analyzers -->
+    <PackageVersion Include="Asp.Versioning.Http" Version="8.1.0" />
+    <PackageVersion Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
     <PackageVersion Include="CSharpier.MsBuild" Version="0.28.2" />
+    <PackageVersion Include="ErrorOr" Version="2.0.1" />
+    <PackageVersion Include="FluentEmail.Core" Version="3.0.2" />
+    <PackageVersion Include="FluentEmail.Razor" Version="3.0.2" />
+    <PackageVersion Include="FluentEmail.Smtp" Version="3.0.2" />
+    <PackageVersion Include="Hangfire.AspNetCore" Version="1.8.12" />
+    <PackageVersion Include="Hangfire.Core" Version="1.8.12" />
+    <PackageVersion Include="Hangfire.SQLite" Version="1.4.2" />
+    <PackageVersion Include="Hangfire.Storage.SQLite" Version="0.4.2" />
+    <PackageVersion Include="MediatR" Version="12.2.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.4" />
+    <PackageVersion Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
     <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-
-      <PackageVersion Include="coverlet.collector" Version="6.0.0"/>
-      <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
-      <PackageVersion Include="xunit" Version="2.5.3"/>
-      <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.3"/>
+    <PackageVersion Include="coverlet.collector" Version="6.0.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageVersion Include="xunit" Version="2.5.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.3" />
   </ItemGroup>
 </Project>
