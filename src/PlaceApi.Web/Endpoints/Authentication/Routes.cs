@@ -64,4 +64,17 @@ public static class Routes
             public static string Description => "Reset user password";
         }
     }
+
+    public class ResendConfirmationEmail
+    {
+        public static string Endpoint => "/auth/resend-confirmation-email";
+        public static string Name => "ResendConfirmationEmail";
+
+        public static class OpenApi
+        {
+            public static string Summary => "Resend confirmation email";
+            public static string Description =>
+                "Manually resend confirmation email for registered user.";
+        }
+    }
 }
