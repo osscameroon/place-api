@@ -34,4 +34,12 @@ public class ValidationsExtensions
 
         return TypedResults.ValidationProblem(errorDictionary);
     }
+
+    public static ValidationProblem CreateValidationProblem(
+        string errorCode,
+        string errorDescription
+    ) =>
+        TypedResults.ValidationProblem(
+            new Dictionary<string, string[]> { { errorCode, [errorDescription] } }
+        );
 }

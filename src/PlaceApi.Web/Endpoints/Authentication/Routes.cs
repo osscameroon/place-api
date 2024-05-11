@@ -77,4 +77,28 @@ public static class Routes
                 "Manually resend confirmation email for registered user.";
         }
     }
+
+    public static class GetUserinfo
+    {
+        public static string Endpoint => "/manage/info";
+        public static string Name => "GetUserInfo";
+
+        public static class OpenApi
+        {
+            public static string Summary => "Get user info";
+            public static string Description => "Get authenticated user info";
+        }
+    }
+
+    public static class UpdateUserInfo
+    {
+        public static string Endpoint => "/manage/info";
+        public static string Name => "UpdateUserInfo";
+
+        public static class OpenApi
+        {
+            public static string Summary => "Update user information";
+            public static string Description => "Update user information";
+        }
+    }
 }
