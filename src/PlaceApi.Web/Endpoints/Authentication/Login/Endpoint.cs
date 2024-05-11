@@ -55,7 +55,7 @@ public class Endpoint : IEndpoint
             .WithSummary(Routes.Login.OpenApi.Summary)
             .Produces<AccessTokenResponse>()
             .Accepts<LoginRequest>("application/json")
-            .ProducesValidationProblem()
+            .ProducesProblem(StatusCodes.Status401Unauthorized)
             .ProducesValidationProblem();
     }
 }

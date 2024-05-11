@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace PlaceApi.Web.Endpoints.Authentication.Login;
 
-public class LoginRequest
+public sealed class LoginRequest
 {
     [JsonPropertyName("email")]
     public string Email { get; init; } = null!;

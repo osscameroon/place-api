@@ -4,7 +4,7 @@ public static class Routes
 {
     public static class Register
     {
-        public static string Endpoint => "/register";
+        public static string Endpoint => "/auth/register";
         public static string Name => "Register";
 
         public static class OpenApi
@@ -17,7 +17,7 @@ public static class Routes
 
     public static class ConfirmEmail
     {
-        public static string Endpoint => "/confirmEmail";
+        public static string Endpoint => "/auth/confirm-email";
         public static string Name => "ConfirmEmail";
 
         public static class OpenApi
@@ -30,7 +30,7 @@ public static class Routes
 
     public class Login
     {
-        public static string Endpoint => "/login";
+        public static string Endpoint => "/auth/login";
         public static string Name => "Login";
 
         public static class OpenApi
@@ -38,6 +38,30 @@ public static class Routes
             public static string Summary => "Login user";
             public static string Description =>
                 "Authenticate registered user with email and password and generate bearer token";
+        }
+    }
+
+    public class ForgotPassword
+    {
+        public static string Endpoint => "/auth/forgot-password";
+        public static string Name => "ForgotPassword";
+
+        public static class OpenApi
+        {
+            public static string Summary => "Send unique token to reset password";
+            public static string Description => "Send a token to a user to reset his password";
+        }
+    }
+
+    public class ResetPassword
+    {
+        public static string Endpoint => "/auth/reset-password";
+        public static string Name => "ResetPassword";
+
+        public static class OpenApi
+        {
+            public static string Summary => "Reset user password";
+            public static string Description => "Reset user password";
         }
     }
 }

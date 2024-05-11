@@ -1,21 +1,19 @@
-using System.Net.Mime;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using PlaceApi.Application.Authentication.Register;
-using PlaceApi.Domain.Authentication.Entities;
 
 namespace PlaceApi.Web.Endpoints.Authentication.Register;
 
-public class Register : IEndpoint
+public sealed class Endpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapPost(
                 Routes.Register.Endpoint,
-                async ([FromServices] ISender sender, [FromBody] Request request) =>
+                async ([FromServices] ISender sender, [FromBody] RegisterRequest request) =>
                     await sender.Send(
                         new RegisterCommand(request.UserName, request.Email, request.Password)
                     )
@@ -25,8 +23,8 @@ public class Register : IEndpoint
             .WithTags(["Authentication"])
             .WithDescription(Routes.Register.OpenApi.Description)
             .WithSummary(Routes.Register.OpenApi.Summary)
-            .Produces<RegisterResult>(StatusCodes.Status200OK)
-            .Accepts<Request>("application/json")
+            .Produces<RegisterResult>()
+            .Accepts<RegisterRequest>("application/json")
             .ProducesValidationProblem();
     }
 }
