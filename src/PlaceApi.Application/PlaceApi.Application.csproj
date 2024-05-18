@@ -20,5 +20,9 @@
       <ProjectReference Include="..\PlaceApi.Domain\PlaceApi.Domain.csproj" />
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="UseCases\" />
+    </ItemGroup>
 
 </Project>
