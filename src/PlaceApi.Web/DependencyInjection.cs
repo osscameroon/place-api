@@ -1,14 +1,11 @@
-using Asp.Versioning;
-using Asp.Versioning.Builder;
+using FastEndpoints;
+using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PlaceApi.Application;
 using PlaceApi.Infrastructure;
 using PlaceApi.Web.DependencyInjections.Authentication;
-using PlaceApi.Web.DependencyInjections.OpenApi;
-using PlaceApi.Web.Endpoints;
 
 namespace PlaceApi.Web;
 
@@ -19,28 +16,20 @@ public static class DependencyInjection
         IConfiguration configuration
     )
     {
-        services
-            .AddOpenApi()
-            .ConfigureAuthentication()
-            .AddApplication()
-            .AddInfrastructure(configuration)
-            .AddEndpoints(typeof(Program).Assembly);
+        services.ConfigureAuthentication();
+
+        services.AddApplication();
+        services.AddInfrastructure(configuration);
+
+        services.AddFastEndpoints().SwaggerDocument();
 
         return services;
     }
 
     public static IApplicationBuilder UseWebApplication(this WebApplication app)
     {
-        ApiVersionSet apiVersionSet = app.NewApiVersionSet()
-            .HasApiVersion(new ApiVersion(1))
-            .ReportApiVersions()
-            .Build();
-
-        RouteGroupBuilder versionedGroup = app.MapGroup("api/v{version:apiVersion}")
-            .WithApiVersionSet(apiVersionSet);
-
-        app.MapEndpoints(versionedGroup);
-        app.UseOpenApi().UseHttpsRedirection();
+        app.UseHttpsRedirection();
+        app.UseFastEndpoints().UseSwaggerGen();
         app.UseInfrastructure();
 
         return app;
