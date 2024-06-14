@@ -9,6 +9,7 @@
         <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" />
         <PackageReference Include="FastEndpoints" />
         <PackageReference Include="FastEndpoints.Swagger" />
+        <PackageReference Include="MediatR" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
           <PrivateAssets>all</PrivateAssets>
@@ -18,10 +19,12 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Serilog.AspNetCore" />
 
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\PlaceApi.SharedKernel\PlaceApi.SharedKernel.csproj" />
       <ProjectReference Include="..\PlaceApi.Application\PlaceApi.Application.csproj" />
       <ProjectReference Include="..\PlaceApi.Infrastructure\PlaceApi.Infrastructure.csproj" />
     </ItemGroup>
