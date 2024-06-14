@@ -7,6 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.Extensions.DependencyInjection;
 using PlaceApi.Domain.Authentication.Entities;
 
 namespace PlaceApi.Application.UseCases.Authentication.GetUserInfo;
@@ -15,7 +16,7 @@ public sealed record GetUserInfoCommand : IRequest<ErrorOr<InfoResponse>>;
 
 public sealed class GetUserInfoCommandHanlder(
     UserManager<ApplicationUser> userManager,
-    HttpContextAccessor httpContextAccessor
+    IServiceProvider serviceProvider
 ) : IRequestHandler<GetUserInfoCommand, ErrorOr<InfoResponse>>
 {
     public async Task<ErrorOr<InfoResponse>> Handle(
@@ -23,6 +24,14 @@ public sealed class GetUserInfoCommandHanlder(
         CancellationToken cancellationToken
     )
     {
+        IServiceScopeFactory serviceScopeFactory =
+            serviceProvider.GetRequiredService<IServiceScopeFactory>();
+
+        using IServiceScope scope = serviceScopeFactory.CreateScope();
+
+        IHttpContextAccessor httpContextAccessor =
+            scope.ServiceProvider.GetRequiredService<IHttpContextAccessor>();
+
         ClaimsPrincipal claimsPrincipal = httpContextAccessor.HttpContext!.User;
 
         if (await userManager.GetUserAsync(claimsPrincipal) is not { } user)

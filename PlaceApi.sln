@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.Infrastructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.Web", "src\PlaceApi.Web\PlaceApi.Web.csproj", "{D246C482-5DD9-4CD1-BE6D-7AC9FD6A62A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.SharedKernel", "PlaceApi.SharedKernel\PlaceApi.SharedKernel.csproj", "{5620E7DD-D9B1-47AE-B5D4-2E7B835012D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,5 +57,9 @@ Global
 		{D246C482-5DD9-4CD1-BE6D-7AC9FD6A62A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D246C482-5DD9-4CD1-BE6D-7AC9FD6A62A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D246C482-5DD9-4CD1-BE6D-7AC9FD6A62A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5620E7DD-D9B1-47AE-B5D4-2E7B835012D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5620E7DD-D9B1-47AE-B5D4-2E7B835012D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5620E7DD-D9B1-47AE-B5D4-2E7B835012D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5620E7DD-D9B1-47AE-B5D4-2E7B835012D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
