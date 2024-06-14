@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.Data;
 
 namespace PlaceApi.Authentication.Endpoints.V1.GetUserInfo;
 
-public class GetUserInfoSummary : Summary<GetUserInfo.Endpoint>
+internal sealed class GetUserInfoSummary : Summary<GetUserInfo.Endpoint>
 {
     public GetUserInfoSummary()
     {

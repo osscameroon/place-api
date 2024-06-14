@@ -2,7 +2,7 @@ using FastEndpoints;
 
 namespace PlaceApi.Authentication.Endpoints.V1.ConfirmEmail;
 
-public sealed record Request
+internal sealed record Request
 {
     [QueryParam, BindFrom("id")]
     public required string UserId { get; init; }

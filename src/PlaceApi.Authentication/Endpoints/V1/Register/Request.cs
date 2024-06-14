@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace PlaceApi.Authentication.Endpoints.V1.Register;
 
-public sealed record RegisterRequest
+internal sealed record Request
 {
     [JsonPropertyName("username")]
     public required string UserName { get; init; }

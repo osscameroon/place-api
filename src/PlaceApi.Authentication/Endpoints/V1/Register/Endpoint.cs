@@ -1,17 +1,14 @@
 using System.Threading;
 using System.Threading.Tasks;
-
 using FastEndpoints;
-
 using MediatR;
-
 using Microsoft.AspNetCore.Http.HttpResults;
-
 using PlaceApi.Authentication.UseCases.Register;
+using RegisterRequest = PlaceApi.Authentication.Endpoints.V1.Register.Request;
 
 namespace PlaceApi.Authentication.Endpoints.V1.Register;
 
-public class Endpoint(ISender sender)
+internal class Endpoint(ISender sender)
     : Endpoint<RegisterRequest, Results<Ok<RegisterResult>, ValidationProblem>>
 {
     public override void Configure()

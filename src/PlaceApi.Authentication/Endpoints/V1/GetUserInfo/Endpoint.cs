@@ -12,7 +12,7 @@ using IResult = Microsoft.AspNetCore.Http.IResult;
 
 namespace PlaceApi.Authentication.Endpoints.V1.GetUserInfo;
 
-public class Endpoint(ISender sender) : EndpointWithoutRequest<IResult>
+internal sealed class Endpoint(ISender sender) : EndpointWithoutRequest<IResult>
 {
     public override void Configure()
     {

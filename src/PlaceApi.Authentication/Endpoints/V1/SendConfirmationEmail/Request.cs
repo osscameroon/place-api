@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace PlaceApi.Authentication.Endpoints.V1.ResendConfirmationEmail;
+namespace PlaceApi.Authentication.Endpoints.V1.SendConfirmationEmail;
 
 public sealed record Request
 {

@@ -1,21 +1,16 @@
 using System.Threading;
 using System.Threading.Tasks;
-
 using Ardalis.Result;
 using Ardalis.Result.AspNetCore;
-
 using FastEndpoints;
-
 using MediatR;
-
 using PlaceApi.Authentication.UseCases.ConfirmEmail;
-
 using ConfirmEmailRequest = PlaceApi.Authentication.Endpoints.V1.ConfirmEmail.Request;
 using IResult = Microsoft.AspNetCore.Http.IResult;
 
 namespace PlaceApi.Authentication.Endpoints.V1.ConfirmEmail;
 
-public class Endpoint(ISender sender) : Endpoint<Request, IResult>
+internal sealed class Endpoint(ISender sender) : Endpoint<Request, IResult>
 {
     public override void Configure()
     {

@@ -1,23 +1,17 @@
 using System.Threading;
 using System.Threading.Tasks;
-
 using Ardalis.Result;
 using Ardalis.Result.AspNetCore;
-
 using FastEndpoints;
-
 using MediatR;
-
 using Microsoft.AspNetCore.Http.HttpResults;
-
 using PlaceApi.Authentication.UseCases.ForgotPassword;
-
 using ForgotPasswordRequest = PlaceApi.Authentication.Endpoints.V1.ForgotPassword.Request;
 using IResult = Microsoft.AspNetCore.Http.IResult;
 
 namespace PlaceApi.Authentication.Endpoints.V1.ForgotPassword;
 
-public sealed class Endpoint(ISender sender) : Endpoint<Request, IResult>
+internal sealed class Endpoint(ISender sender) : Endpoint<Request, IResult>
 {
     public override void Configure()
     {
