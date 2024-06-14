@@ -1,9 +1,13 @@
 using System.Collections.Generic;
 using System.Reflection;
+using FastEndpoints;
+using FastEndpoints.Swagger;
+using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using PlaceApi.Authentication;
+using PlaceApi.EmailSending;
 using PlaceApi.SharedKernel;
-using PlaceApi.Web;
 using Serilog;
 
 ILogger logger = Log.Logger = new LoggerConfiguration()
@@ -18,10 +22,29 @@ IServiceCollection services = builder.Services;
 
 builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
 
-services.AddWebApplication(builder.Configuration);
+services.AddAuthentication();
+services.AddAuthorizationBuilder();
+
+services.AddFastEndpoints();
+services.SwaggerDocument(o =>
+{
+    o.MaxEndpointVersion = 1;
+    o.DocumentSettings = s =>
+    {
+        s.DocumentName = "Release 1.0";
+        s.Title = "Swagger Place API";
+        s.Version = "v1.0";
+    };
+});
 
 // Add Module Services
+
+
 List<Assembly> mediatRAssemblies = [typeof(Program).Assembly];
+
+builder.Services.AddAuthModuleServices(builder.Configuration, logger, mediatRAssemblies);
+builder.Services.AddEmailSendingModule(builder.Configuration, logger, mediatRAssemblies);
+
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray()));
 builder.Services.AddMediatRLoggingBehavior();
 builder.Services.AddMediatRFluentValidationBehavior();
@@ -31,11 +54,21 @@ builder.Services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>
 
 WebApplication app = builder.Build();
 
-app.UseWebApplication();
-
 app.MapGet("/", () => "It works");
 
 //app.MapIdentityApi<>()>()
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseFastEndpoints(c =>
+{
+    c.Versioning.Prefix = "v";
+});
+
+app.UseHangfireDashboard();
+app.MapHangfireDashboard();
+app.UseSwaggerGen();
 
 app.Run();
 

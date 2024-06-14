@@ -24,13 +24,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\PlaceApi.SharedKernel\PlaceApi.SharedKernel.csproj" />
-      <ProjectReference Include="..\PlaceApi.Application\PlaceApi.Application.csproj" />
-      <ProjectReference Include="..\PlaceApi.Infrastructure\PlaceApi.Infrastructure.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Endpoints\V1\" />
+      <ProjectReference Include="..\PlaceApi.Authentication\PlaceApi.Authentication.csproj" />
+      <ProjectReference Include="..\PlaceApi.EmailSending\PlaceApi.EmailSending.csproj" />
+      <ProjectReference Include="..\PlaceApi.SharedKernel\PlaceApi.SharedKernel.csproj" />
     </ItemGroup>
 
 </Project>
