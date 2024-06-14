@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity.Data;
 using PlaceApi.Authentication.UseCases.GetUserInfo;
 using IResult = Microsoft.AspNetCore.Http.IResult;
 
-namespace PlaceApi.Authentication.Endpoints.GetUserInfo;
+namespace PlaceApi.Authentication.Endpoints.V1.GetUserInfo;
 
 public class Endpoint(ISender sender) : EndpointWithoutRequest<IResult>
 {

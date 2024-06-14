@@ -1,6 +1,6 @@
 using FastEndpoints;
 
-namespace PlaceApi.Authentication.Endpoints.ConfirmEmail;
+namespace PlaceApi.Authentication.Endpoints.V1.ConfirmEmail;
 
 public sealed record Request
 {

@@ -1,6 +1,6 @@
 using FastEndpoints;
 
-namespace PlaceApi.Authentication.Endpoints.Login;
+namespace PlaceApi.Authentication.Endpoints.V1.Login;
 
 public class LoginSummary : Summary<Login.Endpoint>
 {

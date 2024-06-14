@@ -1,6 +1,5 @@
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
-using PlaceApi.Application.UseCases.Authentication.Register;
 
 namespace PlaceApi.Authentication.UseCases.Register;
 

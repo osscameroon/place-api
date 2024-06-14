@@ -1,4 +1,4 @@
-namespace PlaceApi.Authentication.Endpoints.ForgotPassword;
+namespace PlaceApi.Authentication.Endpoints.V1.ForgotPassword;
 
 public sealed class Request
 {

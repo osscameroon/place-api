@@ -1,15 +1,20 @@
 using System.Threading;
 using System.Threading.Tasks;
-using FastEndpoints;
-using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
-using PlaceApi.Authentication.UseCases.ResetPassword;
-using ResetPasswordRequest = PlaceApi.Authentication.Endpoints.ResetPassword.Request;
 
-namespace PlaceApi.Authentication.Endpoints.ResetPassword;
+using FastEndpoints;
+
+using MediatR;
+
+using Microsoft.AspNetCore.Http.HttpResults;
+
+using PlaceApi.Authentication.UseCases.ResetPassword;
+
+using ResetPasswordRequest = PlaceApi.Authentication.Endpoints.V1.ResetPassword.Request;
+
+namespace PlaceApi.Authentication.Endpoints.V1.ResetPassword;
 
 public sealed class Endpoint(ISender sender)
-    : Endpoint<ResetPasswordRequest, Results<NoContent, ValidationProblem>>
+    : Endpoint<Request, Results<NoContent, ValidationProblem>>
 {
     public override void Configure()
     {

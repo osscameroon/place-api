@@ -1,7 +1,7 @@
 using FastEndpoints;
 using Microsoft.AspNetCore.Identity.Data;
 
-namespace PlaceApi.Authentication.Endpoints.GetUserInfo;
+namespace PlaceApi.Authentication.Endpoints.V1.GetUserInfo;
 
 public class GetUserInfoSummary : Summary<GetUserInfo.Endpoint>
 {

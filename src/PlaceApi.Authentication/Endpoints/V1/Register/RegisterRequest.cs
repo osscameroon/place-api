@@ -1,9 +1,12 @@
 using System.Text.Json.Serialization;
 
-namespace PlaceApi.Authentication.Endpoints.Login;
+namespace PlaceApi.Authentication.Endpoints.V1.Register;
 
-public record Request
+public sealed record RegisterRequest
 {
+    [JsonPropertyName("username")]
+    public required string UserName { get; init; }
+
     [JsonPropertyName("email")]
     public required string Email { get; init; }
 

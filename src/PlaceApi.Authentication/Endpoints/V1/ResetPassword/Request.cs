@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace PlaceApi.Authentication.Endpoints.ResetPassword;
+namespace PlaceApi.Authentication.Endpoints.V1.ResetPassword;
 
 public sealed class Request
 {

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using PlaceApi.Authentication.UseCases.Login;
 using IResult = Microsoft.AspNetCore.Http.IResult;
 
-namespace PlaceApi.Authentication.Endpoints.Login;
+namespace PlaceApi.Authentication.Endpoints.V1.Login;
 
 using LoginRequest = Login.Request;
 

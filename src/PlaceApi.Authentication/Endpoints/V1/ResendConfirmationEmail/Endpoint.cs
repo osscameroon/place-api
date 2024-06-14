@@ -1,14 +1,18 @@
 using System.Threading;
 using System.Threading.Tasks;
+
 using FastEndpoints;
+
 using MediatR;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
+
 using PlaceApi.Authentication.Domain;
 using PlaceApi.Authentication.UseCases.SendConfirmationEmail;
 
-namespace PlaceApi.Authentication.Endpoints.ResendConfirmationEmail;
+namespace PlaceApi.Authentication.Endpoints.V1.ResendConfirmationEmail;
 
 public class Endpoint(UserManager<ApplicationUser> userManager, IPublisher publisher)
     : Endpoint<Request, NoContent>

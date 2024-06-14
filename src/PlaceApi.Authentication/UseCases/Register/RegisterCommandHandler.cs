@@ -8,7 +8,6 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
-using PlaceApi.Application.UseCases.Authentication.Register;
 using PlaceApi.Authentication.Domain;
 
 namespace PlaceApi.Authentication.UseCases.Register;

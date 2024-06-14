@@ -1,13 +1,15 @@
 using System.Threading;
 using System.Threading.Tasks;
-using FastEndpoints;
-using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
-using PlaceApi.Application.UseCases.Authentication.Register;
-using PlaceApi.Authentication.UseCases.Register;
-using PlaceApi.Web.Endpoints.V1.Authentication.Register;
 
-namespace PlaceApi.Authentication.Endpoints.Register;
+using FastEndpoints;
+
+using MediatR;
+
+using Microsoft.AspNetCore.Http.HttpResults;
+
+using PlaceApi.Authentication.UseCases.Register;
+
+namespace PlaceApi.Authentication.Endpoints.V1.Register;
 
 public class Endpoint(ISender sender)
     : Endpoint<RegisterRequest, Results<Ok<RegisterResult>, ValidationProblem>>

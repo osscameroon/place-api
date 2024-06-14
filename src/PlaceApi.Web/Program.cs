@@ -40,7 +40,7 @@ services.SwaggerDocument(o =>
 // Add Module Services
 
 
-List<Assembly> mediatRAssemblies = [typeof(Program).Assembly];
+List<Assembly> mediatRAssemblies = [typeof(PlaceApi.Web.Program).Assembly];
 
 builder.Services.AddAuthModuleServices(builder.Configuration, logger, mediatRAssemblies);
 builder.Services.AddEmailSendingModule(builder.Configuration, logger, mediatRAssemblies);
@@ -72,4 +72,7 @@ app.UseSwaggerGen();
 
 app.Run();
 
-public partial class Program { } // needed for tests
+namespace PlaceApi.Web
+{
+    public partial class Program { }
+} // needed for tests
