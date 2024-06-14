@@ -1,6 +1,7 @@
-﻿using MediatR;
+﻿using System;
+using MediatR;
 
-namespace RiverBooks.SharedKernel;
+namespace PlaceApi.SharedKernel;
 
 public abstract record IntegrationEventBase : INotification
 {

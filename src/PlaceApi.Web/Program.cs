@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using PlaceApi.Web;
 
@@ -17,3 +16,5 @@ app.MapGet("/", () => "It works");
 //app.MapIdentityApi<>()>()
 
 app.Run();
+
+public partial class Program { } // needed for tests

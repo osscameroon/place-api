@@ -1,4 +1,6 @@
-﻿namespace PlaceApi.SharedKernel;
+﻿using System.Collections.Generic;
+
+namespace PlaceApi.SharedKernel;
 
 public interface IHaveDomainEvents
 {
