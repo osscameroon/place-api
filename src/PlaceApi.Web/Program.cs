@@ -16,6 +16,8 @@ logger.Information("Starting web host");
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 IServiceCollection services = builder.Services;
 
+builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
+
 services.AddWebApplication(builder.Configuration);
 
 // Add Module Services
