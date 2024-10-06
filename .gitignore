@@ -1,4 +1,4 @@
-﻿*.swp
+*.swp
 
 project.lock.json
 .DS_Store
@@ -41,3 +41,5 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn!
+
+megalinter-reports/

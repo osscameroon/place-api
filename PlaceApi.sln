@@ -12,13 +12,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "externals", "externals", "{
 		nuget.config = nuget.config
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{C3F80B30-C2DE-41DC-933A-A24E04827504}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceAPi.Identity", "src\PlaceAPi.Identity\PlaceAPi.Identity.csproj", "{618D3DAA-8567-4897-B49C-BBACEB1E319F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{C3F80B30-C2DE-41DC-933A-A24E04827504} = {DF65A9DD-4A89-40F0-9983-8FB98C9186F6}
+		{618D3DAA-8567-4897-B49C-BBACEB1E319F} = {C3F80B30-C2DE-41DC-933A-A24E04827504}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{618D3DAA-8567-4897-B49C-BBACEB1E319F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{618D3DAA-8567-4897-B49C-BBACEB1E319F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{618D3DAA-8567-4897-B49C-BBACEB1E319F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{618D3DAA-8567-4897-B49C-BBACEB1E319F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

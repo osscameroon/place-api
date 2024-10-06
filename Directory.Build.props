@@ -5,9 +5,9 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <LangVersion>preview</LangVersion>
         <CSharpier_Check>true</CSharpier_Check>
         <CSharpier_FrameworkVersion>net8.0</CSharpier_FrameworkVersion>
+        <CSharpier_LogLevel>Warning</CSharpier_LogLevel>
     </PropertyGroup>
     
 
