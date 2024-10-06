@@ -43,3 +43,6 @@ msbuild.err
 msbuild.wrn!
 
 megalinter-reports/
+src/**/volumes/
+src/**/bin/
+src/**/obj/
