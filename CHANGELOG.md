@@ -1,3 +1,10 @@
+# 1.0.0 (2024-10-06)
+
+
+### Features
+
+* **Identity:** add authentication system ([5bcabf9](https://github.com/osscameroon/place-api/commit/5bcabf95900dc81550f66ab4e0201922033f5062))
+
 # [1.4.0](https://github.com/osscameroon/place-api/compare/v1.3.0...v1.4.0) (2024-05-11)
 
 
