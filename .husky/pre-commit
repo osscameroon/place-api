@@ -1,0 +1,19 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo 'Ready to commit changes!'
+
+echo 'Format'
+
+dotnet husky run --name dotnet-format
+dotnet husky run --name dotnet-format-csharpier
+
+echo 'Build'
+
+dotnet build --no-restore
+
+echo 'Test'
+
+dotnet test --no-restore
+
+echo 'Completed pre-commit changes'

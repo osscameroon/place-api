@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  oss-place-api-dotnet:
+    container_name: oss-place-api-dotnet
+    build:
+      context: .
+    expose:
+      - 5000
+    volumes:
+      - ./dotnetapp-data:/app/data
+
+  oss-frontend-nginx:
+    image: nginx:1.25.3-alpine
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - oss-place-api-dotnet
+    ports:
+      - "80:80"

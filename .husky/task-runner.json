@@ -1,0 +1,29 @@
+{
+   "tasks": [
+     {
+       "name": "dotnet-format",
+       "command": "dotnet",
+       "group": "format",
+       "args": ["format", "--include", "${staged}"],
+       "include": ["**/*.cs"]
+     },
+     {
+       "name": "dotnet-format-csharpier",
+       "command": "dotnet",
+       "group": "format",
+       "args": [ "csharpier", "${staged}" ],
+       "include": ["**/*.cs"]
+     },
+     {
+       "name": "commit-message-linter",
+       "command": "dotnet",
+       "args": [
+         "husky",
+         "exec",
+         ".husky/csx/commit-lint.csx",
+         "--args",
+         "${args}"
+       ]
+     }
+   ]
+ }
