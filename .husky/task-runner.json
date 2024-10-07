@@ -1,18 +1,9 @@
 {
    "tasks": [
      {
-       "name": "dotnet-format",
-       "command": "dotnet",
-       "group": "format",
-       "args": ["format", "--include", "${staged}"],
-       "include": ["**/*.cs"]
-     },
-     {
-       "name": "dotnet-format-csharpier",
-       "command": "dotnet",
-       "group": "format",
-       "args": [ "csharpier", "${staged}" ],
-       "include": ["**/*.cs"]
+       "name": "nuke",
+       "command": "nuke",
+       "group": "dotnet-nuke"
      },
      {
        "name": "commit-message-linter",

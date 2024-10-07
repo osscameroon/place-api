@@ -33,7 +33,7 @@ nupkg/
 [Rr]eleases/
 x64/
 x86/
-build/
+
 bld/
 [Bb]in/
 [Oo]bj/
@@ -46,3 +46,4 @@ megalinter-reports/
 src/**/volumes/
 src/**/bin/
 src/**/obj/
+.nuke/temp/
