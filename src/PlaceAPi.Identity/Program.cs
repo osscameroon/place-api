@@ -15,6 +15,8 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
     builder
         .Services.AddAuthenticationFeature(builder.Configuration)
         .AddOpenApiFeature(builder.Configuration);
+
+    builder.AddServiceDefaults();
 }
 
 WebApplication app = builder.Build();
