@@ -29,7 +29,7 @@ class Build : NukeBuild
     /// The best practice is to always run it before pushing the changes to source
     /// Run directyly : cmd> nuke
     /// </summary>
-    public static int Main() => Execute<Build>(x => x.Compile);
+    public static int Main() => Execute<Build>(x => x.RunUnitTests);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild
@@ -113,22 +113,6 @@ class Build : NukeBuild
                     DotNetTasks.DotNetRestore(a => a.SetProjectFile(Solution));
                 });
 
-    /// <summary>
-    /// It will Compile the solution
-    /// Run directyly : cmd> nuke Compile
-    /// </summary>
-    Target Compile =>
-        _ =>
-            _.DependsOn(Restore)
-                .Executes(() =>
-                {
-                    DotNetTasks.DotNetBuild(a =>
-                        a.SetProjectFile(Solution)
-                            .SetNoRestore(true)
-                            .SetConfiguration(Configuration)
-                    );
-                });
-
     Target Lint =>
         _ =>
             _.DependsOn(Compile, RestoreDotNetTools)
@@ -139,8 +123,6 @@ class Build : NukeBuild
                         return;
 
                     DotNetTasks.DotNet("csharpier .");
-                    DotNetTasks.DotNet("format style  --verbosity diagnostic");
-                    DotNetTasks.DotNet("format analyzers --verbosity diagnostic");
                 });
 
     /// <summary>
@@ -155,11 +137,21 @@ class Build : NukeBuild
                 .Executes(() =>
                 {
                     DotNetTasks.DotNet("csharpier --check .");
+                });
 
-                    DotNetTasks.DotNet("format style --verify-no-changes --verbosity diagnostic");
-
-                    DotNetTasks.DotNet(
-                        "format analyzers --verify-no-changes --verbosity diagnostic"
+    /// <summary>
+    /// It will Compile the solution
+    /// Run directyly : cmd> nuke Compile
+    /// </summary>
+    Target Compile =>
+        _ =>
+            _.DependsOn(Restore)
+                .Executes(() =>
+                {
+                    DotNetTasks.DotNetBuild(a =>
+                        a.SetProjectFile(Solution)
+                            .SetNoRestore(true)
+                            .SetConfiguration(Configuration)
                     );
                 });
 

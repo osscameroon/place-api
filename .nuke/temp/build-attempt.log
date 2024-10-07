@@ -5,3 +5,7 @@ InstallWorkload
 Clean
 Restore
 Compile
+RestoreDotNetTools
+Lint
+LintCheck
+RunUnitTests

@@ -204,6 +204,10 @@ $(document).ready(function() {
   $("#Clean").addClass('highlight');
   $("#Restore").addClass('highlight');
   $("#Compile").addClass('highlight');
+  $("#RestoreDotNetTools").addClass('highlight');
+  $("#Lint").addClass('highlight');
+  $("#LintCheck").addClass('highlight');
+  $("#RunUnitTests").addClass('highlight');
   $("#LogInformation").hover(
     function() {
         $("#LogInformation").removeClass('highlight');
@@ -212,9 +216,9 @@ $(document).ready(function() {
         $("#Clean").removeClass('highlight');
         $("#InstallWorkload").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
         $("#Lint").removeClass('highlight');
         $("#LintCheck").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
     },
@@ -226,6 +230,10 @@ $(document).ready(function() {
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
+        $("#RestoreDotNetTools").addClass('highlight');
+        $("#Lint").addClass('highlight');
+        $("#LintCheck").addClass('highlight');
+        $("#RunUnitTests").addClass('highlight');
     });
   $("#Preparation").hover(
     function() {
@@ -235,9 +243,9 @@ $(document).ready(function() {
         $("#Clean").removeClass('highlight');
         $("#InstallWorkload").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
         $("#Lint").removeClass('highlight');
         $("#LintCheck").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
@@ -251,6 +259,10 @@ $(document).ready(function() {
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
+        $("#RestoreDotNetTools").addClass('highlight');
+        $("#Lint").addClass('highlight');
+        $("#LintCheck").addClass('highlight');
+        $("#RunUnitTests").addClass('highlight');
     });
   $("#RestoreDotNetTools").hover(
     function() {
@@ -260,9 +272,9 @@ $(document).ready(function() {
         $("#Clean").removeClass('highlight');
         $("#InstallWorkload").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
         $("#Lint").removeClass('highlight');
         $("#LintCheck").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#RestoreDotNetTools").addClass('highlight');
@@ -276,6 +288,10 @@ $(document).ready(function() {
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
+        $("#RestoreDotNetTools").addClass('highlight');
+        $("#Lint").addClass('highlight');
+        $("#LintCheck").addClass('highlight');
+        $("#RunUnitTests").addClass('highlight');
     });
   $("#Clean").hover(
     function() {
@@ -285,9 +301,9 @@ $(document).ready(function() {
         $("#Clean").removeClass('highlight');
         $("#InstallWorkload").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
         $("#Lint").removeClass('highlight');
         $("#LintCheck").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
@@ -303,6 +319,10 @@ $(document).ready(function() {
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
+        $("#RestoreDotNetTools").addClass('highlight');
+        $("#Lint").addClass('highlight');
+        $("#LintCheck").addClass('highlight');
+        $("#RunUnitTests").addClass('highlight');
     });
   $("#InstallWorkload").hover(
     function() {
@@ -312,9 +332,9 @@ $(document).ready(function() {
         $("#Clean").removeClass('highlight');
         $("#InstallWorkload").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
         $("#Lint").removeClass('highlight');
         $("#LintCheck").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
@@ -330,6 +350,10 @@ $(document).ready(function() {
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
+        $("#RestoreDotNetTools").addClass('highlight');
+        $("#Lint").addClass('highlight');
+        $("#LintCheck").addClass('highlight');
+        $("#RunUnitTests").addClass('highlight');
     });
   $("#Restore").hover(
     function() {
@@ -339,9 +363,9 @@ $(document).ready(function() {
         $("#Clean").removeClass('highlight');
         $("#InstallWorkload").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
         $("#Lint").removeClass('highlight');
         $("#LintCheck").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
@@ -361,39 +385,10 @@ $(document).ready(function() {
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
-    });
-  $("#Compile").hover(
-    function() {
-        $("#LogInformation").removeClass('highlight');
-        $("#Preparation").removeClass('highlight');
-        $("#RestoreDotNetTools").removeClass('highlight');
-        $("#Clean").removeClass('highlight');
-        $("#InstallWorkload").removeClass('highlight');
-        $("#Restore").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
-        $("#Lint").removeClass('highlight');
-        $("#LintCheck").removeClass('highlight');
-        $("#RunUnitTests").removeClass('highlight');
-        $("#LogInformation").addClass('highlight');
-        $("#Preparation").addClass('highlight');
-        $("#InstallWorkload").addClass('highlight');
-        $("#Clean").addClass('highlight');
-        $("#Restore").addClass('highlight');
-        $("#Compile").addClass('highlight');
-    },
-    function() {
-        $("#LogInformation").removeClass('highlight');
-        $("#Preparation").removeClass('highlight');
-        $("#InstallWorkload").removeClass('highlight');
-        $("#Clean").removeClass('highlight');
-        $("#Restore").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
-        $("#LogInformation").addClass('highlight');
-        $("#Preparation").addClass('highlight');
-        $("#InstallWorkload").addClass('highlight');
-        $("#Clean").addClass('highlight');
-        $("#Restore").addClass('highlight');
-        $("#Compile").addClass('highlight');
+        $("#RestoreDotNetTools").addClass('highlight');
+        $("#Lint").addClass('highlight');
+        $("#LintCheck").addClass('highlight');
+        $("#RunUnitTests").addClass('highlight');
     });
   $("#Lint").hover(
     function() {
@@ -403,9 +398,9 @@ $(document).ready(function() {
         $("#Clean").removeClass('highlight');
         $("#InstallWorkload").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
         $("#Lint").removeClass('highlight');
         $("#LintCheck").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
@@ -431,6 +426,10 @@ $(document).ready(function() {
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
+        $("#RestoreDotNetTools").addClass('highlight');
+        $("#Lint").addClass('highlight');
+        $("#LintCheck").addClass('highlight');
+        $("#RunUnitTests").addClass('highlight');
     });
   $("#LintCheck").hover(
     function() {
@@ -440,9 +439,9 @@ $(document).ready(function() {
         $("#Clean").removeClass('highlight');
         $("#InstallWorkload").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
         $("#Lint").removeClass('highlight');
         $("#LintCheck").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
@@ -470,6 +469,47 @@ $(document).ready(function() {
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
+        $("#RestoreDotNetTools").addClass('highlight');
+        $("#Lint").addClass('highlight');
+        $("#LintCheck").addClass('highlight');
+        $("#RunUnitTests").addClass('highlight');
+    });
+  $("#Compile").hover(
+    function() {
+        $("#LogInformation").removeClass('highlight');
+        $("#Preparation").removeClass('highlight');
+        $("#RestoreDotNetTools").removeClass('highlight');
+        $("#Clean").removeClass('highlight');
+        $("#InstallWorkload").removeClass('highlight');
+        $("#Restore").removeClass('highlight');
+        $("#Lint").removeClass('highlight');
+        $("#LintCheck").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
+        $("#RunUnitTests").removeClass('highlight');
+        $("#LogInformation").addClass('highlight');
+        $("#Preparation").addClass('highlight');
+        $("#InstallWorkload").addClass('highlight');
+        $("#Clean").addClass('highlight');
+        $("#Restore").addClass('highlight');
+        $("#Compile").addClass('highlight');
+    },
+    function() {
+        $("#LogInformation").removeClass('highlight');
+        $("#Preparation").removeClass('highlight');
+        $("#InstallWorkload").removeClass('highlight');
+        $("#Clean").removeClass('highlight');
+        $("#Restore").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
+        $("#LogInformation").addClass('highlight');
+        $("#Preparation").addClass('highlight');
+        $("#InstallWorkload").addClass('highlight');
+        $("#Clean").addClass('highlight');
+        $("#Restore").addClass('highlight');
+        $("#Compile").addClass('highlight');
+        $("#RestoreDotNetTools").addClass('highlight');
+        $("#Lint").addClass('highlight');
+        $("#LintCheck").addClass('highlight');
+        $("#RunUnitTests").addClass('highlight');
     });
   $("#RunUnitTests").hover(
     function() {
@@ -479,9 +519,9 @@ $(document).ready(function() {
         $("#Clean").removeClass('highlight');
         $("#InstallWorkload").removeClass('highlight');
         $("#Restore").removeClass('highlight');
-        $("#Compile").removeClass('highlight');
         $("#Lint").removeClass('highlight');
         $("#LintCheck").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
@@ -511,6 +551,10 @@ $(document).ready(function() {
         $("#Clean").addClass('highlight');
         $("#Restore").addClass('highlight');
         $("#Compile").addClass('highlight');
+        $("#RestoreDotNetTools").addClass('highlight');
+        $("#Lint").addClass('highlight');
+        $("#LintCheck").addClass('highlight');
+        $("#RunUnitTests").addClass('highlight');
     });
 
 });
@@ -564,9 +608,9 @@ RestoreDotNetTools --> Lint
 Clean --> Restore
 InstallWorkload --> Restore
 Restore --> Compile
-Compile --> Lint
 Lint --> LintCheck
 LintCheck --> RunUnitTests
+Compile --> Lint
 RunUnitTests
 
 
