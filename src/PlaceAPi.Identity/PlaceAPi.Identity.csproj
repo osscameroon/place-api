@@ -38,4 +38,8 @@
       <Folder Include="Migrations\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PlaceApi.ServiceDefaults\PlaceApi.ServiceDefaults.csproj" />
+    </ItemGroup>
+
 </Project>
