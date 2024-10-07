@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DF65A9DD-4A89-40F0-9983-8FB98C9186F6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1769BFA7-3ABE-457B-878A-B6BAB2FF2436}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "externals", "externals", "{8A57F513-0E1E-490A-A9A7-84F61059BDDC}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.props = Directory.Build.props
@@ -16,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{C3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceAPi.Identity", "src\PlaceAPi.Identity\PlaceAPi.Identity.csproj", "{618D3DAA-8567-4897-B49C-BBACEB1E319F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{1DFC8537-6B29-4BB5-8449-1910496DB479}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +26,8 @@ Global
 		{618D3DAA-8567-4897-B49C-BBACEB1E319F} = {C3F80B30-C2DE-41DC-933A-A24E04827504}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DFC8537-6B29-4BB5-8449-1910496DB479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DFC8537-6B29-4BB5-8449-1910496DB479}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{618D3DAA-8567-4897-B49C-BBACEB1E319F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{618D3DAA-8567-4897-B49C-BBACEB1E319F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{618D3DAA-8567-4897-B49C-BBACEB1E319F}.Release|Any CPU.ActiveCfg = Release|Any CPU
