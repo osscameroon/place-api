@@ -1,294 +1,197 @@
-00:46:41.234 | V |                      | ArgumentsFromParametersFile.OnBuildCreated (150)
-00:46:41.242 | V |                      | HandleReSharperSurrogateArguments.OnBuildCreated (150)
-00:46:41.242 | V |                      | InjectParameterValues.OnBuildCreated (100)
-00:46:41.251 | V |                      | HandleShellCompletion.OnBuildCreated (75)
-00:46:41.396 | V |                      | GenerateBuildServerConfigurations.OnBuildCreated (50)
-00:46:41.396 | V |                      | InvokeBuildServerConfigurationGeneration.OnBuildCreated (45)
-00:46:41.400 | V |                      | UpdateNotification.OnBuildCreated (10)
-00:46:41.400 | V |                      | UnsetVisualStudioEnvironmentVariables.OnBuildCreated (0)
-00:46:41.400 | V |                      | HandleVisualStudioDebugging.OnBuildCreated (0)
-00:46:41.400 | V |                      | EventInvoker.OnBuildCreated (-3.4028235E+38)
-00:46:41.406 | V |                      | HandlePlanRequests.OnBuildInitialized (10)
-00:46:41.406 | V |                      | HandleHelpRequests.OnBuildInitialized (5)
-00:46:41.406 | V |                      | Telemetry.OnBuildInitialized (0)
-00:46:41.652 | V |                      | Sending BuildStarted telemetry event ...
-00:46:41.653 | V |                      |   build_components         = 
-00:46:41.653 | V |                      |   build_type               = Project
-00:46:41.653 | V |                      |   compile_time             = 2
-00:46:41.653 | V |                      |   config_generators        = GitHubActions
-00:46:41.653 | V |                      |   host                     = Terminal
-00:46:41.653 | V |                      |   num_custom_components    = 0
-00:46:41.653 | V |                      |   num_custom_extensions    = 0
-00:46:41.653 | V |                      |   num_partitioned_targets  = 0
-00:46:41.653 | V |                      |   num_secrets              = 0
-00:46:41.653 | V |                      |   num_targets              = 10
-00:46:41.653 | V |                      |   os_architecture          = Arm64
-00:46:41.653 | V |                      |   os_platform              = OSX
-00:46:41.653 | V |                      |   repo_branch              = <null>
-00:46:41.653 | V |                      |   repo_commit              = 8a62c4
-00:46:41.653 | V |                      |   repo_provider            = GitHub
-00:46:41.653 | V |                      |   repo_url                 = a0d4fd
-00:46:41.653 | V |                      |   target_framework         = .NETCoreApp,Version=v8.0
-00:46:41.653 | V |                      |   version_dotnet_sdk       = 8.0.401
-00:46:41.653 | V |                      |   version_nuke_common      = 8.1.1
-00:46:41.653 | V |                      |   version_nuke_global_tool = 8.1.1
-00:46:41.849 | V |                      | InjectNonParameterValues.OnBuildInitialized (-100)
-00:46:41.865 | V |                      | EventInvoker.OnBuildInitialized (-3.4028235E+38)
-00:46:41.870 | V | LogInformation       | EventInvoker.OnTargetRunning (-3.4028235E+38)
-00:46:41.870 | I | LogInformation       | Solution path: /Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln
-00:46:41.873 | I | LogInformation       | Solution directory: /Users/aristidehervembassi/Documents/Projects/place-api
-00:46:41.873 | I | LogInformation       | configuration: Debug
-00:46:41.873 | I | LogInformation       | TestResultDirectory: /Users/aristidehervembassi/Documents/Projects/place-api/.nuke/Artifacts/Test-Results
-00:46:41.873 | V | LogInformation       | Telemetry.OnTargetSucceeded (0)
-00:46:41.874 | V | LogInformation       | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-00:46:41.874 | V | Preparation          | EventInvoker.OnTargetRunning (-3.4028235E+38)
-00:46:41.874 | V | Preparation          | Telemetry.OnTargetSucceeded (0)
-00:46:41.875 | V | Preparation          | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-00:46:41.875 | V | InstallWorkload      | EventInvoker.OnTargetRunning (-3.4028235E+38)
-00:46:41.878 | I | InstallWorkload      | > /usr/local/share/dotnet/dotnet workload restore
-00:46:41.878 | V | InstallWorkload      | @ /Users/aristidehervembassi/Documents/Projects/place-api
-00:46:52.791 | D | InstallWorkload      | Installation de la charge de travail : 
-00:46:52.792 | D | InstallWorkload      | 
-00:46:53.695 | D | InstallWorkload      | La vérification de la signature du package NuGet est ignorée.
-00:46:54.402 | D | InstallWorkload      | AVERTISSEMENT : la charge de travail garbage collection a échoué avec l’erreur : La version de la charge de travail 8.0.401-baseline.24412.2 est introuvable..
-00:46:54.402 | D | InstallWorkload      | 
-00:46:54.402 | D | InstallWorkload      | Installation réussie de la ou des charges de travail .
-00:46:54.402 | D | InstallWorkload      | 
-00:46:54.409 | V | InstallWorkload      | Telemetry.OnTargetSucceeded (0)
-00:46:54.409 | V | InstallWorkload      | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-00:46:54.410 | V | Clean                | EventInvoker.OnTargetRunning (-3.4028235E+38)
-00:46:54.411 | I | Clean                | > /usr/local/share/dotnet/dotnet clean
-00:46:54.411 | V | Clean                | @ /Users/aristidehervembassi/Documents/Projects/place-api
-00:46:54.537 | D | Clean                | La génération a démarré 08/10/2024 00:46:54.
-00:46:54.598 | D | Clean                |      1>Projet "/Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln" sur le nœud 1 (Clean cible(s)).
-00:46:54.598 | D | Clean                |      1>ValidateSolutionConfiguration:
-00:46:54.598 | D | Clean                |          Génération de la configuration de solution "Debug|Any CPU".
-00:46:54.598 | D | Clean                |        ValidateProjects:
-00:46:54.598 | D | Clean                |          Le projet "_build" n'est pas sélectionné dans le cadre d'une génération dans la configuration de solution "Debug|Any CPU".
-00:46:54.780 | D | Clean                |      1>Le projet "/Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln" (1) génère "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/PlaceAPi.Identity.csproj" (2) sur le nœud 1 (Clean cible(s)).
-00:46:54.780 | D | Clean                |      2>CoreClean:
-00:46:54.780 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/appsettings.Development.json".
-00:46:54.781 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/appsettings.json".
-00:46:54.781 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/PlaceAPi.Identity".
-00:46:54.781 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/PlaceAPi.Identity.deps.json".
-00:46:54.781 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/PlaceAPi.Identity.runtimeconfig.json".
-00:46:54.781 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/PlaceAPi.Identity.dll".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/PlaceAPi.Identity.pdb".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/PlaceAPi.Identity.xml".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Asp.Versioning.Abstractions.dll".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Asp.Versioning.Http.dll".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Asp.Versioning.Mvc.dll".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Asp.Versioning.Mvc.ApiExplorer.dll".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/CSharpier.MsBuild.dll".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Humanizer.dll".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.AspNetCore.Cryptography.Internal.dll".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.AspNetCore.OpenApi.dll".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.Bcl.AsyncInterfaces.dll".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.CodeAnalysis.dll".
-00:46:54.782 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.CodeAnalysis.CSharp.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.CodeAnalysis.Workspaces.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.EntityFrameworkCore.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.EntityFrameworkCore.Design.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.EntityFrameworkCore.Relational.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.Extensions.DependencyModel.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.Extensions.Identity.Core.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.Extensions.Identity.Stores.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.Extensions.Options.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Microsoft.OpenApi.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Mono.TextTemplating.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Npgsql.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll".
-00:46:54.783 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/NWebsec.AspNetCore.Core.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/NWebsec.AspNetCore.Middleware.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Swashbuckle.AspNetCore.ReDoc.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Swashbuckle.AspNetCore.Swagger.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/System.CodeDom.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/System.Composition.AttributedModel.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/System.Composition.Convention.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/System.Composition.Hosting.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/System.Composition.Runtime.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/System.Composition.TypedParts.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/cs/Microsoft.CodeAnalysis.resources.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/de/Microsoft.CodeAnalysis.resources.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/es/Microsoft.CodeAnalysis.resources.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/fr/Microsoft.CodeAnalysis.resources.dll".
-00:46:54.784 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/it/Microsoft.CodeAnalysis.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/ja/Microsoft.CodeAnalysis.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/ko/Microsoft.CodeAnalysis.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/pl/Microsoft.CodeAnalysis.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/pt-BR/Microsoft.CodeAnalysis.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/ru/Microsoft.CodeAnalysis.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/tr/Microsoft.CodeAnalysis.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/zh-Hans/Microsoft.CodeAnalysis.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/zh-Hant/Microsoft.CodeAnalysis.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/cs/Microsoft.CodeAnalysis.CSharp.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/de/Microsoft.CodeAnalysis.CSharp.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/es/Microsoft.CodeAnalysis.CSharp.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/fr/Microsoft.CodeAnalysis.CSharp.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/it/Microsoft.CodeAnalysis.CSharp.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/ja/Microsoft.CodeAnalysis.CSharp.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/ko/Microsoft.CodeAnalysis.CSharp.resources.dll".
-00:46:54.785 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/pl/Microsoft.CodeAnalysis.CSharp.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/ru/Microsoft.CodeAnalysis.CSharp.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/tr/Microsoft.CodeAnalysis.CSharp.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/cs/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/de/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/es/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/fr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/it/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/ja/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/ko/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/pl/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/pt-BR/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-00:46:54.786 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/ru/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-00:46:54.787 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/tr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-00:46:54.787 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-00:46:54.787 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-00:46:54.787 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/cs/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-00:46:54.787 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/de/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-00:46:54.787 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/es/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-00:46:54.787 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/fr/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-00:46:54.787 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/it/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-00:46:54.787 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/ja/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-00:46:54.787 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/ko/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-00:46:54.787 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/pl/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/pt-BR/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/ru/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/PlaceAPi.Identity.csproj.AssemblyReference.cache".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/PlaceAPi.Identity.GeneratedMSBuildEditorConfig.editorconfig".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/PlaceAPi.Identity.AssemblyInfoInputs.cache".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/PlaceAPi.Identity.AssemblyInfo.cs".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/PlaceAPi.Identity.csproj.CoreCompileInputs.cache".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/PlaceAPi.Identity.MvcApplicationPartsAssemblyInfo.cs".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/PlaceAPi.Identity.MvcApplicationPartsAssemblyInfo.cache".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/PlaceAPi.Identity.sourcelink.json".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/staticwebassets.build.json".
-00:46:54.788 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/staticwebassets/msbuild.build.PlaceAPi.Identity.props".
-00:46:54.789 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/staticwebassets/msbuild.buildMultiTargeting.PlaceAPi.Identity.props".
-00:46:54.789 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/staticwebassets/msbuild.buildTransitive.PlaceAPi.Identity.props".
-00:46:54.789 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/PlaceAPi.41E54F39.Up2Date".
-00:46:54.789 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/PlaceAPi.Identity.dll".
-00:46:54.789 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/refint/PlaceAPi.Identity.dll".
-00:46:54.789 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/PlaceAPi.Identity.xml".
-00:46:54.789 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/PlaceAPi.Identity.pdb".
-00:46:54.789 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/PlaceAPi.Identity.genruntimeconfig.cache".
-00:46:54.789 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/obj/Debug/.net8.0/ref/PlaceAPi.Identity.dll".
-00:46:54.828 | D | Clean                |      2>Génération du projet "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/PlaceAPi.Identity.csproj" terminée (Clean cible(s)).
-00:46:54.830 | D | Clean                |      1>Génération du projet "/Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln" terminée (Clean cible(s)).
-00:46:54.831 | D | Clean                | 
-00:46:54.831 | D | Clean                | La génération a réussi.
-00:46:54.831 | D | Clean                |     0 Avertissement(s)
-00:46:54.831 | D | Clean                |     0 Erreur(s)
-00:46:54.832 | D | Clean                | 
-00:46:54.832 | D | Clean                | Temps écoulé 00:00:00.29
-00:46:54.837 | V | Clean                | Telemetry.OnTargetSucceeded (0)
-00:46:54.837 | V | Clean                | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-00:46:54.837 | V | Restore              | EventInvoker.OnTargetRunning (-3.4028235E+38)
-00:46:54.841 | I | Restore              | > /usr/local/share/dotnet/dotnet restore /Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln
-00:46:54.841 | V | Restore              | @ /Users/aristidehervembassi/Documents/Projects/place-api
-00:46:55.149 | D | Restore              |   Identification des projets à restaurer...
-00:46:55.266 | D | Restore              |   Tous les projets sont à jour pour la restauration.
-00:46:55.273 | V | Restore              | Telemetry.OnTargetSucceeded (0)
-00:46:55.358 | V | Restore              | Sending TargetSucceeded telemetry event ...
-00:46:55.358 | V | Restore              |   build_components         = 
-00:46:55.358 | V | Restore              |   build_type               = Project
-00:46:55.358 | V | Restore              |   compile_time             = 16
-00:46:55.358 | V | Restore              |   config_generators        = GitHubActions
-00:46:55.358 | V | Restore              |   host                     = Terminal
-00:46:55.358 | V | Restore              |   num_custom_components    = 0
-00:46:55.358 | V | Restore              |   num_custom_extensions    = 0
-00:46:55.358 | V | Restore              |   num_partitioned_targets  = 0
-00:46:55.358 | V | Restore              |   num_secrets              = 0
-00:46:55.358 | V | Restore              |   num_targets              = 10
-00:46:55.358 | V | Restore              |   os_architecture          = Arm64
-00:46:55.358 | V | Restore              |   os_platform              = OSX
-00:46:55.358 | V | Restore              |   repo_branch              = <null>
-00:46:55.358 | V | Restore              |   repo_commit              = 8a62c4
-00:46:55.358 | V | Restore              |   repo_provider            = GitHub
-00:46:55.358 | V | Restore              |   repo_url                 = a0d4fd
-00:46:55.358 | V | Restore              |   target_current_partition = 1
-00:46:55.358 | V | Restore              |   target_duration          = 0
-00:46:55.358 | V | Restore              |   target_framework         = .NETCoreApp,Version=v8.0
-00:46:55.358 | V | Restore              |   target_name              = Restore
-00:46:55.358 | V | Restore              |   target_total_partitions  = 1
-00:46:55.358 | V | Restore              |   version_dotnet_sdk       = 8.0.401
-00:46:55.358 | V | Restore              |   version_nuke_common      = 8.1.1
-00:46:55.358 | V | Restore              |   version_nuke_global_tool = 8.1.1
-00:46:55.389 | V | Restore              | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-00:46:55.389 | V | Compile              | EventInvoker.OnTargetRunning (-3.4028235E+38)
-00:46:55.397 | I | Compile              | > /usr/local/share/dotnet/dotnet build /Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln --configuration Debug --no-restore
-00:46:55.397 | V | Compile              | @ /Users/aristidehervembassi/Documents/Projects/place-api
-00:46:56.477 | D | Compile              |   PlaceAPi.Identity -> /Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/PlaceAPi.Identity.dll
-00:46:56.487 | D | Compile              | 
-00:46:56.487 | D | Compile              | La génération a réussi.
-00:46:56.487 | D | Compile              |     0 Avertissement(s)
-00:46:56.487 | D | Compile              |     0 Erreur(s)
-00:46:56.487 | D | Compile              | 
-00:46:56.487 | D | Compile              | Temps écoulé 00:00:00.98
-00:46:56.493 | V | Compile              | Telemetry.OnTargetSucceeded (0)
-00:46:56.580 | V | Compile              | Sending TargetSucceeded telemetry event ...
-00:46:56.580 | V | Compile              |   build_components         = 
-00:46:56.580 | V | Compile              |   build_type               = Project
-00:46:56.580 | V | Compile              |   compile_time             = 17
-00:46:56.580 | V | Compile              |   config_generators        = GitHubActions
-00:46:56.580 | V | Compile              |   host                     = Terminal
-00:46:56.580 | V | Compile              |   num_custom_components    = 0
-00:46:56.580 | V | Compile              |   num_custom_extensions    = 0
-00:46:56.580 | V | Compile              |   num_partitioned_targets  = 0
-00:46:56.580 | V | Compile              |   num_secrets              = 0
-00:46:56.580 | V | Compile              |   num_targets              = 10
-00:46:56.580 | V | Compile              |   os_architecture          = Arm64
-00:46:56.580 | V | Compile              |   os_platform              = OSX
-00:46:56.580 | V | Compile              |   repo_branch              = <null>
-00:46:56.580 | V | Compile              |   repo_commit              = 8a62c4
-00:46:56.580 | V | Compile              |   repo_provider            = GitHub
-00:46:56.580 | V | Compile              |   repo_url                 = a0d4fd
-00:46:56.580 | V | Compile              |   target_current_partition = 1
-00:46:56.580 | V | Compile              |   target_duration          = 1
-00:46:56.580 | V | Compile              |   target_framework         = .NETCoreApp,Version=v8.0
-00:46:56.580 | V | Compile              |   target_name              = Compile
-00:46:56.580 | V | Compile              |   target_total_partitions  = 1
-00:46:56.580 | V | Compile              |   version_dotnet_sdk       = 8.0.401
-00:46:56.580 | V | Compile              |   version_nuke_common      = 8.1.1
-00:46:56.580 | V | Compile              |   version_nuke_global_tool = 8.1.1
-00:46:56.609 | V | Compile              | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-00:46:56.610 | V | RestoreDotNetTools   | EventInvoker.OnTargetRunning (-3.4028235E+38)
-00:46:56.610 | I | RestoreDotNetTools   | > /usr/local/share/dotnet/dotnet tool restore
-00:46:56.610 | V | RestoreDotNetTools   | @ /Users/aristidehervembassi/Documents/Projects/place-api
-00:46:56.725 | D | RestoreDotNetTools   | L'outil 'husky' (version '0.6.4') a été restauré. Commandes disponibles : husky
-00:46:56.726 | D | RestoreDotNetTools   | L'outil 'csharpier' (version '0.29.2') a été restauré. Commandes disponibles : dotnet-csharpier
-00:46:56.726 | D | RestoreDotNetTools   | L'outil 'nuke.globaltool' (version '8.1.1') a été restauré. Commandes disponibles : nuke
-00:46:56.726 | D | RestoreDotNetTools   | 
-00:46:56.726 | D | RestoreDotNetTools   | La restauration a réussi.
-00:46:56.728 | V | RestoreDotNetTools   | Telemetry.OnTargetSucceeded (0)
-00:46:56.728 | V | RestoreDotNetTools   | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-00:46:56.728 | V | Lint                 | EventInvoker.OnTargetRunning (-3.4028235E+38)
-00:46:56.728 | I | Lint                 | > /usr/local/share/dotnet/dotnet csharpier .
-00:46:56.728 | V | Lint                 | @ /Users/aristidehervembassi/Documents/Projects/place-api
-00:46:57.118 | D | Lint                 | Formatted 11 files in 216ms.
-00:46:57.124 | V | Lint                 | Telemetry.OnTargetSucceeded (0)
-00:46:57.124 | V | Lint                 | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-00:46:57.125 | V | LintCheck            | EventInvoker.OnTargetRunning (-3.4028235E+38)
-00:46:57.125 | I | LintCheck            | > /usr/local/share/dotnet/dotnet csharpier --check .
-00:46:57.125 | V | LintCheck            | @ /Users/aristidehervembassi/Documents/Projects/place-api
-00:46:57.432 | D | LintCheck            | Formatted 11 files in 133ms.
-00:46:57.438 | V | LintCheck            | Telemetry.OnTargetSucceeded (0)
-00:46:57.438 | V | LintCheck            | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-00:46:57.438 | V | RunUnitTests         | EventInvoker.OnTargetRunning (-3.4028235E+38)
-00:46:57.446 | V | RunUnitTests         | Telemetry.OnTargetSucceeded (0)
-00:46:57.446 | V | RunUnitTests         | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-00:46:57.448 | V |                      | UpdateNotification.OnBuildFinished (10)
-00:46:57.448 | V |                      | SerializeBuildServerState.OnBuildFinished (0)
-00:46:57.448 | V |                      | EventInvoker.OnBuildFinished (-3.4028235E+38)
+01:10:56.623 | V |                      | ArgumentsFromParametersFile.OnBuildCreated (150)
+01:10:56.631 | V |                      | HandleReSharperSurrogateArguments.OnBuildCreated (150)
+01:10:56.631 | V |                      | InjectParameterValues.OnBuildCreated (100)
+01:10:56.640 | V |                      | HandleShellCompletion.OnBuildCreated (75)
+01:10:56.780 | V |                      | GenerateBuildServerConfigurations.OnBuildCreated (50)
+01:10:56.780 | V |                      | InvokeBuildServerConfigurationGeneration.OnBuildCreated (45)
+01:10:56.785 | V |                      | UpdateNotification.OnBuildCreated (10)
+01:10:56.785 | V |                      | UnsetVisualStudioEnvironmentVariables.OnBuildCreated (0)
+01:10:56.785 | V |                      | HandleVisualStudioDebugging.OnBuildCreated (0)
+01:10:56.785 | V |                      | EventInvoker.OnBuildCreated (-3.4028235E+38)
+01:10:56.792 | V |                      | HandlePlanRequests.OnBuildInitialized (10)
+01:10:56.792 | V |                      | HandleHelpRequests.OnBuildInitialized (5)
+01:10:56.792 | V |                      | Telemetry.OnBuildInitialized (0)
+01:10:57.043 | V |                      | Sending BuildStarted telemetry event ...
+01:10:57.043 | V |                      |   build_components         = 
+01:10:57.043 | V |                      |   build_type               = Project
+01:10:57.043 | V |                      |   compile_time             = 1
+01:10:57.043 | V |                      |   config_generators        = GitHubActions
+01:10:57.044 | V |                      |   host                     = Terminal
+01:10:57.044 | V |                      |   num_custom_components    = 0
+01:10:57.044 | V |                      |   num_custom_extensions    = 0
+01:10:57.044 | V |                      |   num_partitioned_targets  = 0
+01:10:57.044 | V |                      |   num_secrets              = 0
+01:10:57.044 | V |                      |   num_targets              = 10
+01:10:57.044 | V |                      |   os_architecture          = Arm64
+01:10:57.044 | V |                      |   os_platform              = OSX
+01:10:57.044 | V |                      |   repo_branch              = <null>
+01:10:57.044 | V |                      |   repo_commit              = 5d76e9
+01:10:57.044 | V |                      |   repo_provider            = GitHub
+01:10:57.044 | V |                      |   repo_url                 = a0d4fd
+01:10:57.044 | V |                      |   target_framework         = .NETCoreApp,Version=v8.0
+01:10:57.044 | V |                      |   version_dotnet_sdk       = 8.0.401
+01:10:57.044 | V |                      |   version_nuke_common      = 8.1.1
+01:10:57.044 | V |                      |   version_nuke_global_tool = 8.1.1
+01:10:57.243 | V |                      | InjectNonParameterValues.OnBuildInitialized (-100)
+01:10:57.259 | V |                      | EventInvoker.OnBuildInitialized (-3.4028235E+38)
+01:10:57.263 | V | LogInformation       | EventInvoker.OnTargetRunning (-3.4028235E+38)
+01:10:57.264 | I | LogInformation       | Solution path: /Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln
+01:10:57.266 | I | LogInformation       | Solution directory: /Users/aristidehervembassi/Documents/Projects/place-api
+01:10:57.266 | I | LogInformation       | configuration: Debug
+01:10:57.266 | I | LogInformation       | TestResultDirectory: /Users/aristidehervembassi/Documents/Projects/place-api/.nuke/Artifacts/Test-Results
+01:10:57.267 | V | LogInformation       | Telemetry.OnTargetSucceeded (0)
+01:10:57.267 | V | LogInformation       | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+01:10:57.267 | V | Preparation          | EventInvoker.OnTargetRunning (-3.4028235E+38)
+01:10:57.268 | V | Preparation          | Telemetry.OnTargetSucceeded (0)
+01:10:57.268 | V | Preparation          | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+01:10:57.268 | V | InstallWorkload      | EventInvoker.OnTargetRunning (-3.4028235E+38)
+01:10:57.271 | I | InstallWorkload      | > /usr/local/share/dotnet/dotnet workload restore
+01:10:57.271 | V | InstallWorkload      | @ /Users/aristidehervembassi/Documents/Projects/place-api
+01:11:08.282 | D | InstallWorkload      | Installation de la charge de travail : 
+01:11:08.283 | D | InstallWorkload      | 
+01:11:08.863 | D | InstallWorkload      | La vérification de la signature du package NuGet est ignorée.
+01:11:09.235 | D | InstallWorkload      | AVERTISSEMENT : la charge de travail garbage collection a échoué avec l’erreur : La version de la charge de travail 8.0.401-baseline.24412.2 est introuvable..
+01:11:09.235 | D | InstallWorkload      | 
+01:11:09.235 | D | InstallWorkload      | Installation réussie de la ou des charges de travail .
+01:11:09.236 | D | InstallWorkload      | 
+01:11:09.243 | V | InstallWorkload      | Telemetry.OnTargetSucceeded (0)
+01:11:09.243 | V | InstallWorkload      | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+01:11:09.244 | V | Clean                | EventInvoker.OnTargetRunning (-3.4028235E+38)
+01:11:09.245 | I | Clean                | > /usr/local/share/dotnet/dotnet clean
+01:11:09.245 | V | Clean                | @ /Users/aristidehervembassi/Documents/Projects/place-api
+01:11:09.383 | D | Clean                | La génération a démarré 08/10/2024 01:11:09.
+01:11:09.440 | D | Clean                |      1>Projet "/Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln" sur le nœud 1 (Clean cible(s)).
+01:11:09.440 | D | Clean                |      1>ValidateSolutionConfiguration:
+01:11:09.440 | D | Clean                |          Génération de la configuration de solution "Debug|Any CPU".
+01:11:09.440 | D | Clean                |        ValidateProjects:
+01:11:09.440 | D | Clean                |          Le projet "_build" n'est pas sélectionné dans le cadre d'une génération dans la configuration de solution "Debug|Any CPU".
+01:11:09.602 | D | Clean                |      1>Le projet "/Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln" (1) génère "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/PlaceApi.ServiceDefaults.csproj" (2) sur le nœud 1 (Clean cible(s)).
+01:11:09.602 | D | Clean                |      2>CoreClean:
+01:11:09.602 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/bin/Debug/net8.0/PlaceApi.ServiceDefaults.deps.json".
+01:11:09.603 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/bin/Debug/net8.0/PlaceApi.ServiceDefaults.dll".
+01:11:09.603 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/bin/Debug/net8.0/PlaceApi.ServiceDefaults.pdb".
+01:11:09.603 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/bin/Debug/net8.0/PlaceApi.ServiceDefaults.xml".
+01:11:09.603 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.csproj.AssemblyReference.cache".
+01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig".
+01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.AssemblyInfoInputs.cache".
+01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.AssemblyInfo.cs".
+01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.csproj.CoreCompileInputs.cache".
+01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.sourcelink.json".
+01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.dll".
+01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/refint/PlaceApi.ServiceDefaults.dll".
+01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.xml".
+01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.pdb".
+01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/ref/PlaceApi.ServiceDefaults.dll".
+01:11:09.655 | D | Clean                |      2>Génération du projet "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/PlaceApi.ServiceDefaults.csproj" terminée (Clean cible(s)).
+01:11:09.707 | D | Clean                |      1>Le projet "/Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln" (1) génère "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.Host/PlaceApi.Host.csproj" (3) sur le nœud 2 (Clean cible(s)).
+01:11:09.708 | D | Clean                |      3>AddReferenceToDashboardAndDCP:
+01:11:09.708 | D | Clean                |          "/usr/local/share/dotnet/dotnet" exec "/usr/local/share/dotnet/packs/Aspire.Hosting.Sdk/8.2.1/tools/net8.0/Aspire.RuntimeIdentifier.Tool.dll" --runtimeGraphPath "/usr/local/share/dotnet/sdk/8.0.401/RuntimeIdentifierGraph.json" --supportedRids "win-x64,win-x86,win-arm64,linux-x64,linux-arm64,osx-x64,osx-arm64" --netcoreSdkRuntimeIdentifier "osx-arm64"
+01:11:09.877 | D | Clean                |      3>Génération du projet "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.Host/PlaceApi.Host.csproj" terminée (Clean cible(s)).
+01:11:09.880 | D | Clean                |      1>Génération du projet "/Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln" terminée (Clean cible(s)).
+01:11:09.882 | D | Clean                | 
+01:11:09.882 | D | Clean                | La génération a réussi.
+01:11:09.882 | D | Clean                |     0 Avertissement(s)
+01:11:09.882 | D | Clean                |     0 Erreur(s)
+01:11:09.882 | D | Clean                | 
+01:11:09.882 | D | Clean                | Temps écoulé 00:00:00.50
+01:11:09.889 | V | Clean                | Telemetry.OnTargetSucceeded (0)
+01:11:09.889 | V | Clean                | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+01:11:09.889 | V | Restore              | EventInvoker.OnTargetRunning (-3.4028235E+38)
+01:11:09.894 | I | Restore              | > /usr/local/share/dotnet/dotnet restore /Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln
+01:11:09.894 | V | Restore              | @ /Users/aristidehervembassi/Documents/Projects/place-api
+01:11:10.206 | D | Restore              |   Identification des projets à restaurer...
+01:11:10.408 | D | Restore              |   Tous les projets sont à jour pour la restauration.
+01:11:10.416 | V | Restore              | Telemetry.OnTargetSucceeded (0)
+01:11:10.506 | V | Restore              | Sending TargetSucceeded telemetry event ...
+01:11:10.507 | V | Restore              |   build_components         = 
+01:11:10.507 | V | Restore              |   build_type               = Project
+01:11:10.507 | V | Restore              |   compile_time             = 15
+01:11:10.507 | V | Restore              |   config_generators        = GitHubActions
+01:11:10.507 | V | Restore              |   host                     = Terminal
+01:11:10.507 | V | Restore              |   num_custom_components    = 0
+01:11:10.507 | V | Restore              |   num_custom_extensions    = 0
+01:11:10.507 | V | Restore              |   num_partitioned_targets  = 0
+01:11:10.507 | V | Restore              |   num_secrets              = 0
+01:11:10.507 | V | Restore              |   num_targets              = 10
+01:11:10.507 | V | Restore              |   os_architecture          = Arm64
+01:11:10.507 | V | Restore              |   os_platform              = OSX
+01:11:10.507 | V | Restore              |   repo_branch              = <null>
+01:11:10.507 | V | Restore              |   repo_commit              = 5d76e9
+01:11:10.507 | V | Restore              |   repo_provider            = GitHub
+01:11:10.507 | V | Restore              |   repo_url                 = a0d4fd
+01:11:10.507 | V | Restore              |   target_current_partition = 1
+01:11:10.507 | V | Restore              |   target_duration          = 1
+01:11:10.507 | V | Restore              |   target_framework         = .NETCoreApp,Version=v8.0
+01:11:10.507 | V | Restore              |   target_name              = Restore
+01:11:10.507 | V | Restore              |   target_total_partitions  = 1
+01:11:10.507 | V | Restore              |   version_dotnet_sdk       = 8.0.401
+01:11:10.507 | V | Restore              |   version_nuke_common      = 8.1.1
+01:11:10.507 | V | Restore              |   version_nuke_global_tool = 8.1.1
+01:11:10.534 | V | Restore              | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+01:11:10.535 | V | Compile              | EventInvoker.OnTargetRunning (-3.4028235E+38)
+01:11:10.537 | I | Compile              | > /usr/local/share/dotnet/dotnet build /Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln --configuration Debug --no-restore
+01:11:10.537 | V | Compile              | @ /Users/aristidehervembassi/Documents/Projects/place-api
+01:11:11.773 | D | Compile              |   PlaceApi.ServiceDefaults -> /Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/bin/Debug/net8.0/PlaceApi.ServiceDefaults.dll
+01:11:12.532 | D | Compile              |   PlaceAPi.Identity -> /Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/PlaceAPi.Identity.dll
+01:11:13.073 | D | Compile              |   PlaceApi.Host -> /Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.Host/bin/Debug/net8.0/PlaceApi.Host.dll
+01:11:13.081 | D | Compile              | 
+01:11:13.081 | D | Compile              | La génération a réussi.
+01:11:13.081 | D | Compile              |     0 Avertissement(s)
+01:11:13.081 | D | Compile              |     0 Erreur(s)
+01:11:13.082 | D | Compile              | 
+01:11:13.082 | D | Compile              | Temps écoulé 00:00:02.43
+01:11:13.091 | V | Compile              | Telemetry.OnTargetSucceeded (0)
+01:11:13.200 | V | Compile              | Sending TargetSucceeded telemetry event ...
+01:11:13.200 | V | Compile              |   build_components         = 
+01:11:13.200 | V | Compile              |   build_type               = Project
+01:11:13.200 | V | Compile              |   compile_time             = 18
+01:11:13.200 | V | Compile              |   config_generators        = GitHubActions
+01:11:13.200 | V | Compile              |   host                     = Terminal
+01:11:13.200 | V | Compile              |   num_custom_components    = 0
+01:11:13.200 | V | Compile              |   num_custom_extensions    = 0
+01:11:13.200 | V | Compile              |   num_partitioned_targets  = 0
+01:11:13.200 | V | Compile              |   num_secrets              = 0
+01:11:13.200 | V | Compile              |   num_targets              = 10
+01:11:13.200 | V | Compile              |   os_architecture          = Arm64
+01:11:13.200 | V | Compile              |   os_platform              = OSX
+01:11:13.201 | V | Compile              |   repo_branch              = <null>
+01:11:13.201 | V | Compile              |   repo_commit              = 5d76e9
+01:11:13.201 | V | Compile              |   repo_provider            = GitHub
+01:11:13.201 | V | Compile              |   repo_url                 = a0d4fd
+01:11:13.201 | V | Compile              |   target_current_partition = 1
+01:11:13.201 | V | Compile              |   target_duration          = 3
+01:11:13.201 | V | Compile              |   target_framework         = .NETCoreApp,Version=v8.0
+01:11:13.201 | V | Compile              |   target_name              = Compile
+01:11:13.201 | V | Compile              |   target_total_partitions  = 1
+01:11:13.201 | V | Compile              |   version_dotnet_sdk       = 8.0.401
+01:11:13.201 | V | Compile              |   version_nuke_common      = 8.1.1
+01:11:13.201 | V | Compile              |   version_nuke_global_tool = 8.1.1
+01:11:13.226 | V | Compile              | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+01:11:13.227 | V | RestoreDotNetTools   | EventInvoker.OnTargetRunning (-3.4028235E+38)
+01:11:13.228 | I | RestoreDotNetTools   | > /usr/local/share/dotnet/dotnet tool restore
+01:11:13.228 | V | RestoreDotNetTools   | @ /Users/aristidehervembassi/Documents/Projects/place-api
+01:11:13.354 | D | RestoreDotNetTools   | L'outil 'husky' (version '0.6.4') a été restauré. Commandes disponibles : husky
+01:11:13.355 | D | RestoreDotNetTools   | L'outil 'csharpier' (version '0.29.2') a été restauré. Commandes disponibles : dotnet-csharpier
+01:11:13.355 | D | RestoreDotNetTools   | L'outil 'nuke.globaltool' (version '8.1.1') a été restauré. Commandes disponibles : nuke
+01:11:13.355 | D | RestoreDotNetTools   | 
+01:11:13.355 | D | RestoreDotNetTools   | La restauration a réussi.
+01:11:13.357 | V | RestoreDotNetTools   | Telemetry.OnTargetSucceeded (0)
+01:11:13.357 | V | RestoreDotNetTools   | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+01:11:13.357 | V | Lint                 | EventInvoker.OnTargetRunning (-3.4028235E+38)
+01:11:13.358 | I | Lint                 | > /usr/local/share/dotnet/dotnet csharpier .
+01:11:13.358 | V | Lint                 | @ /Users/aristidehervembassi/Documents/Projects/place-api
+01:11:13.721 | D | Lint                 | Formatted 13 files in 180ms.
+01:11:13.728 | V | Lint                 | Telemetry.OnTargetSucceeded (0)
+01:11:13.728 | V | Lint                 | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+01:11:13.728 | V | LintCheck            | EventInvoker.OnTargetRunning (-3.4028235E+38)
+01:11:13.728 | I | LintCheck            | > /usr/local/share/dotnet/dotnet csharpier --check .
+01:11:13.728 | V | LintCheck            | @ /Users/aristidehervembassi/Documents/Projects/place-api
+01:11:14.041 | D | LintCheck            | Formatted 13 files in 134ms.
+01:11:14.045 | V | LintCheck            | Telemetry.OnTargetSucceeded (0)
+01:11:14.046 | V | LintCheck            | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+01:11:14.046 | V | RunUnitTests         | EventInvoker.OnTargetRunning (-3.4028235E+38)
+01:11:14.054 | V | RunUnitTests         | Telemetry.OnTargetSucceeded (0)
+01:11:14.054 | V | RunUnitTests         | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+01:11:14.055 | V |                      | UpdateNotification.OnBuildFinished (10)
+01:11:14.055 | V |                      | SerializeBuildServerState.OnBuildFinished (0)
+01:11:14.055 | V |                      | EventInvoker.OnBuildFinished (-3.4028235E+38)
