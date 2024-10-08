@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PlaceAPi.Identity.Authenticate.Endpoints;
 
 namespace PlaceAPi.Identity.Authenticate.Composition;
 
@@ -82,7 +83,7 @@ public static class AuthenticateExtensions
         RouteGroupBuilder groupBuilder = app.MapGroup("api/v{apiVersion:apiVersion}")
             .WithApiVersionSet(apiVersionSet);
 
-        groupBuilder.MapIdentityApi<ApplicationUser>();
+        groupBuilder.MapAuthenticationEndpoints<ApplicationUser>();
 
         return app;
     }
