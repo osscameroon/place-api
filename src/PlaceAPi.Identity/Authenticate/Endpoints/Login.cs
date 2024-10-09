@@ -13,7 +13,7 @@ using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 public static partial class AuthenticationEndpointsExtensions
 {
-    public static RouteGroupBuilder MapLoginEndpoint<TUser>(this RouteGroupBuilder group)
+    public static IEndpointRouteBuilder MapLoginEndpoint<TUser>(this IEndpointRouteBuilder group)
         where TUser : class, new()
     {
         group.MapPost(

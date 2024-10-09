@@ -20,8 +20,6 @@ public static partial class AuthenticationEndpointsExtensions
     )
         where TUser : class, new()
     {
-        string? confirmEmailEndpointName = null;
-
         IEmailSender<TUser> emailSender = group.ServiceProvider.GetRequiredService<
             IEmailSender<TUser>
         >();
@@ -41,50 +39,60 @@ public static partial class AuthenticationEndpointsExtensions
                     return TypedResults.Ok();
                 }
 
-                await SendConfirmationEmailAsync(user, userManager, context, resendRequest.Email);
+                await SendConfirmationEmailAsync(
+                    emailSender,
+                    linkGenerator,
+                    user,
+                    userManager,
+                    context,
+                    resendRequest.Email
+                );
                 return TypedResults.Ok();
             }
         );
 
         return group;
+    }
 
-        async Task SendConfirmationEmailAsync(
-            TUser user,
-            UserManager<TUser> userManager,
-            HttpContext context,
-            string email,
-            bool isChange = false
-        )
+    static async Task SendConfirmationEmailAsync<TUser>(
+        IEmailSender<TUser> emailSender,
+        LinkGenerator linkGenerator,
+        TUser user,
+        UserManager<TUser> userManager,
+        HttpContext context,
+        string email,
+        bool isChange = false
+    )
+        where TUser : class
+    {
+        if (confirmEmailEndpointName is null)
         {
-            if (confirmEmailEndpointName is null)
-            {
-                throw new NotSupportedException("No email confirmation endpoint was registered!");
-            }
-
-            string code = isChange
-                ? await userManager.GenerateChangeEmailTokenAsync(user, email)
-                : await userManager.GenerateEmailConfirmationTokenAsync(user);
-            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-
-            string userId = await userManager.GetUserIdAsync(user);
-            RouteValueDictionary routeValues = new() { ["userId"] = userId, ["code"] = code };
-
-            if (isChange)
-            {
-                routeValues.Add("changedEmail", email);
-            }
-
-            string confirmEmailUrl =
-                linkGenerator.GetUriByName(context, confirmEmailEndpointName, routeValues)
-                ?? throw new NotSupportedException(
-                    $"Could not find endpoint named '{confirmEmailEndpointName}'."
-                );
-
-            await emailSender.SendConfirmationLinkAsync(
-                user,
-                email,
-                HtmlEncoder.Default.Encode(confirmEmailUrl)
-            );
+            throw new NotSupportedException("No email confirmation endpoint was registered!");
         }
+
+        string code = isChange
+            ? await userManager.GenerateChangeEmailTokenAsync(user, email)
+            : await userManager.GenerateEmailConfirmationTokenAsync(user);
+        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
+        string userId = await userManager.GetUserIdAsync(user);
+        RouteValueDictionary routeValues = new() { ["userId"] = userId, ["code"] = code };
+
+        if (isChange)
+        {
+            routeValues.Add("changedEmail", email);
+        }
+
+        string confirmEmailUrl =
+            linkGenerator.GetUriByName(context, confirmEmailEndpointName, routeValues)
+            ?? throw new NotSupportedException(
+                $"Could not find endpoint named '{confirmEmailEndpointName}'."
+            );
+
+        await emailSender.SendConfirmationLinkAsync(
+            user,
+            email,
+            HtmlEncoder.Default.Encode(confirmEmailUrl)
+        );
     }
 }

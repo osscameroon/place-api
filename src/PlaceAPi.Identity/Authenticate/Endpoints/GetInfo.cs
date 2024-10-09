@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
-using System.Text;
-using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -10,7 +8,6 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.DependencyInjection;
 
 public static partial class AuthenticationEndpointsExtensions
@@ -18,8 +15,6 @@ public static partial class AuthenticationEndpointsExtensions
     public static IEndpointRouteBuilder MapGetInfoEndpoint<TUser>(this IEndpointRouteBuilder group)
         where TUser : class, new()
     {
-        string? confirmEmailEndpointName = null;
-
         IEmailSender<TUser> emailSender = group.ServiceProvider.GetRequiredService<
             IEmailSender<TUser>
         >();
@@ -27,129 +22,106 @@ public static partial class AuthenticationEndpointsExtensions
 
         RouteGroupBuilder accountGroup = group.MapGroup("/manage").RequireAuthorization();
 
-        accountGroup.MapGet(
-            "/info",
-            async Task<Results<Ok<InfoResponse>, ValidationProblem, NotFound>> (
-                ClaimsPrincipal claimsPrincipal,
-                [FromServices] IServiceProvider sp
-            ) =>
-            {
-                UserManager<TUser> userManager = sp.GetRequiredService<UserManager<TUser>>();
-                if (await userManager.GetUserAsync(claimsPrincipal) is not { } user)
-                {
-                    return TypedResults.NotFound();
-                }
+        accountGroup.MapGet("/info", HandleGetInfoRequest);
+        accountGroup.MapPost("/info", HandlePostInfoRequest);
 
-                return TypedResults.Ok(await CreateInfoResponseAsync(user, userManager));
-            }
-        );
-
-        accountGroup.MapPost(
-            "/info",
-            async Task<Results<Ok<InfoResponse>, ValidationProblem, NotFound>> (
-                ClaimsPrincipal claimsPrincipal,
-                [FromBody] InfoRequest infoRequest,
-                HttpContext context,
-                [FromServices] IServiceProvider sp
-            ) =>
-            {
-                UserManager<TUser> userManager = sp.GetRequiredService<UserManager<TUser>>();
-                if (await userManager.GetUserAsync(claimsPrincipal) is not { } user)
-                {
-                    return TypedResults.NotFound();
-                }
-
-                if (
-                    !string.IsNullOrEmpty(infoRequest.NewEmail)
-                    && !EmailAddressAttribute.IsValid(infoRequest.NewEmail)
-                )
-                {
-                    return CreateValidationProblem(
-                        IdentityResult.Failed(
-                            userManager.ErrorDescriber.InvalidEmail(infoRequest.NewEmail)
-                        )
-                    );
-                }
-
-                if (!string.IsNullOrEmpty(infoRequest.NewPassword))
-                {
-                    if (string.IsNullOrEmpty(infoRequest.OldPassword))
-                    {
-                        return CreateValidationProblem(
-                            "OldPasswordRequired",
-                            "The old password is required to set a new password. If the old password is forgotten, use /resetPassword."
-                        );
-                    }
-
-                    IdentityResult changePasswordResult = await userManager.ChangePasswordAsync(
-                        user,
-                        infoRequest.OldPassword,
-                        infoRequest.NewPassword
-                    );
-                    if (!changePasswordResult.Succeeded)
-                    {
-                        return CreateValidationProblem(changePasswordResult);
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(infoRequest.NewEmail))
-                {
-                    string? email = await userManager.GetEmailAsync(user);
-
-                    if (email != infoRequest.NewEmail)
-                    {
-                        await SendConfirmationEmailAsync(
-                            user,
-                            userManager,
-                            context,
-                            infoRequest.NewEmail,
-                            isChange: true
-                        );
-                    }
-                }
-
-                return TypedResults.Ok(await CreateInfoResponseAsync(user, userManager));
-            }
-        );
         return group;
 
-        async Task SendConfirmationEmailAsync(
-            TUser user,
-            UserManager<TUser> userManager,
-            HttpContext context,
-            string email,
-            bool isChange = false
+        async Task<Results<Ok<InfoResponse>, ValidationProblem, NotFound>> HandleGetInfoRequest(
+            ClaimsPrincipal claimsPrincipal,
+            [FromServices] IServiceProvider sp
         )
         {
-            if (confirmEmailEndpointName is null)
+            UserManager<TUser> userManager = sp.GetRequiredService<UserManager<TUser>>();
+            TUser? user = await userManager.GetUserAsync(claimsPrincipal);
+
+            return user is null
+                ? TypedResults.NotFound()
+                : TypedResults.Ok(await CreateInfoResponseAsync(user, userManager));
+        }
+
+        async Task<Results<Ok<InfoResponse>, ValidationProblem, NotFound>> HandlePostInfoRequest(
+            ClaimsPrincipal claimsPrincipal,
+            [FromBody] InfoRequest infoRequest,
+            HttpContext context,
+            [FromServices] IServiceProvider sp
+        )
+        {
+            UserManager<TUser> userManager = sp.GetRequiredService<UserManager<TUser>>();
+            TUser? user = await userManager.GetUserAsync(claimsPrincipal);
+
+            if (user is null)
+                return TypedResults.NotFound();
+
+            ValidationProblem? validationResult = ValidateInfoRequest(infoRequest, userManager);
+            if (validationResult != null)
+                return validationResult;
+
+            await UpdateUserInfoAsync(user, infoRequest, userManager, context);
+
+            return TypedResults.Ok(await CreateInfoResponseAsync(user, userManager));
+        }
+
+        ValidationProblem? ValidateInfoRequest(
+            InfoRequest infoRequest,
+            UserManager<TUser> userManager
+        )
+        {
+            if (!IsValidEmail(infoRequest.NewEmail))
             {
-                throw new NotSupportedException("No email confirmation endpoint was registered!");
+                return CreateValidationProblem(
+                    IdentityResult.Failed(
+                        userManager.ErrorDescriber.InvalidEmail(infoRequest.NewEmail)
+                    )
+                );
             }
 
-            string code = isChange
-                ? await userManager.GenerateChangeEmailTokenAsync(user, email)
-                : await userManager.GenerateEmailConfirmationTokenAsync(user);
-            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-
-            string userId = await userManager.GetUserIdAsync(user);
-            RouteValueDictionary routeValues = new() { ["userId"] = userId, ["code"] = code };
-
-            if (isChange)
+            if (IsNewPasswordValid(infoRequest.NewPassword, infoRequest.OldPassword))
             {
-                routeValues.Add("changedEmail", email);
+                return CreateValidationProblem(
+                    "OldPasswordRequired",
+                    "The old password is required to set a new password. If the old password is forgotten, use /resetPassword."
+                );
             }
 
-            string confirmEmailUrl =
-                linkGenerator.GetUriByName(context, confirmEmailEndpointName, routeValues)
-                ?? throw new NotSupportedException(
-                    $"Could not find endpoint named '{confirmEmailEndpointName}'."
+            return null;
+        }
+
+        async Task UpdateUserInfoAsync(
+            TUser user,
+            InfoRequest infoRequest,
+            UserManager<TUser> userManager,
+            HttpContext context
+        )
+        {
+            if (!string.IsNullOrEmpty(infoRequest.NewPassword))
+            {
+                IdentityResult changePasswordResult = await userManager.ChangePasswordAsync(
+                    user,
+                    infoRequest.OldPassword!,
+                    infoRequest.NewPassword
                 );
 
-            await emailSender.SendConfirmationLinkAsync(
-                user,
-                email,
-                HtmlEncoder.Default.Encode(confirmEmailUrl)
-            );
+                if (!changePasswordResult.Succeeded)
+                    throw new InvalidOperationException("Failed to change password.");
+            }
+
+            if (!string.IsNullOrEmpty(infoRequest.NewEmail))
+            {
+                string? currentEmail = await userManager.GetEmailAsync(user);
+                if (currentEmail != infoRequest.NewEmail)
+                {
+                    await SendConfirmationEmailAsync(
+                        emailSender,
+                        linkGenerator,
+                        user,
+                        userManager,
+                        context,
+                        infoRequest.NewEmail,
+                        isChange: true
+                    );
+                }
+            }
         }
     }
 
@@ -175,4 +147,10 @@ public static partial class AuthenticationEndpointsExtensions
         TypedResults.ValidationProblem(
             new Dictionary<string, string[]> { { errorCode, [errorDescription] } }
         );
+
+    private static bool IsValidEmail(string? email) =>
+        !string.IsNullOrEmpty(email) && !EmailAddressAttribute.IsValid(email);
+
+    private static bool IsNewPasswordValid(string? newPassword, string? oldPassword) =>
+        !string.IsNullOrEmpty(newPassword) && string.IsNullOrEmpty(oldPassword);
 }
