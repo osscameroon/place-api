@@ -17,10 +17,10 @@ public static partial class AuthenticationEndpointsExtensions
         RouteGroupBuilder routeGroup = endpoints.MapGroup("");
 
         routeGroup
+            .MapConfirmEmailEndpoint<TUser>()
             .MapLoginEndpoint<TUser>()
             .MapRegisterEndpoint<TUser>()
             .MapRefreshEndpoint<TUser>()
-            .MapConfirmEmailEndpoint<TUser>()
             .MapResendConfirmationEmailEndpoint<TUser>()
             .MapForgotPasswordEndpoint<TUser>()
             .MapResetPasswordEndpoint<TUser>();

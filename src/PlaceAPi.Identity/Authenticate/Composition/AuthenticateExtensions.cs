@@ -68,6 +68,8 @@ public static class AuthenticateExtensions
 
         services.AddTransient<IEmailSender, EmailSender>();
 
+        services.AddSingleton<RouteMetadataService>();
+
         return services;
     }
 

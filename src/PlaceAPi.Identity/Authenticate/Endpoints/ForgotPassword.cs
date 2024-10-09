@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.DependencyInjection;
 
-// ReSharper disable once CheckNamespace
 public static partial class AuthenticationEndpointsExtensions
 {
     public static IEndpointRouteBuilder MapForgotPasswordEndpoint<TUser>(
@@ -22,36 +21,48 @@ public static partial class AuthenticationEndpointsExtensions
         IEmailSender<TUser> emailSender = group.ServiceProvider.GetRequiredService<
             IEmailSender<TUser>
         >();
-        LinkGenerator linkGenerator = group.ServiceProvider.GetRequiredService<LinkGenerator>();
 
-        group.MapPost(
-            "/forgotPassword",
-            async Task<Results<Ok, ValidationProblem>> (
-                [FromBody] ForgotPasswordRequest resetRequest,
-                [FromServices] IServiceProvider sp
-            ) =>
-            {
-                UserManager<TUser> userManager = sp.GetRequiredService<UserManager<TUser>>();
-                TUser? user = await userManager.FindByEmailAsync(resetRequest.Email);
-
-                if (user is null || !await userManager.IsEmailConfirmedAsync(user))
-                {
-                    return TypedResults.Ok();
-                }
-
-                string code = await userManager.GeneratePasswordResetTokenAsync(user);
-                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-
-                await emailSender.SendPasswordResetCodeAsync(
-                    user,
-                    resetRequest.Email,
-                    HtmlEncoder.Default.Encode(code)
-                );
-
-                return TypedResults.Ok();
-            }
-        );
+        group.MapPost("/forgotPassword", HandleForgotPasswordRequest);
 
         return group;
+
+        async Task<Results<Ok, ValidationProblem>> HandleForgotPasswordRequest(
+            [FromBody] ForgotPasswordRequest resetRequest,
+            [FromServices] IServiceProvider sp
+        )
+        {
+            UserManager<TUser> userManager = sp.GetRequiredService<UserManager<TUser>>();
+            TUser? user = await userManager.FindByEmailAsync(resetRequest.Email);
+
+            await ProcessPasswordResetRequestAsync(user, resetRequest.Email, userManager);
+
+            return TypedResults.Ok();
+        }
+
+        async Task ProcessPasswordResetRequestAsync(
+            TUser? user,
+            string email,
+            UserManager<TUser> userManager
+        )
+        {
+            if (user is null || !await userManager.IsEmailConfirmedAsync(user))
+                return;
+
+            string code = await GeneratePasswordResetTokenAsync(user, userManager);
+            await emailSender.SendPasswordResetCodeAsync(
+                user,
+                email,
+                HtmlEncoder.Default.Encode(code)
+            );
+        }
+
+        async Task<string> GeneratePasswordResetTokenAsync(
+            TUser user,
+            UserManager<TUser> userManager
+        )
+        {
+            string token = await userManager.GeneratePasswordResetTokenAsync(user);
+            return WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+        }
     }
 }

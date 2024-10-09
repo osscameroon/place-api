@@ -28,8 +28,6 @@ public static partial class AuthenticationEndpointsExtensions
         >();
         LinkGenerator linkGenerator = group.ServiceProvider.GetRequiredService<LinkGenerator>();
 
-        string? confirmEmailEndpointName = null;
-
         // We'll figure out a unique endpoint name based on the final route pattern during endpoint generation.
         group.MapPost(
             "/register",
