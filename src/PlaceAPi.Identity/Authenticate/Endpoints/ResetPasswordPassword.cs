@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -20,53 +22,48 @@ public static partial class AuthenticationEndpointsExtensions
     )
         where TUser : class, new()
     {
-        group.MapPost(
-            "/resetPassword",
-            async Task<Results<Ok, ValidationProblem>> (
-                [FromBody] ResetPasswordRequest resetRequest,
-                [FromServices] IServiceProvider sp
-            ) =>
-            {
-                UserManager<TUser> userManager = sp.GetRequiredService<UserManager<TUser>>();
-
-                TUser? user = await userManager.FindByEmailAsync(resetRequest.Email);
-
-                if (user is null || !(await userManager.IsEmailConfirmedAsync(user)))
-                {
-                    // Don't reveal that the user does not exist or is not confirmed, so don't return a 200 if we would have
-                    // returned a 400 for an invalid code given a valid user email.
-                    return CreateValidationProblem(
-                        IdentityResult.Failed(userManager.ErrorDescriber.InvalidToken())
-                    );
-                }
-
-                IdentityResult result;
-                try
-                {
-                    string code = Encoding.UTF8.GetString(
-                        WebEncoders.Base64UrlDecode(resetRequest.ResetCode)
-                    );
-                    result = await userManager.ResetPasswordAsync(
-                        user,
-                        code,
-                        resetRequest.NewPassword
-                    );
-                }
-                catch (FormatException)
-                {
-                    result = IdentityResult.Failed(userManager.ErrorDescriber.InvalidToken());
-                }
-
-                if (!result.Succeeded)
-                {
-                    return CreateValidationProblem(result);
-                }
-
-                return TypedResults.Ok();
-            }
-        );
+        group.MapPost("/resetPassword", ResetPasswordHandler);
 
         return group;
+
+        static async Task<Results<Ok, ValidationProblem>> ResetPasswordHandler(
+            [FromBody] ResetPasswordRequest resetRequest,
+            [FromServices] UserManager<TUser> userManager
+        )
+        {
+            TUser? user = await userManager.FindByEmailAsync(resetRequest.Email);
+
+            if (user is null || !(await userManager.IsEmailConfirmedAsync(user)))
+            {
+                return CreateValidationProblem(
+                    IdentityResult.Failed(userManager.ErrorDescriber.InvalidToken())
+                );
+            }
+
+            IdentityResult result = await ResetUserPassword(userManager, user, resetRequest);
+
+            return result.Succeeded ? TypedResults.Ok() : CreateValidationProblem(result);
+        }
+    }
+
+    private static async Task<IdentityResult> ResetUserPassword<TUser>(
+        UserManager<TUser> userManager,
+        TUser user,
+        ResetPasswordRequest resetRequest
+    )
+        where TUser : class
+    {
+        try
+        {
+            string code = Encoding.UTF8.GetString(
+                WebEncoders.Base64UrlDecode(resetRequest.ResetCode)
+            );
+            return await userManager.ResetPasswordAsync(user, code, resetRequest.NewPassword);
+        }
+        catch (FormatException)
+        {
+            return IdentityResult.Failed(userManager.ErrorDescriber.InvalidToken());
+        }
     }
 
     private sealed class IdentityEndpointsConventionBuilder(RouteGroupBuilder inner)
