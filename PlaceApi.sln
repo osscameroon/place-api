@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.Host", "src\PlaceA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.ServiceDefaults", "src\PlaceApi.ServiceDefaults\PlaceApi.ServiceDefaults.csproj", "{F92D35F5-35DC-49EB-A08B-7F944C32B69C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.Identity.Tests.Integration", "..\..\place-api\tests\PlaceApi.Identity.Tests.Integration\PlaceApi.Identity.Tests.Integration.csproj", "{8CEFB06C-9E33-47CC-A262-A062090F08B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,7 @@ Global
 		{AEF037D4-3549-4815-B0F3-36AED9A049D3} = {DF65A9DD-4A89-40F0-9983-8FB98C9186F6}
 		{2D4A5004-0C6A-4C4B-8BBF-B3F25337A75F} = {AEF037D4-3549-4815-B0F3-36AED9A049D3}
 		{F92D35F5-35DC-49EB-A08B-7F944C32B69C} = {AEF037D4-3549-4815-B0F3-36AED9A049D3}
+		{8CEFB06C-9E33-47CC-A262-A062090F08B4} = {C3F80B30-C2DE-41DC-933A-A24E04827504}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1DFC8537-6B29-4BB5-8449-1910496DB479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -49,5 +52,9 @@ Global
 		{F92D35F5-35DC-49EB-A08B-7F944C32B69C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F92D35F5-35DC-49EB-A08B-7F944C32B69C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F92D35F5-35DC-49EB-A08B-7F944C32B69C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CEFB06C-9E33-47CC-A262-A062090F08B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CEFB06C-9E33-47CC-A262-A062090F08B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CEFB06C-9E33-47CC-A262-A062090F08B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CEFB06C-9E33-47CC-A262-A062090F08B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
