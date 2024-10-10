@@ -22,7 +22,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.Host", "src\PlaceA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.ServiceDefaults", "src\PlaceApi.ServiceDefaults\PlaceApi.ServiceDefaults.csproj", "{F92D35F5-35DC-49EB-A08B-7F944C32B69C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.Identity.Tests.Integration", "..\..\place-api\tests\PlaceApi.Identity.Tests.Integration\PlaceApi.Identity.Tests.Integration.csproj", "{8CEFB06C-9E33-47CC-A262-A062090F08B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.Identity.Tests.Integration", "tests\PlaceApi.Identity.Tests.Integration\PlaceApi.Identity.Tests.Integration.csproj", "{8CEFB06C-9E33-47CC-A262-A062090F08B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
