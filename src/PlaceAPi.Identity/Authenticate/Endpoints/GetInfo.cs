@@ -149,7 +149,7 @@ public static partial class AuthenticationEndpointsExtensions
         );
 
     private static bool IsValidEmail(string? email) =>
-        !string.IsNullOrEmpty(email) && !EmailAddressAttribute.IsValid(email);
+        !string.IsNullOrEmpty(email) && EmailAddressAttribute.IsValid(email);
 
     private static bool IsNewPasswordValid(string? newPassword, string? oldPassword) =>
         !string.IsNullOrEmpty(newPassword) && string.IsNullOrEmpty(oldPassword);

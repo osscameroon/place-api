@@ -220,6 +220,7 @@ $(document).ready(function() {
         $("#LintCheck").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
+        $("#RunIntegrationTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
     },
     function() {
@@ -247,6 +248,7 @@ $(document).ready(function() {
         $("#LintCheck").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
+        $("#RunIntegrationTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
     },
@@ -276,6 +278,7 @@ $(document).ready(function() {
         $("#LintCheck").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
+        $("#RunIntegrationTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#RestoreDotNetTools").addClass('highlight');
     },
@@ -305,6 +308,7 @@ $(document).ready(function() {
         $("#LintCheck").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
+        $("#RunIntegrationTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
         $("#Clean").addClass('highlight');
@@ -336,6 +340,7 @@ $(document).ready(function() {
         $("#LintCheck").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
+        $("#RunIntegrationTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
         $("#InstallWorkload").addClass('highlight');
@@ -367,6 +372,7 @@ $(document).ready(function() {
         $("#LintCheck").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
+        $("#RunIntegrationTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
         $("#InstallWorkload").addClass('highlight');
@@ -402,6 +408,7 @@ $(document).ready(function() {
         $("#LintCheck").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
+        $("#RunIntegrationTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
         $("#InstallWorkload").addClass('highlight');
@@ -443,6 +450,7 @@ $(document).ready(function() {
         $("#LintCheck").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
+        $("#RunIntegrationTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
         $("#InstallWorkload").addClass('highlight');
@@ -486,6 +494,7 @@ $(document).ready(function() {
         $("#LintCheck").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
+        $("#RunIntegrationTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
         $("#InstallWorkload").addClass('highlight');
@@ -523,6 +532,7 @@ $(document).ready(function() {
         $("#LintCheck").removeClass('highlight');
         $("#Compile").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
+        $("#RunIntegrationTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
         $("#InstallWorkload").addClass('highlight');
@@ -545,6 +555,52 @@ $(document).ready(function() {
         $("#Lint").removeClass('highlight');
         $("#LintCheck").removeClass('highlight');
         $("#RunUnitTests").removeClass('highlight');
+        $("#LogInformation").addClass('highlight');
+        $("#Preparation").addClass('highlight');
+        $("#InstallWorkload").addClass('highlight');
+        $("#Clean").addClass('highlight');
+        $("#Restore").addClass('highlight');
+        $("#Compile").addClass('highlight');
+        $("#RestoreDotNetTools").addClass('highlight');
+        $("#Lint").addClass('highlight');
+        $("#LintCheck").addClass('highlight');
+        $("#RunUnitTests").addClass('highlight');
+    });
+  $("#RunIntegrationTests").hover(
+    function() {
+        $("#LogInformation").removeClass('highlight');
+        $("#Preparation").removeClass('highlight');
+        $("#RestoreDotNetTools").removeClass('highlight');
+        $("#Clean").removeClass('highlight');
+        $("#InstallWorkload").removeClass('highlight');
+        $("#Restore").removeClass('highlight');
+        $("#Lint").removeClass('highlight');
+        $("#LintCheck").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
+        $("#RunUnitTests").removeClass('highlight');
+        $("#RunIntegrationTests").removeClass('highlight');
+        $("#LogInformation").addClass('highlight');
+        $("#Preparation").addClass('highlight');
+        $("#InstallWorkload").addClass('highlight');
+        $("#Clean").addClass('highlight');
+        $("#Restore").addClass('highlight');
+        $("#Compile").addClass('highlight');
+        $("#RestoreDotNetTools").addClass('highlight');
+        $("#Lint").addClass('highlight');
+        $("#LintCheck").addClass('highlight');
+        $("#RunIntegrationTests").addClass('highlight');
+    },
+    function() {
+        $("#LogInformation").removeClass('highlight');
+        $("#Preparation").removeClass('highlight');
+        $("#InstallWorkload").removeClass('highlight');
+        $("#Clean").removeClass('highlight');
+        $("#Restore").removeClass('highlight');
+        $("#Compile").removeClass('highlight');
+        $("#RestoreDotNetTools").removeClass('highlight');
+        $("#Lint").removeClass('highlight');
+        $("#LintCheck").removeClass('highlight');
+        $("#RunIntegrationTests").removeClass('highlight');
         $("#LogInformation").addClass('highlight');
         $("#Preparation").addClass('highlight');
         $("#InstallWorkload").addClass('highlight');
@@ -610,8 +666,11 @@ InstallWorkload --> Restore
 Restore --> Compile
 Lint --> LintCheck
 LintCheck --> RunUnitTests
+LintCheck --> RunIntegrationTests
 Compile --> Lint
+Compile --> RunIntegrationTests
 RunUnitTests
+RunIntegrationTests
 
 
 linkStyle default interpolate basis
