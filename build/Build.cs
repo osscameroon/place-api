@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Nuke.Common;
 using Nuke.Common.CI.GitHubActions;
@@ -29,7 +30,7 @@ class Build : NukeBuild
     /// The best practice is to always run it before pushing the changes to source
     /// Run directyly : cmd> nuke
     /// </summary>
-    public static int Main() => Execute<Build>(x => x.RunUnitTests);
+    public static int Main() => Execute<Build>(x => x.RunIntegrationTests);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild
@@ -186,5 +187,46 @@ class Build : NukeBuild
                                         .SetCoverletOutput(TestResultDirectory + $"{z.Name}.xml")
                             )
                     );
+                });
+
+    private Target RunIntegrationTests =>
+        _ =>
+            _.DependsOn(Compile, LintCheck)
+                .Executes(() =>
+                {
+                    IEnumerable<Project> testProjects = Solution
+                        .AllProjects.Where(s => s.Name.EndsWith("Tests.Integration"))
+                        .ToList();
+
+                    Log.Information($"Found {testProjects.Count()} integration test projects");
+
+                    foreach (Project project in testProjects)
+                    {
+                        Log.Information($"Running tests for project: {project.Name}");
+
+                        AbsolutePath testResultFile = TestResultDirectory / $"{project.Name}.trx";
+                        AbsolutePath coverageResultFile =
+                            TestResultDirectory / $"{project.Name}.xml";
+
+                        DotNetTasks.DotNetTest(s =>
+                            s.SetProjectFile(project)
+                                .SetConfiguration(Configuration)
+                                .SetNoBuild(true)
+                                .SetNoRestore(true)
+                                .SetResultsDirectory(TestResultDirectory)
+                                .SetLoggers($"trx;LogFileName={project.Name}.trx")
+                                .EnableCollectCoverage()
+                                .SetCoverletOutputFormat(CoverletOutputFormat.opencover)
+                                .SetCoverletOutput(coverageResultFile)
+                                .SetProcessEnvironmentVariable(
+                                    "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT",
+                                    "1"
+                                )
+                        );
+                    }
+
+                    // Vérifier le contenu du répertoire des résultats
+                    string[] resultFiles = Directory.GetFiles(TestResultDirectory);
+                    Log.Information($"Files in result directory: {string.Join(", ", resultFiles)}");
                 });
 }

@@ -25,7 +25,7 @@ public class LoginEndpointIntegrationTests(IdentityWebAppFactory factory)
         });
 
         HttpResponseMessage response = await _loginClient.LoginAsync();
-        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        HttpResponseAssertions.AssertSuccessResponse(response);
     }
 
     [Fact]

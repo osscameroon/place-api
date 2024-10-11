@@ -8,4 +8,4 @@ Compile
 RestoreDotNetTools
 Lint
 LintCheck
-RunUnitTests
+RunIntegrationTests
