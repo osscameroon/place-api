@@ -1,197 +1,171 @@
-01:10:56.623 | V |                      | ArgumentsFromParametersFile.OnBuildCreated (150)
-01:10:56.631 | V |                      | HandleReSharperSurrogateArguments.OnBuildCreated (150)
-01:10:56.631 | V |                      | InjectParameterValues.OnBuildCreated (100)
-01:10:56.640 | V |                      | HandleShellCompletion.OnBuildCreated (75)
-01:10:56.780 | V |                      | GenerateBuildServerConfigurations.OnBuildCreated (50)
-01:10:56.780 | V |                      | InvokeBuildServerConfigurationGeneration.OnBuildCreated (45)
-01:10:56.785 | V |                      | UpdateNotification.OnBuildCreated (10)
-01:10:56.785 | V |                      | UnsetVisualStudioEnvironmentVariables.OnBuildCreated (0)
-01:10:56.785 | V |                      | HandleVisualStudioDebugging.OnBuildCreated (0)
-01:10:56.785 | V |                      | EventInvoker.OnBuildCreated (-3.4028235E+38)
-01:10:56.792 | V |                      | HandlePlanRequests.OnBuildInitialized (10)
-01:10:56.792 | V |                      | HandleHelpRequests.OnBuildInitialized (5)
-01:10:56.792 | V |                      | Telemetry.OnBuildInitialized (0)
-01:10:57.043 | V |                      | Sending BuildStarted telemetry event ...
-01:10:57.043 | V |                      |   build_components         = 
-01:10:57.043 | V |                      |   build_type               = Project
-01:10:57.043 | V |                      |   compile_time             = 1
-01:10:57.043 | V |                      |   config_generators        = GitHubActions
-01:10:57.044 | V |                      |   host                     = Terminal
-01:10:57.044 | V |                      |   num_custom_components    = 0
-01:10:57.044 | V |                      |   num_custom_extensions    = 0
-01:10:57.044 | V |                      |   num_partitioned_targets  = 0
-01:10:57.044 | V |                      |   num_secrets              = 0
-01:10:57.044 | V |                      |   num_targets              = 10
-01:10:57.044 | V |                      |   os_architecture          = Arm64
-01:10:57.044 | V |                      |   os_platform              = OSX
-01:10:57.044 | V |                      |   repo_branch              = <null>
-01:10:57.044 | V |                      |   repo_commit              = 5d76e9
-01:10:57.044 | V |                      |   repo_provider            = GitHub
-01:10:57.044 | V |                      |   repo_url                 = a0d4fd
-01:10:57.044 | V |                      |   target_framework         = .NETCoreApp,Version=v8.0
-01:10:57.044 | V |                      |   version_dotnet_sdk       = 8.0.401
-01:10:57.044 | V |                      |   version_nuke_common      = 8.1.1
-01:10:57.044 | V |                      |   version_nuke_global_tool = 8.1.1
-01:10:57.243 | V |                      | InjectNonParameterValues.OnBuildInitialized (-100)
-01:10:57.259 | V |                      | EventInvoker.OnBuildInitialized (-3.4028235E+38)
-01:10:57.263 | V | LogInformation       | EventInvoker.OnTargetRunning (-3.4028235E+38)
-01:10:57.264 | I | LogInformation       | Solution path: /Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln
-01:10:57.266 | I | LogInformation       | Solution directory: /Users/aristidehervembassi/Documents/Projects/place-api
-01:10:57.266 | I | LogInformation       | configuration: Debug
-01:10:57.266 | I | LogInformation       | TestResultDirectory: /Users/aristidehervembassi/Documents/Projects/place-api/.nuke/Artifacts/Test-Results
-01:10:57.267 | V | LogInformation       | Telemetry.OnTargetSucceeded (0)
-01:10:57.267 | V | LogInformation       | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-01:10:57.267 | V | Preparation          | EventInvoker.OnTargetRunning (-3.4028235E+38)
-01:10:57.268 | V | Preparation          | Telemetry.OnTargetSucceeded (0)
-01:10:57.268 | V | Preparation          | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-01:10:57.268 | V | InstallWorkload      | EventInvoker.OnTargetRunning (-3.4028235E+38)
-01:10:57.271 | I | InstallWorkload      | > /usr/local/share/dotnet/dotnet workload restore
-01:10:57.271 | V | InstallWorkload      | @ /Users/aristidehervembassi/Documents/Projects/place-api
-01:11:08.282 | D | InstallWorkload      | Installation de la charge de travail : 
-01:11:08.283 | D | InstallWorkload      | 
-01:11:08.863 | D | InstallWorkload      | La vérification de la signature du package NuGet est ignorée.
-01:11:09.235 | D | InstallWorkload      | AVERTISSEMENT : la charge de travail garbage collection a échoué avec l’erreur : La version de la charge de travail 8.0.401-baseline.24412.2 est introuvable..
-01:11:09.235 | D | InstallWorkload      | 
-01:11:09.235 | D | InstallWorkload      | Installation réussie de la ou des charges de travail .
-01:11:09.236 | D | InstallWorkload      | 
-01:11:09.243 | V | InstallWorkload      | Telemetry.OnTargetSucceeded (0)
-01:11:09.243 | V | InstallWorkload      | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-01:11:09.244 | V | Clean                | EventInvoker.OnTargetRunning (-3.4028235E+38)
-01:11:09.245 | I | Clean                | > /usr/local/share/dotnet/dotnet clean
-01:11:09.245 | V | Clean                | @ /Users/aristidehervembassi/Documents/Projects/place-api
-01:11:09.383 | D | Clean                | La génération a démarré 08/10/2024 01:11:09.
-01:11:09.440 | D | Clean                |      1>Projet "/Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln" sur le nœud 1 (Clean cible(s)).
-01:11:09.440 | D | Clean                |      1>ValidateSolutionConfiguration:
-01:11:09.440 | D | Clean                |          Génération de la configuration de solution "Debug|Any CPU".
-01:11:09.440 | D | Clean                |        ValidateProjects:
-01:11:09.440 | D | Clean                |          Le projet "_build" n'est pas sélectionné dans le cadre d'une génération dans la configuration de solution "Debug|Any CPU".
-01:11:09.602 | D | Clean                |      1>Le projet "/Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln" (1) génère "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/PlaceApi.ServiceDefaults.csproj" (2) sur le nœud 1 (Clean cible(s)).
-01:11:09.602 | D | Clean                |      2>CoreClean:
-01:11:09.602 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/bin/Debug/net8.0/PlaceApi.ServiceDefaults.deps.json".
-01:11:09.603 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/bin/Debug/net8.0/PlaceApi.ServiceDefaults.dll".
-01:11:09.603 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/bin/Debug/net8.0/PlaceApi.ServiceDefaults.pdb".
-01:11:09.603 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/bin/Debug/net8.0/PlaceApi.ServiceDefaults.xml".
-01:11:09.603 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.csproj.AssemblyReference.cache".
-01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig".
-01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.AssemblyInfoInputs.cache".
-01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.AssemblyInfo.cs".
-01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.csproj.CoreCompileInputs.cache".
-01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.sourcelink.json".
-01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.dll".
-01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/refint/PlaceApi.ServiceDefaults.dll".
-01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.xml".
-01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/PlaceApi.ServiceDefaults.pdb".
-01:11:09.604 | D | Clean                |          Suppression du fichier "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/obj/Debug/net8.0/ref/PlaceApi.ServiceDefaults.dll".
-01:11:09.655 | D | Clean                |      2>Génération du projet "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/PlaceApi.ServiceDefaults.csproj" terminée (Clean cible(s)).
-01:11:09.707 | D | Clean                |      1>Le projet "/Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln" (1) génère "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.Host/PlaceApi.Host.csproj" (3) sur le nœud 2 (Clean cible(s)).
-01:11:09.708 | D | Clean                |      3>AddReferenceToDashboardAndDCP:
-01:11:09.708 | D | Clean                |          "/usr/local/share/dotnet/dotnet" exec "/usr/local/share/dotnet/packs/Aspire.Hosting.Sdk/8.2.1/tools/net8.0/Aspire.RuntimeIdentifier.Tool.dll" --runtimeGraphPath "/usr/local/share/dotnet/sdk/8.0.401/RuntimeIdentifierGraph.json" --supportedRids "win-x64,win-x86,win-arm64,linux-x64,linux-arm64,osx-x64,osx-arm64" --netcoreSdkRuntimeIdentifier "osx-arm64"
-01:11:09.877 | D | Clean                |      3>Génération du projet "/Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.Host/PlaceApi.Host.csproj" terminée (Clean cible(s)).
-01:11:09.880 | D | Clean                |      1>Génération du projet "/Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln" terminée (Clean cible(s)).
-01:11:09.882 | D | Clean                | 
-01:11:09.882 | D | Clean                | La génération a réussi.
-01:11:09.882 | D | Clean                |     0 Avertissement(s)
-01:11:09.882 | D | Clean                |     0 Erreur(s)
-01:11:09.882 | D | Clean                | 
-01:11:09.882 | D | Clean                | Temps écoulé 00:00:00.50
-01:11:09.889 | V | Clean                | Telemetry.OnTargetSucceeded (0)
-01:11:09.889 | V | Clean                | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-01:11:09.889 | V | Restore              | EventInvoker.OnTargetRunning (-3.4028235E+38)
-01:11:09.894 | I | Restore              | > /usr/local/share/dotnet/dotnet restore /Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln
-01:11:09.894 | V | Restore              | @ /Users/aristidehervembassi/Documents/Projects/place-api
-01:11:10.206 | D | Restore              |   Identification des projets à restaurer...
-01:11:10.408 | D | Restore              |   Tous les projets sont à jour pour la restauration.
-01:11:10.416 | V | Restore              | Telemetry.OnTargetSucceeded (0)
-01:11:10.506 | V | Restore              | Sending TargetSucceeded telemetry event ...
-01:11:10.507 | V | Restore              |   build_components         = 
-01:11:10.507 | V | Restore              |   build_type               = Project
-01:11:10.507 | V | Restore              |   compile_time             = 15
-01:11:10.507 | V | Restore              |   config_generators        = GitHubActions
-01:11:10.507 | V | Restore              |   host                     = Terminal
-01:11:10.507 | V | Restore              |   num_custom_components    = 0
-01:11:10.507 | V | Restore              |   num_custom_extensions    = 0
-01:11:10.507 | V | Restore              |   num_partitioned_targets  = 0
-01:11:10.507 | V | Restore              |   num_secrets              = 0
-01:11:10.507 | V | Restore              |   num_targets              = 10
-01:11:10.507 | V | Restore              |   os_architecture          = Arm64
-01:11:10.507 | V | Restore              |   os_platform              = OSX
-01:11:10.507 | V | Restore              |   repo_branch              = <null>
-01:11:10.507 | V | Restore              |   repo_commit              = 5d76e9
-01:11:10.507 | V | Restore              |   repo_provider            = GitHub
-01:11:10.507 | V | Restore              |   repo_url                 = a0d4fd
-01:11:10.507 | V | Restore              |   target_current_partition = 1
-01:11:10.507 | V | Restore              |   target_duration          = 1
-01:11:10.507 | V | Restore              |   target_framework         = .NETCoreApp,Version=v8.0
-01:11:10.507 | V | Restore              |   target_name              = Restore
-01:11:10.507 | V | Restore              |   target_total_partitions  = 1
-01:11:10.507 | V | Restore              |   version_dotnet_sdk       = 8.0.401
-01:11:10.507 | V | Restore              |   version_nuke_common      = 8.1.1
-01:11:10.507 | V | Restore              |   version_nuke_global_tool = 8.1.1
-01:11:10.534 | V | Restore              | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-01:11:10.535 | V | Compile              | EventInvoker.OnTargetRunning (-3.4028235E+38)
-01:11:10.537 | I | Compile              | > /usr/local/share/dotnet/dotnet build /Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln --configuration Debug --no-restore
-01:11:10.537 | V | Compile              | @ /Users/aristidehervembassi/Documents/Projects/place-api
-01:11:11.773 | D | Compile              |   PlaceApi.ServiceDefaults -> /Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/bin/Debug/net8.0/PlaceApi.ServiceDefaults.dll
-01:11:12.532 | D | Compile              |   PlaceAPi.Identity -> /Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/PlaceAPi.Identity.dll
-01:11:13.073 | D | Compile              |   PlaceApi.Host -> /Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.Host/bin/Debug/net8.0/PlaceApi.Host.dll
-01:11:13.081 | D | Compile              | 
-01:11:13.081 | D | Compile              | La génération a réussi.
-01:11:13.081 | D | Compile              |     0 Avertissement(s)
-01:11:13.081 | D | Compile              |     0 Erreur(s)
-01:11:13.082 | D | Compile              | 
-01:11:13.082 | D | Compile              | Temps écoulé 00:00:02.43
-01:11:13.091 | V | Compile              | Telemetry.OnTargetSucceeded (0)
-01:11:13.200 | V | Compile              | Sending TargetSucceeded telemetry event ...
-01:11:13.200 | V | Compile              |   build_components         = 
-01:11:13.200 | V | Compile              |   build_type               = Project
-01:11:13.200 | V | Compile              |   compile_time             = 18
-01:11:13.200 | V | Compile              |   config_generators        = GitHubActions
-01:11:13.200 | V | Compile              |   host                     = Terminal
-01:11:13.200 | V | Compile              |   num_custom_components    = 0
-01:11:13.200 | V | Compile              |   num_custom_extensions    = 0
-01:11:13.200 | V | Compile              |   num_partitioned_targets  = 0
-01:11:13.200 | V | Compile              |   num_secrets              = 0
-01:11:13.200 | V | Compile              |   num_targets              = 10
-01:11:13.200 | V | Compile              |   os_architecture          = Arm64
-01:11:13.200 | V | Compile              |   os_platform              = OSX
-01:11:13.201 | V | Compile              |   repo_branch              = <null>
-01:11:13.201 | V | Compile              |   repo_commit              = 5d76e9
-01:11:13.201 | V | Compile              |   repo_provider            = GitHub
-01:11:13.201 | V | Compile              |   repo_url                 = a0d4fd
-01:11:13.201 | V | Compile              |   target_current_partition = 1
-01:11:13.201 | V | Compile              |   target_duration          = 3
-01:11:13.201 | V | Compile              |   target_framework         = .NETCoreApp,Version=v8.0
-01:11:13.201 | V | Compile              |   target_name              = Compile
-01:11:13.201 | V | Compile              |   target_total_partitions  = 1
-01:11:13.201 | V | Compile              |   version_dotnet_sdk       = 8.0.401
-01:11:13.201 | V | Compile              |   version_nuke_common      = 8.1.1
-01:11:13.201 | V | Compile              |   version_nuke_global_tool = 8.1.1
-01:11:13.226 | V | Compile              | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-01:11:13.227 | V | RestoreDotNetTools   | EventInvoker.OnTargetRunning (-3.4028235E+38)
-01:11:13.228 | I | RestoreDotNetTools   | > /usr/local/share/dotnet/dotnet tool restore
-01:11:13.228 | V | RestoreDotNetTools   | @ /Users/aristidehervembassi/Documents/Projects/place-api
-01:11:13.354 | D | RestoreDotNetTools   | L'outil 'husky' (version '0.6.4') a été restauré. Commandes disponibles : husky
-01:11:13.355 | D | RestoreDotNetTools   | L'outil 'csharpier' (version '0.29.2') a été restauré. Commandes disponibles : dotnet-csharpier
-01:11:13.355 | D | RestoreDotNetTools   | L'outil 'nuke.globaltool' (version '8.1.1') a été restauré. Commandes disponibles : nuke
-01:11:13.355 | D | RestoreDotNetTools   | 
-01:11:13.355 | D | RestoreDotNetTools   | La restauration a réussi.
-01:11:13.357 | V | RestoreDotNetTools   | Telemetry.OnTargetSucceeded (0)
-01:11:13.357 | V | RestoreDotNetTools   | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-01:11:13.357 | V | Lint                 | EventInvoker.OnTargetRunning (-3.4028235E+38)
-01:11:13.358 | I | Lint                 | > /usr/local/share/dotnet/dotnet csharpier .
-01:11:13.358 | V | Lint                 | @ /Users/aristidehervembassi/Documents/Projects/place-api
-01:11:13.721 | D | Lint                 | Formatted 13 files in 180ms.
-01:11:13.728 | V | Lint                 | Telemetry.OnTargetSucceeded (0)
-01:11:13.728 | V | Lint                 | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-01:11:13.728 | V | LintCheck            | EventInvoker.OnTargetRunning (-3.4028235E+38)
-01:11:13.728 | I | LintCheck            | > /usr/local/share/dotnet/dotnet csharpier --check .
-01:11:13.728 | V | LintCheck            | @ /Users/aristidehervembassi/Documents/Projects/place-api
-01:11:14.041 | D | LintCheck            | Formatted 13 files in 134ms.
-01:11:14.045 | V | LintCheck            | Telemetry.OnTargetSucceeded (0)
-01:11:14.046 | V | LintCheck            | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-01:11:14.046 | V | RunUnitTests         | EventInvoker.OnTargetRunning (-3.4028235E+38)
-01:11:14.054 | V | RunUnitTests         | Telemetry.OnTargetSucceeded (0)
-01:11:14.054 | V | RunUnitTests         | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
-01:11:14.055 | V |                      | UpdateNotification.OnBuildFinished (10)
-01:11:14.055 | V |                      | SerializeBuildServerState.OnBuildFinished (0)
-01:11:14.055 | V |                      | EventInvoker.OnBuildFinished (-3.4028235E+38)
+21:40:11.028 | V |                      | ArgumentsFromParametersFile.OnBuildCreated (150)
+21:40:11.037 | V |                      | HandleReSharperSurrogateArguments.OnBuildCreated (150)
+21:40:11.038 | V |                      | InjectParameterValues.OnBuildCreated (100)
+21:40:11.049 | V |                      | HandleShellCompletion.OnBuildCreated (75)
+21:40:11.216 | V |                      | GenerateBuildServerConfigurations.OnBuildCreated (50)
+21:40:11.216 | V |                      | InvokeBuildServerConfigurationGeneration.OnBuildCreated (45)
+21:40:11.222 | V |                      | UpdateNotification.OnBuildCreated (10)
+21:40:11.222 | V |                      | UnsetVisualStudioEnvironmentVariables.OnBuildCreated (0)
+21:40:11.222 | V |                      | HandleVisualStudioDebugging.OnBuildCreated (0)
+21:40:11.223 | V |                      | EventInvoker.OnBuildCreated (-3.4028235E+38)
+21:40:11.229 | V |                      | HandlePlanRequests.OnBuildInitialized (10)
+21:40:11.229 | V |                      | HandleHelpRequests.OnBuildInitialized (5)
+21:40:11.229 | V |                      | Telemetry.OnBuildInitialized (0)
+21:40:11.491 | V |                      | Sending BuildStarted telemetry event ...
+21:40:11.492 | V |                      |   build_components         = 
+21:40:11.492 | V |                      |   build_type               = Project
+21:40:11.492 | V |                      |   compile_time             = 3
+21:40:11.492 | V |                      |   config_generators        = GitHubActions
+21:40:11.492 | V |                      |   host                     = Terminal
+21:40:11.492 | V |                      |   num_custom_components    = 0
+21:40:11.492 | V |                      |   num_custom_extensions    = 0
+21:40:11.492 | V |                      |   num_partitioned_targets  = 0
+21:40:11.492 | V |                      |   num_secrets              = 0
+21:40:11.492 | V |                      |   num_targets              = 10
+21:40:11.492 | V |                      |   os_architecture          = Arm64
+21:40:11.492 | V |                      |   os_platform              = OSX
+21:40:11.492 | V |                      |   repo_branch              = <null>
+21:40:11.492 | V |                      |   repo_commit              = f86453
+21:40:11.492 | V |                      |   repo_provider            = GitHub
+21:40:11.492 | V |                      |   repo_url                 = a0d4fd
+21:40:11.492 | V |                      |   target_framework         = .NETCoreApp,Version=v8.0
+21:40:11.492 | V |                      |   version_dotnet_sdk       = 8.0.401
+21:40:11.492 | V |                      |   version_nuke_common      = 8.1.1
+21:40:11.492 | V |                      |   version_nuke_global_tool = 8.1.1
+21:40:11.688 | V |                      | InjectNonParameterValues.OnBuildInitialized (-100)
+21:40:11.704 | V |                      | EventInvoker.OnBuildInitialized (-3.4028235E+38)
+21:40:11.709 | V | LogInformation       | EventInvoker.OnTargetRunning (-3.4028235E+38)
+21:40:11.710 | I | LogInformation       | Solution path: /Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln
+21:40:11.713 | I | LogInformation       | Solution directory: /Users/aristidehervembassi/Documents/Projects/place-api
+21:40:11.713 | I | LogInformation       | configuration: Debug
+21:40:11.713 | I | LogInformation       | TestResultDirectory: /Users/aristidehervembassi/Documents/Projects/place-api/.nuke/Artifacts/Test-Results
+21:40:11.714 | V | LogInformation       | Telemetry.OnTargetSucceeded (0)
+21:40:11.714 | V | LogInformation       | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+21:40:11.714 | V | Preparation          | EventInvoker.OnTargetRunning (-3.4028235E+38)
+21:40:11.715 | V | Preparation          | Telemetry.OnTargetSucceeded (0)
+21:40:11.715 | V | Preparation          | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+21:40:11.715 | V | InstallWorkload      | EventInvoker.OnTargetRunning (-3.4028235E+38)
+21:40:11.719 | I | InstallWorkload      | > /usr/local/share/dotnet/dotnet workload restore
+21:40:11.720 | V | InstallWorkload      | @ /Users/aristidehervembassi/Documents/Projects/place-api/tests/PlaceApi.Identity.Tests.Integration
+21:40:22.628 | D | InstallWorkload      | Installation de la charge de travail : 
+21:40:22.630 | D | InstallWorkload      | 
+21:40:23.284 | D | InstallWorkload      | La vérification de la signature du package NuGet est ignorée.
+21:40:23.429 | D | InstallWorkload      | AVERTISSEMENT : la charge de travail garbage collection a échoué avec l’erreur : La version de la charge de travail 8.0.401-baseline.24412.2 est introuvable..
+21:40:23.429 | D | InstallWorkload      | 
+21:40:23.430 | D | InstallWorkload      | Installation réussie de la ou des charges de travail .
+21:40:23.430 | D | InstallWorkload      | 
+21:40:23.441 | V | InstallWorkload      | Telemetry.OnTargetSucceeded (0)
+21:40:23.441 | V | InstallWorkload      | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+21:40:23.442 | V | Clean                | EventInvoker.OnTargetRunning (-3.4028235E+38)
+21:40:23.443 | I | Clean                | > /usr/local/share/dotnet/dotnet clean
+21:40:23.443 | V | Clean                | @ /Users/aristidehervembassi/Documents/Projects/place-api/tests/PlaceApi.Identity.Tests.Integration
+21:40:23.590 | D | Clean                | La génération a démarré 10/10/2024 21:40:23.
+21:40:24.187 | D | Clean                | 
+21:40:24.188 | D | Clean                | La génération a réussi.
+21:40:24.188 | D | Clean                |     0 Avertissement(s)
+21:40:24.188 | D | Clean                |     0 Erreur(s)
+21:40:24.188 | D | Clean                | 
+21:40:24.188 | D | Clean                | Temps écoulé 00:00:00.59
+21:40:24.194 | V | Clean                | Telemetry.OnTargetSucceeded (0)
+21:40:24.194 | V | Clean                | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+21:40:24.195 | V | Restore              | EventInvoker.OnTargetRunning (-3.4028235E+38)
+21:40:24.200 | I | Restore              | > /usr/local/share/dotnet/dotnet restore /Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln
+21:40:24.200 | V | Restore              | @ /Users/aristidehervembassi/Documents/Projects/place-api/tests/PlaceApi.Identity.Tests.Integration
+21:40:24.613 | D | Restore              |   Identification des projets à restaurer...
+21:40:25.001 | D | Restore              |   Restauration effectuée de /Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.Host/PlaceApi.Host.csproj (en 158 ms).
+21:40:25.001 | D | Restore              |   Restauration effectuée de /Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/PlaceApi.ServiceDefaults.csproj (en 158 ms).
+21:40:25.001 | D | Restore              |   Restauration effectuée de /Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/PlaceAPi.Identity.csproj (en 159 ms).
+21:40:25.013 | V | Restore              | Telemetry.OnTargetSucceeded (0)
+21:40:25.108 | V | Restore              | Sending TargetSucceeded telemetry event ...
+21:40:25.108 | V | Restore              |   build_components         = 
+21:40:25.108 | V | Restore              |   build_type               = Project
+21:40:25.108 | V | Restore              |   compile_time             = 17
+21:40:25.108 | V | Restore              |   config_generators        = GitHubActions
+21:40:25.108 | V | Restore              |   host                     = Terminal
+21:40:25.108 | V | Restore              |   num_custom_components    = 0
+21:40:25.108 | V | Restore              |   num_custom_extensions    = 0
+21:40:25.108 | V | Restore              |   num_partitioned_targets  = 0
+21:40:25.108 | V | Restore              |   num_secrets              = 0
+21:40:25.108 | V | Restore              |   num_targets              = 10
+21:40:25.108 | V | Restore              |   os_architecture          = Arm64
+21:40:25.109 | V | Restore              |   os_platform              = OSX
+21:40:25.109 | V | Restore              |   repo_branch              = <null>
+21:40:25.109 | V | Restore              |   repo_commit              = f86453
+21:40:25.109 | V | Restore              |   repo_provider            = GitHub
+21:40:25.109 | V | Restore              |   repo_url                 = a0d4fd
+21:40:25.109 | V | Restore              |   target_current_partition = 1
+21:40:25.109 | V | Restore              |   target_duration          = 1
+21:40:25.109 | V | Restore              |   target_framework         = .NETCoreApp,Version=v8.0
+21:40:25.109 | V | Restore              |   target_name              = Restore
+21:40:25.109 | V | Restore              |   target_total_partitions  = 1
+21:40:25.109 | V | Restore              |   version_dotnet_sdk       = 8.0.401
+21:40:25.109 | V | Restore              |   version_nuke_common      = 8.1.1
+21:40:25.109 | V | Restore              |   version_nuke_global_tool = 8.1.1
+21:40:25.148 | V | Restore              | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+21:40:25.148 | V | Compile              | EventInvoker.OnTargetRunning (-3.4028235E+38)
+21:40:25.150 | I | Compile              | > /usr/local/share/dotnet/dotnet build /Users/aristidehervembassi/Documents/Projects/place-api/PlaceApi.sln --configuration Debug --no-restore
+21:40:25.150 | V | Compile              | @ /Users/aristidehervembassi/Documents/Projects/place-api/tests/PlaceApi.Identity.Tests.Integration
+21:40:26.552 | D | Compile              |   PlaceApi.ServiceDefaults -> /Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.ServiceDefaults/bin/Debug/net8.0/PlaceApi.ServiceDefaults.dll
+21:40:27.310 | D | Compile              |   PlaceAPi.Identity -> /Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceAPi.Identity/bin/Debug/.net8.0/PlaceAPi.Identity.dll
+21:40:27.849 | D | Compile              |   PlaceApi.Host -> /Users/aristidehervembassi/Documents/Projects/place-api/src/PlaceApi.Host/bin/Debug/net8.0/PlaceApi.Host.dll
+21:40:27.856 | D | Compile              | 
+21:40:27.857 | D | Compile              | La génération a réussi.
+21:40:27.857 | D | Compile              |     0 Avertissement(s)
+21:40:27.857 | D | Compile              |     0 Erreur(s)
+21:40:27.857 | D | Compile              | 
+21:40:27.857 | D | Compile              | Temps écoulé 00:00:02.59
+21:40:27.866 | V | Compile              | Telemetry.OnTargetSucceeded (0)
+21:40:27.960 | V | Compile              | Sending TargetSucceeded telemetry event ...
+21:40:27.960 | V | Compile              |   build_components         = 
+21:40:27.961 | V | Compile              |   build_type               = Project
+21:40:27.961 | V | Compile              |   compile_time             = 20
+21:40:27.961 | V | Compile              |   config_generators        = GitHubActions
+21:40:27.961 | V | Compile              |   host                     = Terminal
+21:40:27.961 | V | Compile              |   num_custom_components    = 0
+21:40:27.961 | V | Compile              |   num_custom_extensions    = 0
+21:40:27.961 | V | Compile              |   num_partitioned_targets  = 0
+21:40:27.961 | V | Compile              |   num_secrets              = 0
+21:40:27.961 | V | Compile              |   num_targets              = 10
+21:40:27.961 | V | Compile              |   os_architecture          = Arm64
+21:40:27.961 | V | Compile              |   os_platform              = OSX
+21:40:27.961 | V | Compile              |   repo_branch              = <null>
+21:40:27.961 | V | Compile              |   repo_commit              = f86453
+21:40:27.961 | V | Compile              |   repo_provider            = GitHub
+21:40:27.961 | V | Compile              |   repo_url                 = a0d4fd
+21:40:27.961 | V | Compile              |   target_current_partition = 1
+21:40:27.961 | V | Compile              |   target_duration          = 3
+21:40:27.961 | V | Compile              |   target_framework         = .NETCoreApp,Version=v8.0
+21:40:27.961 | V | Compile              |   target_name              = Compile
+21:40:27.961 | V | Compile              |   target_total_partitions  = 1
+21:40:27.961 | V | Compile              |   version_dotnet_sdk       = 8.0.401
+21:40:27.961 | V | Compile              |   version_nuke_common      = 8.1.1
+21:40:27.961 | V | Compile              |   version_nuke_global_tool = 8.1.1
+21:40:27.990 | V | Compile              | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+21:40:27.991 | V | RestoreDotNetTools   | EventInvoker.OnTargetRunning (-3.4028235E+38)
+21:40:27.991 | I | RestoreDotNetTools   | > /usr/local/share/dotnet/dotnet tool restore
+21:40:27.991 | V | RestoreDotNetTools   | @ /Users/aristidehervembassi/Documents/Projects/place-api/tests/PlaceApi.Identity.Tests.Integration
+21:40:28.114 | D | RestoreDotNetTools   | L'outil 'husky' (version '0.6.4') a été restauré. Commandes disponibles : husky
+21:40:28.115 | D | RestoreDotNetTools   | L'outil 'csharpier' (version '0.29.2') a été restauré. Commandes disponibles : dotnet-csharpier
+21:40:28.115 | D | RestoreDotNetTools   | L'outil 'nuke.globaltool' (version '8.1.1') a été restauré. Commandes disponibles : nuke
+21:40:28.115 | D | RestoreDotNetTools   | 
+21:40:28.115 | D | RestoreDotNetTools   | La restauration a réussi.
+21:40:28.117 | V | RestoreDotNetTools   | Telemetry.OnTargetSucceeded (0)
+21:40:28.117 | V | RestoreDotNetTools   | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+21:40:28.117 | V | Lint                 | EventInvoker.OnTargetRunning (-3.4028235E+38)
+21:40:28.117 | I | Lint                 | > /usr/local/share/dotnet/dotnet csharpier .
+21:40:28.118 | V | Lint                 | @ /Users/aristidehervembassi/Documents/Projects/place-api/tests/PlaceApi.Identity.Tests.Integration
+21:40:28.470 | D | Lint                 | Formatted 8 files in 160ms.
+21:40:28.477 | V | Lint                 | Telemetry.OnTargetSucceeded (0)
+21:40:28.477 | V | Lint                 | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+21:40:28.478 | V | LintCheck            | EventInvoker.OnTargetRunning (-3.4028235E+38)
+21:40:28.478 | I | LintCheck            | > /usr/local/share/dotnet/dotnet csharpier --check .
+21:40:28.478 | V | LintCheck            | @ /Users/aristidehervembassi/Documents/Projects/place-api/tests/PlaceApi.Identity.Tests.Integration
+21:40:28.793 | D | LintCheck            | Formatted 8 files in 130ms.
+21:40:28.799 | V | LintCheck            | Telemetry.OnTargetSucceeded (0)
+21:40:28.799 | V | LintCheck            | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+21:40:28.800 | V | RunUnitTests         | EventInvoker.OnTargetRunning (-3.4028235E+38)
+21:40:28.807 | V | RunUnitTests         | Telemetry.OnTargetSucceeded (0)
+21:40:28.807 | V | RunUnitTests         | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+21:40:28.809 | V |                      | UpdateNotification.OnBuildFinished (10)
+21:40:28.809 | V |                      | SerializeBuildServerState.OnBuildFinished (0)
+21:40:28.809 | V |                      | EventInvoker.OnBuildFinished (-3.4028235E+38)
