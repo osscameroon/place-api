@@ -71,4 +71,14 @@ public class UserManagementHelper
         await userManager.SetLockoutEnabledAsync(user, true);
         await userManager.SetLockoutEndDateAsync(user, DateTimeOffset.UtcNow.AddHours(1));
     }
+
+    public async Task VerifyUserCreatedAsync(string email)
+    {
+        UserManager<ApplicationUser> userManager = _serviceProvider.GetRequiredService<
+            UserManager<ApplicationUser>
+        >();
+        ApplicationUser? user = await userManager.FindByEmailAsync(email);
+        user.Should().NotBeNull();
+        user!.Email.Should().Be(email);
+    }
 }

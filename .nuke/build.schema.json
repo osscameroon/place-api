@@ -50,6 +50,7 @@
         "Preparation",
         "Restore",
         "RestoreDotNetTools",
+        "RunIntegrationTests",
         "RunUnitTests"
       ]
     },
