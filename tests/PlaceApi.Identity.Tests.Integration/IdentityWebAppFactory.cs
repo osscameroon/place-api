@@ -18,6 +18,7 @@ public class IdentityWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAs
     {
         _dbContainer = new PostgreSqlBuilder()
             .WithDatabase("PlaceApiIdentity")
+            .WithPortBinding(7890, 5432)
             .WithUsername("postgres")
             .WithPassword("postgres")
             .Build();

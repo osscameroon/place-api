@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity.Data;
 using PlaceAPi.Identity.Authenticate;
 using PlaceApi.Identity.Tests.Integration.Common;
 
-namespace PlaceApi.Identity.Tests.Integration.Endpoints.Register;
+namespace PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1;
 
 [Trait("Integration", "Identity")]
 public class RegisterEndpointIntegrationTests(IdentityWebAppFactory factory)

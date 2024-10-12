@@ -1,6 +1,7 @@
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Identity.Data;
 using PlaceApi.Identity.Tests.Integration.Common;
+using PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1;
 
 namespace PlaceApi.Identity.Tests.Integration.Endpoints.Register;
 
