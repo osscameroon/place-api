@@ -10,7 +10,6 @@
         <CSharpier_LogLevel>Warning</CSharpier_LogLevel>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <NoWarn>$(NoWarn);1591</NoWarn>
-
     </PropertyGroup>
     
 
