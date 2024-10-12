@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="9149fd5d-7c22-4067-bd0f-194c11d29e2b" name="@Host-002 2024-10-12 13:48:19" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2024-10-12T13:48:19.2403740+02:00" queuing="2024-10-12T13:48:19.2403740+02:00" start="2024-10-12T13:48:14.7023960+02:00" finish="2024-10-12T13:48:24.5986110+02:00" />
+  <TestSettings name="default" id="ccd0fe32-5877-4fba-bbe4-86cf67c1cd9c">
+    <Deployment runDeploymentRoot="_Host-002_2024-10-12_13_48_19" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="5adefc90-aee1-4d5e-a0fa-63762c579976" testId="7f81a966-55c4-6978-2be0-497d701ac600" testName="PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests.Login_WithValidCredentials_ShouldReturnOk" computerName="Host-002" duration="00:00:00.0010000" startTime="2024-10-12T13:48:17.7699380+02:00" endTime="2024-10-12T13:48:17.7699380+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5adefc90-aee1-4d5e-a0fa-63762c579976">
+      <Output>
+        <ErrorInfo>
+          <Message>Docker.DotNet.DockerApiException : Docker API responded with status code=InternalServerError, response={"message":"driver failed programming external connectivity on endpoint heuristic_boyd (866842c3a04214f6351775b4e7f1704baf6d5dbb173058b30a634f67a6b0eab8): Bind for 0.0.0.0:7890 failed: port is already allocated"}
+</Message>
+          <StackTrace>   at Docker.DotNet.DockerClient.HandleIfErrorResponseAsync(HttpStatusCode statusCode, HttpResponseMessage response, IEnumerable`1 handlers)
+   at Docker.DotNet.DockerClient.MakeRequestAsync(IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)
+   at Docker.DotNet.ContainerOperations.StartContainerAsync(String id, ContainerStartParameters parameters, CancellationToken cancellationToken)
+   at DotNet.Testcontainers.Clients.TestcontainersClient.StartAsync(String id, CancellationToken ct) in /_/src/Testcontainers/Clients/TestcontainersClient.cs:line 128
+   at DotNet.Testcontainers.Containers.DockerContainer.UnsafeStartAsync(CancellationToken ct) in /_/src/Testcontainers/Containers/DockerContainer.cs:line 466
+   at DotNet.Testcontainers.Containers.DockerContainer.StartAsync(CancellationToken ct) in /_/src/Testcontainers/Containers/DockerContainer.cs:line 282
+   at PlaceApi.Identity.Tests.Integration.IdentityWebAppFactory.InitializeAsync() in /Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/IdentityWebAppFactory.cs:line 79</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3d53e770-61d6-4c74-8ee9-1876195e96e3" testId="998f4a90-558d-339c-f65f-aa9ecd756826" testName="PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests.Login_WithInvalidCredentials_ShouldReturnUnauthorized" computerName="Host-002" duration="00:00:00.0010000" startTime="2024-10-12T13:48:17.7844320+02:00" endTime="2024-10-12T13:48:17.7844330+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3d53e770-61d6-4c74-8ee9-1876195e96e3">
+      <Output>
+        <ErrorInfo>
+          <Message>Docker.DotNet.DockerApiException : Docker API responded with status code=InternalServerError, response={"message":"driver failed programming external connectivity on endpoint heuristic_boyd (866842c3a04214f6351775b4e7f1704baf6d5dbb173058b30a634f67a6b0eab8): Bind for 0.0.0.0:7890 failed: port is already allocated"}
+</Message>
+          <StackTrace>   at Docker.DotNet.DockerClient.HandleIfErrorResponseAsync(HttpStatusCode statusCode, HttpResponseMessage response, IEnumerable`1 handlers)
+   at Docker.DotNet.DockerClient.MakeRequestAsync(IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)
+   at Docker.DotNet.ContainerOperations.StartContainerAsync(String id, ContainerStartParameters parameters, CancellationToken cancellationToken)
+   at DotNet.Testcontainers.Clients.TestcontainersClient.StartAsync(String id, CancellationToken ct) in /_/src/Testcontainers/Clients/TestcontainersClient.cs:line 128
+   at DotNet.Testcontainers.Containers.DockerContainer.UnsafeStartAsync(CancellationToken ct) in /_/src/Testcontainers/Containers/DockerContainer.cs:line 466
+   at DotNet.Testcontainers.Containers.DockerContainer.StartAsync(CancellationToken ct) in /_/src/Testcontainers/Containers/DockerContainer.cs:line 282
+   at PlaceApi.Identity.Tests.Integration.IdentityWebAppFactory.InitializeAsync() in /Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/IdentityWebAppFactory.cs:line 79</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="0859778f-41ec-4e62-ba99-11e34493a69f" testId="acdbe65b-c582-2c48-f736-bab078c09dcb" testName="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithPasswordMissingLowerCase_ShouldReturnValidationProblem" computerName="Host-002" duration="00:00:00.0030205" startTime="2024-10-12T13:48:23.3268040+02:00" endTime="2024-10-12T13:48:23.3268040+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0859778f-41ec-4e62-ba99-11e34493a69f" />
+    <UnitTestResult executionId="2bff4023-28f1-4cc2-bcf7-16f6c601c283" testId="87fcd1c7-b32f-f629-9aa4-0bc275096817" testName="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithInvalidEmail_ShouldReturnValidationProblem" computerName="Host-002" duration="00:00:00.0036049" startTime="2024-10-12T13:48:23.4102680+02:00" endTime="2024-10-12T13:48:23.4102680+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2bff4023-28f1-4cc2-bcf7-16f6c601c283" />
+    <UnitTestResult executionId="0ae03ec3-1da4-48fa-b38f-cd18efa8b089" testId="6dcea96d-9e85-4648-3d9b-6f2a135cf236" testName="PlaceApi.Identity.Tests.Integration.Endpoints.ConfirmEmail.V1.ConfirmEmailEndpointIntegrationTests.ConfirmEmail_WithValidToken_ShouldSucceed" computerName="Host-002" duration="00:00:00.0010000" startTime="2024-10-12T13:48:17.7063050+02:00" endTime="2024-10-12T13:48:17.7063140+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0ae03ec3-1da4-48fa-b38f-cd18efa8b089">
+      <Output>
+        <ErrorInfo>
+          <Message>Docker.DotNet.DockerApiException : Docker API responded with status code=InternalServerError, response={"message":"driver failed programming external connectivity on endpoint blissful_kapitsa (771bf4d2ee59cb4f026682b209eb6315ea1206e7b879c59d0b43bf5e4c7350f7): Bind for 0.0.0.0:7890 failed: port is already allocated"}
+</Message>
+          <StackTrace>   at Docker.DotNet.DockerClient.HandleIfErrorResponseAsync(HttpStatusCode statusCode, HttpResponseMessage response, IEnumerable`1 handlers)
+   at Docker.DotNet.DockerClient.MakeRequestAsync(IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)
+   at Docker.DotNet.ContainerOperations.StartContainerAsync(String id, ContainerStartParameters parameters, CancellationToken cancellationToken)
+   at DotNet.Testcontainers.Clients.TestcontainersClient.StartAsync(String id, CancellationToken ct) in /_/src/Testcontainers/Clients/TestcontainersClient.cs:line 128
+   at DotNet.Testcontainers.Containers.DockerContainer.UnsafeStartAsync(CancellationToken ct) in /_/src/Testcontainers/Containers/DockerContainer.cs:line 466
+   at DotNet.Testcontainers.Containers.DockerContainer.StartAsync(CancellationToken ct) in /_/src/Testcontainers/Containers/DockerContainer.cs:line 282
+   at PlaceApi.Identity.Tests.Integration.IdentityWebAppFactory.InitializeAsync() in /Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/IdentityWebAppFactory.cs:line 79</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="e969f277-5fc4-4a54-aaa9-d426886101ce" testId="b7867434-867e-25c0-6ff5-90dcaca83fd5" testName="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithValidData_ShouldReturnOk" computerName="Host-002" duration="00:00:00.0805760" startTime="2024-10-12T13:48:23.4061720+02:00" endTime="2024-10-12T13:48:23.4061730+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e969f277-5fc4-4a54-aaa9-d426886101ce" />
+    <UnitTestResult executionId="ba7de334-5ed3-45ff-99af-9315d1b00241" testId="a845673e-01f9-baf4-13a3-5f5f28f85921" testName="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithPasswordMissingNonAlphanumeric_ShouldReturnValidationProblem" computerName="Host-002" duration="00:00:00.0056048" startTime="2024-10-12T13:48:22.6218400+02:00" endTime="2024-10-12T13:48:22.6218400+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ba7de334-5ed3-45ff-99af-9315d1b00241" />
+    <UnitTestResult executionId="b5a21534-edc9-4deb-8391-344fba32edd5" testId="3fe2aca4-c951-6b6b-3a60-5008d68cfb39" testName="PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests.Login_WithNonexistentUser_ShouldReturnUnauthorized" computerName="Host-002" duration="00:00:00.0010000" startTime="2024-10-12T13:48:17.7956570+02:00" endTime="2024-10-12T13:48:17.7956570+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b5a21534-edc9-4deb-8391-344fba32edd5">
+      <Output>
+        <ErrorInfo>
+          <Message>Docker.DotNet.DockerApiException : Docker API responded with status code=InternalServerError, response={"message":"driver failed programming external connectivity on endpoint heuristic_boyd (866842c3a04214f6351775b4e7f1704baf6d5dbb173058b30a634f67a6b0eab8): Bind for 0.0.0.0:7890 failed: port is already allocated"}
+</Message>
+          <StackTrace>   at Docker.DotNet.DockerClient.HandleIfErrorResponseAsync(HttpStatusCode statusCode, HttpResponseMessage response, IEnumerable`1 handlers)
+   at Docker.DotNet.DockerClient.MakeRequestAsync(IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)
+   at Docker.DotNet.ContainerOperations.StartContainerAsync(String id, ContainerStartParameters parameters, CancellationToken cancellationToken)
+   at DotNet.Testcontainers.Clients.TestcontainersClient.StartAsync(String id, CancellationToken ct) in /_/src/Testcontainers/Clients/TestcontainersClient.cs:line 128
+   at DotNet.Testcontainers.Containers.DockerContainer.UnsafeStartAsync(CancellationToken ct) in /_/src/Testcontainers/Containers/DockerContainer.cs:line 466
+   at DotNet.Testcontainers.Containers.DockerContainer.StartAsync(CancellationToken ct) in /_/src/Testcontainers/Containers/DockerContainer.cs:line 282
+   at PlaceApi.Identity.Tests.Integration.IdentityWebAppFactory.InitializeAsync() in /Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/IdentityWebAppFactory.cs:line 79</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="e9d19679-6363-4b72-843d-280bc520e26b" testId="faf0d2c9-1a97-2829-c2f9-ae5aaa4b1bc3" testName="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithPasswordMissingUpperCase_ShouldReturnValidationProblem" computerName="Host-002" duration="00:00:01.8294556" startTime="2024-10-12T13:48:22.6031780+02:00" endTime="2024-10-12T13:48:22.6031780+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e9d19679-6363-4b72-843d-280bc520e26b" />
+    <UnitTestResult executionId="41321199-77bb-4fb4-82c9-a978aaa95889" testId="7a759076-a886-6a2b-abc0-2f37268eda8a" testName="PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests.Login_WithLockedOutUser_ShouldReturnUnauthorized" computerName="Host-002" duration="00:00:00.0010000" startTime="2024-10-12T13:48:17.7777610+02:00" endTime="2024-10-12T13:48:17.7777610+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="41321199-77bb-4fb4-82c9-a978aaa95889">
+      <Output>
+        <ErrorInfo>
+          <Message>Docker.DotNet.DockerApiException : Docker API responded with status code=InternalServerError, response={"message":"driver failed programming external connectivity on endpoint heuristic_boyd (866842c3a04214f6351775b4e7f1704baf6d5dbb173058b30a634f67a6b0eab8): Bind for 0.0.0.0:7890 failed: port is already allocated"}
+</Message>
+          <StackTrace>   at Docker.DotNet.DockerClient.HandleIfErrorResponseAsync(HttpStatusCode statusCode, HttpResponseMessage response, IEnumerable`1 handlers)
+   at Docker.DotNet.DockerClient.MakeRequestAsync(IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)
+   at Docker.DotNet.ContainerOperations.StartContainerAsync(String id, ContainerStartParameters parameters, CancellationToken cancellationToken)
+   at DotNet.Testcontainers.Clients.TestcontainersClient.StartAsync(String id, CancellationToken ct) in /_/src/Testcontainers/Clients/TestcontainersClient.cs:line 128
+   at DotNet.Testcontainers.Containers.DockerContainer.UnsafeStartAsync(CancellationToken ct) in /_/src/Testcontainers/Containers/DockerContainer.cs:line 466
+   at DotNet.Testcontainers.Containers.DockerContainer.StartAsync(CancellationToken ct) in /_/src/Testcontainers/Containers/DockerContainer.cs:line 282
+   at PlaceApi.Identity.Tests.Integration.IdentityWebAppFactory.InitializeAsync() in /Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/IdentityWebAppFactory.cs:line 79</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="c2adc13d-39ae-4be0-b162-d8e611595b25" testId="b486b191-d332-3ecd-dbbe-a848500c1043" testName="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithWeakPassword_ShouldReturnValidationProblem" computerName="Host-002" duration="00:00:00.0035973" startTime="2024-10-12T13:48:23.4141550+02:00" endTime="2024-10-12T13:48:23.4141550+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c2adc13d-39ae-4be0-b162-d8e611595b25" />
+    <UnitTestResult executionId="f6bcdde3-4d18-40cd-bbe6-f21a089f5ed2" testId="8d208bc4-c287-5380-53fb-9e865135374b" testName="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithPasswordMissingDigit_ShouldReturnValidationProblem" computerName="Host-002" duration="00:00:00.0121537" startTime="2024-10-12T13:48:22.6159970+02:00" endTime="2024-10-12T13:48:22.6159980+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f6bcdde3-4d18-40cd-bbe6-f21a089f5ed2" />
+    <UnitTestResult executionId="51f6628a-6efa-4a18-a469-c3f4c8cb17e7" testId="c874d368-d502-9be3-9cdc-89c7788e378c" testName="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithExistingEmail_ShouldReturnValidationProblem" computerName="Host-002" duration="00:00:00.6998339" startTime="2024-10-12T13:48:23.3217140+02:00" endTime="2024-10-12T13:48:23.3217140+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="51f6628a-6efa-4a18-a469-c3f4c8cb17e7" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithInvalidEmail_ShouldReturnValidationProblem" storage="/users/aristidehervembassi/documents/projects/personnal/place/tests/placeapi.identity.tests.integration/bin/debug/net8.0/placeapi.identity.tests.integration.dll" id="87fcd1c7-b32f-f629-9aa4-0bc275096817">
+      <Execution id="2bff4023-28f1-4cc2-bcf7-16f6c601c283" />
+      <TestMethod codeBase="/Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/bin/Debug/net8.0/PlaceApi.Identity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests" name="Register_WithInvalidEmail_ShouldReturnValidationProblem" />
+    </UnitTest>
+    <UnitTest name="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithValidData_ShouldReturnOk" storage="/users/aristidehervembassi/documents/projects/personnal/place/tests/placeapi.identity.tests.integration/bin/debug/net8.0/placeapi.identity.tests.integration.dll" id="b7867434-867e-25c0-6ff5-90dcaca83fd5">
+      <Execution id="e969f277-5fc4-4a54-aaa9-d426886101ce" />
+      <TestMethod codeBase="/Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/bin/Debug/net8.0/PlaceApi.Identity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests" name="Register_WithValidData_ShouldReturnOk" />
+    </UnitTest>
+    <UnitTest name="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithPasswordMissingUpperCase_ShouldReturnValidationProblem" storage="/users/aristidehervembassi/documents/projects/personnal/place/tests/placeapi.identity.tests.integration/bin/debug/net8.0/placeapi.identity.tests.integration.dll" id="faf0d2c9-1a97-2829-c2f9-ae5aaa4b1bc3">
+      <Execution id="e9d19679-6363-4b72-843d-280bc520e26b" />
+      <TestMethod codeBase="/Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/bin/Debug/net8.0/PlaceApi.Identity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests" name="Register_WithPasswordMissingUpperCase_ShouldReturnValidationProblem" />
+    </UnitTest>
+    <UnitTest name="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithPasswordMissingDigit_ShouldReturnValidationProblem" storage="/users/aristidehervembassi/documents/projects/personnal/place/tests/placeapi.identity.tests.integration/bin/debug/net8.0/placeapi.identity.tests.integration.dll" id="8d208bc4-c287-5380-53fb-9e865135374b">
+      <Execution id="f6bcdde3-4d18-40cd-bbe6-f21a089f5ed2" />
+      <TestMethod codeBase="/Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/bin/Debug/net8.0/PlaceApi.Identity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests" name="Register_WithPasswordMissingDigit_ShouldReturnValidationProblem" />
+    </UnitTest>
+    <UnitTest name="PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests.Login_WithNonexistentUser_ShouldReturnUnauthorized" storage="/users/aristidehervembassi/documents/projects/personnal/place/tests/placeapi.identity.tests.integration/bin/debug/net8.0/placeapi.identity.tests.integration.dll" id="3fe2aca4-c951-6b6b-3a60-5008d68cfb39">
+      <Execution id="b5a21534-edc9-4deb-8391-344fba32edd5" />
+      <TestMethod codeBase="/Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/bin/Debug/net8.0/PlaceApi.Identity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests" name="Login_WithNonexistentUser_ShouldReturnUnauthorized" />
+    </UnitTest>
+    <UnitTest name="PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests.Login_WithLockedOutUser_ShouldReturnUnauthorized" storage="/users/aristidehervembassi/documents/projects/personnal/place/tests/placeapi.identity.tests.integration/bin/debug/net8.0/placeapi.identity.tests.integration.dll" id="7a759076-a886-6a2b-abc0-2f37268eda8a">
+      <Execution id="41321199-77bb-4fb4-82c9-a978aaa95889" />
+      <TestMethod codeBase="/Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/bin/Debug/net8.0/PlaceApi.Identity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests" name="Login_WithLockedOutUser_ShouldReturnUnauthorized" />
+    </UnitTest>
+    <UnitTest name="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithWeakPassword_ShouldReturnValidationProblem" storage="/users/aristidehervembassi/documents/projects/personnal/place/tests/placeapi.identity.tests.integration/bin/debug/net8.0/placeapi.identity.tests.integration.dll" id="b486b191-d332-3ecd-dbbe-a848500c1043">
+      <Execution id="c2adc13d-39ae-4be0-b162-d8e611595b25" />
+      <TestMethod codeBase="/Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/bin/Debug/net8.0/PlaceApi.Identity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests" name="Register_WithWeakPassword_ShouldReturnValidationProblem" />
+    </UnitTest>
+    <UnitTest name="PlaceApi.Identity.Tests.Integration.Endpoints.ConfirmEmail.V1.ConfirmEmailEndpointIntegrationTests.ConfirmEmail_WithValidToken_ShouldSucceed" storage="/users/aristidehervembassi/documents/projects/personnal/place/tests/placeapi.identity.tests.integration/bin/debug/net8.0/placeapi.identity.tests.integration.dll" id="6dcea96d-9e85-4648-3d9b-6f2a135cf236">
+      <Execution id="0ae03ec3-1da4-48fa-b38f-cd18efa8b089" />
+      <TestMethod codeBase="/Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/bin/Debug/net8.0/PlaceApi.Identity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="PlaceApi.Identity.Tests.Integration.Endpoints.ConfirmEmail.V1.ConfirmEmailEndpointIntegrationTests" name="ConfirmEmail_WithValidToken_ShouldSucceed" />
+    </UnitTest>
+    <UnitTest name="PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests.Login_WithInvalidCredentials_ShouldReturnUnauthorized" storage="/users/aristidehervembassi/documents/projects/personnal/place/tests/placeapi.identity.tests.integration/bin/debug/net8.0/placeapi.identity.tests.integration.dll" id="998f4a90-558d-339c-f65f-aa9ecd756826">
+      <Execution id="3d53e770-61d6-4c74-8ee9-1876195e96e3" />
+      <TestMethod codeBase="/Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/bin/Debug/net8.0/PlaceApi.Identity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests" name="Login_WithInvalidCredentials_ShouldReturnUnauthorized" />
+    </UnitTest>
+    <UnitTest name="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithExistingEmail_ShouldReturnValidationProblem" storage="/users/aristidehervembassi/documents/projects/personnal/place/tests/placeapi.identity.tests.integration/bin/debug/net8.0/placeapi.identity.tests.integration.dll" id="c874d368-d502-9be3-9cdc-89c7788e378c">
+      <Execution id="51f6628a-6efa-4a18-a469-c3f4c8cb17e7" />
+      <TestMethod codeBase="/Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/bin/Debug/net8.0/PlaceApi.Identity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests" name="Register_WithExistingEmail_ShouldReturnValidationProblem" />
+    </UnitTest>
+    <UnitTest name="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithPasswordMissingNonAlphanumeric_ShouldReturnValidationProblem" storage="/users/aristidehervembassi/documents/projects/personnal/place/tests/placeapi.identity.tests.integration/bin/debug/net8.0/placeapi.identity.tests.integration.dll" id="a845673e-01f9-baf4-13a3-5f5f28f85921">
+      <Execution id="ba7de334-5ed3-45ff-99af-9315d1b00241" />
+      <TestMethod codeBase="/Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/bin/Debug/net8.0/PlaceApi.Identity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests" name="Register_WithPasswordMissingNonAlphanumeric_ShouldReturnValidationProblem" />
+    </UnitTest>
+    <UnitTest name="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests.Register_WithPasswordMissingLowerCase_ShouldReturnValidationProblem" storage="/users/aristidehervembassi/documents/projects/personnal/place/tests/placeapi.identity.tests.integration/bin/debug/net8.0/placeapi.identity.tests.integration.dll" id="acdbe65b-c582-2c48-f736-bab078c09dcb">
+      <Execution id="0859778f-41ec-4e62-ba99-11e34493a69f" />
+      <TestMethod codeBase="/Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/bin/Debug/net8.0/PlaceApi.Identity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1.RegisterEndpointIntegrationTests" name="Register_WithPasswordMissingLowerCase_ShouldReturnValidationProblem" />
+    </UnitTest>
+    <UnitTest name="PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests.Login_WithValidCredentials_ShouldReturnOk" storage="/users/aristidehervembassi/documents/projects/personnal/place/tests/placeapi.identity.tests.integration/bin/debug/net8.0/placeapi.identity.tests.integration.dll" id="7f81a966-55c4-6978-2be0-497d701ac600">
+      <Execution id="5adefc90-aee1-4d5e-a0fa-63762c579976" />
+      <TestMethod codeBase="/Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/bin/Debug/net8.0/PlaceApi.Identity.Tests.Integration.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests" name="Login_WithValidCredentials_ShouldReturnOk" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="7f81a966-55c4-6978-2be0-497d701ac600" executionId="5adefc90-aee1-4d5e-a0fa-63762c579976" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="998f4a90-558d-339c-f65f-aa9ecd756826" executionId="3d53e770-61d6-4c74-8ee9-1876195e96e3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="acdbe65b-c582-2c48-f736-bab078c09dcb" executionId="0859778f-41ec-4e62-ba99-11e34493a69f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="87fcd1c7-b32f-f629-9aa4-0bc275096817" executionId="2bff4023-28f1-4cc2-bcf7-16f6c601c283" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6dcea96d-9e85-4648-3d9b-6f2a135cf236" executionId="0ae03ec3-1da4-48fa-b38f-cd18efa8b089" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b7867434-867e-25c0-6ff5-90dcaca83fd5" executionId="e969f277-5fc4-4a54-aaa9-d426886101ce" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a845673e-01f9-baf4-13a3-5f5f28f85921" executionId="ba7de334-5ed3-45ff-99af-9315d1b00241" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3fe2aca4-c951-6b6b-3a60-5008d68cfb39" executionId="b5a21534-edc9-4deb-8391-344fba32edd5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="faf0d2c9-1a97-2829-c2f9-ae5aaa4b1bc3" executionId="e9d19679-6363-4b72-843d-280bc520e26b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7a759076-a886-6a2b-abc0-2f37268eda8a" executionId="41321199-77bb-4fb4-82c9-a978aaa95889" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b486b191-d332-3ecd-dbbe-a848500c1043" executionId="c2adc13d-39ae-4be0-b162-d8e611595b25" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8d208bc4-c287-5380-53fb-9e865135374b" executionId="f6bcdde3-4d18-40cd-bbe6-f21a089f5ed2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c874d368-d502-9be3-9cdc-89c7788e378c" executionId="51f6628a-6efa-4a18-a469-c3f4c8cb17e7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="13" executed="13" passed="8" failed="5" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.5.3.1+6b60a9e56a (64-bit .NET 8.0.8)
+[xUnit.net 00:00:00.07]   Discovering: PlaceApi.Identity.Tests.Integration
+[xUnit.net 00:00:00.10]   Discovered:  PlaceApi.Identity.Tests.Integration
+[xUnit.net 00:00:00.10]   Starting:    PlaceApi.Identity.Tests.Integration
+[testcontainers.org 00:00:00.16] Connected to Docker:
+  Host: unix:///var/run/docker.sock
+  Server Version: 27.0.3
+  Kernel Version: 6.6.32-linuxkit
+  API Version: 1.46
+  Operating System: Docker Desktop
+  Total Memory: 7.66 GB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/aristidehervembassi/Library/Containers/com.docker.docker/Data/docker-cli.sock
+[testcontainers.org 00:00:00.33] Docker container 1482028449d2 created
+[testcontainers.org 00:00:00.43] Start Docker container 1482028449d2
+[testcontainers.org 00:00:01.88] Wait for Docker container 1482028449d2 to complete readiness checks
+[testcontainers.org 00:00:01.88] Docker container 1482028449d2 ready
+[testcontainers.org 00:00:02.00] Docker container 3a0919c73838 created
+[testcontainers.org 00:00:02.00] Docker container eb771c2cb5d1 created
+[testcontainers.org 00:00:02.02] Docker container af77a4d56675 created
+[testcontainers.org 00:00:02.03] Start Docker container 3a0919c73838
+[testcontainers.org 00:00:02.03] Start Docker container eb771c2cb5d1
+[testcontainers.org 00:00:02.04] Start Docker container af77a4d56675
+[testcontainers.org 00:00:02.44] Stop Docker container af77a4d56675
+[xUnit.net 00:00:02.64]       Docker.DotNet.DockerApiException : Docker API responded with status code=InternalServerError, response={"message":"driver failed programming external connectivity on endpoint blissful_kapitsa (771bf4d2ee59cb4f026682b209eb6315ea1206e7b879c59d0b43bf5e4c7350f7): Bind for 0.0.0.0:7890 failed: port is already allocated"}
+[xUnit.net 00:00:02.64]       
+[xUnit.net 00:00:02.64]       Stack Trace:
+[xUnit.net 00:00:02.64]            at Docker.DotNet.DockerClient.HandleIfErrorResponseAsync(HttpStatusCode statusCode, HttpResponseMessage response, IEnumerable`1 handlers)
+[xUnit.net 00:00:02.64]            at Docker.DotNet.DockerClient.MakeRequestAsync(IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)
+[xUnit.net 00:00:02.64]            at Docker.DotNet.ContainerOperations.StartContainerAsync(String id, ContainerStartParameters parameters, CancellationToken cancellationToken)
+[xUnit.net 00:00:02.64]         /_/src/Testcontainers/Clients/TestcontainersClient.cs(128,0): at DotNet.Testcontainers.Clients.TestcontainersClient.StartAsync(String id, CancellationToken ct)
+[xUnit.net 00:00:02.64]         /_/src/Testcontainers/Containers/DockerContainer.cs(466,0): at DotNet.Testcontainers.Containers.DockerContainer.UnsafeStartAsync(CancellationToken ct)
+[xUnit.net 00:00:02.64]         /_/src/Testcontainers/Containers/DockerContainer.cs(282,0): at DotNet.Testcontainers.Containers.DockerContainer.StartAsync(CancellationToken ct)
+[xUnit.net 00:00:02.64]         /Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/IdentityWebAppFactory.cs(79,0): at PlaceApi.Identity.Tests.Integration.IdentityWebAppFactory.InitializeAsync()
+[xUnit.net 00:00:02.70]       Docker.DotNet.DockerApiException : Docker API responded with status code=InternalServerError, response={"message":"driver failed programming external connectivity on endpoint heuristic_boyd (866842c3a04214f6351775b4e7f1704baf6d5dbb173058b30a634f67a6b0eab8): Bind for 0.0.0.0:7890 failed: port is already allocated"}
+[xUnit.net 00:00:02.70]       
+[xUnit.net 00:00:02.70]       Stack Trace:
+[xUnit.net 00:00:02.70]            at Docker.DotNet.DockerClient.HandleIfErrorResponseAsync(HttpStatusCode statusCode, HttpResponseMessage response, IEnumerable`1 handlers)
+[xUnit.net 00:00:02.70]            at Docker.DotNet.DockerClient.MakeRequestAsync(IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)
+[xUnit.net 00:00:02.70]            at Docker.DotNet.ContainerOperations.StartContainerAsync(String id, ContainerStartParameters parameters, CancellationToken cancellationToken)
+[xUnit.net 00:00:02.70]         /_/src/Testcontainers/Clients/TestcontainersClient.cs(128,0): at DotNet.Testcontainers.Clients.TestcontainersClient.StartAsync(String id, CancellationToken ct)
+[xUnit.net 00:00:02.70]         /_/src/Testcontainers/Containers/DockerContainer.cs(466,0): at DotNet.Testcontainers.Containers.DockerContainer.UnsafeStartAsync(CancellationToken ct)
+[xUnit.net 00:00:02.70]         /_/src/Testcontainers/Containers/DockerContainer.cs(282,0): at DotNet.Testcontainers.Containers.DockerContainer.StartAsync(CancellationToken ct)
+[xUnit.net 00:00:02.70]         /Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/IdentityWebAppFactory.cs(79,0): at PlaceApi.Identity.Tests.Integration.IdentityWebAppFactory.InitializeAsync()
+[xUnit.net 00:00:02.71]       Docker.DotNet.DockerApiException : Docker API responded with status code=InternalServerError, response={"message":"driver failed programming external connectivity on endpoint heuristic_boyd (866842c3a04214f6351775b4e7f1704baf6d5dbb173058b30a634f67a6b0eab8): Bind for 0.0.0.0:7890 failed: port is already allocated"}
+[xUnit.net 00:00:02.71]       
+[xUnit.net 00:00:02.71]       Stack Trace:
+[xUnit.net 00:00:02.71]            at Docker.DotNet.DockerClient.HandleIfErrorResponseAsync(HttpStatusCode statusCode, HttpResponseMessage response, IEnumerable`1 handlers)
+[xUnit.net 00:00:02.71]            at Docker.DotNet.DockerClient.MakeRequestAsync(IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)
+[xUnit.net 00:00:02.71]            at Docker.DotNet.ContainerOperations.StartContainerAsync(String id, ContainerStartParameters parameters, CancellationToken cancellationToken)
+[xUnit.net 00:00:02.71]         /_/src/Testcontainers/Clients/TestcontainersClient.cs(128,0): at DotNet.Testcontainers.Clients.TestcontainersClient.StartAsync(String id, CancellationToken ct)
+[xUnit.net 00:00:02.71]         /_/src/Testcontainers/Containers/DockerContainer.cs(466,0): at DotNet.Testcontainers.Containers.DockerContainer.UnsafeStartAsync(CancellationToken ct)
+[xUnit.net 00:00:02.71]         /_/src/Testcontainers/Containers/DockerContainer.cs(282,0): at DotNet.Testcontainers.Containers.DockerContainer.StartAsync(CancellationToken ct)
+[xUnit.net 00:00:02.71]         /Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/IdentityWebAppFactory.cs(79,0): at PlaceApi.Identity.Tests.Integration.IdentityWebAppFactory.InitializeAsync()
+[xUnit.net 00:00:02.71]       Docker.DotNet.DockerApiException : Docker API responded with status code=InternalServerError, response={"message":"driver failed programming external connectivity on endpoint heuristic_boyd (866842c3a04214f6351775b4e7f1704baf6d5dbb173058b30a634f67a6b0eab8): Bind for 0.0.0.0:7890 failed: port is already allocated"}
+[xUnit.net 00:00:02.72]       
+[xUnit.net 00:00:02.72]       Stack Trace:
+[xUnit.net 00:00:02.72]            at Docker.DotNet.DockerClient.HandleIfErrorResponseAsync(HttpStatusCode statusCode, HttpResponseMessage response, IEnumerable`1 handlers)
+[xUnit.net 00:00:02.72]            at Docker.DotNet.DockerClient.MakeRequestAsync(IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)
+[xUnit.net 00:00:02.72]            at Docker.DotNet.ContainerOperations.StartContainerAsync(String id, ContainerStartParameters parameters, CancellationToken cancellationToken)
+[xUnit.net 00:00:02.72]         /_/src/Testcontainers/Clients/TestcontainersClient.cs(128,0): at DotNet.Testcontainers.Clients.TestcontainersClient.StartAsync(String id, CancellationToken ct)
+[xUnit.net 00:00:02.72]         /_/src/Testcontainers/Containers/DockerContainer.cs(466,0): at DotNet.Testcontainers.Containers.DockerContainer.UnsafeStartAsync(CancellationToken ct)
+[xUnit.net 00:00:02.72]         /_/src/Testcontainers/Containers/DockerContainer.cs(282,0): at DotNet.Testcontainers.Containers.DockerContainer.StartAsync(CancellationToken ct)
+[xUnit.net 00:00:02.72]         /Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/IdentityWebAppFactory.cs(79,0): at PlaceApi.Identity.Tests.Integration.IdentityWebAppFactory.InitializeAsync()
+[xUnit.net 00:00:02.73]       Docker.DotNet.DockerApiException : Docker API responded with status code=InternalServerError, response={"message":"driver failed programming external connectivity on endpoint heuristic_boyd (866842c3a04214f6351775b4e7f1704baf6d5dbb173058b30a634f67a6b0eab8): Bind for 0.0.0.0:7890 failed: port is already allocated"}
+[xUnit.net 00:00:02.73]       
+[xUnit.net 00:00:02.73]       Stack Trace:
+[xUnit.net 00:00:02.73]            at Docker.DotNet.DockerClient.HandleIfErrorResponseAsync(HttpStatusCode statusCode, HttpResponseMessage response, IEnumerable`1 handlers)
+[xUnit.net 00:00:02.73]            at Docker.DotNet.DockerClient.MakeRequestAsync(IEnumerable`1 errorHandlers, HttpMethod method, String path, IQueryString queryString, IRequestContent body, IDictionary`2 headers, TimeSpan timeout, CancellationToken token)
+[xUnit.net 00:00:02.73]            at Docker.DotNet.ContainerOperations.StartContainerAsync(String id, ContainerStartParameters parameters, CancellationToken cancellationToken)
+[xUnit.net 00:00:02.73]         /_/src/Testcontainers/Clients/TestcontainersClient.cs(128,0): at DotNet.Testcontainers.Clients.TestcontainersClient.StartAsync(String id, CancellationToken ct)
+[xUnit.net 00:00:02.73]         /_/src/Testcontainers/Containers/DockerContainer.cs(466,0): at DotNet.Testcontainers.Containers.DockerContainer.UnsafeStartAsync(CancellationToken ct)
+[xUnit.net 00:00:02.73]         /_/src/Testcontainers/Containers/DockerContainer.cs(282,0): at DotNet.Testcontainers.Containers.DockerContainer.StartAsync(CancellationToken ct)
+[xUnit.net 00:00:02.73]         /Users/aristidehervembassi/Documents/Projects/Personnal/place/tests/PlaceApi.Identity.Tests.Integration/IdentityWebAppFactory.cs(79,0): at PlaceApi.Identity.Tests.Integration.IdentityWebAppFactory.InitializeAsync()
+[testcontainers.org 00:00:02.55] Stop Docker container eb771c2cb5d1
+[testcontainers.org 00:00:02.93] Wait for Docker container 3a0919c73838 to complete readiness checks
+[testcontainers.org 00:00:02.95] Execute "pg_isready --host localhost --dbname PlaceApiIdentity --username postgres" at Docker container 3a0919c73838
+[testcontainers.org 00:00:04.22] Execute "pg_isready --host localhost --dbname PlaceApiIdentity --username postgres" at Docker container 3a0919c73838
+[testcontainers.org 00:00:05.37] Execute "pg_isready --host localhost --dbname PlaceApiIdentity --username postgres" at Docker container 3a0919c73838
+[testcontainers.org 00:00:05.50] Docker container 3a0919c73838 ready
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (52ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+      FROM pg_class AS cls
+      JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+      WHERE
+              cls.relkind IN ('r', 'v', 'm', 'f', 'p') AND
+              ns.nspname NOT IN ('pg_catalog', 'information_schema') AND
+              -- Exclude tables which are members of PG extensions
+              NOT EXISTS (
+                  SELECT 1 FROM pg_depend WHERE
+                      classid=(
+                          SELECT cls.oid
+                          FROM pg_class AS cls
+                                   JOIN pg_namespace AS ns ON ns.oid = cls.relnamespace
+                          WHERE relname='pg_class' AND ns.nspname='pg_catalog'
+                      ) AND
+                      objid=cls.oid AND
+                      deptype IN ('e', 'x')
+              )
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "AspNetRoles" (
+          "Id" text NOT NULL,
+          "Name" character varying(256),
+          "NormalizedName" character varying(256),
+          "ConcurrencyStamp" text,
+          CONSTRAINT "PK_AspNetRoles" PRIMARY KEY ("Id")
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "AspNetUsers" (
+          "Id" text NOT NULL,
+          "UserName" character varying(256),
+          "NormalizedUserName" character varying(256),
+          "Email" character varying(256),
+          "NormalizedEmail" character varying(256),
+          "EmailConfirmed" boolean NOT NULL,
+          "PasswordHash" text,
+          "SecurityStamp" text,
+          "ConcurrencyStamp" text,
+          "PhoneNumber" text,
+          "PhoneNumberConfirmed" boolean NOT NULL,
+          "TwoFactorEnabled" boolean NOT NULL,
+          "LockoutEnd" timestamp with time zone,
+          "LockoutEnabled" boolean NOT NULL,
+          "AccessFailedCount" integer NOT NULL,
+          CONSTRAINT "PK_AspNetUsers" PRIMARY KEY ("Id")
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "AspNetRoleClaims" (
+          "Id" integer GENERATED BY DEFAULT AS IDENTITY,
+          "RoleId" text NOT NULL,
+          "ClaimType" text,
+          "ClaimValue" text,
+          CONSTRAINT "PK_AspNetRoleClaims" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_AspNetRoleClaims_AspNetRoles_RoleId" FOREIGN KEY ("RoleId") REFERENCES "AspNetRoles" ("Id") ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "AspNetUserClaims" (
+          "Id" integer GENERATED BY DEFAULT AS IDENTITY,
+          "UserId" text NOT NULL,
+          "ClaimType" text,
+          "ClaimValue" text,
+          CONSTRAINT "PK_AspNetUserClaims" PRIMARY KEY ("Id"),
+          CONSTRAINT "FK_AspNetUserClaims_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "AspNetUserLogins" (
+          "LoginProvider" text NOT NULL,
+          "ProviderKey" text NOT NULL,
+          "ProviderDisplayName" text,
+          "UserId" text NOT NULL,
+          CONSTRAINT "PK_AspNetUserLogins" PRIMARY KEY ("LoginProvider", "ProviderKey"),
+          CONSTRAINT "FK_AspNetUserLogins_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "AspNetUserRoles" (
+          "UserId" text NOT NULL,
+          "RoleId" text NOT NULL,
+          CONSTRAINT "PK_AspNetUserRoles" PRIMARY KEY ("UserId", "RoleId"),
+          CONSTRAINT "FK_AspNetUserRoles_AspNetRoles_RoleId" FOREIGN KEY ("RoleId") REFERENCES "AspNetRoles" ("Id") ON DELETE CASCADE,
+          CONSTRAINT "FK_AspNetUserRoles_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "AspNetUserTokens" (
+          "UserId" text NOT NULL,
+          "LoginProvider" text NOT NULL,
+          "Name" text NOT NULL,
+          "Value" text,
+          CONSTRAINT "PK_AspNetUserTokens" PRIMARY KEY ("UserId", "LoginProvider", "Name"),
+          CONSTRAINT "FK_AspNetUserTokens_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_AspNetRoleClaims_RoleId" ON "AspNetRoleClaims" ("RoleId");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "RoleNameIndex" ON "AspNetRoles" ("NormalizedName");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_AspNetUserClaims_UserId" ON "AspNetUserClaims" ("UserId");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_AspNetUserLogins_UserId" ON "AspNetUserLogins" ("UserId");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_AspNetUserRoles_RoleId" ON "AspNetUserRoles" ("RoleId");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "EmailIndex" ON "AspNetUsers" ("NormalizedEmail");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "UserNameIndex" ON "AspNetUsers" ("NormalizedUserName");
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (12ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+      FROM "AspNetUsers" AS a
+      WHERE a."NormalizedEmail" = @__normalizedEmail_0
+      LIMIT 2
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+      FROM "AspNetUsers" AS a
+      WHERE a."NormalizedUserName" = @__normalizedUserName_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+      FROM "AspNetUsers" AS a
+      WHERE a."NormalizedEmail" = @__normalizedEmail_0
+      LIMIT 2
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (14ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?', @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?', @p11='?' (DbType = Boolean), @p12='?', @p13='?' (DbType = Boolean), @p14='?'], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+      FROM "AspNetUsers" AS a
+      WHERE a."NormalizedUserName" = @__normalizedUserName_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+      FROM "AspNetUsers" AS a
+      WHERE a."NormalizedEmail" = @__normalizedEmail_0
+      LIMIT 2
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@p14='?', @p0='?' (DbType = Int32), @p1='?', @p15='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?' (DbType = Boolean), @p11='?', @p12='?' (DbType = Boolean), @p13='?'], CommandType='Text', CommandTimeout='30']
+      UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "ConcurrencyStamp" = @p1, "Email" = @p2, "EmailConfirmed" = @p3, "LockoutEnabled" = @p4, "LockoutEnd" = @p5, "NormalizedEmail" = @p6, "NormalizedUserName" = @p7, "PasswordHash" = @p8, "PhoneNumber" = @p9, "PhoneNumberConfirmed" = @p10, "SecurityStamp" = @p11, "TwoFactorEnabled" = @p12, "UserName" = @p13
+      WHERE "Id" = @p14 AND "ConcurrencyStamp" = @p15;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+      FROM "AspNetUsers" AS a
+      WHERE a."NormalizedUserName" = @__normalizedUserName_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+      FROM "AspNetUsers" AS a
+      WHERE a."NormalizedEmail" = @__normalizedEmail_0
+      LIMIT 2
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@p14='?', @p0='?' (DbType = Int32), @p1='?', @p15='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?', @p9='?', @p10='?' (DbType = Boolean), @p11='?', @p12='?' (DbType = Boolean), @p13='?'], CommandType='Text', CommandTimeout='30']
+      UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "ConcurrencyStamp" = @p1, "Email" = @p2, "EmailConfirmed" = @p3, "LockoutEnabled" = @p4, "LockoutEnd" = @p5, "NormalizedEmail" = @p6, "NormalizedUserName" = @p7, "PasswordHash" = @p8, "PhoneNumber" = @p9, "PhoneNumberConfirmed" = @p10, "SecurityStamp" = @p11, "TwoFactorEnabled" = @p12, "UserName" = @p13
+      WHERE "Id" = @p14 AND "ConcurrencyStamp" = @p15;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (16ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+      FROM "AspNetUsers" AS a
+      WHERE a."NormalizedUserName" = @__normalizedUserName_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+      FROM "AspNetUsers" AS a
+      WHERE a."NormalizedEmail" = @__normalizedEmail_0
+      LIMIT 2
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+      FROM "AspNetUsers" AS a
+      WHERE a."NormalizedUserName" = @__normalizedUserName_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+      FROM "AspNetUsers" AS a
+      WHERE a."NormalizedEmail" = @__normalizedEmail_0
+      LIMIT 2
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?', @p3='?', @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTime), @p7='?', @p8='?', @p9='?', @p10='?', @p11='?' (DbType = Boolean), @p12='?', @p13='?' (DbType = Boolean), @p14='?'], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);
+info: PlaceAPi.Identity.Authenticate.EmailSender[0]
+      Send email to newuser@example.com; Subject Confirm your email; Message Please confirm your account by &lt;a href='http://localhost/api/v1/confirmEmail?userId=f866a8a2-1a5f-4ea9-be8c-c64952d34272&amp;amp;code=Q2ZESjhKcEdwWHBQTVF4SHJFRS81eWs0ODdneUdmckhTZVA3M1JFVlJ5Q0xxZDc1cjlzTWhuUTVwa0x3VjFmVCswQmFmNnlXdWp1V09QelUyVFlTZDNzdTlBYk4xNjZZNFZ6dG5MUElpQnpXcmZQQnYyT1hzRVhheGF2NXNrNVlnNWpJZ3kvNjNsbTQ1aGNGaVlRK1JGUWFNOGgwQlNWY1R0aStnOFZZVDlJSWpNVXVzU2RHQlNkaFU1QVhQNFlLOW9UVzM2YWVEdVpXRzJQbkNLSnBZY0dVZVp2ZEdMWkU5VldybFU3MkNoTlNJOFJ1K3k4cGFXUGRuNHNyMElYUEhxK2J4dz09'&gt;clicking here&lt;/a&gt;.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."AccessFailedCount", a."ConcurrencyStamp", a."Email", a."EmailConfirmed", a."LockoutEnabled", a."LockoutEnd", a."NormalizedEmail", a."NormalizedUserName", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."TwoFactorEnabled", a."UserName"
+      FROM "AspNetUsers" AS a
+      WHERE a."NormalizedEmail" = @__normalizedEmail_0
+      LIMIT 2
+[testcontainers.org 00:00:08.17] Stop Docker container 3a0919c73838
+[xUnit.net 00:00:09.46]   Finished:    PlaceApi.Identity.Tests.Integration
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="Host-002" outcome="Error" timestamp="2024-10-12T13:48:17.7433660+02:00">
+        <Text>[xUnit.net 00:00:02.64]     PlaceApi.Identity.Tests.Integration.Endpoints.ConfirmEmail.V1.ConfirmEmailEndpointIntegrationTests.ConfirmEmail_WithValidToken_ShouldSucceed [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="Host-002" outcome="Error" timestamp="2024-10-12T13:48:17.7701240+02:00">
+        <Text>[xUnit.net 00:00:02.70]     PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests.Login_WithValidCredentials_ShouldReturnOk [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="Host-002" outcome="Error" timestamp="2024-10-12T13:48:17.7856090+02:00">
+        <Text>[xUnit.net 00:00:02.71]     PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests.Login_WithLockedOutUser_ShouldReturnUnauthorized [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="Host-002" outcome="Error" timestamp="2024-10-12T13:48:17.7938620+02:00">
+        <Text>[xUnit.net 00:00:02.71]     PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests.Login_WithInvalidCredentials_ShouldReturnUnauthorized [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="Host-002" outcome="Error" timestamp="2024-10-12T13:48:17.7991960+02:00">
+        <Text>[xUnit.net 00:00:02.73]     PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1.LoginEndpointIntegrationTests.Login_WithNonexistentUser_ShouldReturnUnauthorized [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>
