@@ -34,15 +34,7 @@ git clone https://github.com/osscameroon/place-api && cd place-api
 ```bash
 dotnet tool restore
 ``` 
-- Setup husky
-```bash
-dotnet husky install
-``` 
 
-- Restore dotnet tools
-```bash
-dotnet tool restore
-``` 
 - Clean, restore and build solution
 ```bash
 dotnet clean
@@ -50,7 +42,11 @@ dotnet restore
 dotnet build
 ``` 
 
-
+- Run the project
+```bash
+dotnet workload restore
+dotnet run --project src/PlaceApi.Host/
+```
 
 
 ## Documentation
