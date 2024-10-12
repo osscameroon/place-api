@@ -1,5 +1,7 @@
+using System.Text;
 using FluentAssertions;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.DependencyInjection;
 using PlaceAPi.Identity.Authenticate;
 
@@ -104,5 +106,26 @@ public class UserManagementHelper
             UserManager<ApplicationUser>
         >();
         return await userManager.GenerateChangeEmailTokenAsync(user, newEmail);
+    }
+
+    public async Task<string> GeneratePasswordResetTokenAsync(string email)
+    {
+        UserManager<ApplicationUser> userManager = _serviceProvider.GetRequiredService<
+            UserManager<ApplicationUser>
+        >();
+
+        ApplicationUser? user = await userManager.FindByEmailAsync(email);
+
+        // Generate the password reset token and encode it
+        string token = await userManager.GeneratePasswordResetTokenAsync(user!);
+        return WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+    }
+
+    public async Task<ApplicationUser?> GetUserByEmailAsync(string email)
+    {
+        UserManager<ApplicationUser> userManager = _serviceProvider.GetRequiredService<
+            UserManager<ApplicationUser>
+        >();
+        return await userManager.FindByEmailAsync(email);
     }
 }
