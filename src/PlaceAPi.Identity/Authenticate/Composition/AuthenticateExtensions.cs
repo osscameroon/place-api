@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
 using PlaceAPi.Identity.Authenticate.Endpoints;
 
 namespace PlaceAPi.Identity.Authenticate.Composition;
@@ -51,19 +52,23 @@ public static class AuthenticateExtensions
 
         services.AddDbContext<AppDbContext>(options =>
         {
-            string? connectionString = configuration
+            services.Configure<PostgresOptions>(configuration.GetSection(PostgresOptions.Key));
+
+            PostgresOptions postgresOptions = configuration
                 .GetSection(PostgresOptions.Key)
-                .Get<PostgresOptions>()
-                ?.ConnectionString;
+                .Get<PostgresOptions>()!;
 
-            if (string.IsNullOrEmpty(connectionString))
-            {
-                throw new InvalidOperationException(
-                    "Postgres connection string is not configured."
-                );
-            }
+            NpgsqlConnectionStringBuilder connectionStringBuilder =
+                new()
+                {
+                    Host = postgresOptions.Host,
+                    Port = postgresOptions.Port,
+                    Username = postgresOptions.Username,
+                    Password = postgresOptions.Password,
+                    Database = postgresOptions.Database,
+                };
 
-            options.UseNpgsql(connectionString);
+            options.UseNpgsql(connectionStringBuilder.ConnectionString);
         });
 
         services.AddTransient<IEmailSender, EmailSender>();

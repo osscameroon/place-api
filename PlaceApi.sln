@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.ServiceDefaults", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.Identity.Tests.Integration", "tests\PlaceApi.Identity.Tests.Integration\PlaceApi.Identity.Tests.Integration.csproj", "{B51B6C8F-45D0-45D4-809C-37E6B57B1B09}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuke", "nuke", "{15EAF5F3-93D9-4643-BD17-13E75B1BCA55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,7 @@ Global
 		{2D4A5004-0C6A-4C4B-8BBF-B3F25337A75F} = {AEF037D4-3549-4815-B0F3-36AED9A049D3}
 		{F92D35F5-35DC-49EB-A08B-7F944C32B69C} = {AEF037D4-3549-4815-B0F3-36AED9A049D3}
 		{B51B6C8F-45D0-45D4-809C-37E6B57B1B09} = {C3F80B30-C2DE-41DC-933A-A24E04827504}
+		{15EAF5F3-93D9-4643-BD17-13E75B1BCA55} = {8A57F513-0E1E-490A-A9A7-84F61059BDDC}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1DFC8537-6B29-4BB5-8449-1910496DB479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
