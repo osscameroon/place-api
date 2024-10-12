@@ -1,0 +1,43 @@
+name: "Validate commit messages"
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+  push:
+    branches: [ main, develop ]
+  
+  
+  jobs:
+    validate-commit-message:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout out code
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+        
+        - name: Validate commit messages
+          run: |
+            #!/bin/bash
+            set -e
+            # The regex pattern for commit messages
+            pattern='^(?=.{1,90}$)(?:feat|feat!|chore|ci|build|docs|fix|perf|refactor|revert|style|test|wip)(?:\(.+\))*(?::).{4,}(?:#\d+)*(?<![\.\s])$'
+            # Get the commits to validate
+                    if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+                      commits=$(git log --format=%s ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
+                    else
+                      commits=$(git log --format=%s -n 1)
+                    fi
+
+                    # Validate each commit message
+                    while read -r commit_msg; do
+                      if ! [[ $commit_msg =~ $pattern ]]; then
+                        echo "Invalid commit message: $commit_msg"
+                        echo "Commit messages must follow the pattern: <type>(<scope>): <description> [#<issue-number>]"
+                        echo "Types: feat, feat!, chore, ci, build, docs, fix, perf, refactor, revert, style, test, wip"
+                        exit 1
+                      fi
+                    done <<< "$commits"
+
+                    echo "All commit messages are valid!"
+          shell: bash
