@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text;
 using FluentAssertions;
 using Microsoft.AspNetCore.WebUtilities;
@@ -31,6 +32,59 @@ public class ConfirmEmailEndpointIntegrationTests(IdentityWebAppFactory factory)
 
         // Verify email confirmed
         await this.VerifyEmailConfirmedAsync(user.Id);
+    }
+
+    [Fact]
+    public async Task ConfirmEmail_WithInvalidToken_ShouldReturnUnauthorized()
+    {
+        // Arrange
+        ApplicationUser user = await this.CreateUserAsync();
+        string invalidCode = WebEncoders.Base64UrlEncode(Guid.NewGuid().ToByteArray());
+
+        // Act
+        HttpResponseMessage response = await this._client.GetAsync(
+            $"/api/v1/confirmEmail?userId={user.Id}&code={invalidCode}"
+        );
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+    }
+
+    [Fact]
+    public async Task ConfirmEmail_WithNonexistentUser_ShouldReturnUnauthorized()
+    {
+        // Arrange
+        string nonExistentUserId = Guid.NewGuid().ToString();
+        string dummyCode = WebEncoders.Base64UrlEncode(Guid.NewGuid().ToByteArray());
+
+        // Act
+        HttpResponseMessage response = await this._client.GetAsync(
+            $"/api/v1/confirmEmail?userId={nonExistentUserId}&code={dummyCode}"
+        );
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+    }
+
+    [Fact]
+    public async Task ConfirmEmail_WithChangedEmail_ShouldUpdateEmailAndUsername()
+    {
+        // Arrange
+        ApplicationUser user = await this.CreateUserAsync();
+        string newEmail = "newemail@example.com";
+        (string userId, string code) = await this.GenerateChangeEmailTokenAsync(user, newEmail);
+
+        // Act
+        HttpResponseMessage response = await this._client.GetAsync(
+            $"/api/v1/confirmEmail?userId={userId}&code={code}&changedEmail={newEmail}"
+        );
+
+        HttpResponseAssertions.AssertSuccessResponse(response);
+        string content = await response.Content.ReadAsStringAsync();
+        content.Should().Contain("Thank you for confirming your email.");
+
+        // Verify email and username were updated
+        await this.VerifyEmailChangedAsync(user.Id, newEmail);
     }
 
     private async Task<ApplicationUser> CreateUserAsync()
