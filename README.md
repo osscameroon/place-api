@@ -39,10 +39,12 @@ dotnet tool restore
 dotnet husky install
 ``` 
 
-- Restore dotnet tools
+- Run the project
 ```bash
-dotnet tool restore
-``` 
+dotnet workload restore
+dotnet run --project src/PlaceApi.Host
+```
+
 - Clean, restore and build solution
 ```bash
 dotnet clean
