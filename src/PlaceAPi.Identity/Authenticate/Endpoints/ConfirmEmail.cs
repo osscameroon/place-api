@@ -55,7 +55,7 @@ public static partial class AuthenticationEndpointsExtensions
             string decodedCode = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             IdentityResult result = await (
                 string.IsNullOrEmpty(changedEmail)
-                    ? userManager.ConfirmEmailAsync(user, code)
+                    ? userManager.ConfirmEmailAsync(user, decodedCode)
                     : ChangeEmailAndUsernameAsync(user, changedEmail, decodedCode, userManager)
             );
 
