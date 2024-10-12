@@ -81,4 +81,28 @@ public class UserManagementHelper
         user.Should().NotBeNull();
         user!.Email.Should().Be(email);
     }
+
+    public async Task<string> GenerateEmailConfirmationTokenAsync(ApplicationUser user)
+    {
+        UserManager<ApplicationUser> userManager = _serviceProvider.GetRequiredService<
+            UserManager<ApplicationUser>
+        >();
+        return await userManager.GenerateEmailConfirmationTokenAsync(user);
+    }
+
+    public async Task<ApplicationUser?> GetUserByIdAsync(string userId)
+    {
+        UserManager<ApplicationUser> userManager = _serviceProvider.GetRequiredService<
+            UserManager<ApplicationUser>
+        >();
+        return await userManager.FindByIdAsync(userId);
+    }
+
+    public async Task<string> GenerateChangeEmailTokenAsync(ApplicationUser user, string newEmail)
+    {
+        UserManager<ApplicationUser> userManager = _serviceProvider.GetRequiredService<
+            UserManager<ApplicationUser>
+        >();
+        return await userManager.GenerateChangeEmailTokenAsync(user, newEmail);
+    }
 }

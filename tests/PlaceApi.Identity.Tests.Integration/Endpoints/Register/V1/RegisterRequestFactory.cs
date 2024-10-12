@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity.Data;
 
-namespace PlaceApi.Identity.Tests.Integration.Endpoints.Register;
+namespace PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1;
 
 public class RegisterRequestFactory
 {
