@@ -98,10 +98,10 @@ public static partial class AuthenticationEndpointsExtensions
             ? await userManager.GenerateChangeEmailTokenAsync(user, email)
             : await userManager.GenerateEmailConfirmationTokenAsync(user);
 
-        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+        string encoded = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
         string userId = await userManager.GetUserIdAsync(user);
 
-        return (code, userId);
+        return (encoded, userId);
     }
 
     private static RouteValueDictionary CreateRouteValues(
