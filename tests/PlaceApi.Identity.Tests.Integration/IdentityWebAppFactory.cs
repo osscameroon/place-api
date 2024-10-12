@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -11,6 +14,7 @@ using Testcontainers.PostgreSql;
 namespace PlaceApi.Identity.Tests.Integration;
 
 public class IdentityWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAsyncLifetime
+
 {
     private readonly PostgreSqlContainer _dbContainer;
 

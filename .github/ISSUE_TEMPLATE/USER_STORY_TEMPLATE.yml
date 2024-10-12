@@ -1,0 +1,60 @@
+name: User Story
+description: File a user story for the feature.
+title: "[User Story]: "
+labels: ["feature", "user story"]
+assignees:
+  - GenjiruSUchiwa
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to fill out this user story!
+  - type: input
+    id: user-role
+    attributes:
+      label: User Role
+      description: What type of user is this story for?
+      placeholder: e.g. New User
+    validations:
+      required: true
+  - type: textarea
+    id: user-goal
+    attributes:
+      label: User Goal
+      description: What does the user want to achieve?
+      placeholder: Describe the goal.
+      value: "I want to create an account."
+    validations:
+      required: true
+  - type: textarea
+    id: user-benefit
+    attributes:
+      label: User Benefit
+      description: What benefit does the user gain?
+      placeholder: Describe the benefit.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: What are the acceptance criteria for this story?
+      placeholder: Describe the criteria.
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Provide any additional context or information.
+      placeholder: Add any relevant information.
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this user story, you agree to follow our [Code of Conduct](https://example.com).
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

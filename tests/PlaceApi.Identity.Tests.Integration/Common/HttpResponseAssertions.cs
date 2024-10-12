@@ -147,4 +147,5 @@ public static class HttpResponseAssertions
         string content = await response.Content.ReadAsStringAsync();
         content.Should().BeEmpty();
     }
+
 }
