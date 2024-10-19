@@ -6,9 +6,6 @@ using PlaceApi.Identity.Tests.Integration.Endpoints.Login;
 
 namespace PlaceApi.Identity.Tests.Integration.Endpoints.ResetPassword.V1;
 
-/// <summary>
-/// Integration tests for the Reset Password endpoint, ensuring the password reset process is handled correctly.
-/// </summary>
 [Trait("Integration", "Identity")]
 [Collection("Sequential")]
 public class ResetPasswordEndpointIntegrationTests(IdentityWebAppFactory factory)
