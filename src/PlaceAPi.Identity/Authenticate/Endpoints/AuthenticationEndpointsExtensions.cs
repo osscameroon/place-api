@@ -23,7 +23,8 @@ public static partial class AuthenticationEndpointsExtensions
             .MapRefreshEndpoint<TUser>()
             .MapResendConfirmationEmailEndpoint<TUser>()
             .MapForgotPasswordEndpoint<TUser>()
-            .MapResetPasswordEndpoint<TUser>();
+            .MapResetPasswordEndpoint<TUser>()
+            .MapGetInfoEndpoint<TUser>();
 
         return new IdentityEndpointsConventionBuilder(routeGroup);
     }
