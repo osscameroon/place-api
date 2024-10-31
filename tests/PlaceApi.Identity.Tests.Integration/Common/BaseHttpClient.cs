@@ -35,4 +35,7 @@ public class BaseHttpClient
     /// <param name="url">The URL to send the request to.</param>
     /// <returns>A Task representing the asynchronous operation, containing the HTTP response message.</returns>
     protected Task<HttpResponseMessage> GetAsync(string url) => _httpClient.GetAsync(url);
+
+    protected Task<HttpResponseMessage> SendAsync(HttpRequestMessage request) =>
+        _httpClient.SendAsync(request);
 }
