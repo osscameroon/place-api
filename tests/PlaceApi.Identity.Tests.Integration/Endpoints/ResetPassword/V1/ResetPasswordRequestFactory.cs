@@ -41,6 +41,4 @@ public static class ResetPasswordRequestFactory
     /// Retrieves an unconfirmed email address.
     /// </summary>
     public static string GetUnconfirmedEmail() => UnconfirmedEmail;
-
-    public static string GetNonExistentEmail() => "nonexistent@example.com";
 }
