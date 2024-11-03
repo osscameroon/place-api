@@ -1,0 +1,6 @@
+﻿services:
+  place.api.profilemanagement:
+    image: place.api.profilemanagement
+    build:
+      context: .
+      dockerfile: src/Place.Api.ProfileManagement/Dockerfile
