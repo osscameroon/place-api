@@ -18,9 +18,6 @@ public abstract class AggregateRoot : Entity
     /// <summary>
     /// Initializes a new instance of the <see cref="AggregateRoot"/> class.
     /// </summary>
-    /// <remarks>
-    /// Required by EF Core.
-    /// </remarks>
     protected AggregateRoot() { }
 
     /// <summary>

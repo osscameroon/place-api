@@ -117,13 +117,6 @@ public sealed record Email
     /// </summary>
     /// <param name="email">The email address to validate.</param>
     /// <returns>True if the email format is valid; otherwise, false.</returns>
-    /// <remarks>
-    /// This is a basic validation that checks:
-    /// - Presence of exactly one @ symbol
-    /// - No whitespace
-    /// - Presence of at least one dot in the domain part
-    /// The validation has a timeout to prevent ReDoS attacks.
-    /// </remarks>
     private static bool IsValidEmail(string email)
     {
         try
