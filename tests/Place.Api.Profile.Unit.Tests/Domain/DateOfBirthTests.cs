@@ -8,7 +8,7 @@ namespace Place.Api.Profile.Unit.Tests.Domain;
 
 [Trait("Category", "Unit")]
 [Trait("Class", "BirthDate")]
-public class BirthDateTests
+public class DateOfBirthTests
 {
     [Theory]
     [Trait("Category", "Unit")]
@@ -16,7 +16,7 @@ public class BirthDateTests
     public void Create_WithValidDate_ShouldReturnExpectedInstance(DateTime validDate)
     {
         // Act
-        ErrorOr<BirthDate> result = BirthDate.Create(validDate);
+        ErrorOr<DateOfBirth> result = DateOfBirth.Create(validDate);
 
         // Assert
         result.IsError.Should().BeFalse();
@@ -46,7 +46,7 @@ public class BirthDateTests
         DateTime futureDate = DateTime.UtcNow.AddDays(1);
 
         // Act
-        ErrorOr<BirthDate> result = BirthDate.Create(futureDate);
+        ErrorOr<DateOfBirth> result = DateOfBirth.Create(futureDate);
 
         // Assert
         result.IsError.Should().BeTrue();
@@ -62,7 +62,7 @@ public class BirthDateTests
     public void Create_WithAgeExceedingMaxAge_ShouldReturnError(DateTime tooOldDate)
     {
         // Act
-        ErrorOr<BirthDate> result = BirthDate.Create(tooOldDate);
+        ErrorOr<DateOfBirth> result = DateOfBirth.Create(tooOldDate);
 
         // Assert
         result.IsError.Should().BeTrue();
@@ -92,7 +92,7 @@ public class BirthDateTests
         DateTime birthDate = today.AddYears(-50).AddDays(1);
 
         // Act
-        ErrorOr<BirthDate> result = BirthDate.Create(birthDate);
+        ErrorOr<DateOfBirth> result = DateOfBirth.Create(birthDate);
 
         // Assert
         result.IsError.Should().BeFalse();
@@ -107,12 +107,12 @@ public class BirthDateTests
     {
         // Arrange
         DateTime date = DateTime.Parse(inputDate);
-        ErrorOr<BirthDate> result = BirthDate.Create(date);
+        ErrorOr<DateOfBirth> result = DateOfBirth.Create(date);
         result.IsError.Should().BeFalse();
-        BirthDate birthDate = result.Value;
+        DateOfBirth dateOfBirth = result.Value;
 
         // Act
-        string formatted = birthDate.ToString();
+        string formatted = dateOfBirth.ToString();
 
         // Assert
         formatted.Should().Be(expected);
@@ -128,24 +128,24 @@ public class BirthDateTests
     )
     {
         // Arrange
-        ErrorOr<BirthDate> result1 = BirthDate.Create(value1);
-        ErrorOr<BirthDate> result2 = BirthDate.Create(value2);
+        ErrorOr<DateOfBirth> result1 = DateOfBirth.Create(value1);
+        ErrorOr<DateOfBirth> result2 = DateOfBirth.Create(value2);
 
         result1.IsError.Should().BeFalse();
         result2.IsError.Should().BeFalse();
 
-        BirthDate birthDate1 = result1.Value;
-        BirthDate birthDate2 = result2.Value;
+        DateOfBirth dateOfBirthDate1 = result1.Value;
+        DateOfBirth dateOfBirthDate2 = result2.Value;
 
         // Act & Assert
-        (birthDate1 == birthDate2)
+        (dateOfBirthDate1 == dateOfBirthDate2)
             .Should()
             .Be(shouldBeEqual);
-        (birthDate1 != birthDate2).Should().Be(!shouldBeEqual);
-        birthDate1.Equals(birthDate2).Should().Be(shouldBeEqual);
+        (dateOfBirthDate1 != dateOfBirthDate2).Should().Be(!shouldBeEqual);
+        dateOfBirthDate1.Equals(dateOfBirthDate2).Should().Be(shouldBeEqual);
         if (shouldBeEqual)
         {
-            birthDate1.GetHashCode().Should().Be(birthDate2.GetHashCode());
+            dateOfBirthDate1.GetHashCode().Should().Be(dateOfBirthDate2.GetHashCode());
         }
     }
 
@@ -166,10 +166,10 @@ public class BirthDateTests
     {
         // Arrange
         DateTime date = DateTime.UtcNow.Date.AddYears(-20);
-        BirthDate birthDate = BirthDate.Create(date).Value;
+        DateOfBirth dateOfBirth = DateOfBirth.Create(date).Value;
 
         // Act
-        DateTime converted = birthDate;
+        DateTime converted = dateOfBirth;
 
         // Assert
         converted.Should().Be(DateTime.SpecifyKind(date, DateTimeKind.Utc));
@@ -185,8 +185,8 @@ public class BirthDateTests
         DateTime unspecifiedDate = new(1990, 1, 1, 0, 0, 0, DateTimeKind.Unspecified);
 
         // Act
-        ErrorOr<BirthDate> resultLocal = BirthDate.Create(localDate);
-        ErrorOr<BirthDate> resultUnspecified = BirthDate.Create(unspecifiedDate);
+        ErrorOr<DateOfBirth> resultLocal = DateOfBirth.Create(localDate);
+        ErrorOr<DateOfBirth> resultUnspecified = DateOfBirth.Create(unspecifiedDate);
 
         // Assert
         resultLocal.IsError.Should().BeFalse();

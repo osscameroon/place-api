@@ -4,7 +4,7 @@ using ErrorOr;
 
 namespace Place.Api.Profile.Domain.Profile;
 
-public sealed record BirthDate
+public sealed record DateOfBirth
 {
     private const int MaxAge = 120;
     private static readonly CultureInfo FrenchCulture = new("fr-FR");
@@ -14,14 +14,14 @@ public sealed record BirthDate
     /// </summary>
     public DateTime Value { get; }
 
-    private BirthDate(DateTime value) => Value = DateTime.SpecifyKind(value, DateTimeKind.Utc);
+    private DateOfBirth(DateTime value) => Value = DateTime.SpecifyKind(value, DateTimeKind.Utc);
 
     /// <summary>
-    /// Creates a validated instance of <see cref="BirthDate"/>.
+    /// Creates a validated instance of <see cref="DateOfBirth"/>.
     /// </summary>
     /// <param name="birthDate">The birthdate to validate and encapsulate.</param>
-    /// <returns>A validated <see cref="BirthDate"/> or an error.</returns>
-    public static ErrorOr<BirthDate> Create(DateTime birthDate)
+    /// <returns>A validated <see cref="DateOfBirth"/> or an error.</returns>
+    public static ErrorOr<DateOfBirth> Create(DateTime birthDate)
     {
         DateTime today = DateTime.UtcNow.Date;
 
@@ -42,14 +42,14 @@ public sealed record BirthDate
             );
         }
 
-        return new BirthDate(birthDate);
+        return new DateOfBirth(birthDate);
     }
 
     /// <summary>
-    /// Implicitly converts a <see cref="BirthDate"/> instance to a <see cref="DateTime"/>.
+    /// Implicitly converts a <see cref="DateOfBirth"/> instance to a <see cref="DateTime"/>.
     /// </summary>
-    /// <param name="birthDate">The <see cref="BirthDate"/> instance.</param>
-    public static implicit operator DateTime(BirthDate birthDate) => birthDate.Value;
+    /// <param name="dateOfBirth">The <see cref="DateOfBirth"/> instance.</param>
+    public static implicit operator DateTime(DateOfBirth dateOfBirth) => dateOfBirth.Value;
 
     /// <summary>
     /// Returns a string representation of the birthdate in French format (dd/MM/yyyy).
