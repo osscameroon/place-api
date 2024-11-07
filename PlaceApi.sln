@@ -24,7 +24,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceApi.Identity.Tests.Int
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuke", "nuke", "{15EAF5F3-93D9-4643-BD17-13E75B1BCA55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Place.Api.ProfileManagement", "src\Place.Api.ProfileManagement\Place.Api.ProfileManagement.csproj", "{69B31787-CBE3-4009-B7AA-E261200F93E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Place.Api.Profile", "src\Place.Api.Profile\Place.Api.Profile.csproj", "{69B31787-CBE3-4009-B7AA-E261200F93E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DA61C0F8-3DDC-47E1-93A9-3ACB68AF4AEE}"
 	ProjectSection(SolutionItems) = preProject
@@ -33,7 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Profile", "Profile", "{5B48E2F5-D7CC-48EA-94FE-A2F132650C8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Place.Api.ProfileManagement.Unit.Tests", "tests\Place.Api.ProfileManagement.Unit.Tests\Place.Api.ProfileManagement.Unit.Tests.csproj", "{B6BB1030-4DB5-497F-AAC9-E2F5D2252AD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Place.Api.Profile.Unit.Tests", "tests\Place.Api.Profile.Unit.Tests\Place.Api.Profile.Unit.Tests.csproj", "{B6BB1030-4DB5-497F-AAC9-E2F5D2252AD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

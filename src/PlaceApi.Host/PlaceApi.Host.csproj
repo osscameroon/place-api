@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Place.Api.ProfileManagement\Place.Api.ProfileManagement.csproj" />
+      <ProjectReference Include="..\Place.Api.Profile\Place.Api.Profile.csproj" />
       <ProjectReference Include="..\PlaceAPi.Identity\PlaceAPi.Identity.csproj" />
     </ItemGroup>
 

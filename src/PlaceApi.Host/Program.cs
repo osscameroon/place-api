@@ -3,7 +3,7 @@ IDistributedApplicationBuilder builder = DistributedApplication.CreateBuilder(ar
 
 {
     builder.AddProject<Projects.PlaceAPi_Identity>("Identity");
-    builder.AddProject<Projects.Place_Api_ProfileManagement>("ProfileManagement");
+    builder.AddProject<Projects.Place_Api_Profile>("Profile");
 }
 
 await builder.Build().RunAsync();
