@@ -2,7 +2,7 @@
 using System.Globalization;
 using ErrorOr;
 
-namespace Place.Api.ProfileManagement.Domain;
+namespace Place.Api.Profile.Domain.Profile;
 
 public sealed record BirthDate
 {

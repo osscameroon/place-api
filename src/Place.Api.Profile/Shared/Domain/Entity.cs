@@ -1,7 +1,7 @@
 ﻿using System;
 using Ardalis.GuardClauses;
 
-namespace Place.Api.ProfileManagement.Domain
+namespace Place.Api.Profile.Shared.Domain
 {
     /// <summary>
     /// Represents the base class that all entities derive from.

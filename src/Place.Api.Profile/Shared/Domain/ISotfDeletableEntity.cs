@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Place.Api.ProfileManagement.Domain
+namespace Place.Api.Profile.Shared.Domain
 {
     /// <summary>
     /// Represents the marker interface for soft-deletable entities.

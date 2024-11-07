@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Globalization;
 using FluentAssertions;
-using Place.Api.ProfileManagement.Domain;
+using Place.Api.Profile.Domain.Profile;
 
-namespace Place.Api.ProfileManagement.Unit.Tests.Domain;
+namespace Place.Api.Profile.Unit.Tests.Domain;
 
 public class PersonalInfoTests
 {
@@ -163,7 +163,9 @@ public class PersonalInfoTests
         Guid id = Guid.Parse(idString);
         FirstName firstName = FirstName.Create(firstNameValue).Value;
         LastName lastName = LastName.Create(lastNameValue).Value;
-        BirthDate birthDate = BirthDate.Create(DateTime.Parse(birthDateString, CultureInfo.InvariantCulture)).Value;
+        BirthDate birthDate = BirthDate
+            .Create(DateTime.Parse(birthDateString, CultureInfo.InvariantCulture))
+            .Value;
         Gender gender = (Gender)Enum.Parse(typeof(Gender), genderValue);
 
         // Act

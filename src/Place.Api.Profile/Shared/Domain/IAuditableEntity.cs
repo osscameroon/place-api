@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Place.Api.ProfileManagement.Domain;
+namespace Place.Api.Profile.Shared.Domain;
 
 public interface IAuditableEntity
 {

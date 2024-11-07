@@ -1,7 +1,8 @@
 ﻿using System;
 using ErrorOr;
+using Place.Api.Profile.Shared.Domain;
 
-namespace Place.Api.ProfileManagement.Domain;
+namespace Place.Api.Profile.Domain.Profile;
 
 public sealed class PersonalInfo : Entity
 {

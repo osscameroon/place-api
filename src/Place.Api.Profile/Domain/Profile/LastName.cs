@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using ErrorOr;
 
-namespace Place.Api.ProfileManagement.Domain;
+namespace Place.Api.Profile.Domain.Profile;
 
 public sealed partial record LastName
 {

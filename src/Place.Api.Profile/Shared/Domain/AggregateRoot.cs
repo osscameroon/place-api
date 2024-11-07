@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Place.Api.ProfileManagement.Domain;
+namespace Place.Api.Profile.Shared.Domain;
 
 /// <summary>
 /// Represents the aggregate root.
