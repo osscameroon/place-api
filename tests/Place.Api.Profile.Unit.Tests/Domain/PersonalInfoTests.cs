@@ -254,7 +254,6 @@ public sealed class PersonalInfoTests
 
         // Assert
         personalInfo.Should().NotBeNull();
-        personalInfo.Id.Should().Be(id);
         personalInfo.FirstName.Should().Be(firstName);
         personalInfo.LastName.Should().Be(lastName);
         personalInfo.DateOfBirth.Should().Be(birthDate);

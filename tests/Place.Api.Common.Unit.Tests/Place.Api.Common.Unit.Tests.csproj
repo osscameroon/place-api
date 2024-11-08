@@ -20,7 +20,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\Place.Api.Common\Place.Api.Common.csproj" />
-      <ProjectReference Include="..\..\src\Place.Api.Profile\Place.Api.Profile.csproj" />
     </ItemGroup>
 
 </Project>

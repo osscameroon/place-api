@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using ErrorOr;
-using Place.Api.Profile.Shared.Domain;
 
 namespace Place.Api.Profile.Domain.Profile;
 
 /// <summary>
 /// Represents personal information about a user.
 /// </summary>
-public sealed class PersonalInfo : Entity
+public sealed record PersonalInfo
 {
     /// <summary>
     /// Gets the user's first name.
@@ -75,35 +74,6 @@ public sealed class PersonalInfo : Entity
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="PersonalInfo"/> class with an ID and specified details.
-    /// </summary>
-    /// <param name="id">The unique identifier for this personal information.</param>
-    /// <param name="firstName">The user's first name value object.</param>
-    /// <param name="lastName">The user's last name value object.</param>
-    /// <param name="birthDate">The user's birthdate value object.</param>
-    /// <param name="gender">The user's gender.</param>
-    /// <param name="phoneNumber">The user's phone number value object.</param>
-    /// <param name="address">The user's address value object.</param>
-    private PersonalInfo(
-        Guid id,
-        FirstName? firstName,
-        LastName? lastName,
-        DateOfBirth? birthDate,
-        Gender? gender,
-        PhoneNumber? phoneNumber,
-        Address? address
-    )
-        : base(id)
-    {
-        FirstName = firstName;
-        LastName = lastName;
-        DateOfBirth = birthDate;
-        Gender = gender;
-        PhoneNumber = phoneNumber;
-        Address = address;
-    }
-
-    /// <summary>
     /// Creates an instance of <see cref="PersonalInfo"/> from existing data.
     /// </summary>
     /// <param name="id">The unique identifier for this personal information.</param>
@@ -124,7 +94,7 @@ public sealed class PersonalInfo : Entity
         Address? address
     )
     {
-        return new PersonalInfo(id, firstName, lastName, birthDate, gender, phoneNumber, address);
+        return new PersonalInfo(firstName, lastName, birthDate, gender, phoneNumber, address);
     }
 
     /// <summary>

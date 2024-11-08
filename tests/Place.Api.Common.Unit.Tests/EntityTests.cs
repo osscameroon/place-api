@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using Place.Api.Profile.Shared.Domain;
+using Place.Api.Common.Domain;
 
 namespace Place.Api.Profile.Unit.Tests.Shared;
 
@@ -14,10 +14,10 @@ public sealed class EntityTests
     public void Constructor_WithValidId_ShouldInitializeId()
     {
         // Arrange
-        Guid id = Guid.NewGuid();
+        TestId id = new TestId("test-id");
 
         // Act
-        TestEntity entity = new(id);
+        TestEntity entity = new TestEntity(id);
 
         // Assert
         entity.Id.Should().Be(id);
@@ -25,39 +25,47 @@ public sealed class EntityTests
 
     [Fact]
     [Trait("Category", "Unit")]
-    public void Constructor_WithEmptyGuid_ShouldThrowArgumentException()
-    {
-        // Act
-        Action action = () => new TestEntity(Guid.Empty);
-
-        // Assert
-        action.Should().Throw<ArgumentException>().WithParameterName("id").WithMessage("*empty*");
-    }
-
-    [Fact]
-    [Trait("Category", "Unit")]
-    public void ParameterlessConstructor_ShouldInitializeWithEmptyGuid()
+    public void Constructor_WithNullId_ShouldNotThrow()
     {
         // Act
         TestEntity entity = new TestEntity();
 
         // Assert
-        entity.Id.Should().Be(Guid.Empty);
+        Action action = () =>
+        {
+            TestId _ = entity.Id;
+        };
+        action.Should().Throw<InvalidOperationException>().WithMessage("Id is not set");
+    }
+
+    [Fact]
+    [Trait("Category", "Unit")]
+    public void ParameterlessConstructor_ShouldNotSetId()
+    {
+        // Act
+        TestEntity entity = new TestEntity();
+
+        // Assert
+        Action action = () =>
+        {
+            TestId _ = entity.Id;
+        };
+        action.Should().Throw<InvalidOperationException>().WithMessage("Id is not set");
     }
 
     [Theory]
     [Trait("Category", "Unit")]
     [MemberData(nameof(GetOperatorTestCases))]
     public void OperatorEquals_ShouldHandleAllCases(
-        Entity? first,
-        Entity? second,
+        Entity<TestId>? first,
+        Entity<TestId>? second,
         bool expectedResult,
         string reason
     )
     {
         // Act
         bool actualResult = first == second;
-        bool notEqualResult = first! != second!;
+        bool notEqualResult = first != second;
 
         // Assert
         actualResult.Should().Be(expectedResult, reason);
@@ -66,12 +74,13 @@ public sealed class EntityTests
 
     public static IEnumerable<object[]> GetOperatorTestCases()
     {
-        Guid id1 = Guid.NewGuid();
-        Guid id2 = Guid.NewGuid();
+        TestId id1 = new("id1");
+        TestId id2 = new("id2");
 
-        TestEntity entity1 = new TestEntity(id1);
-        TestEntity entity2 = new TestEntity(id1);
-        TestEntity entity3 = new TestEntity(id2);
+        TestEntity entity1 = new(id1);
+        TestEntity entity2 = new(id1);
+        TestEntity entity3 = new(id2);
+        TestEntity entityNoId = new();
 
         return new List<object[]>
         {
@@ -80,6 +89,20 @@ public sealed class EntityTests
             new object[] { null!, entity1, false, "Null and entity should not be equal" },
             new object[] { entity1, entity2, true, "Same ids should be equal" },
             new object[] { entity1, entity3, false, "Different ids should not be equal" },
+            new object[]
+            {
+                entityNoId,
+                entity1,
+                false,
+                "Entity with no id should not be equal to entity with id",
+            },
+            new object[]
+            {
+                entityNoId,
+                entityNoId,
+                false,
+                "Entities with no ids should not be equal",
+            },
         };
     }
 
@@ -88,7 +111,7 @@ public sealed class EntityTests
     public void GetHashCode_ShouldBeConsistentWithEquality()
     {
         // Arrange
-        Guid id = Guid.NewGuid();
+        TestId id = new TestId("test-id");
         TestEntity entity1 = new TestEntity(id);
         TestEntity entity2 = new TestEntity(id);
         int expectedHashCode = id.GetHashCode() * 41;
@@ -107,12 +130,12 @@ public sealed class EntityTests
     public void Equals_WithObjectParameter_ShouldHandleAllCases()
     {
         // Arrange
-        Guid id = Guid.NewGuid();
-        TestEntity entity = new TestEntity(id);
-        TestEntity sameEntity = new TestEntity(id);
-        TestEntity differentEntity = new TestEntity(Guid.NewGuid());
-        OtherTestEntity differentTypeEntity = new OtherTestEntity(id);
-        TestEntity emptyIdEntity = new TestEntity();
+        TestId id = new("test-id");
+        TestEntity? entity = new(id);
+        TestEntity sameEntity = new(id);
+        TestEntity differentEntity = new(new TestId("other-id"));
+        OtherTestEntity differentTypeEntity = new(id);
+        TestEntity emptyIdEntity = new();
 
         // Act & Assert
         entity.Equals((object)entity).Should().BeTrue("Same reference should be equal");
@@ -130,14 +153,41 @@ public sealed class EntityTests
         entity!.Equals(new object()).Should().BeFalse("Different type should not be equal");
     }
 
-    private sealed class TestEntity : Entity
+    public sealed class TestId
     {
-        public TestEntity(Guid id)
-            : base(id) { }
+        public string Value { get; }
 
-        public TestEntity()
-            : base() { }
+        public TestId(string value)
+        {
+            Value = value;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is TestId other)
+            {
+                return Value == other.Value;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
     }
 
-    private sealed class OtherTestEntity(Guid id) : Entity(id);
+    private sealed class TestEntity : Entity<TestId>
+    {
+        public TestEntity(TestId id)
+            : base(id) { }
+
+        public TestEntity() { }
+    }
+
+    private sealed class OtherTestEntity : Entity<TestId>
+    {
+        public OtherTestEntity(TestId id)
+            : base(id) { }
+    }
 }
