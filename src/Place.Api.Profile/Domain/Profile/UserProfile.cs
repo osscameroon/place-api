@@ -120,7 +120,7 @@ public sealed class UserProfile
             createdBy
         );
 
-        userProfile.AddDomainEvent(new ProfileCreatedDomainEvent(userProfile.Id, userId));
+        userProfile.AddDomainEvent(new ProfileCreatedDomainEvent(userProfile));
 
         return userProfile;
     }

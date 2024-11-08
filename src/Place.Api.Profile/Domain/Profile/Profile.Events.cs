@@ -3,8 +3,7 @@ using Place.Api.Common.Domain;
 
 namespace Place.Api.Profile.Domain.Profile;
 
-public sealed record ProfileCreatedDomainEvent(UserProfileId UserProfileId, Guid UserId)
-    : IDomainEvent;
+public sealed record ProfileCreatedDomainEvent(UserProfile Profile) : IDomainEvent;
 
 public sealed record ProfileEmailUpdatedDomainEvent(
     UserProfileId UserProfileId,
