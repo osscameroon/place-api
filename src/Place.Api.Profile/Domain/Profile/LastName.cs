@@ -5,7 +5,7 @@ namespace Place.Api.Profile.Domain.Profile;
 
 public sealed partial record LastName
 {
-    private const int MaxLength = 100;
+    internal const int MaxLength = 100;
 
     /// <summary>
     /// The validated last name value.

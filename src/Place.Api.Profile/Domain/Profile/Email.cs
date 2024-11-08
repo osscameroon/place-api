@@ -12,7 +12,7 @@ namespace Place.Api.Profile.Domain.Profile;
 /// </summary>
 public sealed record Email
 {
-    private const int MaxLength = 254; // RFC 5321
+    internal const int MaxLength = 254; // RFC 5321
     private static readonly TimeSpan RegexTimeout = TimeSpan.FromMilliseconds(250);
 
     /// <summary>
