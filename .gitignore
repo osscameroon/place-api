@@ -45,5 +45,5 @@ msbuild.wrn!
 megalinter-reports/
 src/**/volumes/
 src/**/bin/
-src/**/obj/
+src/**/logs/
 .nuke/temp/

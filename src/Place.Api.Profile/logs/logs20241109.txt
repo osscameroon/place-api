@@ -80,3 +80,4 @@ LIMIT 1
 2024-11-09 12:49:30.182 +01:00 [INF] Writing value of type 'PersonalInformationResponse' as Json.
 2024-11-09 12:49:30.184 +01:00 [INF] Executed endpoint 'HTTP: GET api/profiles/{profileId:guid}/personal-informations => GetPersonalInformations'
 2024-11-09 12:49:30.184 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5224/api/profiles/ebcf86b9-1257-4f2b-bd06-20612ad326ce/personal-informations - 200 null application/json; charset=utf-8 226.7715ms
+2024-11-09 15:15:23.060 +01:00 [INF] Application is shutting down...
