@@ -1,0 +1,82 @@
+2024-11-09 12:47:46.461 +01:00 [INF] Starting database migration...
+2024-11-09 12:47:47.268 +01:00 [INF] Executed DbCommand (60ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2024-11-09 12:47:47.292 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2024-11-09 12:47:47.407 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2024-11-09 12:47:47.483 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+2024-11-09 12:47:47.529 +01:00 [INF] Executed DbCommand (45ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2024-11-09 12:47:47.536 +01:00 [INF] No migrations were applied. The database is already up to date.
+2024-11-09 12:47:47.537 +01:00 [INF] Database migration completed successfully
+2024-11-09 12:47:47.537 +01:00 [INF] Development environment detected. Starting data seeding...
+2024-11-09 12:47:47.677 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Profiles" AS p
+    WHERE NOT (p."IsDeleted"))
+2024-11-09 12:47:47.689 +01:00 [INF] Data seeding completed successfully
+2024-11-09 12:47:47.755 +01:00 [WRN] The WebRootPath was not found: /Users/aristidehervembassi/Documents/Projects/Veepee/place-api/src/Place.Api.Profile/wwwroot. Static files may be unavailable.
+2024-11-09 12:47:47.784 +01:00 [INF] Now listening on: http://localhost:5224
+2024-11-09 12:47:47.785 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-09 12:47:47.785 +01:00 [INF] Hosting environment: Development
+2024-11-09 12:47:47.785 +01:00 [INF] Content root path: /Users/aristidehervembassi/Documents/Projects/Veepee/place-api/src/Place.Api.Profile
+2024-11-09 12:47:48.139 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5224/swagger/index.html - null null
+2024-11-09 12:47:48.185 +01:00 [WRN] Failed to determine the https port for redirect.
+2024-11-09 12:47:48.191 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5224/swagger/index.html - 404 0 null 53.0849ms
+2024-11-09 12:47:48.193 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5224/swagger/index.html, Response status code: 404
+2024-11-09 12:48:08.783 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5224/swagger/index.html - null null
+2024-11-09 12:48:08.787 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5224/swagger/index.html - 404 0 null 3.9445ms
+2024-11-09 12:48:08.788 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5224/swagger/index.html, Response status code: 404
+2024-11-09 12:48:11.682 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5224/docs/index.html - null null
+2024-11-09 12:48:11.747 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5224/docs/index.html - 200 null text/html;charset=utf-8 64.5237ms
+2024-11-09 12:48:11.756 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5224/docs/index.js - null null
+2024-11-09 12:48:11.757 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5224/docs/index.js - 200 null application/javascript;charset=utf-8 1.1694ms
+2024-11-09 12:48:11.805 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5224/docs/v1/swagger.json - null null
+2024-11-09 12:48:11.809 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-09 12:48:11.861 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5224/docs/v1/swagger.json - 200 null application/json;charset=utf-8 55.921ms
+2024-11-09 12:48:43.044 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5224/api/profiles/7df593a4-fcad-47c9-9b6d-467ebfd53b2a/personal-informations - null null
+2024-11-09 12:48:43.063 +01:00 [INF] Executing endpoint 'HTTP: GET api/profiles/{profileId:guid}/personal-informations => GetPersonalInformations'
+2024-11-09 12:48:43.150 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[@__request_ProfileId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p."Id", p."AdditionalAddressDetails", p."City", p."Country", p."CreatedAt", p."CreatedBy", p."DateOfBirth", p."DeletedAt", p."DeletedBy", p."Email", p."FirstName", p."Gender", p."IsDeleted", p."LastModifiedAt", p."LastModifiedBy", p."LastName", p."Latitude", p."Longitude", p."PhoneNumber", p."Street", p."UserId", p."ZipCode"
+FROM "Profiles" AS p
+WHERE NOT (p."IsDeleted") AND p."Id" = @__request_ProfileId_0
+LIMIT 1
+2024-11-09 12:48:43.159 +01:00 [INF] Profile with ID "7df593a4-fcad-47c9-9b6d-467ebfd53b2a" was not found.
+2024-11-09 12:48:43.164 +01:00 [INF] Setting HTTP status code 404.
+2024-11-09 12:48:43.179 +01:00 [INF] Writing value of type 'ProblemDetails' as Json.
+2024-11-09 12:48:43.187 +01:00 [INF] Executed endpoint 'HTTP: GET api/profiles/{profileId:guid}/personal-informations => GetPersonalInformations'
+2024-11-09 12:48:43.194 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5224/api/profiles/7df593a4-fcad-47c9-9b6d-467ebfd53b2a/personal-informations - 404 null application/problem+json 149.7668ms
+2024-11-09 12:49:29.958 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5224/api/profiles/ebcf86b9-1257-4f2b-bd06-20612ad326ce/personal-informations - null null
+2024-11-09 12:49:29.961 +01:00 [INF] Executing endpoint 'HTTP: GET api/profiles/{profileId:guid}/personal-informations => GetPersonalInformations'
+2024-11-09 12:49:30.092 +01:00 [INF] Executed DbCommand (93ms) [Parameters=[@__request_ProfileId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT p."Id", p."AdditionalAddressDetails", p."City", p."Country", p."CreatedAt", p."CreatedBy", p."DateOfBirth", p."DeletedAt", p."DeletedBy", p."Email", p."FirstName", p."Gender", p."IsDeleted", p."LastModifiedAt", p."LastModifiedBy", p."LastName", p."Latitude", p."Longitude", p."PhoneNumber", p."Street", p."UserId", p."ZipCode"
+FROM "Profiles" AS p
+WHERE NOT (p."IsDeleted") AND p."Id" = @__request_ProfileId_0
+LIMIT 1
+2024-11-09 12:49:30.176 +01:00 [INF] Profile with ID "ebcf86b9-1257-4f2b-bd06-20612ad326ce" was found.
+2024-11-09 12:49:30.178 +01:00 [INF] Setting HTTP status code 200.
+2024-11-09 12:49:30.182 +01:00 [INF] Writing value of type 'PersonalInformationResponse' as Json.
+2024-11-09 12:49:30.184 +01:00 [INF] Executed endpoint 'HTTP: GET api/profiles/{profileId:guid}/personal-informations => GetPersonalInformations'
+2024-11-09 12:49:30.184 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5224/api/profiles/ebcf86b9-1257-4f2b-bd06-20612ad326ce/personal-informations - 200 null application/json; charset=utf-8 226.7715ms

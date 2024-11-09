@@ -19,7 +19,7 @@ public static class Extensions
     /// </summary>
     public static IPlaceBuilder AddPlace(
         this IServiceCollection services,
-        IConfiguration configuration,
+        IConfiguration configuration = null!,
         string sectionName = SectionName
     )
     {
