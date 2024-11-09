@@ -8,6 +8,7 @@
         <PackageReference Include="Ardalis.GuardClauses" />
         <PackageReference Include="ErrorOr" />
         <PackageReference Include="libphonenumber-csharp" />
+        <PackageReference Include="MediatR" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
         <PackageReference Include="Swashbuckle.AspNetCore"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
