@@ -7,10 +7,16 @@ using Place.Api.Common.Types;
 
 namespace Place.Api.Common;
 
+/// <summary>
+/// Extension methods for Place application configuration and setup.
+/// </summary>
 public static class Extensions
 {
     private const string SectionName = "app";
 
+    /// <summary>
+    /// Adds and configures Place services to the application.
+    /// </summary>
     public static IPlaceBuilder AddPlace(
         this IServiceCollection services,
         IConfiguration configuration,
@@ -38,6 +44,9 @@ public static class Extensions
         return builder;
     }
 
+    /// <summary>
+    /// Configures the application middleware and initializes startup tasks.
+    /// </summary>
     public static IApplicationBuilder UsePlace(this IApplicationBuilder app)
     {
         using IServiceScope scope = app.ApplicationServices.CreateScope();
@@ -48,6 +57,9 @@ public static class Extensions
         return app;
     }
 
+    /// <summary>
+    /// Gets strongly typed options from configuration section.
+    /// </summary>
     public static TModel GetOptions<TModel>(this IConfiguration configuration, string sectionName)
         where TModel : new()
     {
@@ -56,6 +68,9 @@ public static class Extensions
         return model;
     }
 
+    /// <summary>
+    /// Gets strongly typed options from PlaceBuilder configuration.
+    /// </summary>
     public static TModel GetOptions<TModel>(this IPlaceBuilder builder, string settingsSectionName)
         where TModel : new()
     {

@@ -5,11 +5,17 @@ using Microsoft.OpenApi.Models;
 
 namespace Place.Api.Common.Swagger.Docs;
 
+/// <summary>
+/// Extension methods for configuring Swagger documentation.
+/// </summary>
 public static class ServiceCollectionExtensions
 {
     private const string SectionName = "swagger";
     private const string RegistryName = "docs.swagger";
 
+    /// <summary>
+    /// Adds Swagger documentation using configuration section.
+    /// </summary>
     public static IPlaceBuilder AddSwaggerDocs(
         this IPlaceBuilder builder,
         string sectionName = SectionName
@@ -24,6 +30,9 @@ public static class ServiceCollectionExtensions
         return builder.AddSwaggerDocs(options);
     }
 
+    /// <summary>
+    /// Adds Swagger documentation using builder pattern.
+    /// </summary>
     public static IPlaceBuilder AddSwaggerDocs(
         this IPlaceBuilder builder,
         Func<ISwaggerOptionsBuilder, ISwaggerOptionsBuilder> buildOptions
@@ -33,6 +42,9 @@ public static class ServiceCollectionExtensions
         return builder.AddSwaggerDocs(options);
     }
 
+    /// <summary>
+    /// Adds Swagger documentation using options.
+    /// </summary>
     public static IPlaceBuilder AddSwaggerDocs(this IPlaceBuilder builder, SwaggerOptions options)
     {
         if (!options.Enabled || !builder.TryRegister(RegistryName))
@@ -67,6 +79,9 @@ public static class ServiceCollectionExtensions
         return builder;
     }
 
+    /// <summary>
+    /// Configures the application to use Swagger documentation middleware.
+    /// </summary>
     public static IApplicationBuilder UseSwaggerDocs(this IApplicationBuilder builder)
     {
         SwaggerOptions options = builder.ApplicationServices.GetRequiredService<SwaggerOptions>();
@@ -104,10 +119,8 @@ public static class ServiceCollectionExtensions
     }
 
     /// <summary>
-    /// Replaces leading double forward slash caused by an empty route prefix
+    /// Replaces leading double forward slash caused by an empty route prefix.
     /// </summary>
-    /// <param name="route"></param>
-    /// <returns></returns>
     private static string FormatEmptyRoutePrefix(this string route)
     {
         return route.Replace("//", "/");

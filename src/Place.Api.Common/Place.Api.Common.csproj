@@ -3,10 +3,6 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Folder Include="Routing\" />
-    </ItemGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>

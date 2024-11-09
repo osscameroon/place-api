@@ -7,13 +7,19 @@ using Place.Api.Common.Types;
 
 namespace Place.Api.Common;
 
+/// <summary>
+/// Default implementation of IPlaceBuilder for configuring Place application services.
+/// </summary>
 public sealed class PlaceBuilder : IPlaceBuilder
 {
     private readonly ConcurrentDictionary<string, bool> _registry = new();
     private readonly List<Action<IServiceProvider>> _buildActions;
     private readonly IServiceCollection _services;
+
+    /// <inheritdoc />
     IServiceCollection IPlaceBuilder.Services => _services;
 
+    /// <inheritdoc />
     public IConfiguration Configuration { get; }
 
     private PlaceBuilder(IServiceCollection services, IConfiguration configuration)
@@ -24,13 +30,19 @@ public sealed class PlaceBuilder : IPlaceBuilder
         Configuration = configuration;
     }
 
+    /// <summary>
+    /// Creates a new instance of the PlaceBuilder.
+    /// </summary>
     public static IPlaceBuilder Create(IServiceCollection services, IConfiguration configuration) =>
         new PlaceBuilder(services, configuration);
 
+    /// <inheritdoc />
     public bool TryRegister(string name) => _registry.TryAdd(name, true);
 
+    /// <inheritdoc />
     public void AddBuildAction(Action<IServiceProvider> execute) => _buildActions.Add(execute);
 
+    /// <inheritdoc />
     public void AddInitializer(IInitializer initializer) =>
         AddBuildAction(sp =>
         {
@@ -38,6 +50,7 @@ public sealed class PlaceBuilder : IPlaceBuilder
             startupInitializer.AddInitializer(initializer);
         });
 
+    /// <inheritdoc />
     public void AddInitializer<TInitializer>()
         where TInitializer : IInitializer =>
         AddBuildAction(sp =>
@@ -47,6 +60,7 @@ public sealed class PlaceBuilder : IPlaceBuilder
             startupInitializer.AddInitializer(initializer);
         });
 
+    /// <inheritdoc />
     public IServiceProvider Build()
     {
         ServiceProvider serviceProvider = _services.BuildServiceProvider();
