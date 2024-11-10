@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Place.Api.Profile.Apis.Responses;
+using Place.Api.Profile.Apis.V1.Responses;
 using Place.Api.Profile.Application.Queries.GetPersonalInformation;
 
 namespace Place.Api.Profile.Apis;

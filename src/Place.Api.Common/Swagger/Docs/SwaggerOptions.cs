@@ -1,3 +1,5 @@
+using System;
+
 namespace Place.Api.Common.Swagger.Docs;
 
 /// <summary>
@@ -41,6 +43,12 @@ public class SwaggerOptions
     /// For example, a value of "swagger" would make docs available at "/swagger".
     /// </summary>
     public string? RoutePrefix { get; set; }
+
+    /// <summary>
+    /// Gets or sets the supported API versions.
+    /// Each version will have its own Swagger documentation.
+    /// </summary>
+    public string[] ApiVersions { get; set; } = Array.Empty<string>();
 
     /// <summary>
     /// Gets or sets whether security definitions and requirements are included in the documentation.

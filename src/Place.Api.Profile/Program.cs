@@ -1,39 +1,44 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Place.Api.Common;
 using Place.Api.Common.Logging;
 using Place.Api.Common.Swagger.Docs;
 using Place.Api.Common.Swagger.WebApi;
+using Place.Api.Common.Versioning;
 using Place.Api.Profile;
-using Place.Api.Profile.Apis;
 using Place.Api.Profile.Infrastructure.Persistence.EF.Configurations;
-using Serilog;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+// Configure logging
 builder.Host.UseLogging((context, loggerConfiguration) => { });
 
+// Add services
 builder
     .Services.AddPlace(builder.Configuration)
     .AddCorrelationContextLogging()
     .AddWebApiSwaggerDocs()
-    .AddSwaggerDocs();
+    .AddSwaggerDocs()
+    .AddApiVersioning();
 
-builder.Services.AddEndpointsApiExplorer();
+// Enable MVC and controllers
+builder.Services.AddControllers();
 
+// Register MediatR and database services
 builder.Services.AddProfileDatabase(builder.Configuration);
 builder.Services.RegisterMediatr();
 
 WebApplication app = builder.Build();
 
+// Initialize the database
 await app.InitializeDatabaseAsync();
 
+// Configure middleware
 app.UsePlace().UserCorrelationContextLogging();
-
 app.UseSwaggerDocs();
-
 app.UseHttpsRedirection();
 
-app.MapProfilesApiV1();
+// Enable routing for controllers
+app.MapControllers();
+
 await app.RunAsync();

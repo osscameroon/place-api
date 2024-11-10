@@ -1,6 +1,6 @@
 using Place.Api.Profile.Application.Queries.GetPersonalInformation;
 
-namespace Place.Api.Profile.Apis.Responses;
+namespace Place.Api.Profile.Apis.V1.Responses;
 
 public record PersonalInformationResponse
 {
