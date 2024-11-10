@@ -9,18 +9,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
+using Place.Api.Common.Identity;
 using PlaceAPi.Identity.Authenticate.Endpoints;
 
 namespace PlaceAPi.Identity.Authenticate.Composition;
 
 public static class AuthenticateExtensions
 {
-    internal static IServiceCollection AddAuthenticationFeature(
-        this IServiceCollection services,
-        IConfiguration configuration
-    )
+    internal static IServiceCollection AddAuthenticationFeature(this IServiceCollection services)
     {
-        services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
+        /*services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
         services.AddAuthorizationBuilder();
 
         services.ConfigureApplicationCookie(options =>
@@ -47,16 +45,18 @@ public static class AuthenticateExtensions
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
                 options.Lockout.MaxFailedAccessAttempts = 3;
             })
-            .AddEntityFrameworkStores<AppDbContext>()
+            .AddEntityFrameworkStores<IdentityApplicationDbContext>()
             .AddApiEndpoints();
 
-        services.AddDbContext<AppDbContext>(options =>
+        services.AddDbContext<IdentityApplicationDbContext>(options =>
         {
-            services.Configure<PostgresOptions>(configuration.GetSection(PostgresOptions.Key));
+            services.Configure<IdentityDatabaseOptions>(
+                configuration.GetSection(IdentityDatabaseOptions.Key)
+            );
 
-            PostgresOptions postgresOptions = configuration
-                .GetSection(PostgresOptions.Key)
-                .Get<PostgresOptions>()!;
+            IdentityDatabaseOptions postgresOptions = configuration
+                .GetSection(IdentityDatabaseOptions.Key)
+                .Get<IdentityDatabaseOptions>()!;
 
             NpgsqlConnectionStringBuilder connectionStringBuilder =
                 new()
@@ -69,7 +69,8 @@ public static class AuthenticateExtensions
                 };
 
             options.UseNpgsql(connectionStringBuilder.ConnectionString);
-        });
+        });*/
+
 
         services.AddTransient<IEmailSender, EmailSender>();
 

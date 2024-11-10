@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Logging;
 
-namespace PlaceAPi.Identity.Authenticate;
+namespace Place.Api.Common.Identity;
 
 public class EmailSender(ILogger<EmailSender> logger) : IEmailSender
 {

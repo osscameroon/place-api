@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Place.Api.Common;
+using Place.Api.Common.Identity;
 using Place.Api.Common.Logging;
 using Place.Api.Common.Swagger.Docs;
 using Place.Api.Common.Swagger.WebApi;
@@ -10,22 +11,19 @@ using Place.Api.Profile.Infrastructure.Persistence.EF.Configurations;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-// Configure logging
 builder.Host.UseLogging((context, loggerConfiguration) => { });
 
-// Add services
 builder
     .Services.AddPlace(builder.Configuration)
     .AddCorrelationContextLogging()
     .AddWebApiSwaggerDocs()
     .AddSwaggerDocs()
-    .AddApiVersioning();
+    .AddApiVersioning()
+    .AddProfileDatabase(builder.Configuration)
+    .AddIdentity(builder.Configuration)
+    .AddAuthentication();
 
-// Enable MVC and controllers
 builder.Services.AddControllers();
-
-// Register MediatR and database services
-builder.Services.AddProfileDatabase(builder.Configuration);
 builder.Services.RegisterMediatr();
 
 WebApplication app = builder.Build();
@@ -39,6 +37,7 @@ app.UseSwaggerDocs();
 app.UseHttpsRedirection();
 
 // Enable routing for controllers
+app.UseIdentityConfiguration();
 app.MapControllers();
 
 await app.RunAsync();

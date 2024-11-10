@@ -3,7 +3,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.DependencyInjection;
-using PlaceAPi.Identity.Authenticate;
+using Place.Api.Common.Identity;
 
 namespace PlaceApi.Identity.Tests.Integration.Common;
 

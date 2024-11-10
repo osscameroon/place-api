@@ -4,35 +4,31 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Place.Api.Common.Identity;
 using PlaceAPi.Identity;
 using PlaceAPi.Identity.Authenticate;
 using Testcontainers.PostgreSql;
 
 namespace PlaceApi.Identity.Tests.Integration;
 
-public class IdentityWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAsyncLifetime
+public abstract class IdentityWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAsyncLifetime
 {
-    private readonly PostgreSqlContainer _dbContainer;
-
-    public IdentityWebAppFactory()
-    {
-        _dbContainer = new PostgreSqlBuilder()
-            .WithDatabase("PlaceApiIdentity")
-            .WithUsername("postgres")
-            .WithPassword("postgres")
-            .Build();
-    }
+    private readonly PostgreSqlContainer _dbContainer = new PostgreSqlBuilder()
+        .WithDatabase("PlaceApiIdentity")
+        .WithUsername("postgres")
+        .WithPassword("postgres")
+        .Build();
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.ConfigureServices(services =>
         {
-            services.RemoveAll(typeof(AppDbContext));
-            services.RemoveAll(typeof(DbContextOptions<AppDbContext>));
+            services.RemoveAll(typeof(IdentityApplicationDbContext));
+            services.RemoveAll(typeof(DbContextOptions<IdentityApplicationDbContext>));
 
             string cs = _dbContainer.GetConnectionString();
 
-            services.AddDbContext<AppDbContext>(options =>
+            services.AddDbContext<IdentityApplicationDbContext>(options =>
             {
                 options.UseNpgsql(cs);
             });
@@ -40,7 +36,8 @@ public class IdentityWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAs
             ServiceProvider sp = services.BuildServiceProvider();
             using IServiceScope scope = sp.CreateScope();
             IServiceProvider scopedServices = scope.ServiceProvider;
-            AppDbContext db = scopedServices.GetRequiredService<AppDbContext>();
+            IdentityApplicationDbContext db =
+                scopedServices.GetRequiredService<IdentityApplicationDbContext>();
             db.Database.EnsureCreated();
 
             ServiceDescriptor? identityBuilder = services.SingleOrDefault(d =>
@@ -69,7 +66,7 @@ public class IdentityWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAs
                     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
                     options.Lockout.MaxFailedAccessAttempts = 3;
                 })
-                .AddEntityFrameworkStores<AppDbContext>();
+                .AddEntityFrameworkStores<IdentityApplicationDbContext>();
         });
     }
 

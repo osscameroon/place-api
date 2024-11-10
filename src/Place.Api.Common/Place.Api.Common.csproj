@@ -9,6 +9,7 @@
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
       <PackageReference Include="Swashbuckle.AspNetCore" />
       <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" />
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations"/>
@@ -23,6 +24,7 @@
         <PackageReference Include="Serilog.Sinks.File"/>
         <PackageReference Include="Serilog.Sinks.Grafana.Loki"/>
         <PackageReference Include="Serilog.Sinks.Seq"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
     </ItemGroup>
 
 </Project>

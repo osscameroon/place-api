@@ -246,6 +246,26 @@ public static class ServiceCollectionExtensions
             };
 
         config.AddSecurityDefinition("Bearer", securityScheme);
+
+        config.AddSecurityRequirement(
+            new OpenApiSecurityRequirement()
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer",
+                        },
+                        Scheme = "Bearer",
+                        Name = "Bearer",
+                        In = ParameterLocation.Header,
+                    },
+                    new List<string>()
+                },
+            }
+        );
     }
 
     /// <summary>

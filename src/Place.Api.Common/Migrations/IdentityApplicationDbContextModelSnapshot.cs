@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using PlaceAPi.Identity.Authenticate;
+using Place.Api.Common.Identity;
 
 #nullable disable
 
-namespace PlaceAPi.Identity.Migrations
+namespace Place.Api.Common.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(IdentityApplicationDbContext))]
+    partial class IdentityApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -154,7 +154,7 @@ namespace PlaceAPi.Identity.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("PlaceAPi.Identity.Authenticate.ApplicationUser", b =>
+            modelBuilder.Entity("Place.Api.Common.Identity.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -229,7 +229,7 @@ namespace PlaceAPi.Identity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("PlaceAPi.Identity.Authenticate.ApplicationUser", null)
+                    b.HasOne("Place.Api.Common.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -238,7 +238,7 @@ namespace PlaceAPi.Identity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("PlaceAPi.Identity.Authenticate.ApplicationUser", null)
+                    b.HasOne("Place.Api.Common.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -253,7 +253,7 @@ namespace PlaceAPi.Identity.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PlaceAPi.Identity.Authenticate.ApplicationUser", null)
+                    b.HasOne("Place.Api.Common.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -262,7 +262,7 @@ namespace PlaceAPi.Identity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("PlaceAPi.Identity.Authenticate.ApplicationUser", null)
+                    b.HasOne("Place.Api.Common.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

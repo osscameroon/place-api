@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Npgsql;
+using Place.Api.Common;
 using Place.Api.Profile.Domain.Profile;
 using Place.Api.Profile.Infrastructure.Persistence.EF.Models;
 
@@ -128,30 +129,30 @@ public static class DatabaseServiceExtensions
     /// <summary>
     /// Adds the ProfileDbContext and related services to the service collection.
     /// </summary>
-    public static IServiceCollection AddProfileDatabase(
-        this IServiceCollection services,
+    public static IPlaceBuilder AddProfileDatabase(
+        this IPlaceBuilder builder,
         IConfiguration configuration
     )
     {
         // Configure PostgresOptions en dehors du bloc AddDbContext
-        services.Configure<PostgresOptions>(configuration.GetSection(PostgresOptions.Key));
+        builder.Services.Configure<DatabaseOptions>(configuration.GetSection(DatabaseOptions.Key));
 
         // Récupérez les options Postgres pour créer la chaîne de connexion
-        PostgresOptions postgresOptions = configuration
-            .GetSection(PostgresOptions.Key)
-            .Get<PostgresOptions>()!;
+        DatabaseOptions databaseOptions = configuration
+            .GetSection(DatabaseOptions.Key)
+            .Get<DatabaseOptions>()!;
 
         NpgsqlConnectionStringBuilder connectionStringBuilder =
             new()
             {
-                Host = postgresOptions.Host,
-                Port = postgresOptions.Port,
-                Username = postgresOptions.Username,
-                Password = postgresOptions.Password,
-                Database = postgresOptions.Database,
+                Host = databaseOptions.Host,
+                Port = databaseOptions.Port,
+                Username = databaseOptions.Username,
+                Password = databaseOptions.Password,
+                Database = databaseOptions.Database,
             };
 
-        services.AddDbContext<ProfileDbContext>(options =>
+        builder.Services.AddDbContext<ProfileDbContext>(options =>
         {
             options.UseNpgsql(
                 connectionStringBuilder.ConnectionString,
@@ -163,6 +164,6 @@ public static class DatabaseServiceExtensions
             );
         });
 
-        return services;
+        return builder;
     }
 }

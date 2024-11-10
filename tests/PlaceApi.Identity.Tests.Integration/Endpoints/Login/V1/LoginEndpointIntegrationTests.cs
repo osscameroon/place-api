@@ -1,5 +1,6 @@
 using System.Net;
 using FluentAssertions;
+using Place.Api.Common.Identity;
 using PlaceAPi.Identity.Authenticate;
 using PlaceApi.Identity.Tests.Integration.Common;
 
