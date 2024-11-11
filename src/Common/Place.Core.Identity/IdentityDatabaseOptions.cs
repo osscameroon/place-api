@@ -1,4 +1,4 @@
-﻿namespace Place.Api.Common.Identity;
+﻿namespace Place.Core.Identity;
 
 /// <summary>
 /// Options class for PostgreSQL configuration

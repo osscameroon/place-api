@@ -2,12 +2,11 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Place.Api.Common.Identity;
-using PlaceAPi.Identity.Authenticate;
+using Place.Api.Common;
+using Place.Core.Identity;
 using PlaceAPi.Identity.Authenticate.Composition;
 using PlaceAPi.Identity.OpenApi;
 
@@ -16,8 +15,8 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 {
     builder
-        .Services.AddPlaceIdentity(builder.Configuration)
-        .AddAuthentication()
+        .Services.AddPlace(builder.Configuration)
+        .AddIdentity()
         .AddPasswordRules()
         .AddEmailSender()
         .AddEndpoints();

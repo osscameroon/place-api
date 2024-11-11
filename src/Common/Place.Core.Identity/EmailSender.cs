@@ -2,10 +2,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Logging;
 
-namespace Place.Api.Common.Identity;
+namespace Place.Core.Identity;
 
+/// <inheritdoc/>
 public class EmailSender(ILogger<EmailSender> logger) : IEmailSender
 {
+    /// <inheritdoc/>
     public async Task SendEmailAsync(string email, string subject, string htmlMessage)
     {
         logger.LogInformation(

@@ -1,7 +1,4 @@
-using System.Net;
-using FluentAssertions;
-using Place.Api.Common.Identity;
-using PlaceAPi.Identity.Authenticate;
+using Place.Core.Identity;
 using PlaceApi.Identity.Tests.Integration.Common;
 
 namespace PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1;

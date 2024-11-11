@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Place.Api.Common;
-using Place.Api.Common.Identity;
 using Place.Api.Common.Logging;
 using Place.Api.Common.Swagger.Docs;
 using Place.Api.Common.Swagger.WebApi;
 using Place.Api.Common.Versioning;
 using Place.Api.Profile;
 using Place.Api.Profile.Infrastructure.Persistence.EF.Configurations;
+using Place.Core.Identity;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -18,11 +18,7 @@ builder
     .AddCorrelationContextLogging()
     .AddWebApiSwaggerDocs()
     .AddSwaggerDocs()
-    .AddApiVersioning()
-    .AddProfileDatabase(builder.Configuration)
-    .AddIdentity(builder.Configuration)
-    .AddAuthentication();
-
+    .AddApiVersioning();
 builder.Services.AddControllers();
 builder.Services.RegisterMediatr();
 

@@ -4,9 +4,8 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Place.Api.Common.Identity;
+using Place.Core.Identity;
 using PlaceAPi.Identity;
-using PlaceAPi.Identity.Authenticate;
 using Testcontainers.PostgreSql;
 
 namespace PlaceApi.Identity.Tests.Integration;

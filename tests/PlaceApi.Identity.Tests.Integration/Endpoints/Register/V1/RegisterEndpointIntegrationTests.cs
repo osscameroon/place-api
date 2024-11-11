@@ -1,8 +1,7 @@
 using System.Net;
 using FluentAssertions;
 using Microsoft.AspNetCore.Identity.Data;
-using Place.Api.Common.Identity;
-using PlaceAPi.Identity.Authenticate;
+using Place.Core.Identity;
 using PlaceApi.Identity.Tests.Integration.Common;
 
 namespace PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1;

@@ -1,25 +1,25 @@
 ﻿using System;
 
-namespace Place.Api.Common.Identity;
+namespace Place.Core.Identity;
 
-public class IdentityConfiguration
+public class IdentityOptions
 {
     public static readonly string SectionName = "Identity";
 
     /// <summary>
     /// Database configuration
     /// </summary>
-    public required IdentityDatabaseOptions Database { get; init; }
+    public IdentityDatabaseOptions Database { get; init; } = null!;
 
     /// <summary>
     /// Authentication settings
     /// </summary>
-    public AuthenticationOptions Authentication { get; init; } = new AuthenticationOptions();
+    public AuthenticationOptions Authentication { get; set; } = new AuthenticationOptions();
 
     /// <summary>
     /// Password validation rules
     /// </summary>
-    public PasswordOptions Password { get; init; } = new PasswordOptions();
+    public PasswordOptions Password { get; set; } = new PasswordOptions();
 }
 
 public sealed class PasswordOptions

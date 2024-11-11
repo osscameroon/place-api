@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Place.Api.Common.Identity;
+namespace Place.Core.Identity;
 
 /// <summary>
 /// Options for configuring Identity services
