@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Place.Api.Common\Place.Api.Common.csproj" />
+      <ProjectReference Include="..\..\src\Common\Place.Api.Common\Place.Api.Common.csproj" />
     </ItemGroup>
 
 </Project>

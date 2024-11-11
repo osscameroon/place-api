@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Place.Api.Common;
+using Place.Core;
 using Place.Core.Identity;
+using Place.Core.Logging;
 using PlaceAPi.Identity.Authenticate.Composition;
 using PlaceAPi.Identity.OpenApi;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+builder.Host.UseLogging((context, loggerConfiguration) => { });
 
 
 {
@@ -19,12 +21,15 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
         .AddIdentity()
         .AddPasswordRules()
         .AddEmailSender()
-        .AddEndpoints();
+        .AddEndpoints()
+        .AddCorrelationContextLogging();
     builder.Services.AddOpenApiFeature(builder.Configuration);
 
     builder.AddServiceDefaults();
 }
 WebApplication app = builder.Build();
+
+app.UsePlace().UserCorrelationContextLogging();
 
 
 {
@@ -72,7 +77,6 @@ WebApplication app = builder.Build();
             .ScriptSources(s => s.Self())
     );
     app.WithAuthenticationEndpoints();
-
     await app.RunAsync();
 }
 

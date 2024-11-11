@@ -29,8 +29,13 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Common\Place.Api.Common\Place.Api.Common.csproj" />
+      <ProjectReference Include="..\Common\Place.Core.Database\Place.Core.Database.csproj" />
       <ProjectReference Include="..\Common\Place.Core.Identity\Place.Core.Identity.csproj" />
-      <ProjectReference Include="..\Place.Api.Common\Place.Api.Common.csproj" />
+      <ProjectReference Include="..\Common\Place.Core.Logging\Place.Core.Logging.csproj" />
+      <ProjectReference Include="..\Common\Place.Core.Swagger\Place.Core.Swagger.csproj" />
+      <ProjectReference Include="..\Common\Place.Core.Versioning\Place.Core.Versioning.csproj" />
+      <ProjectReference Include="..\PlaceApi.ServiceDefaults\PlaceApi.ServiceDefaults.csproj" />
     </ItemGroup>
 
     <ItemGroup>

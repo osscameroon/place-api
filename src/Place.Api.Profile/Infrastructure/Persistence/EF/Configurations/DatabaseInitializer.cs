@@ -11,6 +11,7 @@ using Npgsql;
 using Place.Api.Common;
 using Place.Api.Profile.Domain.Profile;
 using Place.Api.Profile.Infrastructure.Persistence.EF.Models;
+using Place.Core;
 
 namespace Place.Api.Profile.Infrastructure.Persistence.EF.Configurations;
 

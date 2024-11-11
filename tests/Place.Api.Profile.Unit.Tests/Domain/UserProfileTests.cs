@@ -1,7 +1,6 @@
 using System;
 using ErrorOr;
 using FluentAssertions;
-using Place.Api.Common.Domain;
 using Place.Api.Profile.Domain.Profile;
 using Gender = Place.Api.Profile.Domain.Profile.Gender;
 using PersonalInfo = Place.Api.Profile.Domain.Profile.PersonalInfo;

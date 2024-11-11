@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using FluentAssertions;
 using Place.Api.Common.Domain;
 
-namespace Place.Api.Profile.Unit.Tests.Shared;
+namespace Place.Api.Common.Unit.Tests;
 
 [Trait("Category", "Unit")]
 [Trait("Class", "Entity")]

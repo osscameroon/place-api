@@ -1,13 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Place.Api.Common;
-using Place.Api.Common.Logging;
-using Place.Api.Common.Swagger.Docs;
-using Place.Api.Common.Swagger.WebApi;
-using Place.Api.Common.Versioning;
+using Microsoft.Extensions.Hosting;
 using Place.Api.Profile;
 using Place.Api.Profile.Infrastructure.Persistence.EF.Configurations;
+using Place.Core;
+using Place.Core.Database;
 using Place.Core.Identity;
+using Place.Core.Logging;
+using Place.Core.Swagger.Docs;
+using Place.Core.Swagger.WebApi;
+using Place.Core.Versioning;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -15,17 +17,20 @@ builder.Host.UseLogging((context, loggerConfiguration) => { });
 
 builder
     .Services.AddPlace(builder.Configuration)
+    .AddDatabase(optionsBuilder => optionsBuilder.AddDbContext<ProfileDbContext>())
     .AddCorrelationContextLogging()
     .AddWebApiSwaggerDocs()
     .AddSwaggerDocs()
     .AddApiVersioning();
 builder.Services.AddControllers();
+
 builder.Services.RegisterMediatr();
+builder.AddServiceDefaults();
 
 WebApplication app = builder.Build();
 
 // Initialize the database
-await app.InitializeDatabaseAsync();
+//await app.InitializeDatabaseAsync();
 
 // Configure middleware
 app.UsePlace().UserCorrelationContextLogging();

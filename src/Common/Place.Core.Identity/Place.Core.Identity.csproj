@@ -21,7 +21,8 @@
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\..\Place.Api.Common\Place.Api.Common.csproj" />
+      <ProjectReference Include="..\Place.Api.Common\Place.Api.Common.csproj" />
+      <ProjectReference Include="..\Place.Core\Place.Core.csproj" />
     </ItemGroup>
 
 </Project>
