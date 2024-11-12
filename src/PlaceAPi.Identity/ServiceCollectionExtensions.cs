@@ -1,9 +1,28 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Place.Core;
+using Place.Core.Identity;
+using Place.Core.Logging;
 
 namespace PlaceAPi.Identity;
 
 public static class ServiceCollectionExtensions
 {
+    public static void RegisterPlace(
+        this IServiceCollection services,
+        WebApplicationBuilder builder
+    )
+    {
+        builder.Host.UseLogging((context, loggerConfiguration) => { });
+        builder
+            .Services.AddPlace(builder.Configuration)
+            .AddIdentity()
+            .AddPasswordRules()
+            .AddEmailSender()
+            .AddEndpoints()
+            .AddCorrelationContextLogging();
+    }
+
     public static void UseHttpSecurity(this IApplicationBuilder app)
     {
         app.UseHsts(hsts => hsts.MaxAge(365).IncludeSubdomains());
@@ -22,5 +41,15 @@ public static class ServiceCollectionExtensions
                 .ImageSources(s => s.Self())
                 .ScriptSources(s => s.Self())
         );
+    }
+
+    public static IApplicationBuilder UsePlaceServices(this IApplicationBuilder app)
+    {
+        app.UseHttpsRedirection()
+            .UsePlace()
+            .UserCorrelationContextLogging()
+            .UseIdentityConfiguration();
+
+        return app;
     }
 }

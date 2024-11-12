@@ -15,7 +15,7 @@ namespace Place.Api.Profile;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddMediatrServices(this IServiceCollection services)
+    public static IServiceCollection RegisterMediatr(this IServiceCollection services)
     {
         Assembly[] assemblies = new[]
         {
@@ -30,7 +30,7 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    public static void AddPlaceServices(
+    public static void RegisterPlace(
         this IServiceCollection services,
         WebApplicationBuilder builder
     )

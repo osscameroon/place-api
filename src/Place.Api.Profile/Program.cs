@@ -5,9 +5,9 @@ using Place.Api.Profile;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddPlaceServices(builder);
+builder.Services.RegisterPlace(builder);
 builder.Services.AddControllers();
-builder.Services.AddMediatrServices();
+builder.Services.RegisterMediatr();
 builder.AddServiceDefaults();
 
 WebApplication app = builder.Build();
