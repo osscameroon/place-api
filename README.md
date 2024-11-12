@@ -18,8 +18,7 @@ Place provides a complete solution for event management and promotion, helping u
 For local development without docker
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/fr-fr/download/dotnet/8.0) installed
-- [PostgreSQL 16](https://www.postgresql.org/download) Instance running
-- [Redis](https://redis.io/fr) Instance running
+- [PostgreSQL](https://www.postgresql.org/download) Instance running
 
 
 ### Setup
@@ -40,13 +39,29 @@ dotnet husky install
 ``` 
 
 - Clean, restore and build solution
+
+
+
+Then chmod sudo chmod -R 777 ./*
+
 ```bash
-dotnet workload restore
-dotnet clean
-dotnet restore
-dotnet build
+dotnet nuke
+``` 
+NOTE: If you are on Mac OS you should run the following command instead:
+```bash
+chmod -R 777 ./*
+``` 
+```bash
+sudo dotnet nuke
 ``` 
 
+- Setup database
+
+Please refer to the [documentation](docs/Documentation.md) for more information about database environment variables in appSettings.json. (Mandatory)
+
+```bash
+docker-compose -f docker/compose/databases/database-compose.yml up -d
+```
 
 - Run the project
 ```bash

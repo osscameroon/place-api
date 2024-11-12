@@ -1,0 +1,18 @@
+﻿services:
+  db_identity:
+    image: postgres:15.1
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${IDENTITY_DB:-PlaceApiIdentity}
+    ports:
+      - "5489:5432"
+
+  db_profile:
+    image: postgres:15.1
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${PROFILE_DB:-PlaceApiProfile}
+    ports:
+      - "5490:5432"

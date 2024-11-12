@@ -166,7 +166,7 @@ class Build : NukeBuild
                 .Executes(() =>
                 {
                     IEnumerable<Project> testProjects = Solution.AllProjects.Where(s =>
-                        s.Name.EndsWith("Tests.Unit")
+                        s.Name.EndsWith("Unit.Tests")
                     );
 
                     DotNetTasks.DotNetTest(a =>
@@ -191,7 +191,7 @@ class Build : NukeBuild
 
     private Target RunIntegrationTests =>
         _ =>
-            _.DependsOn(Compile, LintCheck)
+            _.DependsOn(Compile, LintCheck, RunUnitTests)
                 .Executes(() =>
                 {
                     IEnumerable<Project> testProjects = Solution

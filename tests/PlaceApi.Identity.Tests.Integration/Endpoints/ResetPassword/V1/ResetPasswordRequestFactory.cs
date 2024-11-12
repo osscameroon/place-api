@@ -42,8 +42,5 @@ public static class ResetPasswordRequestFactory
     /// </summary>
     public static string GetUnconfirmedEmail() => UnconfirmedEmail;
 
-    public static string GetNonExistentEmail()
-    {
-        throw new NotImplementedException();
-    }
+    public static string GetNonExistentEmail() => UnconfirmedEmail;
 }

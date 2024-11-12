@@ -10,13 +10,18 @@ using Testcontainers.PostgreSql;
 
 namespace PlaceApi.Identity.Tests.Integration;
 
-public abstract class IdentityWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAsyncLifetime
+public class IdentityWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAsyncLifetime
 {
-    private readonly PostgreSqlContainer _dbContainer = new PostgreSqlBuilder()
-        .WithDatabase("PlaceApiIdentity")
-        .WithUsername("postgres")
-        .WithPassword("postgres")
-        .Build();
+    private readonly PostgreSqlContainer _dbContainer;
+
+    public IdentityWebAppFactory()
+    {
+        _dbContainer = new PostgreSqlBuilder()
+            .WithDatabase("PlaceApiIdentity")
+            .WithUsername("postgres")
+            .WithPassword("postgres")
+            .Build();
+    }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
