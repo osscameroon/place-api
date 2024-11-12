@@ -1,7 +1,9 @@
 using System.Reflection;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Place.Api.Common.Domain;
+using Place.Api.Common.Mediatr.Behaviours.Logging;
 using Place.Api.Profile.Infrastructure.Persistence.EF.Configurations;
 using Place.Core;
 using Place.Core.Database;
@@ -26,7 +28,9 @@ public static class ServiceCollectionExtensions
         services.AddMediatR(cfg =>
         {
             cfg.RegisterServicesFromAssemblies(assemblies);
+            cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
         });
+
         return services;
     }
 
