@@ -1,3 +1,5 @@
+using System.Net.Http;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.Data;
 using PlaceApi.Identity.Tests.Integration.Common;
 

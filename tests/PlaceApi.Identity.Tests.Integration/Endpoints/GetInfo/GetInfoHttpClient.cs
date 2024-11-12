@@ -1,4 +1,6 @@
+using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using PlaceApi.Identity.Tests.Integration.Common;
 
 namespace PlaceApi.Identity.Tests.Integration.Endpoints.GetInfo;

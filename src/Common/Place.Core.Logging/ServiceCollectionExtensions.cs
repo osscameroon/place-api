@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Place.Core.Logging.Options;
@@ -29,44 +30,6 @@ public static class Extensions
         string appSectionName = AppSectionName
     ) =>
         hostBuilder
-            .ConfigureServices(services => services.AddSingleton<ILoggingService, LoggingService>())
-            .UseSerilog(
-                (context, loggerConfiguration) =>
-                {
-                    if (string.IsNullOrWhiteSpace(loggerSectionName))
-                    {
-                        loggerSectionName = LoggerSectionName;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(appSectionName))
-                    {
-                        appSectionName = AppSectionName;
-                    }
-
-                    LoggerOptions loggerOptions = context.Configuration.GetOptions<LoggerOptions>(
-                        loggerSectionName
-                    );
-                    AppOptions appOptions = context.Configuration.GetOptions<AppOptions>(
-                        appSectionName
-                    );
-
-                    MapOptions(
-                        loggerOptions,
-                        appOptions,
-                        loggerConfiguration,
-                        context.HostingEnvironment.EnvironmentName
-                    );
-                    configure?.Invoke(context, loggerConfiguration);
-                }
-            );
-
-    public static IWebHostBuilder UseLogging(
-        this IWebHostBuilder webHostBuilder,
-        Action<WebHostBuilderContext, LoggerConfiguration> configure,
-        string loggerSectionName = LoggerSectionName,
-        string appSectionName = AppSectionName
-    ) =>
-        webHostBuilder
             .ConfigureServices(services => services.AddSingleton<ILoggingService, LoggingService>())
             .UseSerilog(
                 (context, loggerConfiguration) =>
