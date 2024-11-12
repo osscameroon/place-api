@@ -40,10 +40,6 @@ dotnet husky install
 
 - Clean, restore and build solution
 
-
-
-Then chmod sudo chmod -R 777 ./*
-
 ```bash
 dotnet nuke
 ``` 
