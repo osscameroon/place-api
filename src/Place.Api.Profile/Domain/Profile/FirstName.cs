@@ -53,8 +53,7 @@ public sealed partial record FirstName
 
     public override string ToString() => Value;
 
-    [GeneratedRegex(@"^[a-zA-ZÀ-ÖØ-öø-ÿ\u0100-\u017F\s'-]+$")]
-    private static partial Regex ValidNameRegex();
+    private static readonly Regex ValidNameRegex = new(@"^[a-zA-ZÀ-ÖØ-öø-ÿ\u0100-\u017F\s'-]+$");
 
-    private static bool IsValidName(string name) => ValidNameRegex().IsMatch(name);
+    private static bool IsValidName(string name) => ValidNameRegex.IsMatch(name);
 }
