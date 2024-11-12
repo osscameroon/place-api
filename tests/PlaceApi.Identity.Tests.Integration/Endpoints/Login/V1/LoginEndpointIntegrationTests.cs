@@ -1,3 +1,5 @@
+using System.Net.Http;
+using System.Threading.Tasks;
 using Place.Core.Identity;
 using PlaceApi.Identity.Tests.Integration.Common;
 

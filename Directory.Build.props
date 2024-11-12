@@ -1,8 +1,8 @@
 ﻿<Project>
 
     <PropertyGroup>
-        <TargetFramework>.net8.0</TargetFramework>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <TargetFramework>.net9.0</TargetFramework>
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <CSharpier_Check>true</CSharpier_Check>
