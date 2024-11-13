@@ -47,7 +47,21 @@ public class GetPersonalInfo(IMediator mediator) : ControllerBase
 
         if (vm is not null)
         {
-            return TypedResults.Ok(new PersonalInformationResponse(vm));
+            return TypedResults.Ok(
+                new PersonalInformationResponse
+                {
+                    FirstName = vm.FirstName,
+                    LastName = vm.LastName,
+                    Email = vm.Email,
+                    PhoneNumber = vm.PhoneNumber,
+                    Street = vm.Street,
+                    City = vm.City,
+                    ZipCode = vm.ZipCode,
+                    Country = vm.Country,
+                    Gender = vm.Gender,
+                    FormattedAddress = vm.FormattedAddress,
+                }
+            );
         }
 
         ProblemDetails problem =
