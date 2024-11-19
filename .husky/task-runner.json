@@ -19,7 +19,7 @@
      {
        "name": "csharpier",
        "command": "dotnet",
-       "args": [ "csharpier", "${staged}" ],
+       "args": [ "dotnet-csharpier", "${staged}" ],
        "include": [ "**/*.cs" ]
      }
    ]
