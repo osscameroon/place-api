@@ -17,6 +17,9 @@ jobs:
       - name: Install linting tools
         run: |
           dotnet tool restore
+      - name: Validate code linter with Csharpier
+        run: |
+          dotnet tool csharpier --check .
   build:
     needs: lint
     runs-on: ubuntu-latest
@@ -59,7 +62,7 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: Run unit tests
-        run: dotnet test --configuration Release --no-build --no-restore --filter "Category=Unit"
+        run: dotnet test ./Place.sln --configuration Release --no-build --no-restore --filter "Category=Unit"
 
   integration_tests:
     runs-on: ubuntu-latest
@@ -77,4 +80,4 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: Run integration tests
-        run: dotnet test --configuration Release --no-build --no-restore --filter "Category=Integration"
+        run: dotnet test ./Place.sln --configuration Release --no-build --no-restore --filter "Category=Integration"
