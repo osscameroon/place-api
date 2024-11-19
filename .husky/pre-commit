@@ -1,6 +1,13 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+echo 'Formatting code...'
+dotnet csharpier .
+echo
+echo Great work! 🥂
+echo
+
+
 
 
 
