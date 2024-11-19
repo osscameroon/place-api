@@ -19,7 +19,7 @@ jobs:
           dotnet tool restore
       - name: Validate code linter with Csharpier
         run: |
-          dotnet tool csharpier --check .
+          dotnet csharpier --check .
   build:
     needs: lint
     runs-on: ubuntu-latest
