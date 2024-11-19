@@ -54,11 +54,6 @@ jobs:
     steps:
       - name: "Verify working directory"
         run: ls -R
-      - name: Download build artefact
-        uses: actions/download-artifact@v4
-        with:
-          name: app-build
-          path: ./output
       - name: "Verify working directory"
         run: ls -R
       - name: Set up .NET 9
@@ -67,7 +62,7 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: Run unit tests
-        run: dotnet test --no-build --no-restore --filter "Category=Unit"
+        run: dotnet test --filter "Category=Unit"
 
   integration_tests:
     runs-on: ubuntu-latest
@@ -86,4 +81,4 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: Run integration tests
-        run: dotnet test --no-build --no-restore --filter "Category=Integration"
+        run: dotnet test --filter "Category=Integration"
