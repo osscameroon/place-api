@@ -1,4 +1,4 @@
-name: .NET 9 CI
+name: CI
 
 on: [ workflow_dispatch, push, pull_request ]
 
@@ -59,7 +59,8 @@ jobs:
         with:
           name: app-build
           path: ./output
-
+      - name: "Verify working directory"
+        run: ls -R
       - name: Set up .NET 9
         uses: actions/setup-dotnet@v4
         with:
@@ -72,14 +73,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: [lint, build ]
     steps:
-      - name: "Verify working directory"
-        run: ls -R
       - name: Download build artefact
         uses: actions/download-artifact@v4
         with:
           name: app-build
           path: ./output
-
+      - name: "Verify working directory"
+        run: ls -R
       - name: Set up .NET 9
         uses: actions/setup-dotnet@v4
         with:
