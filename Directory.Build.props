@@ -9,7 +9,7 @@
         <CSharpier_FrameworkVersion>net8.0</CSharpier_FrameworkVersion>
         <CSharpier_LogLevel>Warning</CSharpier_LogLevel>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <NoWarn>$(NoWarn);1591</NoWarn>
+        <NoWarn>$(NoWarn);1591;CS0649;CS0169;CA1050;CA1822;CA2211;IDE1006</NoWarn>
     </PropertyGroup>
     
 

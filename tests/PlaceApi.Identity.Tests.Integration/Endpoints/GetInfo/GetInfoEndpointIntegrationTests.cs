@@ -11,7 +11,6 @@ using PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1;
 namespace PlaceApi.Identity.Tests.Integration.Endpoints.GetInfo;
 
 [Trait("Integration", "Identity")]
-[Collection("GetInfo")]
 public class GetInfoEndpointIntegrationTests : IntegrationTestBase
 {
     private readonly GetInfoHttpClient _getInfoClient;
