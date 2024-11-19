@@ -1,8 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo 'Formatting code...'
-dotnet csharpier .
+
+dotnet husky run --name csharpier" --args "$1"
 echo
 echo Great work! 🥂
 echo
