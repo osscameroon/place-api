@@ -51,7 +51,7 @@ jobs:
     needs: [lint, build ]
     steps:
       - name: Download build artefact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: app-build
           path: ./output
