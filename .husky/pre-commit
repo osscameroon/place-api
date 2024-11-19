@@ -2,7 +2,7 @@
 . "$(dirname "$0")/_/husky.sh"
 
 
-dotnet husky run --name csharpier" --args "$1"
+dotnet husky run --name "csharpier" --args "$1"
 echo
 echo Great work! 🥂
 echo
