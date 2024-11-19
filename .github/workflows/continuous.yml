@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+      - name: "Verify working directory"
+        run: ls -R
 
       - name: Set up .NET 9
         uses: actions/setup-dotnet@v4
