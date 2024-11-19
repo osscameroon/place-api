@@ -6,7 +6,6 @@ using PlaceApi.Identity.Tests.Integration.Common;
 namespace PlaceApi.Identity.Tests.Integration.Endpoints.Login.V1;
 
 [Trait("Integration", "Identity")]
-[Collection("Sequential")]
 public class LoginEndpointIntegrationTests(IdentityWebAppFactory factory)
     : IntegrationTestBase(factory)
 {

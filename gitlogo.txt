@@ -1,0 +1,70 @@
+ed1bfaf docs: update README.md
+ef6dee4 refactor:(git): update gitignore
+b168dfe refactor(core): remove nuke folder
+83d17b2 refactor(core): remove nuke folder
+d99da3a docs(core): update documentation
+02dd8b2 docs(documentation): update documentation
+03fe4d9 refactor(core): clean program.cs #41
+ca3fd43 refactor(core): clean program.cs
+1ac8c8f refactor(framework): move identity to core project #41
+2bf0946 refactor: extract identity to his own project
+ff0aec3 feat: extract identity to shared project #41
+4bf5f59 feat(framework): add api versionning #41
+ded62a5 style(framework): remove logs folder
+820b121 style(framework): update gitignore
+f54f1c0 feat(framework): add serilog #41
+d55094c style(framework): add docstring
+844e5d3 feat(framework): add common library to handle openapi and swagger #41
+9dc862f feat(Profile): list profile informations #38
+9bcc88a feat(Profile): add migration files #38
+f453cb7 feat(Profile): add efcore and configure database, dbcontext. #38
+0461f12 refactor(Profile): update UserProfile desgin #38
+cd20710 feat(Profile): add UserProfile class #38
+2e74b5c refactor(Profile): update personalInfo class and tests #38
+1af4905 feat(Profile): add value object for PhoneNumber.cs #38
+89b8706 feat(Profile): add value objects for address #38
+dc1f1ec test(Profile): add test suite for Entity #38
+4c07e04 test(Profile): add test suite for AggregateRoot #38
+b07ae94 test(Profile): add test suite for DateOfBirth #38
+f2bdedd refactor(Profile): rename file to match class type #38
+841bf2a test(Profile): add test suite for LastName value object #38
+b5f1f52 test(Profile): add test suite for FirstName value object #38
+3ab813d refactor(aspire): add profile project to aspire
+0085474 feat(Profile): add PersonnalInfo value object to the profile #38
+c092a6b feat: [WIP] implement PersonnalInfo value object #38
+992ca8c stlye(project): change solution folder directory
+11cc03f test(authentication): add test for getinfo endpoint #19  (#37)
+cd2c102 test(authentication): finalize integration test for reset password #19
+14a7a0f test(authentication): integration tests for reset password endpoints #19
+8164a32 test(authentication): test forgotpassword #19
+b621852 test(authentication): test confirm email endpoint #19
+ab3edc9 docs: Add run command in readme
+4357bb8 clean up
+88a7171 style: clean up #19
+ebb597f ci: fix linter  (#33)
+f66bbf5 CI: add linter for commit message (#32)
+bef311d test(#19): run test sequentialty
+2530af6 style: format code
+f49091a refactor(#19): use pgsqlbuilder
+428cd6f test(#19): test confirm email endpoint
+eac890e test(#19): integration test for register endpoint (#25)
+078da37 test(#19): integration tests for register endpoint
+a266b46 test(#19): integration test for login endpoint
+156cbc7 test(#19): integration tests for register endpoint (#26)
+54576d7 Create USER_STORY_TEMPLATE.yml
+60123e6 chore(main): release 1.1.0
+598e8ef ci: fix workflow
+cc8816e chore: centralize packages references for aspire
+677a99b feat(aspire): add dotnet aspire #12
+f99ff67 ci: adding nuke to build ci for the project #15   (#16)
+da7d12e chore(main): release 1.0.0 (#14)
+c7af941 chore(main): release 1.0.0 (#11)
+645f265 Update release.yml
+5b9f403 ci(Versionning): Move to release please
+c89c8df chore(release): 1.0.0 [skip-ci]
+5bcabf9 feat(Identity): add authentication system
+726b3fe chore(issues): update bug report template
+bc491a3 chore(issues): bug template
+164f746 docs(Contribution): Update CONTRIBUTION.md
+b06d502 docs(Documentation): Update Readme
+9e687f3 initial commit
