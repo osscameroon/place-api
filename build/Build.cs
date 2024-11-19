@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Nuke.Common;
-using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
@@ -10,19 +9,6 @@ using Nuke.Common.Tools.Coverlet;
 using Nuke.Common.Tools.DotNet;
 using Serilog;
 
-[GitHubActions(
-    "continuous",
-    GitHubActionsImage.UbuntuLatest,
-    AutoGenerate = false,
-    FetchDepth = 0,
-    On = new[]
-    {
-        GitHubActionsTrigger.Push,
-        GitHubActionsTrigger.PullRequest,
-        GitHubActionsTrigger.WorkflowDispatch,
-    },
-    InvokedTargets = new[] { nameof(Compile) }
-)]
 class Build : NukeBuild
 {
     /// <summary>
