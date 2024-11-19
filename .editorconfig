@@ -423,3 +423,8 @@ dotnet_diagnostic.SA1615.severity = none
 
 [**/Migrations/*]
 generated_code = true
+
+
+
+[*.cs]
+end_of_line = lf
