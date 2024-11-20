@@ -8,8 +8,6 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-      - name: "Verify working directory"
-        run: ls -R
 
       - name: Set up .NET 9
         uses: actions/setup-dotnet@v4
@@ -19,9 +17,11 @@ jobs:
       - name: Install linting tools
         run: |
           dotnet tool restore
-      - name: Validate code linter with Csharpier
+
+      - name: Validate code linting with Csharpier
         run: |
           dotnet dotnet-csharpier --check .
+
   build:
     needs: lint
     runs-on: ubuntu-latest
@@ -38,48 +38,54 @@ jobs:
         run: dotnet restore
 
       - name: Build Solution
-        run: dotnet build --no-restore  --configuration Release
-        
-      - name: Upload build artefact
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: app-build
-          path: ./bin/Release
+          path: |
+            **/bin/Release/net9.0
+            !**/bin/Release/net9.0/ref
 
   unit_tests:
     runs-on: ubuntu-latest
-    needs: [lint, build ]
+    needs: [lint, build]
     steps:
-      - name: Download build artefact
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
           name: app-build
-      - name: Set up .NET
+          path: artifacts
+
+      - name: Set up .NET 9
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
-          
-      - name: "Verify working directory"
-        run: ls -R
-        
+
       - name: Run unit tests
-        run: dotnet test --filter "Category=Unit" --verbosity normal ./bin/Release
+        run: dotnet test --filter "Category=Unit" --verbosity normal
 
   integration_tests:
     runs-on: ubuntu-latest
-    needs: [ lint, build, unit_tests ]
+    needs: [lint, build, unit_tests]
     steps:
-      - name: Download build artefact
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
           name: app-build
-          
-      - name: Set up .NET
+          path: artifacts
+
+      - name: Set up .NET 9
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
-      - name: "Verify working directory"
-        run: ls -R
-        
-      - name: Run unit tests
-        run: dotnet test --filter "Category=Integration" --verbosity normal ./bin/Release
+
+      - name: Run integration tests
+        run: dotnet test --filter "Category=Integration" --verbosity normal
