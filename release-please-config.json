@@ -1,0 +1,11 @@
+{
+  "branches": [
+    {
+      "branch": "main",
+      "release-type": "simple",
+      "initial-version": "0.1.0",
+      "prerelease": true,
+      "prerelease-tag": "beta"
+    }
+  ]
+}
