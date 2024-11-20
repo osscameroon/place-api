@@ -26,5 +26,6 @@ jobs:
           # this is a built-in strategy in release-please, see "Action Inputs"
           # for more options
           release-type: simple
-          default-branch: main
-          bump-minor-pre-major: true
+          target-branch: main
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
