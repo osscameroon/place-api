@@ -1,3 +1,3 @@
-namespace PlaceAPi.Identity;
+namespace Identity.API;
 
 public interface IAssemblyMarker { }

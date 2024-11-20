@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http.Metadata;
 using Microsoft.AspNetCore.Routing;
 
-namespace PlaceAPi.Identity.Authenticate.Endpoints;
+namespace Identity.API.Authenticate.Endpoints;
 
 public static partial class AuthenticationEndpointsExtensions
 {

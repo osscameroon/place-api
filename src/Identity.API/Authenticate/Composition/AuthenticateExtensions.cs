@@ -1,13 +1,13 @@
 using Asp.Versioning;
 using Asp.Versioning.Builder;
 using Core.Identity;
+using Identity.API.Authenticate.Endpoints;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
-using PlaceAPi.Identity.Authenticate.Endpoints;
 
-namespace PlaceAPi.Identity.Authenticate.Composition;
+namespace Identity.API.Authenticate.Composition;
 
 public static class AuthenticateExtensions
 {

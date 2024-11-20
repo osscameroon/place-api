@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace PlaceAPi.Identity.OpenApi;
+namespace Identity.API.OpenApi;
 
 public class ApiVersionOperationFilter : IOperationFilter
 {

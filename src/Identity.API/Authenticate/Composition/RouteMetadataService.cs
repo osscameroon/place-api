@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace PlaceAPi.Identity.Authenticate.Composition;
+namespace Identity.API.Authenticate.Composition;
 
 public class RouteMetadataService
 {

@@ -3,14 +3,14 @@ using System.IO;
 using System.Reflection;
 using Asp.Versioning;
 using Asp.Versioning.Builder;
+using Identity.API.Authenticate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using PlaceAPi.Identity.Authenticate;
 
-namespace PlaceAPi.Identity.OpenApi;
+namespace Identity.API.OpenApi;
 
 public static class OpenApiExtensions
 {

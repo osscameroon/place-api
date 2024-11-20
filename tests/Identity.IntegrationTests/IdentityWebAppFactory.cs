@@ -2,14 +2,15 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Identity;
+using Identity.API;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using PlaceAPi.Identity;
 using Testcontainers.PostgreSql;
+using Xunit;
 
 namespace Identity.IntegrationTests;
 
