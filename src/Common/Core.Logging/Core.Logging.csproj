@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Serilog" />
+        <PackageReference Include="Serilog.AspNetCore"/>
+        <PackageReference Include="Serilog.Extensions.Logging" />
+        <PackageReference Include="Serilog.Sinks.Console" />
+        <PackageReference Include="Serilog.Sinks.ElasticSearch" />
+        <PackageReference Include="Serilog.Sinks.File"/>
+        <PackageReference Include="Serilog.Sinks.Grafana.Loki"/>
+        <PackageReference Include="Serilog.Sinks.Seq"/>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Core\Core.csproj" />
+    </ItemGroup>
+
+</Project>
