@@ -1,3 +1,4 @@
+using Core.Scalar.Docs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,5 +17,5 @@ WebApplication app = builder.Build();
 app.UsePlaceServices();
 app.MapControllers();
 await app.InitializeDatabaseAsync();
-
+app.MapScalarDocs();
 await app.RunAsync();

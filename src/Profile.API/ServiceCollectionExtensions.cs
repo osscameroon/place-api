@@ -5,6 +5,7 @@ using Core;
 using Core.Database;
 using Core.Identity;
 using Core.Logging;
+using Core.Scalar.Docs;
 using Core.Swagger.Docs;
 using Core.Swagger.WebApi;
 using Core.Versioning;
@@ -45,8 +46,7 @@ public static class ServiceCollectionExtensions
             .AddPlace(builder.Configuration)
             .AddDatabase(optionsBuilder => optionsBuilder.AddDbContext<ProfileDbContext>())
             .AddCorrelationContextLogging()
-            .AddWebApiSwaggerDocs()
-            .AddSwaggerDocs()
+            .AddScalarDocs()
             .AddApiVersioning();
     }
 
@@ -55,7 +55,6 @@ public static class ServiceCollectionExtensions
         app.UseHttpsRedirection()
             .UsePlace()
             .UserCorrelationContextLogging()
-            .UseSwaggerDocs()
             .UseIdentityConfiguration();
 
         return app;
