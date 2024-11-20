@@ -45,8 +45,13 @@ jobs:
         with:
           name: app-build
           path: |
-            **/bin/Release/net9.0
-            !**/bin/Release/net9.0/ref
+            **/bin
+            **/obj
+            patterns: |
+            **/*.dll
+            **/*.exe
+            **/*.pdb
+            !**/ref/**
 
   unit_tests:
     runs-on: ubuntu-latest
