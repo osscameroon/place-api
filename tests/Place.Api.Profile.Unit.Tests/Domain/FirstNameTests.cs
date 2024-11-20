@@ -6,7 +6,6 @@ using Place.Api.Profile.Domain.Profile;
 namespace Place.Api.Profile.Unit.Tests.Domain;
 
 [Trait("Category", "Unit")]
-[Trait("Class", "FirstName")]
 public class FirstNameTests
 {
     [Theory]

@@ -6,7 +6,6 @@ using Place.Api.Common.Domain;
 namespace Place.Api.Common.Unit.Tests;
 
 [Trait("Category", "Unit")]
-[Trait("Class", "Entity")]
 public sealed class EntityTests
 {
     [Fact]

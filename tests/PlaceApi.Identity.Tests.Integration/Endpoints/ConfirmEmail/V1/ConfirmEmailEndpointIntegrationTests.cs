@@ -11,7 +11,7 @@ using PlaceApi.Identity.Tests.Integration.Common;
 
 namespace PlaceApi.Identity.Tests.Integration.Endpoints.ConfirmEmail.V1;
 
-[Trait("Integration", "Identity")]
+[Trait("Category", "Integration")]
 public class ConfirmEmailEndpointIntegrationTests(IdentityWebAppFactory factory)
     : IntegrationTestBase(factory)
 {

@@ -7,7 +7,6 @@ using Place.Api.Profile.Domain.Profile;
 namespace Place.Api.Profile.Unit.Tests.Domain;
 
 [Trait("Category", "Unit")]
-[Trait("Class", "BirthDate")]
 public class DateOfBirthTests
 {
     [Theory]
