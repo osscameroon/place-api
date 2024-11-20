@@ -13,7 +13,6 @@
     <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
 
     <ItemGroup>
-      <ProjectReference Include="..\Identity.API\Identity.API.csproj" />
       <ProjectReference Include="..\Profile.API\Profile.API.csproj" />
     </ItemGroup>
 
