@@ -5,7 +5,7 @@ using PlaceApi.Identity.Tests.Integration.Common;
 
 namespace PlaceApi.Identity.Tests.Integration.Endpoints.ForgotPassword.V1;
 
-[Trait("Integration", "Identity")]
+[Trait("Category", "Integration")]
 [Collection("Sequential")]
 public class ForgotPasswordEndpointIntegrationTests(IdentityWebAppFactory factory)
     : IntegrationTestBase(factory)
