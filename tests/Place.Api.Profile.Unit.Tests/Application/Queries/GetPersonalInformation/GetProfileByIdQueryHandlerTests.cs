@@ -11,7 +11,6 @@ using Place.Api.Profile.Unit.Tests.Common;
 namespace Place.Api.Profile.Unit.Tests.Application.Queries.GetPersonalInformation;
 
 [Trait("Category", "Unit")]
-[Trait("Feature", "Profile")]
 public class GetProfileByIdQueryHandlerTests
 {
     private readonly ProfileDbContext _dbContext;

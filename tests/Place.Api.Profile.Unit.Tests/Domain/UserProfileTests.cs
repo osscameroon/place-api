@@ -8,7 +8,6 @@ using PersonalInfo = Place.Api.Profile.Domain.Profile.PersonalInfo;
 namespace Place.Api.Profile.Unit.Tests.Domain;
 
 [Trait("Category", "Unit")]
-[Trait("Class", "Profile")]
 public sealed class ProfileTests
 {
     private static readonly Guid ValidUserId = Guid.NewGuid();
@@ -30,7 +29,6 @@ public sealed class ProfileTests
     }
 
     [Theory]
-    [Trait("Method", "Create")]
     [InlineData("test@example.com")]
     [InlineData("another@test.co.uk")]
     [InlineData("user.name+tag@domain.com")]
@@ -63,7 +61,6 @@ public sealed class ProfileTests
     }
 
     [Theory]
-    [Trait("Method", "Create")]
     [InlineData("")]
     [InlineData("invalid-email")]
     [InlineData("@domain.com")]
@@ -85,7 +82,6 @@ public sealed class ProfileTests
     }
 
     [Fact]
-    [Trait("Method", "Create")]
     public void Create_WithEmptyUserId_ShouldFail()
     {
         // Act
@@ -104,7 +100,6 @@ public sealed class ProfileTests
     }
 
     [Fact]
-    [Trait("Method", "Create")]
     public void Create_WithEmptyCreatorId_ShouldFail()
     {
         // Act
@@ -123,7 +118,6 @@ public sealed class ProfileTests
     }
 
     [Theory]
-    [Trait("Method", "UpdateEmail")]
     [InlineData("new@example.com")]
     [InlineData("updated@test.co.uk")]
     public void UpdateEmail_WithValidEmail_ShouldSucceed(string newEmail)
@@ -147,7 +141,6 @@ public sealed class ProfileTests
     }
 
     [Theory]
-    [Trait("Method", "UpdateEmail")]
     [InlineData("")]
     [InlineData("invalid-email")]
     [InlineData("@domain.com")]
@@ -167,7 +160,6 @@ public sealed class ProfileTests
     }
 
     [Fact]
-    [Trait("Method", "UpdateEmail")]
     public void UpdateEmail_WhenProfileIsDeleted_ShouldFail()
     {
         // Arrange
@@ -190,7 +182,6 @@ public sealed class ProfileTests
     }
 
     [Fact]
-    [Trait("Method", "UpdatePersonalInfo")]
     public void UpdatePersonalInfo_WithValidData_ShouldSucceed()
     {
         // Arrange
@@ -222,7 +213,6 @@ public sealed class ProfileTests
     }
 
     [Fact]
-    [Trait("Method", "UpdatePersonalInfo")]
     public void UpdatePersonalInfo_WhenProfileIsDeleted_ShouldFail()
     {
         // Arrange
@@ -245,7 +235,6 @@ public sealed class ProfileTests
     }
 
     [Fact]
-    [Trait("Method", "Delete")]
     public void Delete_ActiveProfile_ShouldSucceed()
     {
         // Arrange
@@ -265,7 +254,6 @@ public sealed class ProfileTests
     }
 
     [Fact]
-    [Trait("Method", "Delete")]
     public void Delete_AlreadyDeletedProfile_ShouldFail()
     {
         // Arrange
@@ -284,7 +272,6 @@ public sealed class ProfileTests
     }
 
     [Fact]
-    [Trait("Method", "Restore")]
     public void Restore_DeletedProfile_ShouldSucceed()
     {
         // Arrange
@@ -307,7 +294,6 @@ public sealed class ProfileTests
     }
 
     [Fact]
-    [Trait("Method", "Restore")]
     public void Restore_NonDeletedProfile_ShouldFail()
     {
         // Arrange
@@ -325,7 +311,6 @@ public sealed class ProfileTests
     }
 
     [Fact]
-    [Trait("Class", "ProfileId")]
     public void ProfileId_CreateUnique_ShouldCreateUniqueId()
     {
         // Act
@@ -339,7 +324,6 @@ public sealed class ProfileTests
     }
 
     [Fact]
-    [Trait("Class", "ProfileId")]
     public void ProfileId_ImplicitConversion_ShouldConvertFromGuid()
     {
         // Arrange
@@ -353,7 +337,6 @@ public sealed class ProfileTests
     }
 
     [Fact]
-    [Trait("Class", "ProfileId")]
     public void ProfileId_ExplicitConversion_ShouldConvertToGuid()
     {
         // Arrange

@@ -6,6 +6,7 @@ using PlaceApi.Identity.Tests.Integration.Endpoints.Register.V1;
 
 namespace PlaceApi.Identity.Tests.Integration.Endpoints.ResendConfirmationEmail;
 
+[Trait("Category", "Integration")]
 public class ResendConfirmationEmailIntegrationTest(IdentityWebAppFactory factory)
     : IntegrationTestBase(factory)
 {

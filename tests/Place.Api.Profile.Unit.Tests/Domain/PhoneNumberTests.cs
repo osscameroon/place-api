@@ -6,7 +6,6 @@ using PhoneNumber = Place.Api.Profile.Domain.Profile.PhoneNumber;
 namespace Place.Api.Profile.Unit.Tests.Domain;
 
 [Trait("Category", "Unit")]
-[Trait("Class", "PhoneNumber")]
 public sealed class PhoneNumberTests
 {
     [Theory]

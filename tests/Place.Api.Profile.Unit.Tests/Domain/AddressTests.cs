@@ -5,7 +5,6 @@ using Place.Api.Profile.Domain.Profile;
 namespace Place.Api.Profile.Unit.Tests.Domain;
 
 [Trait("Category", "Unit")]
-[Trait("Class", "Address")]
 public sealed class AddressTests
 {
     [Fact]

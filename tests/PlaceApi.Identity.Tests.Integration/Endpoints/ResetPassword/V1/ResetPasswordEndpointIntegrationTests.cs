@@ -8,7 +8,7 @@ using PlaceApi.Identity.Tests.Integration.Endpoints.Login;
 
 namespace PlaceApi.Identity.Tests.Integration.Endpoints.ResetPassword.V1;
 
-[Trait("Integration", "Identity")]
+[Trait("Category", "Integration")]
 public class ResetPasswordEndpointIntegrationTests(IdentityWebAppFactory factory)
     : IntegrationTestBase(factory)
 {
