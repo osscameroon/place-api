@@ -4,7 +4,7 @@ IDistributedApplicationBuilder builder = DistributedApplication.CreateBuilder(ar
 
 
 {
-    builder.AddProject<Projects.Identity_APi>("Identity");
+    builder.AddProject<Projects.Profile_API>("Identity");
     builder.AddProject<Projects.Profile_API>("Profile");
 }
 
