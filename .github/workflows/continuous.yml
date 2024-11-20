@@ -36,6 +36,9 @@ jobs:
   build_and_test:
     needs: lint
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
 
@@ -58,10 +61,22 @@ jobs:
         run: dotnet build --no-restore --configuration Release
 
       - name: Run unit tests
-        run: dotnet test --no-build --filter "Category=Unit" --configuration Release --verbosity minimal
+        run: dotnet test --no-build --filter "Category=Unit" --configuration Release --verbosity minimal --logger "trx;LogFileName=unit_tests.trx"
 
       - name: Run integration tests
-        run: dotnet test --no-build --filter "Category=Integration" --configuration Release --verbosity minimal
+        run: dotnet test --no-build --filter "Category=Integration" --configuration Release --verbosity minimal --logger "trx;LogFileName=integration_tests.trx"
+
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    # run this step even if previous step failed
+        with:
+          name: .NET Tests            # Name of the check run which will be created
+          path: '**/TestResults/*.trx' # Path to test results
+          reporter: dotnet-trx        # Format of test results
+          fail-on-error: true         # Fail workflow if test reporter fails
+          list-suites: 'all'         # List all test suites in report
+          list-tests: 'failed'       # List all failed tests in report
+          max-annotations: 50        # Maximum number of annotations to create
 
       - name: Upload artifacts
         if: github.event_name != 'pull_request'
