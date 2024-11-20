@@ -7,6 +7,7 @@ using Core.Identity;
 using FluentAssertions;
 using Identity.IntegrationTests.Common;
 using Microsoft.AspNetCore.WebUtilities;
+using Xunit;
 
 namespace Identity.IntegrationTests.Endpoints.ConfirmEmail.V1;
 

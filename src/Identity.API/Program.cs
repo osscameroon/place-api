@@ -1,8 +1,8 @@
 using Identity.API;
+using Identity.API.Authenticate.Composition;
+using Identity.API.OpenApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
-using PlaceAPi.Identity.Authenticate.Composition;
-using PlaceAPi.Identity.OpenApi;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
