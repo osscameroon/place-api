@@ -6,9 +6,6 @@
 ## Related Issue
 <!-- Please link to the issue here using #[issue-number] -->
 
-closes #123
-
-
 ## Type of Change
 <!-- Please check the options that are relevant -->
 - [ ] Bug fix (non-breaking change that fixes an issue)
