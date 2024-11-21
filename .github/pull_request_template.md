@@ -9,6 +9,12 @@
 closes #123
 
 
+<<<<<<< HEAD
+closes #123
+
+
+=======
+>>>>>>> 64aef2e (refactor: change pull request template directory #54)
 ## Type of Change
 <!-- Please check the options that are relevant -->
 - [ ] Bug fix (non-breaking change that fixes an issue)
