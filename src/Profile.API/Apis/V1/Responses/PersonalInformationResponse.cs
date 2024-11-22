@@ -2,7 +2,7 @@ using Profile.API.Application.Queries.GetPersonalInformation;
 
 namespace Profile.API.Apis.V1.Responses;
 
-public record PersonalInformationResponse
+public class PersonalInformationResponse
 {
     public string? FirstName { get; set; }
     public string? LastName { get; set; }

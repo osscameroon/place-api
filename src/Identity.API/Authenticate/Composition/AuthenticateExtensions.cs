@@ -1,11 +1,10 @@
-using Asp.Versioning;
 using Asp.Versioning.Builder;
 using Core.Identity;
 using Identity.API.Authenticate.Endpoints;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
+using ApiVersion = Asp.Versioning.ApiVersion;
 
 namespace Identity.API.Authenticate.Composition;
 
@@ -16,7 +15,7 @@ public static class AuthenticateExtensions
         string? apiTitle = app.Configuration.GetSection("ApiVersioning:Title").Get<string>();
 
         ApiVersionSet apiVersionSet = app.NewApiVersionSet($"{apiTitle}")
-            .HasApiVersion(new ApiVersion(1))
+            .HasApiVersion(new ApiVersion(1.0))
             .ReportApiVersions()
             .Build();
 

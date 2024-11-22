@@ -1,37 +1,27 @@
 namespace Core;
 
 /// <summary>
-/// Configuration options for the application.
+/// Configuration options for the application
 /// </summary>
-public class AppOptions
+public sealed class AppOptions
 {
     /// <summary>
-    /// Gets or sets the application name.
+    /// Gets or sets the application name
     /// </summary>
-    public string? Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the service name.
+    /// Gets or sets the application version
     /// </summary>
-    public string? Service { get; set; }
+    public string Version { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the instance identifier.
+    /// Gets or sets the project name
     /// </summary>
-    public string? Instance { get; set; }
+    public string Project { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the application version.
+    /// Gets or sets the generator identifier
     /// </summary>
-    public string? Version { get; set; }
-
-    /// <summary>
-    /// Gets or sets whether to display the application banner. Defaults to true.
-    /// </summary>
-    public bool DisplayBanner { get; set; } = true;
-
-    /// <summary>
-    /// Gets or sets whether to display the version information. Defaults to true.
-    /// </summary>
-    public bool DisplayVersion { get; set; } = true;
+    public int GeneratorId { get; set; }
 }

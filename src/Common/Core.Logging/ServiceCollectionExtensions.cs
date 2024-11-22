@@ -1,103 +1,144 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Core.Logging.Options;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using Serilog.Core;
 using Serilog.Events;
 using Serilog.Filters;
 
 namespace Core.Logging;
 
-public static class Extensions
+/// <summary>
+/// Extension methods for configuring logging in the application
+/// </summary>
+public static class ServiceCollectionExtensions
 {
-    private const string LoggerSectionName = "logger";
+    private const string ConsoleOutputTemplate =
+        "{Timestamp:HH:mm:ss} [{Level:u3}] {Message}{NewLine}{Exception}";
+    private const string FileOutputTemplate =
+        "{Timestamp:HH:mm:ss} [{Level:u3}] ({SourceContext}.{Method}) {Message}{NewLine}{Exception}";
     private const string AppSectionName = "app";
-    internal static readonly LoggingLevelSwitch LoggingLevelSwitch = new();
+    private const string SerilogSectionName = "Serilog";
 
-    public static IHostBuilder UseLogging(
-        this IHostBuilder hostBuilder,
-        Action<HostBuilderContext, LoggerConfiguration> configure,
-        string loggerSectionName = LoggerSectionName,
+    /// <summary>
+    /// Adds Serilog logger configuration to the service collection
+    /// </summary>
+    /// <param name="services">The service collection</param>
+    /// <param name="configuration">Application configuration</param>
+    public static IServiceCollection AddLogger(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
+    {
+        services.Configure<SerilogOptions>(configuration.GetSection(SerilogSectionName));
+        return services;
+    }
+
+    /// <summary>
+    /// Adds the correlation context logging middleware to the application pipeline
+    /// </summary>
+    public static IApplicationBuilder UseContextLogger(this IApplicationBuilder app) =>
+        app.UseMiddleware<CorrelationContextLoggingMiddleware>();
+
+    /// <summary>
+    /// Configures Serilog logging for the web application
+    /// </summary>
+    /// <param name="builder">The web application builder</param>
+    /// <param name="configure">Optional additional logger configuration</param>
+    /// <param name="loggerSectionName">Configuration section name for logger options</param>
+    /// <param name="appSectionName">Configuration section name for application options</param>
+    public static WebApplicationBuilder AddLogging(
+        this WebApplicationBuilder builder,
+        Action<LoggerConfiguration>? configure = null,
+        string loggerSectionName = SerilogSectionName,
         string appSectionName = AppSectionName
-    ) =>
-        hostBuilder
-            .ConfigureServices(services => services.AddSingleton<ILoggingService, LoggingService>())
-            .UseSerilog(
-                (context, loggerConfiguration) =>
+    )
+    {
+        builder.Host.AddLogging(configure, loggerSectionName, appSectionName);
+        return builder;
+    }
+
+    /// <summary>
+    /// Configures Serilog logging for the host
+    /// </summary>
+    private static void AddLogging(
+        this IHostBuilder builder,
+        Action<LoggerConfiguration>? configure = null,
+        string loggerSectionName = SerilogSectionName,
+        string appSectionName = AppSectionName
+    )
+    {
+        builder.UseSerilog(
+            (context, loggerConfiguration) =>
+            {
+                if (string.IsNullOrWhiteSpace(loggerSectionName))
                 {
-                    if (string.IsNullOrWhiteSpace(loggerSectionName))
-                    {
-                        loggerSectionName = LoggerSectionName;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(appSectionName))
-                    {
-                        appSectionName = AppSectionName;
-                    }
-
-                    LoggerOptions loggerOptions = context.Configuration.GetOptions<LoggerOptions>(
-                        loggerSectionName
-                    );
-                    AppOptions appOptions = context.Configuration.GetOptions<AppOptions>(
-                        appSectionName
-                    );
-
-                    MapOptions(
-                        loggerOptions,
-                        appOptions,
-                        loggerConfiguration,
-                        context.HostingEnvironment.EnvironmentName
-                    );
-                    configure?.Invoke(context, loggerConfiguration);
+                    loggerSectionName = SerilogSectionName;
                 }
-            );
 
-    public static IEndpointConventionBuilder MapLogLevelHandler(
-        this IEndpointRouteBuilder builder,
-        string endpointRoute = "~/logging/level"
-    ) => builder.MapPost(endpointRoute, LevelSwitch);
+                if (string.IsNullOrWhiteSpace(appSectionName))
+                {
+                    appSectionName = AppSectionName;
+                }
 
-    private static void MapOptions(
-        LoggerOptions loggerOptions,
+                AppOptions appOptions = context.Configuration.BindOptions<AppOptions>(
+                    appSectionName
+                );
+                SerilogOptions loggerOptions = context.Configuration.BindOptions<SerilogOptions>(
+                    loggerSectionName
+                );
+
+                Configure(
+                    loggerOptions,
+                    appOptions,
+                    loggerConfiguration,
+                    context.HostingEnvironment.EnvironmentName
+                );
+                configure?.Invoke(loggerConfiguration);
+            }
+        );
+    }
+
+    /// <summary>
+    /// Configures Serilog logger with application and environment-specific settings
+    /// </summary>
+    private static void Configure(
+        SerilogOptions serilogOptions,
         AppOptions appOptions,
         LoggerConfiguration loggerConfiguration,
         string environmentName
     )
     {
-        LoggingLevelSwitch.MinimumLevel = GetLogEventLevel(loggerOptions.Level!);
-
-        loggerConfiguration
-            .Enrich.FromLogContext()
-            .MinimumLevel.ControlledBy(LoggingLevelSwitch)
-            .Enrich.WithProperty("Environment", environmentName)
-            .Enrich.WithProperty("Application", appOptions.Service)
-            .Enrich.WithProperty("Instance", appOptions.Instance)
-            .Enrich.WithProperty("Version", appOptions.Version);
-
-        foreach (var (key, value) in loggerOptions.Tags ?? new Dictionary<string, object>())
+        if (serilogOptions.Level != null)
         {
-            loggerConfiguration.Enrich.WithProperty(key, value);
+            LogEventLevel level = GetLogEventLevel(serilogOptions.Level);
+
+            loggerConfiguration
+                .Enrich.FromLogContext()
+                .MinimumLevel.Is(level)
+                .Enrich.WithProperty("Environment", environmentName)
+                .Enrich.WithProperty("Application", appOptions.Name)
+                .Enrich.WithProperty("Version", appOptions.Version);
         }
 
-        foreach (
-            var (key, value) in loggerOptions.MinimumLevelOverrides
-                ?? new Dictionary<string, string>()
-        )
+        if (serilogOptions.Tags != null)
+        {
+            foreach ((string key, object value) in serilogOptions.Tags)
+            {
+                loggerConfiguration.Enrich.WithProperty(key, value);
+            }
+        }
+
+        foreach (var (key, value) in serilogOptions.Overrides)
         {
             LogEventLevel logLevel = GetLogEventLevel(value);
             loggerConfiguration.MinimumLevel.Override(key, logLevel);
         }
 
-        loggerOptions
+        serilogOptions
             .ExcludePaths?.ToList()
             .ForEach(p =>
                 loggerConfiguration.Filter.ByExcluding(
@@ -105,25 +146,28 @@ public static class Extensions
                 )
             );
 
-        loggerOptions
+        serilogOptions
             .ExcludeProperties?.ToList()
             .ForEach(p => loggerConfiguration.Filter.ByExcluding(Matching.WithProperty(p)));
 
-        Configure(loggerConfiguration, loggerOptions);
+        Configure(loggerConfiguration, serilogOptions);
     }
 
-    private static void Configure(LoggerConfiguration loggerConfiguration, LoggerOptions options)
+    /// <summary>
+    /// Configures Serilog sinks based on provided options
+    /// </summary>
+    private static void Configure(LoggerConfiguration loggerConfiguration, SerilogOptions options)
     {
-        ConsoleOptions consoleOptions = options.Console ?? new ConsoleOptions();
-        FileOptions fileOptions = options.File ?? new FileOptions();
-        SeqOptions seqOptions = options.Seq ?? new SeqOptions();
+        ConsoleOptions? consoleOptions = options.Console;
+        FileOptions? fileOptions = options.File;
+        SeqOptions? seqOptions = options.Seq;
 
-        if (consoleOptions.Enabled)
+        if (consoleOptions is { Enabled: true })
         {
-            loggerConfiguration.WriteTo.Console();
+            loggerConfiguration.WriteTo.Console(outputTemplate: ConsoleOutputTemplate);
         }
 
-        if (fileOptions.Enabled)
+        if (fileOptions is { Enabled: true })
         {
             string? path = string.IsNullOrWhiteSpace(fileOptions.Path)
                 ? "logs/logs.txt"
@@ -133,57 +177,29 @@ public static class Extensions
                 interval = RollingInterval.Day;
             }
 
-            loggerConfiguration.WriteTo.File(path, rollingInterval: interval);
+            loggerConfiguration.WriteTo.File(
+                path,
+                rollingInterval: interval,
+                outputTemplate: FileOutputTemplate
+            );
         }
 
-        if (seqOptions is { Enabled: true, Url: not null })
+        if (seqOptions is not { Enabled: true })
+        {
+            return;
+        }
+
+        if (seqOptions.Url != null)
         {
             loggerConfiguration.WriteTo.Seq(seqOptions.Url, apiKey: seqOptions.ApiKey);
         }
     }
 
-    internal static LogEventLevel GetLogEventLevel(string level) =>
+    /// <summary>
+    /// Converts string log level to Serilog LogEventLevel
+    /// </summary>
+    private static LogEventLevel GetLogEventLevel(string level) =>
         Enum.TryParse(level, true, out LogEventLevel logLevel)
             ? logLevel
             : LogEventLevel.Information;
-
-    public static IPlaceBuilder AddCorrelationContextLogging(this IPlaceBuilder builder)
-    {
-        builder.Services.AddTransient<CorrelationContextLoggingMiddleware>();
-
-        return builder;
-    }
-
-    public static IApplicationBuilder UserCorrelationContextLogging(this IApplicationBuilder app)
-    {
-        app.UseMiddleware<CorrelationContextLoggingMiddleware>();
-
-        return app;
-    }
-
-    private static async Task LevelSwitch(HttpContext context)
-    {
-        ILoggingService? service = context.RequestServices.GetService<ILoggingService>();
-        if (service is null)
-        {
-            context.Response.StatusCode = StatusCodes.Status400BadRequest;
-            await context.Response.WriteAsync(
-                "ILoggingService is not registered. Add UseLogging() to your Program.cs."
-            );
-            return;
-        }
-
-        string level = context.Request.Query["level"].ToString();
-
-        if (string.IsNullOrEmpty(level))
-        {
-            context.Response.StatusCode = StatusCodes.Status400BadRequest;
-            await context.Response.WriteAsync("Invalid value for logging level.");
-            return;
-        }
-
-        service.SetLoggingLevel(level);
-
-        context.Response.StatusCode = StatusCodes.Status200OK;
-    }
 }

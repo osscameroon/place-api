@@ -1,16 +1,12 @@
 using System.Reflection;
 using Common.Domain;
 using Common.Mediatr.Behaviours.Logging;
-using Core;
-using Core.Database;
+using Core.Framework;
 using Core.Identity;
-using Core.Logging;
-using Core.Swagger.Docs;
-using Core.Swagger.WebApi;
-using Core.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Profile.API.Infrastructure.Persistence.EF.Configurations;
 
 namespace Profile.API;
@@ -39,24 +35,14 @@ public static class ServiceCollectionExtensions
         WebApplicationBuilder builder
     )
     {
-        builder.Host.UseLogging((context, loggerConfiguration) => { });
-
-        services
-            .AddPlace(builder.Configuration)
-            .AddDatabase(optionsBuilder => optionsBuilder.AddDbContext<ProfileDbContext>())
-            .AddCorrelationContextLogging()
-            .AddWebApiSwaggerDocs()
-            .AddSwaggerDocs()
-            .AddApiVersioning();
+        builder.AddNpgsqlDbContext<ProfileDbContext>("profileDb");
+        builder.AddNpgsqlDbContext<IdentityApplicationDbContext>("identityDb");
     }
 
-    public static IApplicationBuilder UsePlaceServices(this IApplicationBuilder app)
+    public static IApplicationBuilder UsePlaceServices(this WebApplication app)
     {
-        app.UseHttpsRedirection()
-            .UsePlace()
-            .UserCorrelationContextLogging()
-            .UseSwaggerDocs()
-            .UseIdentityConfiguration();
+        app.UseCoreFramework();
+        app.UseIdentityConfiguration();
 
         return app;
     }

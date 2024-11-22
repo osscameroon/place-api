@@ -3,6 +3,7 @@
     <ItemGroup>
         <PackageReference Include="Asp.Versioning.Http" />
         <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" />
+        <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
         <PackageReference Include="CSharpier.MsBuild">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -32,6 +33,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Common\Core.Framework\Core.Framework.csproj" />
         <ProjectReference Include="..\Common\Core.Identity\Core.Identity.csproj" />
         <ProjectReference Include="..\Common\Core.Logging\Core.Logging.csproj" />
         <ProjectReference Include="..\Place.ServiceDefaults\Place.ServiceDefaults.csproj" />

@@ -1,8 +1,8 @@
-using Core;
+using Core.Framework;
 using Core.Identity;
-using Core.Logging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Identity.API;
 
@@ -13,14 +13,12 @@ public static class ServiceCollectionExtensions
         WebApplicationBuilder builder
     )
     {
-        builder.Host.UseLogging((context, loggerConfiguration) => { });
+        builder.AddNpgsqlDbContext<IdentityApplicationDbContext>("identityDb");
         builder
-            .Services.AddPlace(builder.Configuration)
             .AddIdentity()
-            .AddPasswordRules()
+            .Services.AddPasswordRules(builder.Configuration)
             .AddEmailSender()
-            .AddEndpoints()
-            .AddCorrelationContextLogging();
+            .AddEndpoints();
     }
 
     public static void UseHttpSecurity(this IApplicationBuilder app)
@@ -43,12 +41,11 @@ public static class ServiceCollectionExtensions
         );
     }
 
-    public static IApplicationBuilder UsePlaceServices(this IApplicationBuilder app)
+    public static WebApplication UsePlaceServices(this WebApplication app)
     {
-        app.UseHttpsRedirection()
-            .UsePlace()
-            .UserCorrelationContextLogging()
-            .UseIdentityConfiguration();
+        app.UseCoreFramework();
+        app.UseHttpsRedirection();
+        app.UseIdentityConfiguration();
 
         return app;
     }

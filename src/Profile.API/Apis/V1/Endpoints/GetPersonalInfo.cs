@@ -2,7 +2,6 @@
 using System.Net.Mime;
 using System.Threading.Tasks;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +11,11 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Profile.API.Apis.V1.Endpoints;
 
+/// <summary>
+/// Controller for managing profile personal information.
+/// </summary>
 [ApiController]
+[ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/profiles")]
 [Produces(MediaTypeNames.Application.Json)]
 public class GetPersonalInfo(IMediator mediator) : ControllerBase
@@ -20,26 +23,36 @@ public class GetPersonalInfo(IMediator mediator) : ControllerBase
     /// <summary>
     /// Retrieves personal information for a specific profile.
     /// </summary>
-    /// <param name="profileId">The ID of the profile (GUID).</param>
-    /// <returns>Returns the personal information of the profile.</returns>
-    /// <response code="200">Returns the personal information response</response>
-    /// <response code="404">If the profile is not found</response>
+    /// <param name="profileId">The unique identifier of the profile to retrieve information for.</param>
+    /// <returns>An ActionResult containing the personal information or a NotFound response.</returns>
+    /// <response code="200">Returns the personal information for the specified profile</response>
+    /// <response code="404">If the profile with the specified ID cannot be found</response>
     [HttpGet("{profileId:guid}/personal-information")]
     [SwaggerOperation(
-        Summary = "Get personal information",
-        Description = "Fetches the personal information for the specified profile ID.",
+        Summary = "Get personal information for a profile",
+        Description = "Retrieves detailed personal information including contact details and address for the specified profile ID.",
         OperationId = "GetPersonalInformation",
-        Tags = new[] { "Profiles" }
+        Tags = ["Profiles"]
     )]
+    [ProducesResponseType(typeof(PersonalInformationResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     [SwaggerResponse(
         StatusCodes.Status200OK,
         "Personal information retrieved successfully",
-        typeof(PersonalInformationResponse)
+        typeof(PersonalInformationResponse),
+        MediaTypeNames.Application.Json
     )]
-    [SwaggerResponse(StatusCodes.Status404NotFound, "Profile not found", typeof(ProblemDetails))]
+    [SwaggerResponse(
+        StatusCodes.Status404NotFound,
+        "Profile not found",
+        typeof(ProblemDetails),
+        MediaTypeNames.Application.Json
+    )]
     public async Task<
         Results<Ok<PersonalInformationResponse>, NotFound<ProblemDetails>>
-    > GetPersonalInformation(Guid profileId)
+    > GetPersonalInformation(
+        [FromRoute, SwaggerParameter("The GUID of the profile to retrieve")] Guid profileId
+    )
     {
         PersonalInformationViewModel? vm = await mediator.Send(
             new GetPersonalInformationQuery(profileId)
