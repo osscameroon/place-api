@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Logging", "src\Common\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Account.IntegrationTests", "tests\Account.IntegrationTests\Account.IntegrationTests.csproj", "{967AC2B2-7C7A-4037-B2F6-CF9792A69588}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API", "src\Identity.API\Identity.API.csproj", "{E45C393E-2C06-48D6-855F-F6332516BC39}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "src\Identity\Identity.csproj", "{E45C393E-2C06-48D6-855F-F6332516BC39}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Framework", "src\Common\Core.Framework\Core.Framework.csproj", "{EA1DEC1C-397D-48A8-B85D-DC8D6363E0F3}"
 EndProject

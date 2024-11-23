@@ -3,8 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Account.Features.GetPersonalInformation;
-using Account.Profile.Features.GetPersonalInformation;
+using Account.Profile.Features.V1.GetPersonalInformation;
 
 namespace Account.IntegrationTests.Common;
 
@@ -69,10 +68,10 @@ public class ProfileHttpClient : BaseHttpClient
 
     public Task<(
         HttpResponseMessage Response,
-        PersonalInformationResponse? Content
+        GetPersonalInformationEndpoint.PersonalInformationResponse? Content
     )> GetPersonalInformation(Guid profileId)
     {
-        return GetWithResponseAsync<PersonalInformationResponse>(
+        return GetWithResponseAsync<GetPersonalInformationEndpoint.PersonalInformationResponse>(
             $"/api/v1/profiles/{profileId}/personal-information"
         );
     }

@@ -33,4 +33,8 @@
         <ProjectReference Include="..\Common\Core.Web\Core.Web.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Profile\Features\V1\" />
+    </ItemGroup>
+
 </Project>
