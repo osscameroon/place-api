@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 
-namespace Identity.Authenticate.Composition;
-
 public class RouteMetadataService
 {
     private readonly Dictionary<string, string> _routeMetadata = new Dictionary<string, string>();

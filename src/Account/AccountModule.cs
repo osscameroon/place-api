@@ -32,7 +32,6 @@ public static class AccountModule
     )
     {
         app.UseCoreFramework();
-        _ = app.UseIdentityConfiguration();
         app.UseMigration<AccountDbContext>(environment);
         return app;
     }

@@ -1,5 +1,4 @@
 using System;
-using Core.MediatR;
 using Core.Swagger;
 using Core.Versioning;
 using Microsoft.AspNetCore.Builder;
@@ -39,7 +38,27 @@ public static class ServiceCollectionExtensions
     /// <returns>The configured web application</returns>
     public static WebApplication UseCoreFramework(this WebApplication app)
     {
+        app.UseHsts(hsts => hsts.MaxAge(365).IncludeSubdomains());
         app.UseHttpsRedirection();
+
+        app.UseXContentTypeOptions();
+        app.UseReferrerPolicy(opts => opts.NoReferrer());
+        app.UseXXssProtection(options => options.Disabled());
+        app.UseXfo(options => options.Deny());
+        app.UseCsp(opts =>
+            opts.BlockAllMixedContent()
+                .StyleSources(s => s.Self())
+                .StyleSources(s => s.UnsafeInline())
+                .FontSources(s => s.Self())
+                .FormActions(s => s.Self())
+                .FrameAncestors(s => s.Self())
+                .ImageSources(s => s.Self())
+                .ScriptSources(s => s.Self())
+        );
+
+        app.UseAuthentication();
+        app.UseAuthorization();
+
         app.UseSwaggerDocs();
         app.MapControllers();
 

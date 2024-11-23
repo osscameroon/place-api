@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using ApiVersion = Asp.Versioning.ApiVersion;
 
-namespace Identity.Authenticate.Composition;
+namespace Identity;
 
 public static class AuthenticateExtensions
 {

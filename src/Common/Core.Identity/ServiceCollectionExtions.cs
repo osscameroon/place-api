@@ -1,26 +1,16 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Npgsql;
 
 namespace Core.Identity;
 
 public static class ServiceCollectionExtions
 {
     private const string SectionName = "Identity";
-
-    public static async Task<WebApplication> UseIdentityConfiguration(this WebApplication app)
-    {
-        app.UseAuthentication();
-        app.UseAuthorization();
-        // await app.InitializeDatabaseAsync();
-        return app;
-    }
 
     public static WebApplicationBuilder AddIdentity(
         this WebApplicationBuilder builder,

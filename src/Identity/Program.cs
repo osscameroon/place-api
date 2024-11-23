@@ -1,23 +1,20 @@
 using Core.Framework;
 using Identity;
-using Identity.Authenticate.Composition;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.AddCoreFramework();
+IWebHostEnvironment environment = builder.Environment;
 
-
-{
-    builder.Services.RegisterPlace(builder);
-}
+builder.Services.AddIdentityModule(builder);
 
 WebApplication app = builder.Build();
 
 
 {
-    app.UseHttpSecurity();
+    app.UseIdentityModule(environment);
     app.WithAuthenticationEndpoints();
-    app.UsePlaceServices();
     await app.RunAsync();
 }
 
