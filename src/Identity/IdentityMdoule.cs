@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Core.EF;
 using Core.Framework;
 using Core.Identity;
@@ -28,13 +29,15 @@ public static class IdentityMdoule
         return services;
     }
 
-    public static WebApplication UseIdentityModule(
+    public static async Task<WebApplication> UseIdentityModule(
         this WebApplication app,
         IWebHostEnvironment environment
     )
     {
         app.UseCoreFramework();
-        app.UseMigration<IdentityApplicationDbContext>(environment);
+        await app.UseMigrationAsync<IdentityApplicationDbContext>(environment);
+        app.WithAuthenticationEndpoints();
+
         return app;
     }
 }

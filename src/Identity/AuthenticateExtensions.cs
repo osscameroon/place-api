@@ -2,6 +2,7 @@ using Asp.Versioning.Builder;
 using Core.Identity;
 using Identity.Authenticate.Endpoints;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using ApiVersion = Asp.Versioning.ApiVersion;
@@ -22,7 +23,7 @@ public static class AuthenticateExtensions
         RouteGroupBuilder groupBuilder = app.MapGroup("api/v{apiVersion:apiVersion}")
             .WithApiVersionSet(apiVersionSet);
 
-        groupBuilder.MapAuthenticationEndpoints<ApplicationUser>();
+        groupBuilder.MapAuthenticationEndpoints<ApplicationUser>().WithTags("Identity");
 
         return app;
     }

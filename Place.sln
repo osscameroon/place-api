@@ -21,6 +21,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DA61C0F8-3DDC-47E1-93A9-3ACB68AF4AEE}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Packages.props = Directory.Packages.props
+		compose.yaml = compose.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Account", "Account", "{5B48E2F5-D7CC-48EA-94FE-A2F132650C8F}"
@@ -55,6 +56,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.MediatR", "src\Common\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{4B354D87-FCA4-46F3-A64E-76376D3C68C2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{CC68CA38-62BE-4535-9BB4-AB1597AFC90A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Place.API", "src\Place.API\Place.API.csproj", "{C4DD7B27-138C-4DFC-BC57-69BFC70853CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +84,7 @@ Global
 		{5453898F-4A78-4AD6-89B5-BAB204FF67FF} = {25654B5F-D4E9-4019-B307-8759C38E94A8}
 		{5B48E2F5-D7CC-48EA-94FE-A2F132650C8F} = {4B354D87-FCA4-46F3-A64E-76376D3C68C2}
 		{C3F80B30-C2DE-41DC-933A-A24E04827504} = {4B354D87-FCA4-46F3-A64E-76376D3C68C2}
+		{C4DD7B27-138C-4DFC-BC57-69BFC70853CA} = {CC68CA38-62BE-4535-9BB4-AB1597AFC90A}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1DFC8537-6B29-4BB5-8449-1910496DB479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -143,5 +149,9 @@ Global
 		{5453898F-4A78-4AD6-89B5-BAB204FF67FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5453898F-4A78-4AD6-89B5-BAB204FF67FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5453898F-4A78-4AD6-89B5-BAB204FF67FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4DD7B27-138C-4DFC-BC57-69BFC70853CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4DD7B27-138C-4DFC-BC57-69BFC70853CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4DD7B27-138C-4DFC-BC57-69BFC70853CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4DD7B27-138C-4DFC-BC57-69BFC70853CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

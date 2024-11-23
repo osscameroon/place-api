@@ -17,7 +17,7 @@ using Xunit;
 
 namespace Identity.IntegrationTests;
 
-public class IdentityWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAsyncLifetime
+public class IdentityWebAppFactory : WebApplicationFactory<IIdentityRoot>, IAsyncLifetime
 {
     private readonly PostgreSqlContainer _dbContainer;
 

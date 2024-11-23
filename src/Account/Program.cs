@@ -17,6 +17,6 @@ builder.Services.AddCoreMediatR(typeof(AccountModule).Assembly);
 
 WebApplication app = builder.Build();
 
-app.UseAccountModule(environment);
+await app.UseAccountModule(environment);
 
 await app.RunAsync();

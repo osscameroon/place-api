@@ -1,0 +1,6 @@
+﻿services:
+  place.api:
+    image: place.api
+    build:
+      context: .
+      dockerfile: src/Place.API/Dockerfile

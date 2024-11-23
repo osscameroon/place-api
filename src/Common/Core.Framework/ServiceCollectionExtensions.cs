@@ -1,8 +1,10 @@
 using System;
+using Core.Logging;
 using Core.Swagger;
 using Core.Versioning;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace Core.Framework;
 
@@ -21,6 +23,8 @@ public static class ServiceCollectionExtensions
         AppOptions appOptions = builder.Configuration.GetSection("app").BindOptions<AppOptions>();
         AppInfo appInfo = new(appOptions.Name, appOptions.Version);
         builder.Services.AddSingleton(appInfo);
+        builder.AddLogging();
+        builder.Services.AddLogger(builder.Configuration);
 
         RenderLogo(appOptions);
         builder.Services.AddHttpContextAccessor();

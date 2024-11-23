@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Npgsql;
 
 namespace Core.EF;
 
@@ -27,18 +29,27 @@ public static class Extensions
     {
         AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
-        string? b = configuration.GetConnectionString(connectionName);
+        string? connectionString = configuration.GetConnectionString(connectionName);
+        if (string.IsNullOrEmpty(connectionString))
+        {
+            throw new InvalidOperationException($"Connection string '{connectionName}' not found.");
+        }
 
         services.AddDbContext<TContext>(
             (sp, options) =>
             {
-                options.UseNpgsql(
-                    configuration.GetConnectionString(connectionName),
-                    dbOptions =>
-                    {
-                        dbOptions.MigrationsAssembly(typeof(TContext).Assembly.GetName().Name);
-                    }
-                );
+                options
+                    .UseNpgsql(
+                        connectionString,
+                        dbOptions =>
+                        {
+                            dbOptions.MigrationsAssembly(typeof(TContext).Assembly.GetName().Name);
+                            dbOptions.EnableRetryOnFailure(3);
+                        }
+                    )
+                    .EnableSensitiveDataLogging(
+                        sp.GetService<IWebHostEnvironment>()?.IsDevelopment() ?? false
+                    );
             }
         );
 
@@ -47,20 +58,56 @@ public static class Extensions
         return services;
     }
 
-    public static IApplicationBuilder UseMigration<TContext>(
+    public static async Task<IApplicationBuilder> UseMigrationAsync<TContext>(
         this IApplicationBuilder app,
         IWebHostEnvironment env
     )
         where TContext : DbContext, IDbContext
     {
-        MigrateDatabaseAsync<TContext>(app.ApplicationServices).GetAwaiter().GetResult();
+        ILogger<TContext> logger = app.ApplicationServices.GetRequiredService<ILogger<TContext>>();
+
+        await EnsureDatabaseExistsAsync<TContext>(app.ApplicationServices, logger);
+        await MigrateDatabaseAsync<TContext>(app.ApplicationServices, logger);
 
         if (!env.IsEnvironment("test"))
         {
-            SeedDataAsync(app.ApplicationServices).GetAwaiter().GetResult();
+            await SeedDataAsync<TContext>(app.ApplicationServices, logger);
         }
 
         return app;
+    }
+
+    private static async Task EnsureDatabaseExistsAsync<TContext>(
+        IServiceProvider serviceProvider,
+        ILogger logger
+    )
+        where TContext : DbContext, IDbContext
+    {
+        using IServiceScope scope = serviceProvider.CreateScope();
+        TContext context = scope.ServiceProvider.GetRequiredService<TContext>();
+        string? connectionString = context.Database.GetConnectionString();
+
+        try
+        {
+            await context.Database.CanConnectAsync();
+        }
+        catch (PostgresException ex) when (ex.SqlState == "3D000") // Database doesn't exist
+        {
+            logger.LogInformation("Database does not exist. Creating database...");
+
+            NpgsqlConnectionStringBuilder builder = new(connectionString);
+            string? databaseName = builder.Database;
+            builder.Database = "postgres";
+
+            await using NpgsqlConnection masterConnection = new(builder.ToString());
+            await masterConnection.OpenAsync();
+
+            using NpgsqlCommand command = masterConnection.CreateCommand();
+            command.CommandText = $"CREATE DATABASE \"{databaseName}\" ENCODING 'UTF8'";
+
+            await command.ExecuteNonQueryAsync();
+            logger.LogInformation("Database created successfully");
+        }
     }
 
     // ref: https://github.com/pdevito3/MessageBusTestingInMemHarness/blob/main/RecipeManagement/src/RecipeManagement/Databases/RecipesDbContext.cs
@@ -118,7 +165,10 @@ public static class Extensions
         }
     }
 
-    private static async Task MigrateDatabaseAsync<TContext>(IServiceProvider serviceProvider)
+    private static async Task MigrateDatabaseAsync<TContext>(
+        IServiceProvider serviceProvider,
+        ILogger logger
+    )
         where TContext : DbContext, IDbContext
     {
         using IServiceScope scope = serviceProvider.CreateScope();
@@ -126,22 +176,43 @@ public static class Extensions
         TContext context = scope.ServiceProvider.GetRequiredService<TContext>();
         try
         {
+            logger.LogInformation("Applying migrations...");
             await context.Database.MigrateAsync();
         }
         catch (System.Exception e)
         {
-            Console.WriteLine(e);
+            logger.LogError(e, "An error occurred while applying migrations");
             throw;
         }
     }
 
-    private static async Task SeedDataAsync(IServiceProvider serviceProvider)
+    private static async Task SeedDataAsync<TContext>(
+        IServiceProvider serviceProvider,
+        ILogger logger
+    )
+        where TContext : DbContext
     {
         using IServiceScope scope = serviceProvider.CreateScope();
-        IEnumerable<IDataSeeder> seeders = scope.ServiceProvider.GetServices<IDataSeeder>();
-        foreach (IDataSeeder seeder in seeders)
+        IEnumerable<IDataSeeder<TContext>> seeders = scope.ServiceProvider.GetServices<
+            IDataSeeder<TContext>
+        >();
+
+        foreach (IDataSeeder<TContext> seeder in seeders)
         {
-            await seeder.SeedAllAsync();
+            try
+            {
+                logger.LogInformation("Running seeder {SeederType}...", seeder.GetType().Name);
+                await seeder.SeedAllAsync();
+            }
+            catch (Exception e)
+            {
+                logger.LogError(
+                    e,
+                    "An error occurred while running seeder {SeederType}",
+                    seeder.GetType().Name
+                );
+                throw;
+            }
         }
     }
 }
