@@ -10,9 +10,10 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Account.Profile.Features.GetPersonalInformation;
 
+[Route(BaseApiPath + "/account/{profileid:guid}/profile")]
 public class GetPersonalInformationEndpoint : BaseController
 {
-    [HttpGet("{profileId:guid}/personal-information")]
+    [HttpGet]
     [SwaggerOperation(
         Summary = "Get personal information for a profile",
         Description = "Retrieves detailed personal information including contact details and address for the specified profile ID.",
@@ -36,11 +37,11 @@ public class GetPersonalInformationEndpoint : BaseController
     public async Task<
         Results<Ok<PersonalInformationResponse>, NotFound<ProblemDetails>>
     > GetPersonalInformation(
-        [FromRoute, SwaggerParameter("The GUID of the profile to retrieve")] Guid profileId
+        [FromRoute, SwaggerParameter("The GUID of the profile to retrieve")] Guid profileid
     )
     {
         PersonalInformationViewModel? vm = await Mediator.Send(
-            new GetPersonalInformationQuery(profileId)
+            new GetPersonalInformationQuery(profileid)
         );
 
         if (vm is not null)
@@ -67,25 +68,25 @@ public class GetPersonalInformationEndpoint : BaseController
             {
                 Status = StatusCodes.Status404NotFound,
                 Title = "Profile Not Found",
-                Detail = $"Profile with ID {profileId} was not found.",
+                Detail = $"Profile with ID {profileid} was not found.",
                 Instance = HttpContext.Request.Path,
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
             };
 
         return TypedResults.NotFound(problem);
     }
-}
 
-public class PersonalInformationResponse
-{
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
-    public string Email { get; set; } = null!;
-    public string? PhoneNumber { get; set; }
-    public string? Street { get; set; }
-    public string? City { get; set; }
-    public string? ZipCode { get; set; }
-    public string? Country { get; set; }
-    public string? Gender { get; set; }
-    public string FormattedAddress { get; set; } = null!;
+    public class PersonalInformationResponse
+    {
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string Email { get; set; } = null!;
+        public string? PhoneNumber { get; set; }
+        public string? Street { get; set; }
+        public string? City { get; set; }
+        public string? ZipCode { get; set; }
+        public string? Country { get; set; }
+        public string? Gender { get; set; }
+        public string FormattedAddress { get; set; } = null!;
+    }
 }
