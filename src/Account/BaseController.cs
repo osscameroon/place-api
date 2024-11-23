@@ -1,9 +1,8 @@
-﻿using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.Web;
+namespace Account;
 
 [Route(BaseApiPath)]
 [ApiController]

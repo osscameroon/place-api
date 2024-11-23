@@ -30,11 +30,15 @@
         <ProjectReference Include="..\Common\Core.Logging\Core.Logging.csproj"/>
         <ProjectReference Include="..\Common\Core.Swagger\Core.Swagger.csproj"/>
         <ProjectReference Include="..\Common\Core.Versioning\Core.Versioning.csproj"/>
-        <ProjectReference Include="..\Common\Core.Web\Core.Web.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Profile\Features\V1\" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Update="appsettings*.json">
+            <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+        </Content>
     </ItemGroup>
 
 </Project>
