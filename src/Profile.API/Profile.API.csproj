@@ -30,7 +30,6 @@
         <ProjectReference Include="..\Common\Core.Logging\Core.Logging.csproj"/>
         <ProjectReference Include="..\Common\Core.Swagger\Core.Swagger.csproj"/>
         <ProjectReference Include="..\Common\Core.Versioning\Core.Versioning.csproj"/>
-        <ProjectReference Include="..\Place.ServiceDefaults\Place.ServiceDefaults.csproj" />
     </ItemGroup>
 
     <ItemGroup>

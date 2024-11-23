@@ -36,7 +36,6 @@
         <ProjectReference Include="..\Common\Core.Framework\Core.Framework.csproj" />
         <ProjectReference Include="..\Common\Core.Identity\Core.Identity.csproj" />
         <ProjectReference Include="..\Common\Core.Logging\Core.Logging.csproj" />
-        <ProjectReference Include="..\Place.ServiceDefaults\Place.ServiceDefaults.csproj" />
     </ItemGroup>
 
 

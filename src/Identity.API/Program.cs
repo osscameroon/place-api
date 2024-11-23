@@ -2,7 +2,6 @@ using Core.Framework;
 using Identity.API;
 using Identity.API.Authenticate.Composition;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Hosting;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.AddCoreFramework();
@@ -10,7 +9,6 @@ builder.AddCoreFramework();
 
 {
     builder.Services.RegisterPlace(builder);
-    builder.AddServiceDefaults();
 }
 
 WebApplication app = builder.Build();
