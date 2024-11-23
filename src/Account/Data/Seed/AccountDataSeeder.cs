@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Account.Data.Seed;
 
-public class AccountDataSeeder(AccountDbContext context) : IDataSeeder
+public class AccountDataSeeder(AccountDbContext context) : IDataSeeder<AccountDbContext>
 {
     public async Task SeedAllAsync()
     {

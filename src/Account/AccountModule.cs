@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Account.Data.Configurations;
 using Account.Data.Seed;
 using Core.EF;
@@ -22,17 +23,17 @@ public static class AccountModule
             nameof(Core.Identity),
             configuration
         );
-        services.AddScoped<IDataSeeder, AccountDataSeeder>();
+        services.AddScoped<IDataSeeder<AccountDbContext>, AccountDataSeeder>();
         return services;
     }
 
-    public static WebApplication UseAccountModule(
+    public static async Task<WebApplication> UseAccountModule(
         this WebApplication app,
         IWebHostEnvironment environment
     )
     {
         app.UseCoreFramework();
-        app.UseMigration<AccountDbContext>(environment);
+        await app.UseMigrationAsync<AccountDbContext>(environment);
         return app;
     }
 }

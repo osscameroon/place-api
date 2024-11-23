@@ -19,7 +19,7 @@ namespace Account.IntegrationTests.Common;
 [CollectionDefinition(nameof(ProfileApiCollection))]
 public class ProfileApiCollection : ICollectionFixture<ProfileWebAppFactory> { }
 
-public class ProfileWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAsyncLifetime
+public class ProfileWebAppFactory : WebApplicationFactory<IAccountRoot>, IAsyncLifetime
 {
     private readonly PostgreSqlContainer _dbContainer = default!;
     private Respawner? _respawner = default!;

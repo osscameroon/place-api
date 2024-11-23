@@ -13,8 +13,7 @@ WebApplication app = builder.Build();
 
 
 {
-    app.UseIdentityModule(environment);
-    app.WithAuthenticationEndpoints();
+    await app.UseIdentityModule(environment);
     await app.RunAsync();
 }
 
