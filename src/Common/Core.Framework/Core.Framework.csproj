@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+    </PropertyGroup>
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="NWebsec.AspNetCore.Core" />
+        <PackageReference Include="NWebsec.AspNetCore.Middleware" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Core.Logging\Core.Logging.csproj" />
+      <ProjectReference Include="..\Core.MediatR\Core.MediatR.csproj" />
+      <ProjectReference Include="..\Core.Swagger\Core.Swagger.csproj" />
+      <ProjectReference Include="..\Core.Versioning\Core.Versioning.csproj" />
+      <ProjectReference Include="..\Core\Core.csproj" />
+    </ItemGroup>
+
+</Project>

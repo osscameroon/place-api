@@ -19,7 +19,7 @@
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\Common\Common.csproj" />
+      <ProjectReference Include="..\Core.EF\Core.EF.csproj" />
       <ProjectReference Include="..\Core\Core.csproj" />
     </ItemGroup>
 

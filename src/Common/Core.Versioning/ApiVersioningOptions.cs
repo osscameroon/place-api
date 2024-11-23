@@ -1,74 +1,60 @@
-﻿namespace Core.Versioning;
+// ApiVersioningConfiguration.cs
 
-/// <summary>
-/// Represents configuration options for API versioning.
-/// </summary>
-public sealed class ApiVersioningOptions
+using System;
+
+namespace Core.Versioning;
+
+public class ApiVersioningOptions
 {
-    /// <summary>
-    /// Gets or sets whether API versioning is enabled.
-    /// </summary>
-    public bool Enabled { get; set; }
+    public int DefaultApiVersionMajor { get; set; } = 1;
+    public int DefaultApiVersionMinor { get; set; } = 0;
 
-    /// <summary>
-    /// Gets or sets the default API version when not specified.
-    /// Default value is "1.0".
-    /// </summary>
-    public string DefaultVersion { get; set; } = "1.0";
-
-    /// <summary>
-    /// Gets or sets whether to assume the default version when none is specified.
-    /// Default value is true.
-    /// </summary>
     public bool AssumeDefaultVersionWhenUnspecified { get; set; } = true;
-
-    /// <summary>
-    /// Gets or sets whether to report available API versions.
-    /// Default value is true.
-    /// </summary>
     public bool ReportApiVersions { get; set; } = true;
+    public ApiVersionReaderType ApiVersionReaderType { get; set; } = ApiVersionReaderType.Combine;
+    public ApiVersionReaderOptions ReaderOptions { get; set; } = new();
 
-    /// <summary>
-    /// Gets or sets the type of version reader to use.
-    /// Default is UrlSegment.
-    /// </summary>
-    public VersioningType VersionReaderType { get; set; } = VersioningType.UrlSegment;
+    public string GroupNameFormat { get; set; } = "'v'VVV";
 
-    /// <summary>
-    /// Gets or sets the header name for version information when using header-based versioning.
-    /// Default value is "X-Api-Version".
-    /// </summary>
-    public string HeaderName { get; set; } = "X-Api-Version";
+    public bool SubstituteApiVersionInUrl { get; set; } = true;
 
-    /// <summary>
-    /// Gets or sets the query string parameter name for version information.
-    /// Default value is "api-version".
-    /// </summary>
-    public string QueryStringParam { get; set; } = "api-version";
+    public DeprecatedApiVersionOptions DeprecatedVersionOptions { get; set; } = new();
+
+    public ApiExplorerOptions ApiExplorerOptions { get; set; } = new();
 }
 
-/// <summary>
-/// Defines the available types of API version readers.
-/// </summary>
-public enum VersioningType
+public class ApiVersionReaderOptions
 {
-    /// <summary>
-    /// Version is specified in the URL segment.
-    /// </summary>
-    UrlSegment,
+    public string HeaderName { get; set; } = "x-api-version";
+    public string QueryStringParam { get; set; } = "api-version";
+    public string MediaTypeParam { get; set; } = "v";
+}
 
-    /// <summary>
-    /// Version is specified in the query string.
-    /// </summary>
+public enum ApiVersionReaderType
+{
+    Url,
     QueryString,
-
-    /// <summary>
-    /// Version is specified in the header.
-    /// </summary>
     Header,
+    MediaType,
+    Combine,
+}
+
+public class DeprecatedApiVersionOptions
+{
+    public string DeprecationMessage { get; set; } = "Cette version de l'API est obsolète.";
+
+    public DateTime? SunsetDate { get; set; }
 
     /// <summary>
-    /// Version can be specified in URL segment, query string, or header.
+    /// URL vers la documentation concernant la dépréciation
     /// </summary>
-    All,
+    public string DocumentationUrl { get; set; }
+}
+
+public class ApiExplorerOptions
+{
+    public string GroupNameFormat { get; set; } = "'v'VVV";
+    public bool SubstituteApiVersionInUrl { get; set; } = true;
+    public string UrlFormat { get; set; } = "v{version:apiVersion}";
+    public bool AddApiVersionParametersWhenVersionNeutral { get; set; } = true;
 }

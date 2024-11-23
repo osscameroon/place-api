@@ -7,6 +7,10 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+        <PackageReference Include="Microsoft.OpenApi" />
+        <PackageReference Include="Asp.Versioning.Http" />
+        <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\Core\Core.csproj" />

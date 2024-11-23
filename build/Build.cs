@@ -80,21 +80,13 @@ class Build : NukeBuild
                     DotNetTasks.DotNetClean();
                 });
 
-    Target InstallWorkload =>
-        _ =>
-            _.DependsOn(Preparation)
-                .Executes(() =>
-                {
-                    DotNetTasks.DotNetWorkloadRestore();
-                });
-
     /// <summary>
-    /// It will restore all projects workload
+    /// It will restore all projects
     /// Run directyly : cmd> nuke Restore
     /// </summary>
     Target Restore =>
         _ =>
-            _.DependsOn(Clean, InstallWorkload)
+            _.DependsOn(Clean)
                 .Executes(() =>
                 {
                     DotNetTasks.DotNetRestore(a => a.SetProjectFile(Solution));

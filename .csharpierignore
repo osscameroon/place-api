@@ -1,0 +1,3 @@
+Uploads/
+**/App_Data/*.cs
+**/Migrations/*.cs
