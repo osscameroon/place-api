@@ -38,5 +38,11 @@
         <ProjectReference Include="..\Common\Core.Logging\Core.Logging.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Content Update="appsettings*.json">
+            <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+        </Content>
+    </ItemGroup>
+
 
 </Project>

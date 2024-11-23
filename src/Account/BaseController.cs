@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Account.Profile.Features.V1.GetPersonalInformation;
+namespace Account;
 
 [Route(BaseApiPath)]
 [ApiController]

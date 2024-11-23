@@ -4,7 +4,7 @@
     environment:
       POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
-      POSTGRES_DB: ${IDENTITY_DB:-PlaceApiIdentity}
+      POSTGRES_DB: ${IDENTITY_DB:-identity_db}
     ports:
       - "5489:5432"
 
@@ -13,6 +13,6 @@
     environment:
       POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
-      POSTGRES_DB: ${PROFILE_DB:-PlaceApiProfile}
+      POSTGRES_DB: ${PROFILE_DB:-profile_db}
     ports:
       - "5490:5432"
