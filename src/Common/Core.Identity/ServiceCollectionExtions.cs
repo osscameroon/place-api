@@ -18,7 +18,7 @@ public static class ServiceCollectionExtions
     {
         app.UseAuthentication();
         app.UseAuthorization();
-        await app.InitializeDatabaseAsync();
+        // await app.InitializeDatabaseAsync();
         return app;
     }
 

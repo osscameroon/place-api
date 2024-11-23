@@ -1,4 +1,5 @@
 using System;
+using Core.MediatR;
 using Core.Swagger;
 using Core.Versioning;
 using Microsoft.AspNetCore.Builder;
@@ -23,11 +24,11 @@ public static class ServiceCollectionExtensions
         builder.Services.AddSingleton(appInfo);
 
         RenderLogo(appOptions);
+        builder.Services.AddHttpContextAccessor();
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddApiVersioning(builder.Configuration);
         builder.Services.AddSwaggerDocs(builder.Configuration);
-
         return builder;
     }
 
