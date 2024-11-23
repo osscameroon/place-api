@@ -63,6 +63,8 @@ public abstract class BaseHttpClient
 
 public class ProfileHttpClient : BaseHttpClient
 {
+    protected const string BaseApiPath = "api/v1";
+
     public ProfileHttpClient(HttpClient httpClient)
         : base(httpClient) { }
 
@@ -72,7 +74,7 @@ public class ProfileHttpClient : BaseHttpClient
     )> GetPersonalInformation(Guid profileId)
     {
         return GetWithResponseAsync<GetPersonalInformationEndpoint.PersonalInformationResponse>(
-            $"/api/v1/profiles/{profileId}/personal-information"
+            $"/{BaseApiPath}/account/{profileId}/profile"
         );
     }
 }

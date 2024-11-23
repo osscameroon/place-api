@@ -1,12 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.EF;
 using Core.Identity;
 using Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Testcontainers.PostgreSql;
@@ -32,21 +35,23 @@ public class IdentityWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAs
         builder.ConfigureServices(services =>
         {
             services.RemoveAll(typeof(IdentityApplicationDbContext));
-            services.RemoveAll(typeof(DbContextOptions<IdentityApplicationDbContext>));
+            services.RemoveAll<DbContextOptions<IdentityApplicationDbContext>>();
+            services.RemoveAll(typeof(IDbContext));
+            services.RemoveAll(typeof(AppDbContextBase));
 
-            string cs = _dbContainer.GetConnectionString();
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection(
+                    new Dictionary<string, string>
+                    {
+                        { "ConnectionStrings:IdentityTestDb", _dbContainer.GetConnectionString() },
+                    }!
+                )
+                .Build();
 
-            services.AddDbContext<IdentityApplicationDbContext>(options =>
-            {
-                options.UseNpgsql(cs);
-            });
-
-            ServiceProvider sp = services.BuildServiceProvider();
-            using IServiceScope scope = sp.CreateScope();
-            IServiceProvider scopedServices = scope.ServiceProvider;
-            IdentityApplicationDbContext db =
-                scopedServices.GetRequiredService<IdentityApplicationDbContext>();
-            db.Database.EnsureCreated();
+            services.AddPlaceDbContext<IdentityApplicationDbContext>(
+                "IdentityTestDb",
+                configuration
+            );
 
             ServiceDescriptor? identityBuilder = services.SingleOrDefault(d =>
                 d.ServiceType == typeof(IdentityBuilder)

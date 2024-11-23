@@ -1,9 +1,13 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Account;
 using Account.Data.Configurations;
+using Core.EF;
+using Core.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
@@ -43,12 +47,21 @@ public class ProfileWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAsy
         builder.ConfigureServices(services =>
         {
             services.RemoveAll(typeof(DbContextOptions<AccountDbContext>));
+            services.RemoveAll(typeof(AccountDbContext));
+            services.RemoveAll<DbContextOptions<AccountDbContext>>();
+            services.RemoveAll(typeof(IDbContext));
+            services.RemoveAll(typeof(AppDbContextBase));
 
-            services.AddDbContext<AccountDbContext>(options =>
-                options.UseNpgsql(_dbContainer.GetConnectionString())
-            );
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection(
+                    new Dictionary<string, string>
+                    {
+                        { "ConnectionStrings:AccountTestDb", _dbContainer.GetConnectionString() },
+                    }!
+                )
+                .Build();
 
-            services.AddScoped<TestDataSeeder>();
+            services.AddPlaceDbContext<AccountDbContext>("AccountTestDb", configuration);
         });
     }
 
@@ -68,9 +81,6 @@ public class ProfileWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAsy
     public async Task InitializeAsync()
     {
         await _dbContainer.StartAsync();
-        using IServiceScope scope = Services.CreateScope();
-        AccountDbContext context = scope.ServiceProvider.GetRequiredService<AccountDbContext>();
-        await context.Database.MigrateAsync();
     }
 
     public new async Task DisposeAsync()
