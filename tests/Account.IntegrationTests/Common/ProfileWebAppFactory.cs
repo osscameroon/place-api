@@ -62,6 +62,7 @@ public class ProfileWebAppFactory : WebApplicationFactory<IAssemblyMarker>, IAsy
                 .Build();
 
             services.AddPlaceDbContext<AccountDbContext>("AccountTestDb", configuration);
+            services.AddScoped<TestDataSeeder>();
         });
     }
 
