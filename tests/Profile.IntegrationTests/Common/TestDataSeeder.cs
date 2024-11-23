@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
+using Account.Domain.Profile;
+using Account.Infrastructure.Persistence.EF.Configurations;
+using Account.Infrastructure.Persistence.EF.Models;
 using Microsoft.EntityFrameworkCore;
-using Profile.API.Domain.Profile;
-using Profile.API.Infrastructure.Persistence.EF.Configurations;
-using Profile.API.Infrastructure.Persistence.EF.Models;
 
 namespace Profile.IntegrationTests.Common;
 

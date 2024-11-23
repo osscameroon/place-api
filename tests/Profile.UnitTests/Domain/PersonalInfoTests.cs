@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
+using Account.Domain.Profile;
 using FluentAssertions;
-using Profile.API.Domain.Profile;
 
 namespace Profile.UnitTests.Domain;
 

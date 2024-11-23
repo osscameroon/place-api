@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Account.Infrastructure.Persistence.EF.Models;
-using Common.Mediatr.Behaviours.Logging;
 
 namespace Account.Application.Queries.GetPersonalInformation;
 
@@ -13,61 +12,47 @@ namespace Account.Application.Queries.GetPersonalInformation;
 /// The view model handles formatting of address components and provides null-safe access to profile properties.
 /// Address formatting follows the pattern: "Street, ZipCode City, Country" with flexible handling of missing components.
 /// </remarks>
-public sealed class PersonalInformationViewModel : LoggableResponse
+public sealed class PersonalInformationViewModel
 {
     /// <summary>
     /// Gets the user's first name. May be null if not provided.
     /// </summary>
     ///
-    [Loggable(IsSensitive = true)]
-    [LogMask(Strategy = MaskingStrategy.PartialStart)]
     public string? FirstName { get; }
 
     /// <summary>
     /// Gets the user's last name. May be null if not provided.
     /// </summary>
-    [Loggable(IsSensitive = true)]
-    [LogMask(Strategy = MaskingStrategy.PartialStart)]
     public string? LastName { get; }
 
     /// <summary>
     /// Gets the user's email address.
     /// </summary>
-    [Loggable(IsSensitive = true)]
-    [LogMask(Strategy = MaskingStrategy.EmailDomain)]
     public string Email { get; }
 
     /// <summary>
     /// Gets the user's phone number. May be null if not provided.
     /// </summary>
-    [Loggable(IsSensitive = true)]
-    [LogMask(Strategy = MaskingStrategy.PhoneCountryCode)]
     public string? PhoneNumber { get; }
 
     /// <summary>
     /// Gets the street address. May be null if not provided.
     /// </summary>
-    [Loggable(IsSensitive = true)]
-    [LogMask(Strategy = MaskingStrategy.PartialStart)]
     public string? Street { get; }
 
     /// <summary>
     /// Gets the city name. May be null if not provided.
     /// </summary>
-    [Loggable]
     public string? City { get; }
 
     /// <summary>
     /// Gets the postal/zip code. May be null if not provided.
     /// </summary>
-    [Loggable(IsSensitive = true)]
-    [LogMask(Strategy = MaskingStrategy.PartialStart)]
     public string? ZipCode { get; }
 
     /// <summary>
     /// Gets the country name. May be null if not provided.
     /// </summary>
-    [Loggable]
     public string? Country { get; }
 
     /// <summary>
@@ -75,7 +60,6 @@ public sealed class PersonalInformationViewModel : LoggableResponse
     /// Converted from the profile's Gender enum to string representation.
     /// </summary>
     ///
-    [Loggable]
     public string? Gender { get; }
 
     /// <summary>

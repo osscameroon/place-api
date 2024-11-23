@@ -1,5 +1,3 @@
-using MediatR;
-
-namespace BuildingBlocks.Domain.Event;
+namespace Common.Domain.Event;
 
 public interface IDomainEvent : IEvent { }

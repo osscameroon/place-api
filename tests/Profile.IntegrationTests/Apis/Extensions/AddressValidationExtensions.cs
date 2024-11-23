@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Account.Apis.V1.Responses;
+using Account.Infrastructure.Persistence.EF.Models;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using Profile.API.Apis.V1.Responses;
-using Profile.API.Infrastructure.Persistence.EF.Models;
 
 namespace Profile.IntegrationTests.Apis.Extensions;
 

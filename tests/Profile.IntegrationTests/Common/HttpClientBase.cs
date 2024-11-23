@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Profile.API.Apis.V1.Responses;
+using Account.Apis.V1.Responses;
 
 namespace Profile.IntegrationTests.Common;
 

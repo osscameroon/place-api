@@ -1,7 +1,7 @@
 using ErrorOr;
 using FluentAssertions;
 using PhoneNumbers;
-using PhoneNumber = Profile.API.Domain.Profile.PhoneNumber;
+using PhoneNumber = Account.Domain.Profile.PhoneNumber;
 
 namespace Profile.UnitTests.Domain;
 

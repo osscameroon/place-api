@@ -1,6 +1,6 @@
+using Account.Domain.Profile;
 using ErrorOr;
 using FluentAssertions;
-using Profile.API.Domain.Profile;
 
 namespace Profile.UnitTests.Domain;
 

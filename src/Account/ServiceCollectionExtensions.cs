@@ -1,36 +1,17 @@
-using System.Reflection;
-using Common.Domain;
-using Common.Domain.Event;
-using Common.Mediatr.Behaviours.Logging;
+using Account.Infrastructure.Persistence.EF.Configurations;
+using Core.EF;
 using Core.Framework;
 using Core.Identity;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Profile.API.Infrastructure.Persistence.EF.Configurations;
 
-namespace Profile.API;
+namespace Account;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection RegisterMediatr(this IServiceCollection services)
-    {
-        Assembly[] assemblies = new[]
-        {
-            Assembly.GetExecutingAssembly(),
-            typeof(IDomainEvent).Assembly,
-        };
-
-        services.AddMediatR(cfg =>
-        {
-            cfg.RegisterServicesFromAssemblies(assemblies);
-            cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-        });
-
-        return services;
-    }
-
     public static void RegisterPlace(
         this IServiceCollection services,
         WebApplicationBuilder builder
@@ -45,6 +26,24 @@ public static class ServiceCollectionExtensions
         app.UseCoreFramework();
         app.UseIdentityConfiguration();
 
+        return app;
+    }
+
+    public static IServiceCollection AddAccountModule(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
+    {
+        services.AddPlaceDbContext<ProfileDbContext>(nameof(Account), configuration);
+        return services;
+    }
+
+    public static IApplicationBuilder UseAccountModule(
+        this IApplicationBuilder app,
+        IWebHostEnvironment environment
+    )
+    {
+        app.UseMigration<ProfileDbContext>(environment);
         return app;
     }
 }

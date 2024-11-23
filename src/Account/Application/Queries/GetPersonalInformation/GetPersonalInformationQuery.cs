@@ -3,14 +3,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Account.Infrastructure.Persistence.EF.Configurations;
 using Account.Infrastructure.Persistence.EF.Models;
-using Common.Mediatr.Behaviours.Logging;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace Account.Application.Queries.GetPersonalInformation;
 
-[Loggable]
 public sealed record GetPersonalInformationQuery : IRequest<PersonalInformationViewModel?>
 {
     public GetPersonalInformationQuery(Guid ProfileId)
@@ -18,7 +15,6 @@ public sealed record GetPersonalInformationQuery : IRequest<PersonalInformationV
         this.ProfileId = ProfileId;
     }
 
-    [Loggable]
     public Guid ProfileId { get; init; }
 }
 

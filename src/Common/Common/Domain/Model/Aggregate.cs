@@ -1,30 +1,30 @@
-﻿using BuildingBlocks.Domain.Event;
+﻿using System.Collections.Generic;
+using Common.Domain.Event;
 
-namespace BuildingBlocks.Domain.Model
+namespace Common.Domain.Model;
+
+public abstract class Aggregate : Aggregate<long> { }
+
+public abstract class Aggregate<TId> : Entity, IAggregate<TId>
 {
-    public abstract class Aggregate : Aggregate<long> { }
+    private readonly List<IDomainEvent> _domainEvents = new();
+    public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
-    public abstract class Aggregate<TId> : Entity, IAggregate<TId>
+    public void AddDomainEvent(IDomainEvent domainEvent)
     {
-        private readonly List<IDomainEvent> _domainEvents = new();
-        public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
-
-        public void AddDomainEvent(IDomainEvent domainEvent)
-        {
-            _domainEvents.Add(domainEvent);
-        }
-
-        public IEvent[] ClearDomainEvents()
-        {
-            IEvent[] dequeuedEvents = _domainEvents.ToArray();
-
-            _domainEvents.Clear();
-
-            return dequeuedEvents;
-        }
-
-        public long Version { get; set; } = -1;
-
-        public TId Id { get; protected set; }
+        _domainEvents.Add(domainEvent);
     }
+
+    public IEvent[] ClearDomainEvents()
+    {
+        IEvent[] dequeuedEvents = _domainEvents.ToArray();
+
+        _domainEvents.Clear();
+
+        return dequeuedEvents;
+    }
+
+    public long Version { get; set; } = -1;
+
+    public TId Id { get; protected set; }
 }

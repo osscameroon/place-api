@@ -1,6 +1,6 @@
 // ProfileTestCase.cs
 
-using Profile.API.Domain.Profile;
+using Account.Domain.Profile;
 
 namespace Profile.IntegrationTests.Common;
 

@@ -1,7 +1,7 @@
-using MassTransit;
+using System;
 using MediatR;
 
-namespace BuildingBlocks.Domain.Event;
+namespace Common.Domain.Event;
 
 public interface IEvent : INotification
 {

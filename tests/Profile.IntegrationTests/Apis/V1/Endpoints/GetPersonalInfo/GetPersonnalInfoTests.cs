@@ -1,9 +1,9 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Profile.API.Apis.V1.Responses;
-using Profile.API.Domain.Profile;
-using Profile.API.Infrastructure.Persistence.EF.Models;
+using Account.Apis.V1.Responses;
+using Account.Domain.Profile;
+using Account.Infrastructure.Persistence.EF.Models;
 using Profile.IntegrationTests.Apis.Extensions;
 using Profile.IntegrationTests.Common;
 

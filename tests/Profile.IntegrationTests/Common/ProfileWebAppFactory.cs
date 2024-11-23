@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
+using Account;
+using Account.Infrastructure.Persistence.EF.Configurations;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
-using Profile.API;
-using Profile.API.Infrastructure.Persistence.EF.Configurations;
 using Respawn;
 using Testcontainers.PostgreSql;
 

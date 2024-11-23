@@ -6,14 +6,18 @@ namespace Account.Domain.Profile;
 /// <summary>
 /// Represents the strongly-typed identifier for a Profile aggregate.
 /// </summary>
-public sealed record UserProfileId : AggregateRootId<Guid>
+public sealed record UserProfileId
 {
+    public Guid Value { get; }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="UserProfileId"/> class.
     /// </summary>
     /// <param name="value">The underlying ID value.</param>
     public UserProfileId(Guid value)
-        : base(value) { }
+    {
+        Value = value;
+    }
 
     /// <summary>
     /// Creates a new profile ID.
@@ -29,4 +33,6 @@ public sealed record UserProfileId : AggregateRootId<Guid>
     /// Explicitly converts a ProfileId to a GUID.
     /// </summary>
     public static explicit operator Guid(UserProfileId id) => id.Value;
+
+    public override string ToString() => Value.ToString();
 }

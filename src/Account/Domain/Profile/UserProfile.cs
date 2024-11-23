@@ -1,16 +1,13 @@
 using System;
-using Common.Domain;
+using Common.Domain.Model;
 using ErrorOr;
 
-namespace Profile.API.Domain.Profile;
+namespace Account.Domain.Profile;
 
 /// <summary>
 /// Represents a user profile as an aggregate root.
 /// </summary>
-public sealed class UserProfile
-    : AggregateRoot<UserProfileId, Guid>,
-        IAuditableEntity,
-        ISoftDeletableEntity
+public sealed class UserProfile : Aggregate<UserProfileId>
 {
     /// <summary>
     /// Gets the identifier of the user who owns this profile.
@@ -62,8 +59,8 @@ public sealed class UserProfile
         DateTime createdAt,
         Guid createdBy
     )
-        : base(id)
     {
+        Id = id;
         UserId = userId;
         Email = email;
         PersonalInfo = personalInfo;

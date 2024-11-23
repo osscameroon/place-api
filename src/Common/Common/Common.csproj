@@ -31,5 +31,8 @@
         <PackageReference Include="Serilog.Sinks.Seq"/>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Mediatr\" />
+    </ItemGroup>
 
 </Project>

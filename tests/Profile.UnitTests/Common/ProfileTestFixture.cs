@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Profile.API.Domain.Profile;
-using Profile.API.Infrastructure.Persistence.EF.Models;
+using Account.Domain.Profile;
+using Account.Infrastructure.Persistence.EF.Models;
 
 namespace Profile.UnitTests.Common;
 

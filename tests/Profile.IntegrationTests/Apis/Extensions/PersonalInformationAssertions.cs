@@ -1,11 +1,11 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Account.Apis.V1.Responses;
+using Account.Domain.Profile;
+using Account.Infrastructure.Persistence.EF.Models;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using Profile.API.Apis.V1.Responses;
-using Profile.API.Domain.Profile;
-using Profile.API.Infrastructure.Persistence.EF.Models;
 
 namespace Profile.IntegrationTests.Apis.Extensions;
 

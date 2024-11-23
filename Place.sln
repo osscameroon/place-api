@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.IntegrationTests",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuke", "nuke", "{15EAF5F3-93D9-4643-BD17-13E75B1BCA55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profile.API", "src\Profile.API\Profile.API.csproj", "{69B31787-CBE3-4009-B7AA-E261200F93E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Account", "src\Account\Account.csproj", "{69B31787-CBE3-4009-B7AA-E261200F93E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DA61C0F8-3DDC-47E1-93A9-3ACB68AF4AEE}"
 	ProjectSection(SolutionItems) = preProject
@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API", "src\Identit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Framework", "src\Common\Core.Framework\Core.Framework.csproj", "{EA1DEC1C-397D-48A8-B85D-DC8D6363E0F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.EF", "src\Common\Core.EF\Core.EF.csproj", "{7C3BC55D-F1DC-4CF8-9376-7941D59228AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,7 @@ Global
 		{967AC2B2-7C7A-4037-B2F6-CF9792A69588} = {5B48E2F5-D7CC-48EA-94FE-A2F132650C8F}
 		{E45C393E-2C06-48D6-855F-F6332516BC39} = {C3F80B30-C2DE-41DC-933A-A24E04827504}
 		{EA1DEC1C-397D-48A8-B85D-DC8D6363E0F3} = {25654B5F-D4E9-4019-B307-8759C38E94A8}
+		{7C3BC55D-F1DC-4CF8-9376-7941D59228AD} = {25654B5F-D4E9-4019-B307-8759C38E94A8}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1DFC8537-6B29-4BB5-8449-1910496DB479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -131,5 +134,9 @@ Global
 		{EA1DEC1C-397D-48A8-B85D-DC8D6363E0F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA1DEC1C-397D-48A8-B85D-DC8D6363E0F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA1DEC1C-397D-48A8-B85D-DC8D6363E0F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C3BC55D-F1DC-4CF8-9376-7941D59228AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C3BC55D-F1DC-4CF8-9376-7941D59228AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C3BC55D-F1DC-4CF8-9376-7941D59228AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C3BC55D-F1DC-4CF8-9376-7941D59228AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

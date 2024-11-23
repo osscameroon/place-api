@@ -23,7 +23,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\Common\Common\Common.csproj" />
-      <ProjectReference Include="..\..\src\Profile.API\Profile.API.csproj" />
+      <ProjectReference Include="..\..\src\Account\Account.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Application\Queries\GetPersonalInformation\" />
     </ItemGroup>
 
 </Project>
