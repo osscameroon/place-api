@@ -22,7 +22,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Common\Common\Common.csproj" />
       <ProjectReference Include="..\..\src\Account\Account.csproj" />
     </ItemGroup>
 

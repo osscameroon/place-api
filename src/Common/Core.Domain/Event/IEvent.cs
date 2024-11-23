@@ -1,7 +1,6 @@
-using System;
 using MediatR;
 
-namespace Common.Domain.Event;
+namespace Core.Domain.Event;
 
 public interface IEvent : INotification
 {

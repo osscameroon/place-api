@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Common.Domain.Event;
+using Core.Domain.Event;
 
 namespace Common.Domain.Model;
 
