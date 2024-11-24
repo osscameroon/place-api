@@ -62,11 +62,11 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          VERSION=${{ inputs.version }}
           make docker RUNTIME=${{ env.RUNTIME }} \
-            DOCKER_TAG=${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${VERSION}
+            DOCKER_TAG=${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${inputs.version} \
+            VERSION=${{ inputs.version }}
 
           # Tag and push latest
-          docker tag ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64 \
+          docker tag ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${{ inputs.version }}-x64 \
             ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:latest
           docker push ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:latest
