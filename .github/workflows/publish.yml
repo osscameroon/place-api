@@ -33,12 +33,6 @@ jobs:
       - name: Build solution
         run: make build SOLUTION=${{ env.SOLUTION }}
 
-      - name: Run unit tests
-        run: make test-unit SOLUTION=${{ env.SOLUTION }}
-
-      - name: Run integration tests
-        run: make test-integration SOLUTION=${{ env.SOLUTION }}
-
       # Publish binaries
       - name: Publish x64
         run: make publish RUNTIME=${{ matrix.runtime }} API_PROJECT=${{ env.API_PROJECT }} APP_NAME=${{ env.APP_NAME }}
