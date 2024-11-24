@@ -91,7 +91,7 @@ jobs:
 
       # Publish binaries
       - name: Publish x64
-        run: make publish RUNTIME=linux-musl-x64 API_PROJECT=${{ env.API_PROJECT }} APP_NAME=${{ env.APP_NAME }}
+        run: make publish RUNTIME=linux-x64 API_PROJECT=${{ env.API_PROJECT }} APP_NAME=${{ env.APP_NAME }}
         env:
           PUBLISH_OUTPUT: ./publish/x64
 
@@ -126,7 +126,7 @@ jobs:
       - name: Build and Push x64 Docker image
         run: |
           VERSION=${{ needs.release.outputs.new_release_version }}
-          make docker RUNTIME=linux-musl-x64 APP_NAME=${{ env.APP_NAME }} \
+          make docker RUNTIME=linux-x64 APP_NAME=${{ env.APP_NAME }} \
             DOCKER_TAG=ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}
           docker tag ${{ env.APP_NAME }}-x64 ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64
           docker push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64
