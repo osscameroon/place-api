@@ -1,0 +1,19 @@
+name: Check Runner Runtime
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check-runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Runtime Info
+        run: |
+          echo "===== System Info ====="
+          uname -a
+          echo ""
+          echo "===== CPU Info ====="
+          lscpu
+          echo ""
+          echo "===== OS Release ====="
+          cat /etc/os-release
