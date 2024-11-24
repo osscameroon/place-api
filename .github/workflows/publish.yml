@@ -1,40 +1,65 @@
-name: publish
+name: Publish Release
 
 on:
-  push:
-    branches: [ develop ]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 1.0.0)'
+        required: true
+        type: string
 
 env:
-  DOTNET_VERSION: '9.0.100'
   APP_NAME: Place.API
   SOLUTION: Place.sln
   API_PROJECT: src/Place.API/Place.API.csproj
+  RUNTIME: linux-musl-x64
 
 jobs:
   publish:
-    strategy:
-      matrix:
-        os: [macos-latest ]
-        include:
-          - os: macos-latest
-            runtime: osx-arm64
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    
     steps:
       - uses: actions/checkout@v4
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v4
+
+      - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-version: '9.0.x'
+      
+      - name: Publish
+        run: make publish RUNTIME=${{ env.RUNTIME }} API_PROJECT=${{ env.API_PROJECT }} APP_NAME=${{ env.APP_NAME }}
 
-      # Build and Test
-      - name: Restore dependencies
-        run: make restore SOLUTION=${{ env.SOLUTION }}
+      - name: Create ZIP file
+        run: |
+          cd publish
+          zip -r ../${{ env.APP_NAME }}-${{ env.RUNTIME }}.zip ${{ env.RUNTIME }}/*
 
-      - name: Build solution
-        run: make build SOLUTION=${{ env.SOLUTION }}
-
-      # Publish binaries
-      - name: Publish x64
-        run: make publish RUNTIME=${{ matrix.runtime }} API_PROJECT=${{ env.API_PROJECT }} APP_NAME=${{ env.APP_NAME }}
+      - name: Upload Release Asset
         env:
-          PUBLISH_OUTPUT: ./publish/arm64
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload ${{ inputs.version }} \
+            ${{ env.APP_NAME }}-${{ env.RUNTIME }}.zip \
+            --clobber
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push Docker Image
+        run: |
+          make docker RUNTIME=${{ env.RUNTIME }} \
+            DOCKER_TAG=ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${{ inputs.version }}
+
+          # Tag and push latest
+          docker tag ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${{ inputs.version }}-x64 \
+            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest
+          docker push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest
