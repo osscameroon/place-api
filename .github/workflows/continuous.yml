@@ -11,6 +11,11 @@ on:
       - '.gitignore'
       - 'docs/**'
 
+env:
+  SOLUTION: Place.sln
+  API_PROJECT: src/Place.API/Place.API.csproj
+  APP_NAME: Place.API
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -20,6 +25,7 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
+          cache: true
 
       - name: Cache .NET tools
         uses: actions/cache@v4
@@ -27,11 +33,11 @@ jobs:
           path: ~/.dotnet/tools
           key: ${{ runner.os }}-dotnet-tools-${{ hashFiles('.config/dotnet-tools.json') }}
 
-      - name: Install linting tools
-        run: dotnet tool restore
-
-      - name: Validate code linting
-        run: dotnet dotnet-csharpier --check .
+      - name: Install and run linting
+        run: |
+          make restore
+          make dotnet tool restore
+          dotnet dotnet-csharpier --check .
 
   build_and_test:
     needs: lint
@@ -45,26 +51,27 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
+          cache: true
 
       - name: Cache NuGet packages
         uses: actions/cache@v4
         with:
           path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/*.props', '**/*.targets') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
 
       - name: Restore dependencies
-        run: dotnet clean && dotnet restore
+        run: make restore SOLUTION=${{ env.SOLUTION }}
 
       - name: Build
-        run: dotnet build --no-restore --configuration Release
+        run: make build SOLUTION=${{ env.SOLUTION }}
 
       - name: Run unit tests
-        run: dotnet test --no-build --filter "Category=Unit" --configuration Release --verbosity minimal --logger "trx;LogFileName=unit_tests.trx"
+        run: make test-unit SOLUTION=${{ env.SOLUTION }}
 
       - name: Run integration tests
-        run: dotnet test --no-build --filter "Category=Integration" --configuration Release --verbosity minimal --logger "trx;LogFileName=integration_tests.trx"
+        run: make test-integration SOLUTION=${{ env.SOLUTION }}
 
       - name: Test Report
         uses: dorny/test-reporter@v1
@@ -82,9 +89,14 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
         with:
-          name: app-build
+          name: ${{ env.APP_NAME }}-build
           path: |
-            **/bin/**/*.dll
-            **/bin/**/*.exe
-            **/bin/**/*.pdb
+            **/bin/Release/**/*.dll
+            **/bin/Release/**/*.exe
+            **/bin/Release/**/*.pdb
             !**/bin/**/ref/**
+          compression-level: 9
+
+      - name: Cleanup
+        if: always()
+        run: make clean SOLUTION=${{ env.SOLUTION }}
