@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
-          cache: true
+          cache: false  # Désactivé car pas de packages.lock.json
 
       - name: Cache .NET tools
         uses: actions/cache@v4
@@ -36,7 +36,7 @@ jobs:
       - name: Install and run linting
         run: |
           make restore
-          make dotnet tool restore
+          dotnet tool restore
           dotnet dotnet-csharpier --check .
 
   build_and_test:
@@ -51,7 +51,7 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
-          cache: true
+          cache: false  # Désactivé car pas de packages.lock.json
 
       - name: Cache NuGet packages
         uses: actions/cache@v4
