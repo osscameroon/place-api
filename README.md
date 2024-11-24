@@ -17,7 +17,7 @@ Place provides a complete solution for event management and promotion, helping u
 
 For local development you will need:
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/fr-fr/download/dotnet/8.0)
+- [.NET 9 SDK](https://dotnet.microsoft.com/fr-fr/download/dotnet/9.0)
 - [Docker](https://www.docker.com/products/docker-desktop/) for running databases and containerization
 - [Make](https://www.gnu.org/software/make/) for running development commands
 
