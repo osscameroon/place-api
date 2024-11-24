@@ -1,10 +1,11 @@
 name: Continuous Integration
 
 on:
+  workflow_dispatch:
   push:
-    branches: [main, develop]
+    branches: [main]
   pull_request:
-    branches: [main, develop]
+    branches: [main]
 
 env:
   SOLUTION: Place.sln

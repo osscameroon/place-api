@@ -107,7 +107,8 @@ clean:
  
 restore: clean
 	@echo "$(YELLOW)📦 Restoring NuGet packages...$(NC)"
-	dotnet restore $(SOLUTION)
+	@echo "$(BLUE)🔄  Restoring runtime-specific dependencies for $(RUNTIME)...$(NC)"
+	dotnet restore $(SOLUTION) -r $(RUNTIME)
 	@echo "$(GREEN)✅  Restore completed$(NC)"
 
 build: restore
@@ -173,6 +174,7 @@ test-debug:
 
 publish: build
 	@echo "$(YELLOW)📦  Publishing $(APP_NAME) for $(RUNTIME)...$(NC)"
+	@echo "$(BLUE)🚀  Building single file application...$(NC)"
 	dotnet publish $(API_PROJECT) \
 		-c Release \
 		-o $(PUBLISH_OUTPUT)/$(RUNTIME) \
