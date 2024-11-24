@@ -13,7 +13,7 @@ env:
   SOLUTION: Place.sln
   API_PROJECT: src/Place.API/Place.API.csproj
   RUNTIME: linux-x64
-  DOCKER_REPO: ${{ secrets.PLACE_DOCKER_REPO }}
+  DOCKER_REPO: ${{ secrets.PLACE_DOCKER_HUB_REPO }}
 
 jobs:
   publish:
