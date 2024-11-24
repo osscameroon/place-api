@@ -2,6 +2,18 @@
 
 *All notable changes to this project will be documented in this file.*
 
+# [2.0.0](https://github.com/osscameroon/Place/compare/v1.0.3...v2.0.0) (2024-11-24)
+
+
+### Features
+
+* force new release ([6ec7031](https://github.com/osscameroon/Place/commit/6ec7031720e5627fe4a9fcd8e58e9268c4f4005e))
+
+
+### BREAKING CHANGES
+
+* Testing release pipeline
+
 ## [1.0.3](https://github.com/osscameroon/Place/compare/v1.0.2...v1.0.3) (2024-11-24)
 
 
