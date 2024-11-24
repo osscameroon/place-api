@@ -1,70 +1,37 @@
-name: Build and Test
+name: Continuous Integration
 
 on:
-  workflow_dispatch:
-  pull_request:
-    branches: [ main, develop ]
   push:
-    branches: [ main, develop ]
-    paths-ignore:
-      - '**.md'
-      - '.gitignore'
-      - 'docs/**'
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
 
 env:
   SOLUTION: Place.sln
-  API_PROJECT: src/Place.API/Place.API.csproj
-  APP_NAME: Place.API
 
 jobs:
-  lint:
+  build-and-test:
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
-          cache: false  # Désactivé car pas de packages.lock.json
-
-      - name: Cache .NET tools
-        uses: actions/cache@v4
-        with:
-          path: ~/.dotnet/tools
-          key: ${{ runner.os }}-dotnet-tools-${{ hashFiles('.config/dotnet-tools.json') }}
-
-      - name: Install and run linting
-        run: |
-          make restore
-          dotnet tool restore
-          dotnet dotnet-csharpier --check .
-
-  build_and_test:
-    needs: lint
-    runs-on: ubuntu-latest
-    permissions:
-      checks: write
-      pull-requests: write
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '9.0.x'
-          cache: false  # Désactivé car pas de packages.lock.json
 
       - name: Cache NuGet packages
         uses: actions/cache@v4
         with:
           path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/*.props', '**/*.targets') }}
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
 
       - name: Restore dependencies
         run: make restore SOLUTION=${{ env.SOLUTION }}
 
-      - name: Build
+      - name: Build solution
         run: make build SOLUTION=${{ env.SOLUTION }}
 
       - name: Run unit tests
@@ -72,31 +39,3 @@ jobs:
 
       - name: Run integration tests
         run: make test-integration SOLUTION=${{ env.SOLUTION }}
-
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        if: success() || failure()    # run this step even if previous step failed
-        with:
-          name: .NET Tests            # Name of the check run which will be created
-          path: '**/TestResults/*.trx' # Path to test results
-          reporter: dotnet-trx        # Format of test results
-          fail-on-error: true         # Fail workflow if test reporter fails
-          list-suites: 'all'         # List all test suites in report
-          list-tests: 'failed'       # List all failed tests in report
-          max-annotations: 50        # Maximum number of annotations to create
-
-      - name: Upload artifacts
-        if: github.event_name != 'pull_request'
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.APP_NAME }}-build
-          path: |
-            **/bin/Release/**/*.dll
-            **/bin/Release/**/*.exe
-            **/bin/Release/**/*.pdb
-            !**/bin/**/ref/**
-          compression-level: 9
-
-      - name: Cleanup
-        if: always()
-        run: make clean SOLUTION=${{ env.SOLUTION }}

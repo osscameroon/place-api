@@ -1,7 +1,7 @@
 # Default variables
 APP_NAME := Place.API
 DOCKER_TAG := place-api:2.0-alpine
-PUBLISH_OUTPUT := ./publish
+PUBLISH_OUTPUT := publish
 COMPOSE_DB_FILE := docker/compose/databases/database-compose.yml
 
 # Configuration
@@ -10,15 +10,27 @@ API_PROJECT := src/Place.API/Place.API.csproj
 
 # Automatic architecture detection
 ARCH := $(shell uname -m)
-ifeq ($(ARCH),x86_64)
-	RUNTIME := linux-x64
-	DOCKER_ARCH := x64
-else ifeq ($(ARCH),aarch64)
-	RUNTIME := linux-arm64
-	DOCKER_ARCH := arm64
+OS := $(shell uname -s)
+
+ifeq ($(OS),Darwin)
+    ifeq ($(ARCH),arm64)
+        RUNTIME := osx-arm64
+        DOCKER_ARCH := arm64
+    else
+        RUNTIME := osx-x64
+        DOCKER_ARCH := x64
+    endif
 else
-	RUNTIME := linux-musl-x64
-	DOCKER_ARCH := x64
+    ifeq ($(ARCH),x86_64)
+        RUNTIME := linux-x64
+        DOCKER_ARCH := x64
+    else ifeq ($(ARCH),aarch64)
+        RUNTIME := linux-arm64
+        DOCKER_ARCH := arm64
+    else
+        RUNTIME := linux-musl-x64
+        DOCKER_ARCH := x64
+    endif
 endif
 
 # Colors for messages
@@ -88,7 +100,12 @@ db-clean:
 	@echo "$(GREEN)✅  Databases reset$(NC)"
 
 # Build commands
-restore:
+clean:
+	@echo "$(YELLOW)📦 Clean the solution...$(NC)"
+	dotnet clean
+	@echo "$(GREEN)✅  Solution cleaned$(NC)"
+ 
+restore: clean
 	@echo "$(YELLOW)📦 Restoring NuGet packages...$(NC)"
 	dotnet restore $(SOLUTION)
 	@echo "$(GREEN)✅  Restore completed$(NC)"
@@ -158,10 +175,10 @@ publish: build
 	@echo "$(YELLOW)📦  Publishing $(APP_NAME) for $(RUNTIME)...$(NC)"
 	dotnet publish $(API_PROJECT) \
 		-c Release \
-		-o $(PUBLISH_OUTPUT) \
+		-o $(PUBLISH_OUTPUT)/$(RUNTIME) \
 		--runtime $(RUNTIME) \
 		--self-contained true \
-		/p:PublishTrimmed=false \
+		/p:PublishTrimmed=true \
 		/p:PublishSingleFile=true \
 		/p:GenerateStaticWebAssetsManifest=false \
 		--no-build
