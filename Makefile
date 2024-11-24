@@ -3,7 +3,7 @@ APP_NAME := place.api
 DOCKER_TAG := place-api:2.0-alpine
 PUBLISH_OUTPUT := publish
 COMPOSE_DB_FILE := docker/compose/databases/database-compose.yml
-DOCKER_REPO := ghcr.io/osscameroon/plac
+DOCKER_REPO := example-repo
 
 # Configuration
 SOLUTION := Place.sln

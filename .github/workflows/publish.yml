@@ -63,7 +63,7 @@ jobs:
         run: |
           make docker RUNTIME=${{ env.RUNTIME }} \
             DOCKER_TAG=${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{inputs.version}} \
-            VERSION=${{ inputs.version }}
+            VERSION=${{ inputs.version }} DOCKER_REPO=${{ env.DOCKER_REPO }}
 
           # Tag and push latest
           docker tag ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ inputs.version }}-x64 \
