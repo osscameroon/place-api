@@ -13,7 +13,7 @@ env:
   SOLUTION: Place.sln
   API_PROJECT: src/Place.API/Place.API.csproj
   RUNTIME: linux-x64
-  DOCKER_REPO: ghcr.io/osscameroon/place
+  DOCKER_REPO: ${{ secrets.PLACE_DOCKER_HUB_REPO }}
 
 jobs:
   publish:
@@ -56,9 +56,8 @@ jobs:
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ secrets.PLACE_DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.PLACE_DOCKER_HUB_TOKEN }}
 
       - name: Build and Push Docker Image
         run: |
@@ -67,6 +66,6 @@ jobs:
             VERSION=${{ inputs.version }}
 
           # Tag and push latest
-          docker tag ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${{ inputs.version }}-x64 \
+          docker tag ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ inputs.version }}-x64 \
             ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:latest
           docker push ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:latest
