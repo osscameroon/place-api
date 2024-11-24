@@ -22,13 +22,13 @@ ifeq ($(OS),Darwin)
     endif
 else
     ifeq ($(ARCH),x86_64)
-        RUNTIME := linux-x64
+        RUNTIME := linux-x64  # Changé de linux-musl-x64 à linux-x64
         DOCKER_ARCH := x64
     else ifeq ($(ARCH),aarch64)
-        RUNTIME := linux-arm64
+        RUNTIME := linux-arm64  # Changé de linux-musl-arm64 à linux-arm64
         DOCKER_ARCH := arm64
     else
-        RUNTIME := linux-musl-x64
+        RUNTIME := linux-x64  # Changé de linux-musl-x64 à linux-x64
         DOCKER_ARCH := x64
     endif
 endif

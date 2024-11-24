@@ -7,7 +7,7 @@ env:
   APP_NAME: Place.API
   SOLUTION: Place.sln
   API_PROJECT: src/Place.API/Place.API.csproj
-  RUNTIME: linux-musl-x64
+  RUNTIME: linux-x64
 
 jobs:
   publish:
