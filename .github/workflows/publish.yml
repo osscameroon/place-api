@@ -63,7 +63,7 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           make docker RUNTIME=${{ env.RUNTIME }} \
-            DOCKER_TAG=${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${inputs.version} \
+            DOCKER_TAG=${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{inputs.version}} \
             VERSION=${{ inputs.version }}
 
           # Tag and push latest
