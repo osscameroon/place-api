@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>.net9.0</TargetFramework>
         <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+        <RuntimeIdentifiers>linux-musl-x64;linux-musl-arm64</RuntimeIdentifiers>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <CSharpier_Check>true</CSharpier_Check>
