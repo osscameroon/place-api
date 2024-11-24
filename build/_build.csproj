@@ -17,4 +17,8 @@
     <PackageReference Include="Nuke.Common"/>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="..\.github\workflows\release.yml" />
+  </ItemGroup>
+
 </Project>
