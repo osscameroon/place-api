@@ -2,6 +2,13 @@
 
 *All notable changes to this project will be documented in this file.*
 
+## [2.0.2](https://github.com/osscameroon/Place/compare/v2.0.1...v2.0.2) (2024-11-24)
+
+
+### Bug Fixes
+
+* **build:** add runtime identifiers for linux builds ([07ec74d](https://github.com/osscameroon/Place/commit/07ec74d43e29546f7db2616f869b206b0d716dd9))
+
 ## [2.0.1](https://github.com/osscameroon/Place/compare/v2.0.0...v2.0.1) (2024-11-24)
 
 # [2.0.0](https://github.com/osscameroon/Place/compare/v1.0.3...v2.0.0) (2024-11-24)
