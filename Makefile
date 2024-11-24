@@ -1,10 +1,9 @@
 APP_NAME := place.api
 PUBLISH_OUTPUT := publish
 COMPOSE_DB_FILE := docker/compose/databases/database-compose.yml
-DOCKER_REPO := example-repo
+DOCKER_REPO := genjirusuchiwa/place
 SOLUTION := Place.sln
 API_PROJECT := src/Place.API/Place.API.csproj
-
 
 ARCH := $(shell uname -m)
 OS := $(shell uname -s)
@@ -185,9 +184,9 @@ docker:
 	@echo "$(YELLOW)🐳 Building Docker image for $(RUNTIME)...$(NC)"
 	docker build -f Dockerfile \
 		--build-arg RUNTIME=$(RUNTIME) \
-		-t $(DOCKER_REPO)/$(APP_NAME):$(VERSION)-$(DOCKER_ARCH) .
+		-t $(DOCKER_REPO):$(VERSION)-$(DOCKER_ARCH) .
 	@echo "$(GREEN)✅  Docker build completed$(NC)"
-	@echo "Tagged as: $(DOCKER_REPO)/$(APP_NAME):$(VERSION)-$(DOCKER_ARCH)"
+	@echo "Tagged as: $(DOCKER_REPO):$(VERSION)-$(DOCKER_ARCH)"
 
 
 dev-env: db-up restore build

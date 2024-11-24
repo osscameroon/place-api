@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version to publish (e.g., v1.0.0)'
+        description: 'Version to publish (e.g., 2.0.6)'
         required: true
         type: string
 
@@ -13,7 +13,7 @@ env:
   SOLUTION: Place.sln
   API_PROJECT: src/Place.API/Place.API.csproj
   RUNTIME: linux-x64
-  DOCKER_REPO: genjirusuchiwa/place
+  DOCKER_REPO: ${{ secrets.PLACE_DOCKER_REPO }}
 
 jobs:
   publish:
@@ -57,42 +57,19 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: genjirusuchiwa
+          username: ${{ secrets.PLACE_DOCKER_HUB_USERNAME  }}
           password: ${{ secrets.PLACE_DOCKER_HUB_TOKEN }}
-
-      - name: Debug Docker Info
-        run: |
-          echo "Checking Docker login status..."
-          docker info
-          echo "Checking target image name..."
-          echo "Repo: ${{ env.DOCKER_REPO }}"
-          echo "App: ${{ env.APP_NAME }}"
-          echo "Version: ${{ inputs.version }}"
-          echo "Arch: ${{ env.DOCKER_ARCH }}"
 
       - name: Build and Push Docker Image
         run: |
-          echo "Running make docker with parameters:"
-          echo "RUNTIME=${{ env.RUNTIME }}"
-          echo "APP_NAME=${{ env.APP_NAME }}"
-          echo "VERSION=${{ inputs.version }}"
-          echo "DOCKER_REPO=${{ env.DOCKER_REPO }}"
-          
           make docker \
             RUNTIME=${{ env.RUNTIME }} \
             APP_NAME=${{ env.APP_NAME }} \
-            VERSION=${{ inputs.version }} \
+            VERSION=api-${{ inputs.version }} \
             DOCKER_REPO=${{ env.DOCKER_REPO }}
-
-          echo "Docker images after build:"
-          docker images
-
-          echo "Pushing image..."
-          docker push ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ inputs.version }}-${{ env.DOCKER_ARCH }}
-
-          echo "Tagging latest..."
-          docker tag ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ inputs.version }}-${{ env.DOCKER_ARCH }} \
-            ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:latest
           
-          echo "Pushing latest..."
-          docker push ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:latest
+          docker push ${{ env.DOCKER_REPO }}:api-${{ inputs.version }}-${{ env.DOCKER_ARCH }}
+          
+          docker tag ${{ env.DOCKER_REPO }}:api-${{ inputs.version }}-${{ env.DOCKER_ARCH }} \
+            ${{ env.DOCKER_REPO }}:api-latest
+          docker push ${{ env.DOCKER_REPO }}:api-latest
