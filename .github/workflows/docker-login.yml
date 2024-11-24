@@ -1,0 +1,19 @@
+name: Test Docker Hub Connection
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # Permet de lancer le workflow manuellement
+
+jobs:
+  test-connection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test Docker Hub Authentication
+        uses: docker/login-action@v3
+        with:
+          username: genjirusuchiwa
+          password: ${{ secrets.PLACE_DOCKER_HUB_TOKEN }}
+
+      - name: Verify Connection
+        run: docker info
