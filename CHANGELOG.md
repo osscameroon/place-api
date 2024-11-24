@@ -2,6 +2,8 @@
 
 *All notable changes to this project will be documented in this file.*
 
+## [2.0.6](https://github.com/osscameroon/Place/compare/v2.0.5...v2.0.6) (2024-11-24)
+
 ## [2.0.5](https://github.com/osscameroon/Place/compare/v2.0.4...v2.0.5) (2024-11-24)
 
 ## [2.0.4](https://github.com/osscameroon/Place/compare/v2.0.3...v2.0.4) (2024-11-24)
