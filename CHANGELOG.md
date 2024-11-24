@@ -2,6 +2,18 @@
 
 *All notable changes to this project will be documented in this file.*
 
+## [1.0.3](https://github.com/osscameroon/Place/compare/v1.0.2...v1.0.3) (2024-11-24)
+
+
+### Continuous Integration
+
+* **pipeline:** integrate semantic-release with build pipeline ([5048288](https://github.com/osscameroon/Place/commit/504828828c47d1d1fb6b749ad7f5c64f5bbf280d))
+
+
+### BREAKING CHANGES
+
+* **pipeline:** Pipeline structure has been completely reorganized
+
 ## [1.0.2](https://github.com/osscameroon/Place/compare/v1.0.1...v1.0.2) (2024-11-24)
 
 ## [1.0.1](https://github.com/osscameroon/Place/compare/v1.0.0...v1.0.1) (2024-11-24)
