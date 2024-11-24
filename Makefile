@@ -182,8 +182,7 @@ publish: build
 		--self-contained true \
 		/p:PublishTrimmed=true \
 		/p:PublishSingleFile=true \
-		/p:GenerateStaticWebAssetsManifest=false \
-		--no-build
+		/p:GenerateStaticWebAssetsManifest=false
 	@echo "$(GREEN)✅  Publish completed$(NC)"
 
 docker:
