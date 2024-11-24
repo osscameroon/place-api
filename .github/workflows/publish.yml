@@ -14,7 +14,6 @@ env:
   API_PROJECT: src/Place.API/Place.API.csproj
   RUNTIME: linux-x64
   DOCKER_REPO: ${{ secrets.PLACE_DOCKER_HUB_REPO }}
-  VERSION: ${{ inputs.version }}
 
 jobs:
   publish:
@@ -48,7 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload ${{ env.VERSION }} \
+          gh release upload v${{ inputs.version }} \
             ${{ env.APP_NAME }}-${{ env.RUNTIME }}.zip \
             --clobber
 
@@ -66,11 +65,11 @@ jobs:
           make docker \
             RUNTIME=${{ env.RUNTIME }} \
             APP_NAME=${{ env.APP_NAME }} \
-            VERSION=${{ env.VERSION }} \
+            VERSION=${{ inputs.version }} \
             DOCKER_REPO=${{ env.DOCKER_REPO }}
 
-          docker push ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ env.VERSION }}-${{ env.DOCKER_ARCH }}
+          docker push ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ inputs.version }}-${{ env.DOCKER_ARCH }}
 
-          docker tag ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ env.VERSION }}-${{ env.DOCKER_ARCH }} \
+          docker tag ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ inputs.version }}-${{ env.DOCKER_ARCH }} \
             ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:latest
           docker push ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:latest
