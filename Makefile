@@ -1,15 +1,12 @@
-# Default variables
 APP_NAME := place.api
 DOCKER_TAG := place-api:2.0-alpine
 PUBLISH_OUTPUT := publish
 COMPOSE_DB_FILE := docker/compose/databases/database-compose.yml
 DOCKER_REPO := example-repo
-
-# Configuration
 SOLUTION := Place.sln
 API_PROJECT := src/Place.API/Place.API.csproj
 
-# Automatic architecture detection
+
 ARCH := $(shell uname -m)
 OS := $(shell uname -s)
 
@@ -23,25 +20,24 @@ ifeq ($(OS),Darwin)
     endif
 else
     ifeq ($(ARCH),x86_64)
-        RUNTIME := linux-x64  # Changé de linux-musl-x64 à linux-x64
+        RUNTIME := linux-x64
         DOCKER_ARCH := x64
     else ifeq ($(ARCH),aarch64)
-        RUNTIME := linux-arm64  # Changé de linux-musl-arm64 à linux-arm64
+        RUNTIME := linux-arm64
         DOCKER_ARCH := arm64
     else
-        RUNTIME := linux-x64  # Changé de linux-musl-x64 à linux-x64
+        RUNTIME := linux-x64
         DOCKER_ARCH := x64
     endif
 endif
 
-# Colors for messages
 GREEN := \033[0;32m
 RED := \033[0;31m
 YELLOW := \033[0;33m
 BLUE := \033[0;34m
-NC := \033[0m # No Color
+NC := \033[0m
 
-# Targets
+
 help:
 	@echo "Usage:"
 	@echo ""
@@ -100,7 +96,7 @@ db-clean:
 	docker-compose -f $(COMPOSE_DB_FILE) up -d
 	@echo "$(GREEN)✅  Databases reset$(NC)"
 
-# Build commands
+
 clean:
 	@echo "$(YELLOW)📦 Clean the solution...$(NC)"
 	dotnet clean
@@ -194,7 +190,7 @@ docker:
 	@echo "$(GREEN)✅  Docker build completed$(NC)"
 	@echo "Tagged as: $(DOCKER_REPO)/$(APP_NAME):$(VERSION)-$(DOCKER_ARCH)"
 
-# Complete development commands
+
 dev-env: db-up restore build
 	@echo "$(GREEN)✅  Development environment ready$(NC)"
 
