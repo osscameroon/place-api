@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>.net9.0</TargetFramework>
         <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-        <RuntimeIdentifiers>linux-x64</RuntimeIdentifiers>
+        <RuntimeIdentifiers>osx-arm64</RuntimeIdentifiers>
         <StaticWebAssetsEnabled>False</StaticWebAssetsEnabled>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
