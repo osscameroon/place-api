@@ -163,6 +163,7 @@ publish: build
 		--self-contained true \
 		/p:PublishTrimmed=false \
 		/p:PublishSingleFile=true \
+		/p:GenerateStaticWebAssetsManifest=false \
 		--no-build
 	@echo "$(GREEN)✅  Publish completed$(NC)"
 
