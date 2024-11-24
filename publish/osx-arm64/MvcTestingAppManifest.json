@@ -1,0 +1,13 @@
+{
+  "Account, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "Core.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "Core.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "Core.Framework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "Core.Identity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "Core.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "Core.MediatR, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "Core.Swagger, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "Core.Versioning, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "Identity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~"
+}

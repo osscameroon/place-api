@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Core.Framework</name>
+    </assembly>
+    <members>
+        <member name="T:Core.Framework.ServiceCollectionExtensions">
+            <summary>
+            Extension methods for configuring core framework services and middleware
+            </summary>
+        </member>
+        <member name="M:Core.Framework.ServiceCollectionExtensions.AddCoreFramework(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            Adds core framework services to the web application builder
+            </summary>
+            <param name="builder">The web application builder</param>
+            <returns>The configured web application builder</returns>
+        </member>
+        <member name="M:Core.Framework.ServiceCollectionExtensions.UseCoreFramework(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            Configures core framework middleware in the web application
+            </summary>
+            <param name="app">The web application</param>
+            <returns>The configured web application</returns>
+        </member>
+        <member name="M:Core.Framework.ServiceCollectionExtensions.RenderLogo(Core.AppOptions)">
+            <summary>
+            Renders application name and version as ASCII art to console
+            </summary>
+        </member>
+    </members>
+</doc>

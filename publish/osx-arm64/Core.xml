@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Core</name>
+    </assembly>
+    <members>
+        <member name="T:Core.AppOptions">
+            <summary>
+            Configuration options for the application
+            </summary>
+        </member>
+        <member name="P:Core.AppOptions.Name">
+            <summary>
+            Gets or sets the application name
+            </summary>
+        </member>
+        <member name="P:Core.AppOptions.Version">
+            <summary>
+            Gets or sets the application version
+            </summary>
+        </member>
+        <member name="P:Core.AppOptions.Project">
+            <summary>
+            Gets or sets the project name
+            </summary>
+        </member>
+        <member name="P:Core.AppOptions.GeneratorId">
+            <summary>
+            Gets or sets the generator identifier
+            </summary>
+        </member>
+        <member name="T:Core.Types.IInitializer">
+            <summary>
+            Interface for implementing initialization logic.
+            </summary>
+        </member>
+        <member name="M:Core.Types.IInitializer.InitializeAsync">
+            <summary>
+            Executes initialization logic asynchronously.
+            </summary>
+        </member>
+        <member name="T:Core.Types.IServiceId">
+            <summary>
+            Interface for retrieving service identifier.
+            </summary>
+        </member>
+        <member name="P:Core.Types.IServiceId.Id">
+            <summary>
+            Gets the unique identifier of the service.
+            </summary>
+        </member>
+        <member name="T:Core.Types.IStartupInitializer">
+            <summary>
+            Interface for managing startup initialization tasks.
+            </summary>
+        </member>
+        <member name="M:Core.Types.IStartupInitializer.AddInitializer(Core.Types.IInitializer)">
+            <summary>
+            Adds an initializer to the startup sequence.
+            </summary>
+        </member>
+        <member name="T:Core.Types.ServiceId">
+            <summary>
+            Default implementation of IServiceId using GUID.
+            </summary>
+        </member>
+        <member name="P:Core.Types.ServiceId.Id">
+            <inheritdoc />
+        </member>
+        <member name="T:Core.Types.StartupInitializer">
+            <summary>
+            Default implementation of IStartupInitializer that executes initialization tasks sequentially.
+            </summary>
+        </member>
+        <member name="M:Core.Types.StartupInitializer.AddInitializer(Core.Types.IInitializer)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Types.StartupInitializer.InitializeAsync">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

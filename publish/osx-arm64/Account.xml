@@ -1,0 +1,815 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Account</name>
+    </assembly>
+    <members>
+        <member name="T:Account.Data.Configurations.ProfileMappingExtensions">
+            <summary>
+            Extension methods for mapping between Profile domain entities and read models.
+            </summary>
+        </member>
+        <member name="M:Account.Data.Configurations.ProfileMappingExtensions.ToReadModel(Account.Profile.Models.UserProfile)">
+            <summary>
+            Maps a Profile domain entity to a ProfileReadModel.
+            </summary>
+        </member>
+        <member name="M:Account.Data.Configurations.ProfileMappingExtensions.ToDomain(Account.Data.Models.ProfileReadModel)">
+            <summary>
+            Maps a ProfileReadModel to a Profile domain entity.
+            Returns an error if the mapping fails due to invalid data.
+            </summary>
+        </member>
+        <member name="T:Account.Data.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:Account.Data.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Account.Data.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Account.Data.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Account.Data.Models.ProfileReadModel">
+            <summary>
+            Read model representing a user profile in the database.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.Id">
+            <summary>
+            Gets or sets the unique identifier of the profile.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.UserId">
+            <summary>
+            Gets or sets the identifier of the user who owns this profile.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.Email">
+            <summary>
+            Gets or sets the email address.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.FirstName">
+            <summary>
+            Gets or sets the first name.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.LastName">
+            <summary>
+            Gets or sets the last name.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.DateOfBirth">
+            <summary>
+            Gets or sets the date of birth.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.Gender">
+            <summary>
+            Gets or sets the gender.
+            Can be null, 0 (Male) or 1 (Female).
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.PhoneNumber">
+            <summary>
+            Gets or sets the phone number in E.164 format.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.Street">
+            <summary>
+            Gets or sets the street address.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.ZipCode">
+            <summary>
+            Gets or sets the postal code.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.City">
+            <summary>
+            Gets or sets the city name.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.Country">
+            <summary>
+            Gets or sets the country name.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.AdditionalAddressDetails">
+            <summary>
+            Gets or sets additional address details.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.Latitude">
+            <summary>
+            Gets or sets the latitude of the address.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.Longitude">
+            <summary>
+            Gets or sets the longitude of the address.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.CreatedAt">
+            <summary>
+            Gets or sets the creation timestamp.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.CreatedBy">
+            <summary>
+            Gets or sets the identifier of the user who created this profile.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.LastModifiedAt">
+            <summary>
+            Gets or sets the last modification timestamp.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.LastModifiedBy">
+            <summary>
+            Gets or sets the identifier of the user who last modified this profile.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.IsDeleted">
+            <summary>
+            Gets or sets a value indicating whether this profile has been deleted.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.DeletedAt">
+            <summary>
+            Gets or sets the deletion timestamp.
+            </summary>
+        </member>
+        <member name="P:Account.Data.Models.ProfileReadModel.DeletedBy">
+            <summary>
+            Gets or sets the identifier of the user who deleted this profile.
+            </summary>
+        </member>
+        <member name="T:Account.Profile.Features.V1.GetPersonalInformation.PersonalInformationViewModel">
+            <summary>
+            Represents a view model for displaying personal information from a user profile.
+            This class provides a formatted representation of user profile data, including contact and address information.
+            </summary>
+            <remarks>
+            The view model handles formatting of address components and provides null-safe access to profile properties.
+            Address formatting follows the pattern: "Street, ZipCode City, Country" with flexible handling of missing components.
+            </remarks>
+        </member>
+        <member name="P:Account.Profile.Features.V1.GetPersonalInformation.PersonalInformationViewModel.FirstName">
+             <summary>
+             Gets the user's first name. May be null if not provided.
+             </summary>
+            
+        </member>
+        <member name="P:Account.Profile.Features.V1.GetPersonalInformation.PersonalInformationViewModel.LastName">
+            <summary>
+            Gets the user's last name. May be null if not provided.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Features.V1.GetPersonalInformation.PersonalInformationViewModel.Email">
+            <summary>
+            Gets the user's email address.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Features.V1.GetPersonalInformation.PersonalInformationViewModel.PhoneNumber">
+            <summary>
+            Gets the user's phone number. May be null if not provided.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Features.V1.GetPersonalInformation.PersonalInformationViewModel.Street">
+            <summary>
+            Gets the street address. May be null if not provided.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Features.V1.GetPersonalInformation.PersonalInformationViewModel.City">
+            <summary>
+            Gets the city name. May be null if not provided.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Features.V1.GetPersonalInformation.PersonalInformationViewModel.ZipCode">
+            <summary>
+            Gets the postal/zip code. May be null if not provided.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Features.V1.GetPersonalInformation.PersonalInformationViewModel.Country">
+            <summary>
+            Gets the country name. May be null if not provided.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Features.V1.GetPersonalInformation.PersonalInformationViewModel.Gender">
+             <summary>
+             Gets the user's gender. May be null if not provided.
+             Converted from the profile's Gender enum to string representation.
+             </summary>
+            
+        </member>
+        <member name="P:Account.Profile.Features.V1.GetPersonalInformation.PersonalInformationViewModel.FormattedAddress">
+            <summary>
+            Gets a formatted string containing the complete address.
+            </summary>
+            <remarks>
+            The address is formatted as: "Street, ZipCode City, Country."
+            If any component is missing, it is omitted from the final string.
+            Returns an empty string if no address components are available.
+            </remarks>
+        </member>
+        <member name="M:Account.Profile.Features.V1.GetPersonalInformation.PersonalInformationViewModel.#ctor(Account.Data.Models.ProfileReadModel)">
+            <summary>
+            Initializes a new instance of the PersonalInformationViewModel class.
+            </summary>
+            <param name="profile">The profile read model containing the user's information.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when profile is null.</exception>
+        </member>
+        <member name="M:Account.Profile.Features.V1.GetPersonalInformation.PersonalInformationViewModel.FormatAddress">
+            <summary>
+            Formats the address components into a single, comma-separated string.
+            </summary>
+            <returns>
+            A formatted address string combining available address components.
+            Returns an empty string if no address components are present.
+            </returns>
+            <remarks>
+            The method combines address components in the following order:
+            1. Street
+            2. ZipCode and City (combined with a space)
+            3. Country
+            Components are separated by commas and spaces.
+            </remarks>
+        </member>
+        <member name="T:Account.Profile.Models.Address">
+            <summary>
+            Represents a physical address with optional geo-coordinates.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.Address.Street">
+            <summary>
+            Gets the optional street address line.
+            </summary>
+            <value>The street address, or null if not specified.</value>
+        </member>
+        <member name="P:Account.Profile.Models.Address.ZipCode">
+            <summary>
+            Gets the optional postal/zip code.
+            </summary>
+            <value>The postal code, or null if not specified.</value>
+        </member>
+        <member name="P:Account.Profile.Models.Address.City">
+            <summary>
+            Gets the city name.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.Address.Country">
+            <summary>
+            Gets the country name.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.Address.AdditionalDetails">
+            <summary>
+            Optional additional address details.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.Address.Coordinates">
+            <summary>
+            Gets the geographical coordinates of the address.
+            </summary>
+        </member>
+        <member name="M:Account.Profile.Models.Address.#ctor(System.String,System.String,System.String,System.String,System.String,Account.Profile.Models.GeoCoordinates)">
+            <summary>
+            Initializes a new instance of the Address record.
+            </summary>
+            <param name="street">The optional street address.</param>
+            <param name="zipCode">The optional postal code.</param>
+            <param name="city">The required city name.</param>
+            <param name="country">The required country name.</param>
+            <param name="additionalDetails">Optional additional address details.</param>
+            <param name="coordinates">Optional geographical coordinates.</param>
+        </member>
+        <member name="M:Account.Profile.Models.Address.Create(System.String,System.String,System.String,System.String,System.String,Account.Profile.Models.GeoCoordinates)">
+            <summary>
+            Creates a new validated instance of Address.
+            </summary>
+            <param name="street">The optional street address.</param>
+            <param name="zipCode">The optional postal code.</param>
+            <param name="city">The required city name.</param>
+            <param name="country">The required country name.</param>
+            <param name="additionalDetails">Optional additional address details.</param>
+            <param name="coordinates">Optional geographical coordinates.</param>
+        </member>
+        <member name="M:Account.Profile.Models.Address.ToString">
+            <summary>
+            Returns a formatted string representation of the address.
+            </summary>
+        </member>
+        <member name="T:Account.Profile.Models.GeoCoordinates">
+            <summary>
+            Represents geographical coordinates.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.GeoCoordinates.Latitude">
+            <summary>
+            Gets the latitude in degrees.
+            </summary>
+            <value>The latitude value between -90 and 90 degrees.</value>
+        </member>
+        <member name="P:Account.Profile.Models.GeoCoordinates.Longitude">
+            <summary>
+            Gets the longitude in degrees.
+            </summary>
+            <value>The longitude value between -180 and 180 degrees.</value>
+        </member>
+        <member name="M:Account.Profile.Models.GeoCoordinates.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the GeoCoordinates record.
+            </summary>
+            <param name="latitude">The latitude in degrees.</param>
+            <param name="longitude">The longitude in degrees.</param>
+        </member>
+        <member name="M:Account.Profile.Models.GeoCoordinates.Create(System.Double,System.Double)">
+            <summary>
+            Creates a new validated instance of GeoCoordinates.
+            </summary>
+            <param name="latitude">The latitude in degrees (-90 to 90).</param>
+            <param name="longitude">The longitude in degrees (-180 to 180).</param>
+        </member>
+        <member name="M:Account.Profile.Models.GeoCoordinates.ToString">
+            <summary>
+            Returns a formatted string representation of the coordinates.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.DateOfBirth.Value">
+            <summary>
+            The validated birth date value in UTC.
+            </summary>
+        </member>
+        <member name="M:Account.Profile.Models.DateOfBirth.Create(System.DateTime)">
+            <summary>
+            Creates a validated instance of <see cref="T:Account.Profile.Models.DateOfBirth"/>.
+            </summary>
+            <param name="birthDate">The birthdate to validate and encapsulate.</param>
+            <returns>A validated <see cref="T:Account.Profile.Models.DateOfBirth"/> or an error.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.DateOfBirth.op_Implicit(Account.Profile.Models.DateOfBirth)~System.DateTime">
+            <summary>
+            Implicitly converts a <see cref="T:Account.Profile.Models.DateOfBirth"/> instance to a <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="dateOfBirth">The <see cref="T:Account.Profile.Models.DateOfBirth"/> instance.</param>
+        </member>
+        <member name="M:Account.Profile.Models.DateOfBirth.ToString">
+            <summary>
+            Returns a string representation of the birthdate in French format (dd/MM/yyyy).
+            </summary>
+        </member>
+        <member name="T:Account.Profile.Models.Email">
+            <summary>
+            Represents a validated email address value object.
+            This implementation follows RFC 5321 standards and includes support for international domain names.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.Email.Value">
+            <summary>
+            Gets the normalized and validated email address.
+            </summary>
+            <value>The email address in lowercase with normalized domain name.</value>
+        </member>
+        <member name="M:Account.Profile.Models.Email.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Account.Profile.Models.Email"/> class.
+            </summary>
+            <param name="value">The validated email address value.</param>
+        </member>
+        <member name="M:Account.Profile.Models.Email.Create(System.String)">
+            <summary>
+            Creates a new validated instance of <see cref="T:Account.Profile.Models.Email"/>.
+            </summary>
+            <param name="email">The email address to validate and normalize.</param>
+            <returns>
+            A <see cref="T:ErrorOr.ErrorOr`1"/> containing either:
+            </returns>
+        </member>
+        <member name="M:Account.Profile.Models.Email.NormalizeDomain(System.String)">
+            <summary>
+            Normalizes the domain part of an email address, converting IDN (International Domain Names) to ASCII.
+            </summary>
+            <param name="email">The email address to process.</param>
+            <returns>The email address with a normalized ASCII domain.</returns>
+            <exception cref="T:System.Text.RegularExpressions.RegexMatchTimeoutException">Thrown when regex matching times out.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when domain name is invalid.</exception>
+        </member>
+        <member name="M:Account.Profile.Models.Email.IsValidEmail(System.String)">
+            <summary>
+            Validates the basic format of an email address.
+            </summary>
+            <param name="email">The email address to validate.</param>
+            <returns>True if the email format is valid; otherwise, false.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.Email.IsValidLocalPartCharacters(System.String)">
+            <summary>
+            Validates the characters in the local part of the email address.
+            </summary>
+            <param name="localPart">The local part of the email address (before @).</param>
+            <returns>True if all characters are valid; otherwise, false.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.Email.ContainsInvalidPatterns(System.String)">
+            <summary>
+            Checks for invalid patterns in the email address.
+            </summary>
+            <param name="email">The email address to check.</param>
+            <returns>True if invalid patterns are found; otherwise, false.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.Email.op_Implicit(Account.Profile.Models.Email)~System.String">
+            <summary>
+            Implicitly converts an <see cref="T:Account.Profile.Models.Email"/> to a <see cref="T:System.String"/>.
+            </summary>
+            <param name="email">The email address to convert.</param>
+            <returns>The string value of the email address.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.Email.ToString">
+            <summary>
+            Returns a string representation of the email address.
+            </summary>
+            <returns>The normalized email address value.</returns>
+        </member>
+        <member name="P:Account.Profile.Models.FirstName.Value">
+            <summary>
+            The validated first name value.
+            </summary>
+        </member>
+        <member name="M:Account.Profile.Models.FirstName.Create(System.String)">
+            <summary>
+            Creates a validated instance of <see cref="T:Account.Profile.Models.FirstName"/>.
+            </summary>
+            <param name="firstName">The first name to validate and encapsulate.</param>
+            <returns>A validated <see cref="T:Account.Profile.Models.FirstName"/> or an error.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.FirstName.op_Implicit(Account.Profile.Models.FirstName)~System.String">
+            <summary>
+            Implicitly converts a <see cref="T:Account.Profile.Models.FirstName"/> instance to a <see cref="T:System.String"/>.
+            </summary>
+            <param name="firstName">The <see cref="T:Account.Profile.Models.FirstName"/> instance.</param>
+        </member>
+        <member name="P:Account.Profile.Models.LastName.Value">
+            <summary>
+            The validated last name value.
+            </summary>
+        </member>
+        <member name="M:Account.Profile.Models.LastName.Create(System.String)">
+            <summary>
+            Creates a validated instance of <see cref="T:Account.Profile.Models.LastName"/>.
+            </summary>
+            <param name="lastName">The last name to validate and encapsulate.</param>
+            <returns>A validated <see cref="T:Account.Profile.Models.LastName"/> or an error.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.LastName.op_Implicit(Account.Profile.Models.LastName)~System.String">
+            <summary>
+            Implicitly converts a <see cref="T:Account.Profile.Models.LastName"/> instance to a <see cref="T:System.String"/>.
+            </summary>
+            <param name="lastName">The <see cref="T:Account.Profile.Models.LastName"/> instance.</param>
+        </member>
+        <member name="T:Account.Profile.Models.PersonalInfo">
+            <summary>
+            Represents personal information about a user.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.PersonalInfo.FirstName">
+            <summary>
+            Gets the user's first name.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.PersonalInfo.LastName">
+            <summary>
+            Gets the user's last name.
+            </summary>
+            <value>A<see cref="P:Account.Profile.Models.PersonalInfo.LastName"/> value object, or null if not set.</value>
+        </member>
+        <member name="P:Account.Profile.Models.PersonalInfo.DateOfBirth">
+            <summary>
+            Gets the user's birthdate.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.PersonalInfo.Gender">
+            <summary>
+            Gets the user's gender.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.PersonalInfo.PhoneNumber">
+            <summary>
+            Gets the user's phone number.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.PersonalInfo.Address">
+            <summary>
+            Gets the user's address.
+            </summary>
+        </member>
+        <member name="M:Account.Profile.Models.PersonalInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Account.Profile.Models.PersonalInfo"/> class.
+            Required by EF Core.
+            </summary>
+        </member>
+        <member name="M:Account.Profile.Models.PersonalInfo.#ctor(Account.Profile.Models.FirstName,Account.Profile.Models.LastName,Account.Profile.Models.DateOfBirth,System.Nullable{Account.Profile.Models.Gender},Account.Profile.Models.PhoneNumber,Account.Profile.Models.Address)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Account.Profile.Models.PersonalInfo"/> class with the specified details.
+            </summary>
+            <param name="firstName">The user's first name value object.</param>
+            <param name="lastName">The user's last name value object.</param>
+            <param name="birthDate">The user's birthdate value object.</param>
+            <param name="gender">The user's gender.</param>
+            <param name="phoneNumber">The user's phone number value object.</param>
+            <param name="address">The user's address value object.</param>
+        </member>
+        <member name="M:Account.Profile.Models.PersonalInfo.FromExisting(System.Guid,Account.Profile.Models.FirstName,Account.Profile.Models.LastName,Account.Profile.Models.DateOfBirth,System.Nullable{Account.Profile.Models.Gender},Account.Profile.Models.PhoneNumber,Account.Profile.Models.Address)">
+            <summary>
+            Creates an instance of <see cref="T:Account.Profile.Models.PersonalInfo"/> from existing data.
+            </summary>
+            <param name="id">The unique identifier for this personal information.</param>
+            <param name="firstName">The user's first name value object.</param>
+            <param name="lastName">The user's last name value object.</param>
+            <param name="birthDate">The user's birthdate value object.</param>
+            <param name="gender">The user's gender.</param>
+            <param name="phoneNumber">The user's phone number value object.</param>
+            <param name="address">The user's address value object.</param>
+            <returns>A new instance of <see cref="T:Account.Profile.Models.PersonalInfo"/> with the specified data.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.PersonalInfo.ToString">
+            <summary>
+            Returns a string representation of the personal information.
+            </summary>
+        </member>
+        <member name="T:Account.Profile.Models.PersonalInfo.PersonalInfoBuilder">
+            <summary>
+            Builder class to construct a <see cref="T:Account.Profile.Models.PersonalInfo"/> instance.
+            </summary>
+        </member>
+        <member name="M:Account.Profile.Models.PersonalInfo.PersonalInfoBuilder.WithFirstName(System.String)">
+            <summary>
+            Sets the first name for the personal information.
+            </summary>
+            <param name="firstName">The first name to validate and set.</param>
+            <returns>The current builder instance.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the first name is invalid.</exception>
+        </member>
+        <member name="M:Account.Profile.Models.PersonalInfo.PersonalInfoBuilder.WithLastName(System.String)">
+            <summary>
+            Sets the last name for the personal information.
+            </summary>
+            <param name="lastName">The last name to validate and set.</param>
+            <returns>The current builder instance.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the last name is invalid.</exception>
+        </member>
+        <member name="M:Account.Profile.Models.PersonalInfo.PersonalInfoBuilder.WithDateOfBirth(System.DateTime)">
+            <summary>
+            Sets the birthdate for the personal information.
+            </summary>
+            <param name="birthDate">The birthdate to validate and set.</param>
+            <returns>The current builder instance.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the birthdate is invalid.</exception>
+        </member>
+        <member name="M:Account.Profile.Models.PersonalInfo.PersonalInfoBuilder.WithGender(Account.Profile.Models.Gender)">
+            <summary>
+            Sets the gender for the personal information.
+            </summary>
+            <param name="gender">The gender to set.</param>
+            <returns>The current builder instance.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.PersonalInfo.PersonalInfoBuilder.WithPhoneNumber(System.String)">
+            <summary>
+            Sets the phone number for the personal information using international format.
+            </summary>
+            <param name="phoneNumber">The phone number in international format (e.g., +33612345678).</param>
+            <returns>The current builder instance.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the phone number is invalid.</exception>
+        </member>
+        <member name="M:Account.Profile.Models.PersonalInfo.PersonalInfoBuilder.WithPhoneNumber(System.String,System.String)">
+            <summary>
+            Sets the phone number for the personal information using regional format.
+            </summary>
+            <param name="phoneNumber">The phone number in regional format (e.g., 0612345678).</param>
+            <param name="countryCode">The ISO 3166-1 alpha-2 country code (e.g., FR, CM).</param>
+            <returns>The current builder instance.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the phone number is invalid for the specified country.</exception>
+        </member>
+        <member name="M:Account.Profile.Models.PersonalInfo.PersonalInfoBuilder.WithAddress(System.String,System.String,System.String,System.String,System.String,Account.Profile.Models.GeoCoordinates)">
+            <summary>
+            Sets the address for the personal information.
+            </summary>
+            <param name="street">Optional street address.</param>
+            <param name="zipCode">Optional postal code.</param>
+            <param name="city">Required city name.</param>
+            <param name="country">Required country name.</param>
+            <param name="additionalDetails">Optional additional address details.</param>
+            <param name="coordinates">Optional geographical coordinates.</param>
+            <returns>The current builder instance.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the address is invalid.</exception>
+        </member>
+        <member name="M:Account.Profile.Models.PersonalInfo.PersonalInfoBuilder.Build">
+            <summary>
+            Builds and returns a new instance of <see cref="T:Account.Profile.Models.PersonalInfo"/> with the configured values.
+            </summary>
+            <returns>A new instance of <see cref="T:Account.Profile.Models.PersonalInfo"/>.</returns>
+        </member>
+        <member name="T:Account.Profile.Models.Gender">
+            <summary>
+            Represents a person's gender.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.PhoneNumber.Value">
+            <summary>
+            Gets the phone number in E.164 format.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.PhoneNumber.CountryCode">
+            <summary>
+            Gets the country code
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.PhoneNumber.NationalNumber">
+            <summary>
+            Gets the national number without country code.
+            </summary>
+        </member>
+        <member name="M:Account.Profile.Models.PhoneNumber.#ctor(System.String,System.Int32,System.UInt64)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Account.Profile.Models.PhoneNumber"/> class.
+            </summary>
+            <param name="value">The phone number in E.164 format.</param>
+            <param name="countryCode">The numeric country code.</param>
+            <param name="nationalNumber">The national number without country code.</param>
+        </member>
+        <member name="M:Account.Profile.Models.PhoneNumber.Parse(System.String)">
+            <summary>
+            Creates a new validated instance of PhoneNumber.
+            </summary>
+            <param name="phoneNumber">The phone number in international format.</param>
+            <returns>
+            A <see cref="T:ErrorOr.ErrorOr`1"/> containing either:
+            <list type="bullet">
+            <item>
+            <description>Success: A valid <see cref="T:Account.Profile.Models.PhoneNumber"/> instance</description>
+            </item>
+            <item>
+            <description>Error: <see cref="T:ErrorOr.Error"/> with code <c>PhoneNumber.Empty</c> when input is empty or whitespace</description>
+            </item>
+            <item>
+            <description>Error: <see cref="T:ErrorOr.Error"/> with code <c>PhoneNumber.Invalid</c> when phone number format is invalid</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Account.Profile.Models.PhoneNumber.Parse(System.String,System.String)">
+            <summary>
+            Creates a new validated instance of PhoneNumber.
+            </summary>
+            <returns>
+            A <see cref="T:ErrorOr.ErrorOr`1"/> containing either:
+            <list type="bullet">
+            <item>
+            <description>Success: A valid <see cref="T:Account.Profile.Models.PhoneNumber"/> instance</description>
+            </item>
+            <item>
+            <description>Error: <see cref="T:ErrorOr.Error"/> with code <c>PhoneNumber.Empty</c> when phone number is empty</description>
+            </item>
+            <item>
+            <description>Error: <see cref="T:ErrorOr.Error"/> with code <c>PhoneNumber.CountryCode.Empty</c> when country code is empty</description>
+            </item>
+            <item>
+            <description>Error: <see cref="T:ErrorOr.Error"/> with code <c>PhoneNumber.Invalid</c> when phone number is invalid for the specified country</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Account.Profile.Models.PhoneNumber.Format(PhoneNumbers.PhoneNumberFormat)">
+            <summary>
+            Returns the phone number formatted according to the specified format.
+            </summary>
+            <param name="format">The desired format (defaults to INTERNATIONAL).</param>
+            <returns>The formatted phone number string.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.PhoneNumber.ToString">
+            <summary>
+            Returns the phone number in E.164 format.
+            </summary>
+            <returns>The E.164 formatted phone number.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.PhoneNumber.op_Implicit(Account.Profile.Models.PhoneNumber)~System.String">
+            <summary>
+            Implicitly converts a PhoneNumber to its string representation in E.164 format.
+            </summary>
+        </member>
+        <member name="T:Account.Profile.Models.UserProfile">
+            <summary>
+            Represents a user profile as an aggregate root.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.UserProfile.UserId">
+            <summary>
+            Gets the identifier of the user who owns this profile.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.UserProfile.Email">
+            <summary>
+            Gets the email address associated with this profile.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.UserProfile.PersonalInfo">
+            <summary>
+            Gets the personal information associated with this profile.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.UserProfile.CreatedAt">
+            <summary>
+            Gets the date and time when this profile was created.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.UserProfile.IsDeleted">
+            <summary>
+            Gets a value indicating whether this profile has been deleted.
+            </summary>
+        </member>
+        <member name="P:Account.Profile.Models.UserProfile.DeletedAt">
+            <summary>
+            Gets the date and time when this profile was deleted.
+            </summary>
+        </member>
+        <member name="M:Account.Profile.Models.UserProfile.Create(System.Guid,System.String,Account.Profile.Models.PersonalInfo,System.DateTime,System.Guid)">
+            <summary>
+            Creates a new profile.
+            </summary>
+            <param name="userId">The ID of the user who owns this profile.</param>
+            <param name="email">The email address for the profile.</param>
+            <param name="personalInfo">The personal information for the profile.</param>
+            <param name="createdAt">The creation timestamp.</param>
+            <param name="createdBy">The ID of the user creating the profile.</param>
+            <returns>
+            A <see cref="T:ErrorOr.ErrorOr`1"/> containing either:
+            <list type="bullet">
+            <item><description>A successful profile creation</description></item>
+            <item><description>A validation error if the email is invalid</description></item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Account.Profile.Models.UserProfile.UpdateEmail(System.String,System.DateTime,System.Guid)">
+            <summary>
+            Updates the email address of the profile.
+            </summary>
+            <param name="newEmail">The new email address.</param>
+            <param name="modifiedAt">The modification timestamp.</param>
+            <param name="modifiedBy">The ID of the user making the modification.</param>
+            <returns>A success result or validation errors.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.UserProfile.UpdatePersonalInfo(Account.Profile.Models.PersonalInfo,System.DateTime,System.Guid)">
+            <summary>
+            Updates the personal information of the profile.
+            </summary>
+            <param name="newPersonalInfo">The new personal information.</param>
+            <param name="modifiedAt">The modification timestamp.</param>
+            <param name="modifiedBy">The ID of the user making the modification.</param>
+            <returns>A success result or validation errors.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.UserProfile.Delete(System.DateTime,System.Guid)">
+            <summary>
+            Marks the profile as deleted.
+            </summary>
+            <param name="deletedAt">The deletion timestamp.</param>
+            <param name="deletedBy">The ID of the user performing the deletion.</param>
+            <returns>A success result or validation errors.</returns>
+        </member>
+        <member name="M:Account.Profile.Models.UserProfile.Restore(System.DateTime,System.Guid)">
+            <summary>
+            Restores a deleted profile.
+            </summary>
+            <param name="modifiedAt">The restoration timestamp.</param>
+            <param name="modifiedBy">The ID of the user performing the restoration.</param>
+            <returns>A success result or validation errors.</returns>
+        </member>
+        <member name="T:Account.Profile.Models.UserProfileId">
+            <summary>
+            Represents the strongly-typed identifier for a Profile aggregate.
+            </summary>
+        </member>
+        <member name="M:Account.Profile.Models.UserProfileId.#ctor(System.Guid)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Account.Profile.Models.UserProfileId"/> class.
+            </summary>
+            <param name="value">The underlying ID value.</param>
+        </member>
+        <member name="M:Account.Profile.Models.UserProfileId.CreateUnique">
+            <summary>
+            Creates a new profile ID.
+            </summary>
+        </member>
+        <member name="M:Account.Profile.Models.UserProfileId.op_Implicit(System.Guid)~Account.Profile.Models.UserProfileId">
+            <summary>
+            Implicitly converts a GUID to a ProfileId.
+            </summary>
+        </member>
+        <member name="M:Account.Profile.Models.UserProfileId.op_Explicit(Account.Profile.Models.UserProfileId)~System.Guid">
+            <summary>
+            Explicitly converts a ProfileId to a GUID.
+            </summary>
+        </member>
+    </members>
+</doc>

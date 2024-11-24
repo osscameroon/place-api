@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Core.Versioning</name>
+    </assembly>
+    <members>
+        <member name="P:Core.Versioning.DeprecatedApiVersionOptions.DocumentationUrl">
+            <summary>
+            URL vers la documentation concernant la dépréciation
+            </summary>
+        </member>
+    </members>
+</doc>

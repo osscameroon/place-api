@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Identity</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.Extensions.Configuration.Binder.SourceGeneration.BindingExtensions.Get``1(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>Attempts to bind the configuration instance to a new instance of type T.</summary>
+        </member>
+    </members>
+</doc>

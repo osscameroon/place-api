@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Core.Identity</name>
+    </assembly>
+    <members>
+        <member name="T:Core.Identity.ApplicationUser">
+            <summary>
+            Custom application user extending IdentityUser.
+            </summary>
+        </member>
+        <member name="T:Core.Identity.Data.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Identity.Data.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Identity.Data.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Core.Identity.Data.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Core.Identity.EmailSender">
+            <inheritdoc/>
+        </member>
+        <member name="M:Core.Identity.EmailSender.#ctor(Microsoft.Extensions.Logging.ILogger{Core.Identity.EmailSender})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Core.Identity.EmailSender.SendEmailAsync(System.String,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Core.Identity.IdentityApplicationDbContext">
+            <summary>
+            Database context for Identity authentication.
+            Handles user data persistence using Entity Framework Core.
+            </summary>
+        </member>
+        <member name="T:Core.Identity.IdentityOptionsBuilder">
+            <summary>
+            Configures Identity settings.
+            Used to set up authentication rules and password requirements.
+            </summary>
+        </member>
+        <member name="M:Core.Identity.IdentityOptionsBuilder.AddAuthentication(Core.Identity.AuthenticationOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Core.Identity.IdentityOptionsBuilder.AddPasswordRules(Core.Identity.PasswordOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Core.Identity.IdentityOptionsBuilder.Build">
+            <inheritdoc/>
+        </member>
+        <member name="T:Core.Identity.IdentityConfigurationOptions">
+            <summary>
+            Options for configuring Identity services
+            </summary>
+        </member>
+        <member name="P:Core.Identity.IdentityConfigurationOptions.PostgresOptions">
+            <summary>
+            PostgreSQL options for database configuration
+            </summary>
+        </member>
+        <member name="P:Core.Identity.IdentityConfigurationOptions.TokenExpiration">
+            <summary>
+            Token expiration timespan
+            </summary>
+        </member>
+        <member name="T:Core.Identity.IdentityDatabaseOptions">
+            <summary>
+            Options class for PostgreSQL configuration
+            </summary>
+        </member>
+        <member name="F:Core.Identity.IdentityDatabaseOptions.Key">
+            <summary>
+            Configuration key used in appsettings.json
+            </summary>
+        </member>
+        <member name="P:Core.Identity.IdentityDatabaseOptions.Host">
+            <summary>
+            Database host address
+            </summary>
+        </member>
+        <member name="P:Core.Identity.IdentityDatabaseOptions.Port">
+            <summary>
+            Database port number
+            </summary>
+        </member>
+        <member name="P:Core.Identity.IdentityDatabaseOptions.Username">
+            <summary>
+            Database username
+            </summary>
+        </member>
+        <member name="P:Core.Identity.IdentityDatabaseOptions.Password">
+            <summary>
+            Database password
+            </summary>
+        </member>
+        <member name="P:Core.Identity.IdentityDatabaseOptions.Database">
+            <summary>
+            Database name
+            </summary>
+        </member>
+        <member name="P:Core.Identity.IdentityOptions.Database">
+            <summary>
+            Database configuration
+            </summary>
+        </member>
+        <member name="P:Core.Identity.IdentityOptions.Authentication">
+            <summary>
+            Authentication settings
+            </summary>
+        </member>
+        <member name="P:Core.Identity.IdentityOptions.Password">
+            <summary>
+            Password validation rules
+            </summary>
+        </member>
+        <member name="P:Core.Identity.PasswordOptions.RequireDigit">
+            <summary>
+            Gets or sets whether digits are required in passwords.
+            Default is true.
+            </summary>
+        </member>
+        <member name="P:Core.Identity.PasswordOptions.RequireLowercase">
+            <summary>
+            Gets or sets whether lowercase characters are required in passwords.
+            Default is true.
+            </summary>
+        </member>
+        <member name="P:Core.Identity.PasswordOptions.RequireUppercase">
+            <summary>
+            Gets or sets whether uppercase characters are required in passwords.
+            Default is true.
+            </summary>
+        </member>
+        <member name="P:Core.Identity.PasswordOptions.RequireNonAlphanumeric">
+            <summary>
+            Gets or sets whether non-alphanumeric characters are required in passwords.
+            Default is true.
+            </summary>
+        </member>
+        <member name="P:Core.Identity.PasswordOptions.RequiredLength">
+            <summary>
+            Gets or sets the minimum required password length.
+            Default is 8 characters.
+            </summary>
+        </member>
+        <member name="P:Core.Identity.PasswordOptions.RequiredUniqueChars">
+            <summary>
+            Gets or sets the minimum number of unique characters required in passwords.
+            Default is 1.
+            </summary>
+        </member>
+        <member name="T:Core.Identity.AuthenticationOptions">
+            <summary>
+            Configuration options for authentication settings
+            </summary>
+        </member>
+        <member name="P:Core.Identity.AuthenticationOptions.TokenExpiration">
+            <summary>
+            Gets or sets the bearer token expiration time.
+            Default is 1 hour.
+            </summary>
+        </member>
+        <member name="P:Core.Identity.AuthenticationOptions.RequireConfirmedEmail">
+            <summary>
+            Gets or sets whether a confirmed email is required for sign in.
+            Default is false.
+            </summary>
+        </member>
+        <member name="P:Core.Identity.AuthenticationOptions.RequireConfirmedAccount">
+            <summary>
+            Gets or sets whether a confirmed account is required for sign in.
+            Default is false.
+            </summary>
+        </member>
+        <member name="T:Core.Identity.IIdentityOptionsBuilder">
+            <summary>
+            Defines the builder interface for configuring Identity services
+            </summary>
+        </member>
+        <member name="M:Core.Identity.IIdentityOptionsBuilder.AddAuthentication(Core.Identity.AuthenticationOptions)">
+            <summary>
+            Adds authentication services with optional configuration
+            </summary>
+            <param name="authenticationOptions">Authentication options</param>
+            <returns>The Identity builder for chaining</returns>
+        </member>
+        <member name="M:Core.Identity.IIdentityOptionsBuilder.AddPasswordRules(Core.Identity.PasswordOptions)">
+            <summary>
+            Adds password validation rules with optional configuration
+            </summary>
+            <param name="passwordOptions">Password options</param>
+            <returns>The Identity builder for chaining</returns>
+        </member>
+        <member name="M:Core.Identity.IIdentityOptionsBuilder.Build">
+            <summary>
+            Returns the configured Identity options.
+            </summary>
+        </member>
+    </members>
+</doc>
