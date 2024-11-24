@@ -1,5 +1,47 @@
 # Changelog
 
+## [0.1.0](https://github.com/osscameroon/Place/compare/v0.1.0...v0.1.0) (2024-11-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* Multiple major architectural changes including:
+    - Migration to .NET 9
+    - New Profile management system
+    - Identity system extraction
+    - API versioning implementation
+    - OpenAPI and Swagger integration
+    - Serilog implementation
+    - Web entry point creation
+    - Database integration with EF Core
+* Multiple major architectural changes including:
+    - Migration to .NET 9
+    - New Profile management system
+    - Identity system extraction
+    - API versioning implementation
+    - OpenAPI and Swagger integration
+    - Serilog implementation
+    - Web entry point creation
+    - Database integration with EF Core
+
+### Features
+
+* consolidate major application changes ([a26d82e](https://github.com/osscameroon/Place/commit/a26d82edb200316ea5f86ca5fb44714d053ce0b3))
+* consolidate major application changes ([a641ad6](https://github.com/osscameroon/Place/commit/a641ad63e30c1893b4d5eede5be9fffcff1d2d16))
+* create web entry point for the app ([#60](https://github.com/osscameroon/Place/issues/60)) ([95ede62](https://github.com/osscameroon/Place/commit/95ede620505be2c5fdb5fe21e13eda0de26c6a28))
+
+
+### Bug Fixes
+
+* fix typo of project reference [#50](https://github.com/osscameroon/Place/issues/50) ([3c7ea4e](https://github.com/osscameroon/Place/commit/3c7ea4ecc017a6568382d281a6a0d86402859d30))
+* move directory folder [#50](https://github.com/osscameroon/Place/issues/50) ([cf59a14](https://github.com/osscameroon/Place/commit/cf59a143a3819bc2922eafaaf0c4c3d7cb038a66))
+* reset Identity.API project [#50](https://github.com/osscameroon/Place/issues/50) ([8be36b7](https://github.com/osscameroon/Place/commit/8be36b7dfb8e56053faaad87539c315870a5ceeb))
+
+
+### Miscellaneous Chores
+
+* release 0.1.0 ([186f6ff](https://github.com/osscameroon/Place/commit/186f6ff3934ae5da36f232a6ada7ae5027806ee8))
+
 ## [0.1.0](https://github.com/osscameroon/Place/compare/v1.1.0...v0.1.0) (2024-11-20)
 
 
