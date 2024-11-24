@@ -1,7 +1,8 @@
-name: Release Pipeline for publishing
+name: Release Pipeline
 
 on:
   push:
+    branches: [main, beta, alpha]
   workflow_dispatch:
 
 env:
@@ -10,7 +11,46 @@ env:
   API_PROJECT: src/Place.API/Place.API.csproj
 
 jobs:
-  build-test-publish:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      issues: write
+      pull-requests: write
+    outputs:
+      new_release_published: ${{ steps.semantic.outputs.new_release_published }}
+      new_release_version: ${{ steps.semantic.outputs.new_release_version }}
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: Install semantic-release
+        run: |
+          npm install -g semantic-release
+          npm install -g @semantic-release/git
+          npm install -g @semantic-release/changelog
+          npm install -g @semantic-release/exec
+          npm install -g conventional-changelog-angular
+
+      - name: Create Release
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
+
+  build-and-publish:
+    needs: release
+    if: needs.release.outputs.new_release_published == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -24,39 +64,38 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
-          cache: true
-
-      - name: Cache NuGet packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/*.props', '**/*.targets') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-
 
       # Build and Test
       - name: Restore dependencies
-        run: make restore SOLUTION=${{ env.SOLUTION }}
+        run: dotnet restore ${{ env.SOLUTION }}
 
       - name: Build solution
-        run: make build SOLUTION=${{ env.SOLUTION }}
+        run: dotnet build ${{ env.SOLUTION }} --configuration Release --no-restore
 
       - name: Run unit tests
-        run: make test-unit SOLUTION=${{ env.SOLUTION }}
+        run: dotnet test ${{ env.SOLUTION }} --filter Category=Unit --no-build
 
       - name: Run integration tests
-        run: make test-integration SOLUTION=${{ env.SOLUTION }}
+        run: dotnet test ${{ env.SOLUTION }} --filter Category=Integration --no-build
 
       # Publish binaries
       - name: Publish x64
-        run: make publish RUNTIME=linux-musl-x64 API_PROJECT=${{ env.API_PROJECT }} APP_NAME=${{ env.APP_NAME }}
-        env:
-          PUBLISH_OUTPUT: ./publish/x64
+        run: |
+          dotnet publish ${{ env.API_PROJECT }} \
+            -c Release \
+            -r linux-musl-x64 \
+            --self-contained true \
+            -p:PublishSingleFile=true \
+            -o ./publish/x64
 
       - name: Publish arm64
-        run: make publish RUNTIME=linux-musl-arm64 API_PROJECT=${{ env.API_PROJECT }} APP_NAME=${{ env.APP_NAME }}
-        env:
-          PUBLISH_OUTPUT: ./publish/arm64
+        run: |
+          dotnet publish ${{ env.API_PROJECT }} \
+            -c Release \
+            -r linux-musl-arm64 \
+            --self-contained true \
+            -p:PublishSingleFile=true \
+            -o ./publish/arm64
 
       # Create release assets
       - name: Create ZIP files
@@ -70,7 +109,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload ${{ github.event.release.tag_name }} \
+          VERSION=${{ needs.release.outputs.new_release_version }}
+          gh release upload $VERSION \
             ${{ env.APP_NAME }}-linux-x64.zip \
             ${{ env.APP_NAME }}-linux-arm64.zip \
             --clobber
@@ -87,59 +127,37 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Build and push Docker images
-      - name: Build x64 Docker image
+      - name: Build and Push Docker Images
+        env:
+          VERSION: ${{ needs.release.outputs.new_release_version }}
         run: |
-          VERSION=${GITHUB_REF#refs/tags/}
-          make docker RUNTIME=linux-musl-x64 APP_NAME=${{ env.APP_NAME }} \
-            DOCKER_TAG=ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}
-          docker tag ${{ env.APP_NAME }}-x64 ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64
-          docker push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64
-          docker push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-x64
+          # Build and push x64
+          docker buildx build \
+            --platform linux/amd64 \
+            --tag ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64 \
+            --tag ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-x64 \
+            --push \
+            .
 
-      - name: Build arm64 Docker image
-        run: |
-          VERSION=${GITHUB_REF#refs/tags/}
-          make docker RUNTIME=linux-musl-arm64 APP_NAME=${{ env.APP_NAME }} \
-            DOCKER_TAG=ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}
-          docker tag ${{ env.APP_NAME }}-arm64 ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-arm64
-          docker push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-arm64
-          docker push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-arm64
+          # Build and push arm64
+          docker buildx build \
+            --platform linux/arm64 \
+            --tag ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-arm64 \
+            --tag ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-arm64 \
+            --push \
+            .
 
       # Create and push multi-arch manifest
-      - name: Create and push multi-arch manifest
+      - name: Create and Push Multi-arch Manifest
+        env:
+          VERSION: ${{ needs.release.outputs.new_release_version }}
         run: |
-          VERSION=${GITHUB_REF#refs/tags/}
-          
-          # Enable experimental features for manifest
-          export DOCKER_CLI_EXPERIMENTAL=enabled
-          
           # Create and push version manifest
-          docker manifest create ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION} \
+          docker buildx imagetools create -t ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION} \
             ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64 \
             ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-arm64
-          
-          docker manifest annotate ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION} \
-            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64 --arch amd64
-          
-          docker manifest annotate ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION} \
-            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-arm64 --arch arm64
-          
-          docker manifest push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}
-          
+
           # Create and push latest manifest
-          docker manifest create ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest \
+          docker buildx imagetools create -t ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest \
             ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-x64 \
             ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-arm64
-          
-          docker manifest annotate ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest \
-            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-x64 --arch amd64
-          
-          docker manifest annotate ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest \
-            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-arm64 --arch arm64
-          
-          docker manifest push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest
-
-      # Optional: Cleanup
-      - name: Cleanup
-        if: always()
-        run: make clean SOLUTION=${{ env.SOLUTION }}
