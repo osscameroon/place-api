@@ -1,8 +1,8 @@
 name: Release Pipeline for publishing
 
 on:
-  release:
-    types: [published]
+  push:
+  workflow_dispatch:
 
 env:
   APP_NAME: Place.API
