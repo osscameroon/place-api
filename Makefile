@@ -1,8 +1,9 @@
 # Default variables
-APP_NAME := Place.API
+APP_NAME := place.api
 DOCKER_TAG := place-api:2.0-alpine
 PUBLISH_OUTPUT := publish
 COMPOSE_DB_FILE := docker/compose/databases/database-compose.yml
+DOCKER_REPO := ghcr.io/osscameroon/plac
 
 # Configuration
 SOLUTION := Place.sln
@@ -189,9 +190,9 @@ docker:
 	@echo "$(YELLOW)🐳 Building Docker image for $(RUNTIME)...$(NC)"
 	docker build -f Dockerfile \
 		--build-arg ARCH=$(DOCKER_ARCH) \
-		-t $(DOCKER_TAG)-$(DOCKER_ARCH) .
+		-t $(DOCKER_REPO)/$(APP_NAME):$(VERSION)-$(DOCKER_ARCH) .
 	@echo "$(GREEN)✅  Docker build completed$(NC)"
-	@echo "Tagged as: $(DOCKER_TAG)-$(DOCKER_ARCH)"
+	@echo "Tagged as: $(DOCKER_REPO)/$(APP_NAME):$(VERSION)-$(DOCKER_ARCH)"
 
 # Complete development commands
 dev-env: db-up restore build

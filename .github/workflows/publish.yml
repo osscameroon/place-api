@@ -9,10 +9,11 @@ on:
         type: string
 
 env:
-  APP_NAME: Place.API
+  APP_NAME: place.api
   SOLUTION: Place.sln
   API_PROJECT: src/Place.API/Place.API.csproj
   RUNTIME: linux-x64
+  DOCKER_REPO: ghcr.io/osscameroon/place
 
 jobs:
   publish:
@@ -27,24 +28,6 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
-
-      - name: Debug Info
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "List files:"
-          ls -la
-          echo "Makefile content:"
-          cat Makefile
-          echo "Runtime: ${{ env.RUNTIME }}"
-
-      - name: Clean
-        run: make clean SOLUTION=${{ env.SOLUTION }}
-
-      - name: Restore
-        run: make restore SOLUTION=${{ env.SOLUTION }} RUNTIME=${{ env.RUNTIME }}
-
-      - name: Build
-        run: make build SOLUTION=${{ env.SOLUTION }}
 
       - name: Publish
         run: make publish RUNTIME=${{ env.RUNTIME }} API_PROJECT=${{ env.API_PROJECT }} APP_NAME=${{ env.APP_NAME }}
@@ -81,9 +64,9 @@ jobs:
         run: |
           VERSION=${{ inputs.version }}
           make docker RUNTIME=${{ env.RUNTIME }} \
-            DOCKER_TAG=ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}
+            DOCKER_TAG=${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${VERSION}
 
           # Tag and push latest
           docker tag ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64 \
-            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest
-          docker push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest
+            ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:latest
+          docker push ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:latest
