@@ -3,18 +3,14 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+ARG RUNTIME
 
-
-# Final image
-
-# create a new user and change directory ownership
 RUN adduser --disabled-password \
   --home /app \
   --gecos '' dotnetuser && chown -R dotnetuser /app
 
-# impersonate into the new user
 USER dotnetuser
 WORKDIR /app
 
-COPY /publish .
+COPY /publish/${RUNTIME}/* .
 ENTRYPOINT ["./Place.API"]

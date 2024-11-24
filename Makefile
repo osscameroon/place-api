@@ -1,5 +1,4 @@
 APP_NAME := place.api
-DOCKER_TAG := place-api:2.0-alpine
 PUBLISH_OUTPUT := publish
 COMPOSE_DB_FILE := docker/compose/databases/database-compose.yml
 DOCKER_REPO := example-repo
@@ -185,7 +184,7 @@ publish: build
 docker:
 	@echo "$(YELLOW)🐳 Building Docker image for $(RUNTIME)...$(NC)"
 	docker build -f Dockerfile \
-		--build-arg ARCH=$(DOCKER_ARCH) \
+		--build-arg RUNTIME=$(RUNTIME) \
 		-t $(DOCKER_REPO)/$(APP_NAME):$(VERSION)-$(DOCKER_ARCH) .
 	@echo "$(GREEN)✅  Docker build completed$(NC)"
 	@echo "Tagged as: $(DOCKER_REPO)/$(APP_NAME):$(VERSION)-$(DOCKER_ARCH)"

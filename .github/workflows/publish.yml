@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version to publish'
+        description: 'Version to publish (e.g., v1.0.0)'
         required: true
         type: string
 
@@ -14,6 +14,7 @@ env:
   API_PROJECT: src/Place.API/Place.API.csproj
   RUNTIME: linux-x64
   DOCKER_REPO: ${{ secrets.PLACE_DOCKER_HUB_REPO }}
+  VERSION: ${{ inputs.version }}
 
 jobs:
   publish:
@@ -29,13 +30,14 @@ jobs:
         with:
           dotnet-version: '9.0.x'
 
-      - name: Publish
-        run: make publish RUNTIME=${{ env.RUNTIME }} API_PROJECT=${{ env.API_PROJECT }} APP_NAME=${{ env.APP_NAME }}
-
-      - name: List publish output
+      - name: Extract Architecture from Runtime
         run: |
-          echo "Publish directory content:"
-          ls -R publish/
+          ARCH=$(echo ${{ env.RUNTIME }} | sed -E 's/.*-(x64|arm64)$/\1/')
+          echo "DOCKER_ARCH=$ARCH" >> $GITHUB_ENV
+          echo "Detected architecture: $ARCH"
+
+      - name: Publish .NET Application
+        run: make publish RUNTIME=${{ env.RUNTIME }} API_PROJECT=${{ env.API_PROJECT }} APP_NAME=${{ env.APP_NAME }}
 
       - name: Create ZIP file
         run: |
@@ -46,14 +48,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload ${{ inputs.version }} \
+          gh release upload ${{ env.VERSION }} \
             ${{ env.APP_NAME }}-${{ env.RUNTIME }}.zip \
             --clobber
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Login to GitHub Container Registry
+      - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.PLACE_DOCKER_HUB_USERNAME }}
@@ -61,11 +63,14 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          make docker RUNTIME=${{ env.RUNTIME }} \
-            DOCKER_TAG=${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{inputs.version}} \
-            VERSION=${{ inputs.version }} DOCKER_REPO=${{ env.DOCKER_REPO }}
+          make docker \
+            RUNTIME=${{ env.RUNTIME }} \
+            APP_NAME=${{ env.APP_NAME }} \
+            VERSION=${{ env.VERSION }} \
+            DOCKER_REPO=${{ env.DOCKER_REPO }}
 
-          # Tag and push latest
-          docker tag ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ inputs.version }}-x64 \
+          docker push ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ env.VERSION }}-${{ env.DOCKER_ARCH }}
+
+          docker tag ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:${{ env.VERSION }}-${{ env.DOCKER_ARCH }} \
             ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:latest
           docker push ${{ env.DOCKER_REPO }}/${{ env.APP_NAME }}:latest
