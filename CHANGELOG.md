@@ -2,6 +2,13 @@
 
 *All notable changes to this project will be documented in this file.*
 
+## [2.0.3](https://github.com/osscameroon/Place/compare/v2.0.2...v2.0.3) (2024-11-24)
+
+
+### Bug Fixes
+
+* **build:** disable static web assets during publish ([116fdd4](https://github.com/osscameroon/Place/commit/116fdd4a61f1c2e05244f227a1ca2b5c322f4d85))
+
 ## [2.0.2](https://github.com/osscameroon/Place/compare/v2.0.1...v2.0.2) (2024-11-24)
 
 
