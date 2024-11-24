@@ -10,15 +10,27 @@ API_PROJECT := src/Place.API/Place.API.csproj
 
 # Automatic architecture detection
 ARCH := $(shell uname -m)
-ifeq ($(ARCH),x86_64)
-	RUNTIME := linux-x64
-	DOCKER_ARCH := x64
-else ifeq ($(ARCH),aarch64)
-	RUNTIME := linux-arm64
-	DOCKER_ARCH := arm64
+OS := $(shell uname -s)
+
+ifeq ($(OS),Darwin)
+    ifeq ($(ARCH),arm64)
+        RUNTIME := osx-arm64
+        DOCKER_ARCH := arm64
+    else
+        RUNTIME := osx-x64
+        DOCKER_ARCH := x64
+    endif
 else
-	RUNTIME := linux-musl-x64
-	DOCKER_ARCH := x64
+    ifeq ($(ARCH),x86_64)
+        RUNTIME := linux-x64
+        DOCKER_ARCH := x64
+    else ifeq ($(ARCH),aarch64)
+        RUNTIME := linux-arm64
+        DOCKER_ARCH := arm64
+    else
+        RUNTIME := linux-musl-x64
+        DOCKER_ARCH := x64
+    endif
 endif
 
 # Colors for messages
