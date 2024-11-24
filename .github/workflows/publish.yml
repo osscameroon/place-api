@@ -2,11 +2,6 @@ name: Publish Release
 
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version to publish (e.g., 1.0.0)'
-        required: true
-        type: string
 
 env:
   APP_NAME: Place.API
