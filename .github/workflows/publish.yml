@@ -22,9 +22,32 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
-      
+
+      - name: Debug Info
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "List files:"
+          ls -la
+          echo "Makefile content:"
+          cat Makefile
+          echo "Runtime: ${{ env.RUNTIME }}"
+
+      - name: Clean
+        run: make clean SOLUTION=${{ env.SOLUTION }}
+
+      - name: Restore
+        run: make restore SOLUTION=${{ env.SOLUTION }} RUNTIME=${{ env.RUNTIME }}
+
+      - name: Build
+        run: make build SOLUTION=${{ env.SOLUTION }}
+
       - name: Publish
         run: make publish RUNTIME=${{ env.RUNTIME }} API_PROJECT=${{ env.API_PROJECT }} APP_NAME=${{ env.APP_NAME }}
+
+      - name: List publish output
+        run: |
+          echo "Publish directory content:"
+          ls -R publish/
 
       - name: Create ZIP file
         run: |
@@ -51,10 +74,11 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
+          VERSION=${{ inputs.version }}
           make docker RUNTIME=${{ env.RUNTIME }} \
-            DOCKER_TAG=ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${{ inputs.version }}
+            DOCKER_TAG=ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}
 
           # Tag and push latest
-          docker tag ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${{ inputs.version }}-x64 \
+          docker tag ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64 \
             ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest
           docker push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest
