@@ -95,17 +95,12 @@ jobs:
         env:
           PUBLISH_OUTPUT: ./publish/x64
 
-      - name: Publish arm64
-        run: make publish RUNTIME=linux-musl-arm64 API_PROJECT=${{ env.API_PROJECT }} APP_NAME=${{ env.APP_NAME }}
-        env:
-          PUBLISH_OUTPUT: ./publish/arm64
 
       # Create release assets
       - name: Create ZIP files
         run: |
           cd publish
           zip -r ../${{ env.APP_NAME }}-linux-x64.zip x64/*
-          zip -r ../${{ env.APP_NAME }}-linux-arm64.zip arm64/*
 
       # Upload to release
       - name: Upload Release Assets
@@ -114,7 +109,6 @@ jobs:
         run: |
           gh release upload ${{ needs.release.outputs.new_release_version }} \
             ${{ env.APP_NAME }}-linux-x64.zip \
-            ${{ env.APP_NAME }}-linux-arm64.zip \
             --clobber
 
       # Docker Setup
@@ -137,16 +131,6 @@ jobs:
           docker tag ${{ env.APP_NAME }}-x64 ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64
           docker push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64
           docker push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-x64
-
-      - name: Build and Push arm64 Docker image
-        run: |
-          VERSION=${{ needs.release.outputs.new_release_version }}
-          make docker RUNTIME=linux-musl-arm64 APP_NAME=${{ env.APP_NAME }} \
-            DOCKER_TAG=ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}
-          docker tag ${{ env.APP_NAME }}-arm64 ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-arm64
-          docker push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-arm64
-          docker push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-arm64
-
       # Create and push multi-arch manifest
       - name: Create and Push Multi-arch Manifest
         run: |
@@ -157,27 +141,13 @@ jobs:
           
           # Create and push version manifest
           docker manifest create ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION} \
-            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64 \
-            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-arm64
-          
-          docker manifest annotate ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION} \
-            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64 --arch amd64
-          
-          docker manifest annotate ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION} \
-            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-arm64 --arch arm64
+            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}-x64
           
           docker manifest push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:${VERSION}
           
           # Create and push latest manifest
           docker manifest create ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest \
-            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-x64 \
-            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-arm64
-          
-          docker manifest annotate ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest \
-            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-x64 --arch amd64
-          
-          docker manifest annotate ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest \
-            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-arm64 --arch arm64
+            ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest-x64
           
           docker manifest push ghcr.io/${{ github.repository }}/${{ env.APP_NAME }}:latest
 
