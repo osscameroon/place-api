@@ -6,14 +6,32 @@ services:
     command:
       - "--api.insecure=true"
       - "--providers.docker"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=osscameroon@gmail.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
     ports:
       - "80:80"
+      - "443:443"
       - "8080:8080"
     volumes:
+      - lestencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
   api:
     image: genjirusuchiwa/place:api-latest
     user: dotnetuser
+    labels:
+      - "traefik.http.routers.api.rule=Host(`api.place.com`)"
+      - "traefik.http.routers.api.entrypoints=websecure"
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.tls.certresolver=myresolver"
+    deploy:
+      mode: replicated
+      replicas: 3
     environment:
       - Logging__LogLevel__Default=${LOGGING_LEVEL_DEFAULT:-Information}
       - Logging__LogLevel__Microsoft.AspNetCore=${LOGGING_LEVEL_MICROSOFT:-Warning}
@@ -110,6 +128,7 @@ networks:
     driver: bridge
 
 volumes:
+  lestencrypt:
   postgres-data:
     name: ${POSTGRES_VOLUME_NAME:-postgres-data}
   seq-data:
