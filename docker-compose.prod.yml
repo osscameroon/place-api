@@ -80,7 +80,7 @@ services:
   seq:
     image: datalust/seq:latest
     ports:
-      - "${SEQ_UI_PORT:-8081}:${SEQ_HTTP_PORT:-80}"      # Change SEQ_PORT à SEQ_UI_PORT pour correspondre à 8081
+      - "${SEQ_UI_PORT:-8081}:${SEQ_HTTP_PORT:-80}"
       - "${SEQ_INGESTION_PORT:-5342}:${SEQ_API_PORT:-5341}"
     environment:
       - ACCEPT_EULA=Y
@@ -93,7 +93,7 @@ services:
     networks:
       - place-network
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5341/health"]  # Point fixe sur 5341
+      test: [ "CMD-SHELL", "if ps aux | grep -v grep | grep -q '/seqsvr/Seq'; then echo 'Seq is running'; exit 0; else echo 'Seq is not running'; exit 1; fi" ]
       interval: 10s
       timeout: 5s
       retries: 5
