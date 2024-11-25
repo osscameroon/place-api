@@ -42,4 +42,6 @@ USER dotnetuser
 WORKDIR /app
 
 COPY --from=publish /app/publish .
+RUN rm -r /app/appsettings*.json
+RUN ls
 ENTRYPOINT ["./Place.API"]
