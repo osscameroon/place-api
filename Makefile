@@ -1,7 +1,7 @@
 APP_NAME := place.api
 PUBLISH_OUTPUT := publish
 COMPOSE_DB_FILE := docker/compose/databases/database-compose.yml
-DOCKER_REPO := genjirusuchiwa/place
+DOCKER_REPO := ossplacegenjiru
 SOLUTION := Place.sln
 API_PROJECT := src/Place.API/Place.API.csproj
 
@@ -12,20 +12,25 @@ ifeq ($(OS),Darwin)
     ifeq ($(ARCH),arm64)
         RUNTIME := osx-arm64
         DOCKER_ARCH := arm64
+        PLATFORM := linux/arm64
     else
         RUNTIME := osx-x64
         DOCKER_ARCH := x64
+        PLATFORM := "linux/x64,linux/amd64"
     endif
 else
     ifeq ($(ARCH),x86_64)
         RUNTIME := linux-x64
         DOCKER_ARCH := x64
+        PLATFORM := linux/x64
     else ifeq ($(ARCH),aarch64)
         RUNTIME := linux-arm64
         DOCKER_ARCH := arm64
+        PLATFORM := linux/amr64
     else
         RUNTIME := linux-x64
         DOCKER_ARCH := x64
+        PLATFORM := linux/x64
     endif
 endif
 
@@ -174,16 +179,13 @@ publish: build
 		-c Release \
 		-o $(PUBLISH_OUTPUT)/$(RUNTIME) \
 		--runtime $(RUNTIME) \
-		--self-contained true \
-		/p:PublishTrimmed=true \
-		/p:PublishSingleFile=true \
-		/p:GenerateStaticWebAssetsManifest=false
+		--self-contained true
 	@echo "$(GREEN)✅  Publish completed$(NC)"
 
 docker:
 	@echo "$(YELLOW)🐳 Building Docker image for $(RUNTIME)...$(NC)"
 	docker build -f Dockerfile \
-		--build-arg RUNTIME=$(RUNTIME) \
+		--platform=$(PLATFORM) \
 		-t $(DOCKER_REPO):$(VERSION)-$(DOCKER_ARCH) .
 	@echo "$(GREEN)✅  Docker build completed$(NC)"
 	@echo "Tagged as: $(DOCKER_REPO):$(VERSION)-$(DOCKER_ARCH)"
