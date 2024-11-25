@@ -15,9 +15,9 @@ services:
       - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
       - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
     labels:
-      - "traefik.http.routers.mydashboard.rule=Host(traefik.place.cm)"
-      - "traefik.http.routers.mydashboard.entrypoints=websecure"
-      - "traefik.http.routers.mydashboard.tls=true"
+      - "traefik.http.routers.reverse-proxy.rule=Host(traefik.place.cm)"
+      - "traefik.http.routers.reverse-proxy.entrypoints=websecure"
+      - "traefik.http.routers.reverse-proxy.tls=true"
     ports:
       - "80:80"
       - "443:443"
