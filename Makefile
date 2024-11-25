@@ -16,7 +16,7 @@ ifeq ($(OS),Darwin)
     else
         RUNTIME := osx-x64
         DOCKER_ARCH := x64
-        PLATFORM := "linux/x64,linux/amd64"
+        PLATFORM := linux/x64,linux/amd64
     endif
 else
     ifeq ($(ARCH),x86_64)
@@ -185,7 +185,7 @@ publish: build
 docker:
 	@echo "$(YELLOW)🐳 Building Docker image for $(RUNTIME)...$(NC)"
 	docker build -f Dockerfile \
-		--platform=$(PLATFORM) \
+		--platform="$(PLATFORM)" \
 		-t $(DOCKER_REPO):$(VERSION)-$(DOCKER_ARCH) .
 	@echo "$(GREEN)✅  Docker build completed$(NC)"
 	@echo "Tagged as: $(DOCKER_REPO):$(VERSION)-$(DOCKER_ARCH)"
