@@ -99,9 +99,12 @@ jobs:
             cd ~/place-api && \
             docker compose ps
           '
+      - name: Clean Up
+        if: success() || failure()
+        run: rm -f ~/.ssh/id_ed25519
 
-      - name: Check deployment
-        if: always
+      - name: Deployment Status
+        if: success() || failure()
         run: |
           if [ $? -eq 0 ]; then
             echo "✅ Deployment successful"
