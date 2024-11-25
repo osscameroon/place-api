@@ -61,6 +61,8 @@ jobs:
           POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}
           PROFILE_DB_NAME=${{ secrets.PROFILE_DB_NAME }}
           IDENTITY_DB_NAME=${{ secrets.IDENTITY_DB_NAME }}
+          TRAEFICK_PASSWORD=${{ secrets.TRAEFIK_PASSWORD }}
+          TRAEFICK_USER=${{ secrets.TRAEFIK_USER }}
 
           SERILOG_APP_NAME=${{ secrets.SERILOG_APP_NAME }}
           SERILOG_EXCLUDE_PATH_1=${{ secrets.SERILOG_EXCLUDE_PATH_1 }}

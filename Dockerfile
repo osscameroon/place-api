@@ -1,6 +1,8 @@
 FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-alpine AS base
 WORKDIR /app
+
 EXPOSE 5000
+EXPOSE 443
 
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
 ARG TARGETARCH

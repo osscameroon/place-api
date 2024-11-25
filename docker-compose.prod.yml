@@ -1,50 +1,72 @@
-version: '3.8'
-
 services:
-  reverse-proxy:
-    image: traefik:v3.2.1
+
+  traefik:
+    image: "traefik:v3.2"
+    container_name: "traefik"
     command:
       - "--log.level=DEBUG"
-      - "--accesslog=true"
       - "--api.insecure=true"
-      - "--providers.docker"
+      - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.websecure.address=:443"
-      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
-      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
-      - "--certificatesresolvers.myresolver.acme.email=osscameroon@gmail.com"
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-      - "--entrypoints.web.address=:80"
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.websecure.address=:443"
       - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
       - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
-      - "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=aristide.mbassi28@gmail.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.reverse-proxy.rule=Host(`traefik.place.cm`)"
-      - "traefik.http.routers.reverse-proxy.entrypoints=websecure"
-      - "traefik.http.routers.reverse-proxy.tls=true"
-      - "traefik.http.routers.reverse-proxy.tls.certresolver=myresolver"
-      - "traefik.http.services.reverse-proxy.loadbalancer.server.port=8080"
+      - "traefik.http.routers.dashboard.rule=Host(`traefik.place.cm`)"
+      - "traefik.http.routers.dashboard.service=api@internal"
+      - "traefik.http.routers.dashboard.entrypoints=websecure"
+      - "traefik.http.routers.dashboard.tls=true"
+      - "traefik.http.routers.dashboard.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.test-auth.basicauth.users=${TRAEFICK_USER}:${TRAEFICK_PASSWORD}"
+    
+    
     ports:
       - "80:80"
       - "443:443"
-      - "8080:8080"
     volumes:
-      - lestencrypt:/letsencrypt
-      - /var/run/docker.sock:/var/run/docker.sock
-
-  api:
-    image: genjirusuchiwa/place:api-latest
-    user: dotnetuser
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - letsencrypt:/letsencrypt
+    
+    
+  website:
+    image: ghcr.io/amacado/docker-landingpage-coming-soon:main
+    restart: always
+    container_name: website
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.api.rule=Host(`api.place.cm`)"
-      - "traefik.http.routers.api.entrypoints=websecure"
-      - "traefik.http.routers.api.tls.certresolver=myresolver"
-      - "traefik.http.services.api.loadbalancer.server.port=5000"
-    deploy:
-      mode: replicated
-      replicas: 3
+
+      - "traefik.http.routers.website.rule=Host(`place.cm`)"
+      - "traefik.http.services.website.loadbalancer.server.port=80"
+      - "traefik.http.routers.website.tls=true"
+      - "traefik.http.routers.website.tls.certresolver=myresolver"  
+      - "traefik.http.routers.website-www.rule=Host(`www.place.cm`)"
+      - "traefik.http.routers.website-www.tls=true"
+      - "traefik.http.routers.website-www.tls.certresolver=myresolver"
+      - "traefik.http.routers.website-www.entrypoints=websecure"
+      - "traefik.http.services.website.loadbalancer.server.port=80"
+    environment:
+      - TITLE=Place is launching soon..
+      - META_TITLE=Place - Cameroon | Launching soon!
+      - SUBTITLE=We are working hard to finish the development of this site.
+      - FOOTER=<a href='mailto:osscameroon@gmail.com'>osscameroon@gmail.com</a> | <a href='https://www.place.cm'>www.place.cm</a> | <a href='tel:0123456789'>+00 0123 456789</a>
+      - OVERLAY_COLOR=rgba(0, 0, 0, 0.8)
+      - BACKGROUND_COLOR=#455A64
+  
+  place-api:
+    image: genjirusuchiwa/place:api-latest
+    user: dotnetuser
+    container_name: "place-api"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.place-api.rule=Host(`api.place.cm`)"
+      - "traefik.http.routers.place-api.entrypoints=websecure"
+      - "traefik.http.routers.place-api.tls=true"
+      - "traefik.http.routers.place-api.tls.certresolver=myresolver"
     environment:
       - Logging__LogLevel__Default=${LOGGING_LEVEL_DEFAULT:-Information}
       - Logging__LogLevel__Microsoft.AspNetCore=${LOGGING_LEVEL_MICROSOFT:-Warning}
@@ -86,10 +108,9 @@ services:
       timeout: 5s
       retries: 5
       start_period: 40s
-    networks:
-      - place-network
     restart: always
-
+    
+  
   postgres:
     image: postgres:15-alpine
     ports:
@@ -100,21 +121,14 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./init-multiple-databases.sh:/docker-entrypoint-initdb.d/init-multiple-databases.sh
-    networks:
-      - place-network
     healthcheck:
       test: pg_isready -U ${POSTGRES_USER}
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 30s
     restart: always
-
-networks:
-  place-network:
-    driver: bridge
-
+    
 volumes:
-  lestencrypt:
   postgres-data:
     name: ${POSTGRES_VOLUME_NAME:-postgres-data}
+  letsencrypt:
