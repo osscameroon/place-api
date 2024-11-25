@@ -56,9 +56,6 @@ services:
       - Serilog__applicationName=${SERILOG_APP_NAME}
       - Serilog__level=${SERILOG_LEVEL:-information}
       - Serilog__console__enabled=true
-      - Serilog__seq__enabled=true
-      - Serilog__seq__url=http://seq:${SEQ_API_PORT:-5341}
-      - Serilog__seq__token=${SEQ_API_KEY}
       - apiVersioning__enabled=${API_VERSIONING_ENABLED:-true}
       - apiVersioning__defaultVersion=${API_VERSIONING_DEFAULT:-1.0}
       - apiVersioning__assumeDefaultVersionWhenUnspecified=${API_VERSIONING_ASSUME_DEFAULT:-true}
@@ -82,8 +79,6 @@ services:
       - swagger__uiOptions__defaultModelsExpandDepth=${SWAGGER_MODELS_DEPTH:-1}
     depends_on:
       postgres:
-        condition: service_healthy
-      seq:
         condition: service_healthy
     healthcheck:
       test: wget --no-verbose --tries=1 --spider http://localhost:5000/health || exit 1
@@ -115,32 +110,6 @@ services:
       start_period: 30s
     restart: always
 
-  seq:
-    image: datalust/seq:latest
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.seq.rule=Host(`seq.place.cm`)"
-      - "traefik.http.routers.seq.entrypoints=websecure"
-      - "traefik.http.routers.seq.tls.certresolver=myresolver"
-      - "traefik.http.services.seq.loadbalancer.server.port=80"
-    environment:
-      - ACCEPT_EULA=Y
-      - SEQ_API_KEY=${SEQ_API_KEY}
-      - URLS=http://+:${SEQ_HTTP_PORT:-80},http://+:${SEQ_API_PORT:-5341}
-      - ACCEPT_INVALID_CERTIFICATES=true
-      - BASE_URI=http://seq:${SEQ_HTTP_PORT:-80}
-    volumes:
-      - seq-data:/data
-    networks:
-      - place-network
-    healthcheck:
-      test: [ "CMD-SHELL", "if ps aux | grep -v grep | grep -q '/seqsvr/Seq'; then echo 'Seq is running'; exit 0; else echo 'Seq is not running'; exit 1; fi" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 20s
-    restart: always
-
 networks:
   place-network:
     driver: bridge
@@ -149,5 +118,3 @@ volumes:
   lestencrypt:
   postgres-data:
     name: ${POSTGRES_VOLUME_NAME:-postgres-data}
-  seq-data:
-    name: ${SEQ_VOLUME_NAME:-seq-data}

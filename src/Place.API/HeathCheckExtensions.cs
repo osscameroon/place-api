@@ -26,8 +26,7 @@ public static class HealthCheckExtensions
                 name: "identity-db",
                 connectionString: configuration.GetConnectionString("Identity")!,
                 tags: new[] { "db", "identity" }
-            )
-            .AddUrlGroup(new Uri("http://seq:5341"), name: "seq", tags: new[] { "logging" });
+            );
 
         return services;
     }

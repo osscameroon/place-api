@@ -70,12 +70,7 @@ jobs:
           SERILOG_FILE_ENABLED=${{ secrets.SERILOG_FILE_ENABLED }}
           SERILOG_FILE_PATH=${{ secrets.SERILOG_FILE_PATH }}
           SERILOG_FILE_INTERVAL=${{ secrets.SERILOG_FILE_INTERVAL }}
-          SERILOG_SEQ_ENABLED=${{ secrets.SERILOG_SEQ_ENABLED }}
-          SEQ_API_KEY=${{ secrets.SEQ_API_KEY }}
-          SEQ_PORT=${{ secrets.SEQ_PORT }}
-          SEQ_INGESTION_PORT=${{ secrets.SEQ_INGESTION_PORT }}
-          SEQ_HTTP_PORT=${{ secrets.SEQ_HTTP_PORT }}
-          SEQ_API_PORT=${{ secrets.SEQ_API_PORT }}
+          SERILOG_SEQ_ENABLED=false
           EOF
 
       - name: Deploy files
