@@ -16,13 +16,13 @@ ifeq ($(OS),Darwin)
     else
         RUNTIME := osx-x64
         DOCKER_ARCH := x64
-        PLATFORM := linux/x64,linux/amd64
+        PLATFORM := linux/amd64
     endif
 else
     ifeq ($(ARCH),x86_64)
         RUNTIME := linux-x64
         DOCKER_ARCH := x64
-        PLATFORM := linux/x64
+        PLATFORM := linux/amd64
     else ifeq ($(ARCH),aarch64)
         RUNTIME := linux-arm64
         DOCKER_ARCH := arm64
@@ -30,7 +30,7 @@ else
     else
         RUNTIME := linux-x64
         DOCKER_ARCH := x64
-        PLATFORM := linux/x64
+        PLATFORM := linux/amd64
     endif
 endif
 
