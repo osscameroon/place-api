@@ -14,6 +14,10 @@ services:
       - "--entrypoints.web.address=:80"
       - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
       - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+    labels:
+      - "traefik.http.routers.mydashboard.rule=Host(traefik.place.cm)"
+      - "traefik.http.routers.mydashboard.entrypoints=websecure"
+      - "traefik.http.routers.mydashboard.tls=true"
     ports:
       - "80:80"
       - "443:443"
@@ -25,7 +29,7 @@ services:
     image: genjirusuchiwa/place:api-latest
     user: dotnetuser
     labels:
-      - "traefik.http.routers.api.rule=Host(`api.place.com`)"
+      - "traefik.http.routers.api.rule=Host(`api.place.cm`)"
       - "traefik.http.routers.api.entrypoints=websecure"
       - "traefik.enable=true"
       - "traefik.http.routers.api.tls.certresolver=myresolver"
