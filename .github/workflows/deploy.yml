@@ -1,0 +1,111 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Create deployment directories
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p ~/place-api/secrets"
+
+      - name: Create .env file
+        run: |
+          cat << EOF > .env
+          
+          LOGGING_LEVEL_DEFAULT=${{ secrets.LOGGING_LEVEL_DEFAULT }}
+          LOGGING_LEVEL_MICROSOFT=${{ secrets.LOGGING_LEVEL_MICROSOFT }}
+
+          API_VERSIONING_ENABLED=${{ secrets.API_VERSIONING_ENABLED }}
+          API_VERSIONING_DEFAULT=${{ secrets.API_VERSIONING_DEFAULT }}
+          API_VERSIONING_ASSUME_DEFAULT=${{ secrets.API_VERSIONING_ASSUME_DEFAULT }}
+          API_VERSIONING_REPORT=${{ secrets.API_VERSIONING_REPORT }}
+          API_VERSIONING_ADD_PARAM=${{ secrets.API_VERSIONING_ADD_PARAM }}
+          API_VERSIONING_READER=${{ secrets.API_VERSIONING_READER }}
+          API_VERSIONING_HEADER=${{ secrets.API_VERSIONING_HEADER }}
+          API_VERSIONING_QUERY_PARAM=${{ secrets.API_VERSIONING_QUERY_PARAM }}
+          API_VERSIONING_MEDIA_PARAM=${{ secrets.API_VERSIONING_MEDIA_PARAM }}
+
+          SWAGGER_ENABLED=${{ secrets.SWAGGER_ENABLED }}
+          SWAGGER_TITLE=${{ secrets.SWAGGER_TITLE }}
+          SWAGGER_VERSION_1=${{ secrets.SWAGGER_VERSION_1 }}
+          SWAGGER_VERSION_2=${{ secrets.SWAGGER_VERSION_2 }}
+          SWAGGER_USE_AUTH=${{ secrets.SWAGGER_USE_AUTH }}
+          SWAGGER_ENABLE_DOWNLOAD=${{ secrets.SWAGGER_ENABLE_DOWNLOAD }}
+          SWAGGER_USE_UI=${{ secrets.SWAGGER_USE_UI }}
+          SWAGGER_USE_REDOC=${{ secrets.SWAGGER_USE_REDOC }}
+          SWAGGER_UI_ROUTE=${{ secrets.SWAGGER_UI_ROUTE }}
+          SWAGGER_REDOC_ROUTE=${{ secrets.SWAGGER_REDOC_ROUTE }}
+          SWAGGER_DOC_EXPANSION=${{ secrets.SWAGGER_DOC_EXPANSION }}
+          SWAGGER_MODELS_DEPTH=${{ secrets.SWAGGER_MODELS_DEPTH }}
+
+          APP_NAME=${{ secrets.APP_NAME }}
+          ASPNETCORE_ENVIRONMENT=${{ secrets.ASPNETCORE_ENVIRONMENT }}
+          API_PORT=${{ secrets.API_PORT }}
+
+          POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}
+          PROFILE_DB_NAME=${{ secrets.PROFILE_DB_NAME }}
+          IDENTITY_DB_NAME=${{ secrets.IDENTITY_DB_NAME }}
+
+          SERILOG_APP_NAME=${{ secrets.SERILOG_APP_NAME }}
+          SERILOG_EXCLUDE_PATH_1=${{ secrets.SERILOG_EXCLUDE_PATH_1 }}
+          SERILOG_EXCLUDE_PATH_2=${{ secrets.SERILOG_EXCLUDE_PATH_2 }}
+          SERILOG_LEVEL=${{ secrets.SERILOG_LEVEL }}
+          SERILOG_CONSOLE_ENABLED=${{ secrets.SERILOG_CONSOLE_ENABLED }}
+          SERILOG_FILE_ENABLED=${{ secrets.SERILOG_FILE_ENABLED }}
+          SERILOG_FILE_PATH=${{ secrets.SERILOG_FILE_PATH }}
+          SERILOG_FILE_INTERVAL=${{ secrets.SERILOG_FILE_INTERVAL }}
+          SERILOG_SEQ_ENABLED=${{ secrets.SERILOG_SEQ_ENABLED }}
+          SEQ_API_KEY=${{ secrets.SEQ_API_KEY }}
+          SEQ_PORT=${{ secrets.SEQ_PORT }}
+          SEQ_UI_PORT=${{ secrets.SEQ_UI_PORT }}
+          EOF
+
+      - name: Deploy files
+        run: |
+          scp docker-compose.prod.yml ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/place-api/docker-compose.yml
+          scp .env ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/place-api/.env
+          scp init-multiple-databases.sh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/place-api/
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "chmod +x ~/place-api/init-multiple-databases.sh"
+      
+      - name: Deploy Services
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} '
+            cd ~/place-api && \
+            docker compose pull && \
+            docker compose down --remove-orphans && \
+            docker compose up -d
+          '
+      - name: Health Check
+        run: |
+          echo "Waiting for services to start..."
+          sleep 30
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} '
+            cd ~/place-api && \
+            docker compose ps
+          '
+
+      - name: Check deployment
+        if: always
+        run: |
+          if [ $? -eq 0 ]; then
+            echo "✅ Deployment successful"
+          else
+            echo "❌ Deployment failed"
+            exit 1
+          fi

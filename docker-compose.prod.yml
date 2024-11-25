@@ -1,0 +1,108 @@
+version: '3.8'
+
+services:
+  api:
+    image: genjirusuchiwa/place:api-latest
+    user: dotnetuser
+    ports:
+      - "${API_PORT:-5000}:5000"
+    environment:
+      - Logging__LogLevel__Default=${LOGGING_LEVEL_DEFAULT:-Information}
+      - Logging__LogLevel__Microsoft.AspNetCore=${LOGGING_LEVEL_MICROSOFT:-Warning}
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT:-Production}
+      - ASPNETCORE_URLS=http://+:${API_PORT:-5000}
+      - app__name=${APP_NAME}
+      - ConnectionStrings__Account=Server=postgres;Port=5432;Database=${PROFILE_DB_NAME};User Id=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Include Error Detail=true
+      - ConnectionStrings__Identity=Server=postgres;Port=5432;Database=${IDENTITY_DB_NAME};User Id=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Include Error Detail=true
+      - Serilog__applicationName=${SERILOG_APP_NAME}
+      - Serilog__level=${SERILOG_LEVEL:-information}
+      - Serilog__console__enabled=true
+      - Serilog__seq__enabled=true
+      - Serilog__seq__url=http://seq:5341
+      - Serilog__seq__token=${SEQ_API_KEY}
+      - apiVersioning__enabled=${API_VERSIONING_ENABLED:-true}
+      - apiVersioning__defaultVersion=${API_VERSIONING_DEFAULT:-1.0}
+      - apiVersioning__assumeDefaultVersionWhenUnspecified=${API_VERSIONING_ASSUME_DEFAULT:-true}
+      - apiVersioning__reportApiVersions=${API_VERSIONING_REPORT:-true}
+      - apiVersioning__addVersionParamToNeutralEndpoints=${API_VERSIONING_ADD_PARAM:-false}
+      - apiVersioning__versionReaderType=${API_VERSIONING_READER:-UrlSegment}
+      - apiVersioning__headerName=${API_VERSIONING_HEADER:-X-Api-Version}
+      - apiVersioning__queryStringParam=${API_VERSIONING_QUERY_PARAM:-api-version}
+      - apiVersioning__mediaTypeParam=${API_VERSIONING_MEDIA_PARAM:-v}
+      - swagger__enabled=${SWAGGER_ENABLED:-true}
+      - swagger__title=${SWAGGER_TITLE}
+      - swagger__versions__0=${SWAGGER_VERSION_1:-1.0}
+      - swagger__versions__1=${SWAGGER_VERSION_2:-2.0}
+      - swagger__useAuthentication=${SWAGGER_USE_AUTH:-true}
+      - swagger__enableDownload=${SWAGGER_ENABLE_DOWNLOAD:-true}
+      - swagger__useSwaggerUI=${SWAGGER_USE_UI:-true}
+      - swagger__useReDoc=${SWAGGER_USE_REDOC:-true}
+      - swagger__swaggerUIRoute=${SWAGGER_UI_ROUTE:-swagger}
+      - swagger__reDocRoute=${SWAGGER_REDOC_ROUTE:-api-docs}
+      - swagger__uiOptions__docExpansion=${SWAGGER_DOC_EXPANSION:-List}
+      - swagger__uiOptions__defaultModelsExpandDepth=${SWAGGER_MODELS_DEPTH:-1}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      seq:
+        condition: service_healthy
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:5000/health || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+    networks:
+      - place-network
+    restart: always
+
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "${POSTGRES_PORT:-5490}:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-multiple-databases.sh:/docker-entrypoint-initdb.d/init-multiple-databases.sh
+
+    networks:
+      - place-network
+    healthcheck:
+      test: pg_isready -U ${POSTGRES_USER}
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: always
+
+  seq:
+    image: datalust/seq:latest
+    ports:
+      - "${SEQ_PORT:-5341}:5341"
+      - "${SEQ_UI_PORT:-8081}:80"
+    environment:
+      - ACCEPT_EULA=Y
+      - SEQ_API_KEY=${SEQ_API_KEY}
+    volumes:
+      - seq-data:/data
+    networks:
+      - place-network
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:80/health || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: always
+
+networks:
+  place-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    name: ${POSTGRES_VOLUME_NAME:-postgres-data}
+  seq-data:
+    name: ${SEQ_VOLUME_NAME:-seq-data}

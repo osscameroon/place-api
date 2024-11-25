@@ -47,3 +47,4 @@ src/**/volumes/
 src/**/bin/
 src/**/logs/
 .nuke/temp/
+github-secrets.sh
