@@ -73,7 +73,9 @@ jobs:
           SERILOG_SEQ_ENABLED=${{ secrets.SERILOG_SEQ_ENABLED }}
           SEQ_API_KEY=${{ secrets.SEQ_API_KEY }}
           SEQ_PORT=${{ secrets.SEQ_PORT }}
-          SEQ_UI_PORT=${{ secrets.SEQ_UI_PORT }}
+          SEQ_INGESTION_PORT=${{ secrets.SEQ_INGESTION_PORT }}
+          SEQ_HTTP_PORT=${{ secrets.SEQ_HTTP_PORT }}
+          SEQ_API_PORT=${{ secrets.SEQ_API_PORT }}
           EOF
 
       - name: Deploy files

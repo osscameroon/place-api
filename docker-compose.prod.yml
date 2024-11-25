@@ -18,7 +18,7 @@ services:
       - Serilog__level=${SERILOG_LEVEL:-information}
       - Serilog__console__enabled=true
       - Serilog__seq__enabled=true
-      - Serilog__seq__url=http://seq:5341
+      - Serilog__seq__url=http://seq:${SEQ_HTTP_PORT:-80}
       - Serilog__seq__token=${SEQ_API_KEY}
       - apiVersioning__enabled=${API_VERSIONING_ENABLED:-true}
       - apiVersioning__defaultVersion=${API_VERSIONING_DEFAULT:-1.0}
@@ -80,17 +80,20 @@ services:
   seq:
     image: datalust/seq:latest
     ports:
-      - "${SEQ_PORT:-5341}:5341"
-      - "${SEQ_UI_PORT:-8081}:80"
+      - "${SEQ_PORT:-5341}:${SEQ_HTTP_PORT:-80}"      # Port pour l'interface web
+      - "${SEQ_INGESTION_PORT:-5342}:${SEQ_API_PORT:-5341}"  # Port pour l'ingestion des logs
     environment:
       - ACCEPT_EULA=Y
       - SEQ_API_KEY=${SEQ_API_KEY}
+      - URLS=http://+:${SEQ_HTTP_PORT:-80},http://+:${SEQ_API_PORT:-5341}
+      - ACCEPT_INVALID_CERTIFICATES=true
+      - BASE_URI=http://seq:${SEQ_HTTP_PORT:-80}
     volumes:
       - seq-data:/data
     networks:
       - place-network
     healthcheck:
-      test: wget --no-verbose --tries=1 --spider http://localhost:80/health || exit 1
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:${SEQ_HTTP_PORT:-80}/health" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -106,3 +109,11 @@ volumes:
     name: ${POSTGRES_VOLUME_NAME:-postgres-data}
   seq-data:
     name: ${SEQ_VOLUME_NAME:-seq-data}
+    
+    
+    
+    
+    
+    
+    "SEQ_PORT=5341"
+    "SEQ_UI_PORT=8081"
