@@ -1,0 +1,16 @@
+name: Platform Check
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  check-platform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: System architecture
+        run: |
+          uname -m
+          docker info | grep "OS/Arch"
+          docker buildx ls
