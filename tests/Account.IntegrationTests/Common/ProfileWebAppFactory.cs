@@ -30,8 +30,8 @@ public class ProfileWebAppFactory : WebApplicationFactory<IAPIMarker>, IAsyncLif
     public ProfileWebAppFactory()
     {
         _dbContainer = new PostgreSqlBuilder()
-            .WithImage("postgres:15.1")
-            .WithDatabase("PlaceApiIdentity")
+            .WithImage("postgres:latest")
+            .WithDatabase("TestPlaceDb")
             .WithUsername("postgres")
             .WithPassword("postgres")
             .Build();
@@ -57,12 +57,12 @@ public class ProfileWebAppFactory : WebApplicationFactory<IAPIMarker>, IAsyncLif
                 .AddInMemoryCollection(
                     new Dictionary<string, string>
                     {
-                        { "ConnectionStrings:AccountTestDb", _dbContainer.GetConnectionString() },
+                        { "ConnectionStrings:PlaceDb", _dbContainer.GetConnectionString() },
                     }!
                 )
                 .Build();
 
-            services.AddPlaceDbContext<AccountDbContext>("AccountTestDb", configuration);
+            services.AddPlaceDbContext<AccountDbContext>("PlaceDb", configuration);
             services.AddScoped<TestDataSeeder>();
         });
     }

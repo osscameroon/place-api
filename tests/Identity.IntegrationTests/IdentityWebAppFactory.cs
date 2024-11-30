@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.EF;
 using Core.Identity;
+using DotNet.Testcontainers.Builders;
 using Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -25,7 +26,8 @@ public class IdentityWebAppFactory : WebApplicationFactory<IAPIMarker>, IAsyncLi
     public IdentityWebAppFactory()
     {
         _dbContainer = new PostgreSqlBuilder()
-            .WithDatabase("PlaceApiIdentity")
+            .WithImage("postgres:latest")
+            .WithDatabase("TestPlaceDb")
             .WithUsername("postgres")
             .WithPassword("postgres")
             .Build();
@@ -44,15 +46,12 @@ public class IdentityWebAppFactory : WebApplicationFactory<IAPIMarker>, IAsyncLi
                 .AddInMemoryCollection(
                     new Dictionary<string, string>
                     {
-                        { "ConnectionStrings:IdentityTestDb", _dbContainer.GetConnectionString() },
+                        { "ConnectionStrings:PlaceDb", _dbContainer.GetConnectionString() },
                     }!
                 )
                 .Build();
 
-            services.AddPlaceDbContext<IdentityApplicationDbContext>(
-                "IdentityTestDb",
-                configuration
-            );
+            services.AddPlaceDbContext<IdentityApplicationDbContext>("PlaceDb", configuration);
 
             ServiceDescriptor? identityBuilder = services.SingleOrDefault(d =>
                 d.ServiceType == typeof(IdentityBuilder)
