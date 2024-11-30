@@ -3,7 +3,14 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="runtime.unix.System.Private.Uri" />
+        <PackageReference Include="runtime.win7.System.Private.Uri" />
         <PackageReference Include="Scalar.AspNetCore" />
+        <PackageReference Include="System.Private.Uri" />
     </ItemGroup>
 
     <ItemGroup>

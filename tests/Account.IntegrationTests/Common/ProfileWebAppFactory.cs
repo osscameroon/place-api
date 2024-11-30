@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
+using Place.API;
 using Respawn;
 using Testcontainers.PostgreSql;
 
@@ -19,7 +20,7 @@ namespace Account.IntegrationTests.Common;
 [CollectionDefinition(nameof(ProfileApiCollection))]
 public class ProfileApiCollection : ICollectionFixture<ProfileWebAppFactory> { }
 
-public class ProfileWebAppFactory : WebApplicationFactory<IAccountRoot>, IAsyncLifetime
+public class ProfileWebAppFactory : WebApplicationFactory<IAPIMarker>, IAsyncLifetime
 {
     private readonly PostgreSqlContainer _dbContainer = default!;
     private Respawner? _respawner = default!;

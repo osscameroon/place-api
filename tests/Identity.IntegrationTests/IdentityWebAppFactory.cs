@@ -12,12 +12,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Place.API;
 using Testcontainers.PostgreSql;
 using Xunit;
 
 namespace Identity.IntegrationTests;
 
-public class IdentityWebAppFactory : WebApplicationFactory<IIdentityRoot>, IAsyncLifetime
+public class IdentityWebAppFactory : WebApplicationFactory<IAPIMarker>, IAsyncLifetime
 {
     private readonly PostgreSqlContainer _dbContainer;
 
