@@ -9,39 +9,7 @@ namespace Account.Profile.Models;
 /// </summary>
 public sealed class UserProfile : Aggregate<UserProfileId>
 {
-    /// <summary>
-    /// Gets the identifier of the user who owns this profile.
-    /// </summary>
-    public Guid UserId { get; private set; }
-
-    /// <summary>
-    /// Gets the email address associated with this profile.
-    /// </summary>
-    public Email Email { get; private set; }
-
-    /// <summary>
-    /// Gets the personal information associated with this profile.
-    /// </summary>
-    public PersonalInfo PersonalInfo { get; private set; }
-
-    /// <summary>
-    /// Gets the date and time when this profile was created.
-    /// </summary>
-    public new DateTime CreatedAt { get; private set; }
-    public new Guid CreatedBy { get; private set; }
-    public DateTime? LastModifiedAt { get; private set; }
-    public new Guid? LastModifiedBy { get; private set; }
-
-    /// <summary>
-    /// Gets a value indicating whether this profile has been deleted.
-    /// </summary>
-    public new bool IsDeleted { get; private set; }
-
-    /// <summary>
-    /// Gets the date and time when this profile was deleted.
-    /// </summary>
-    public DateTime? DeletedAt { get; private set; }
-    public Guid? DeletedBy { get; private set; }
+    private UserProfile() { }
 
     private UserProfile(
         UserProfileId id,
@@ -216,4 +184,38 @@ public sealed class UserProfile : Aggregate<UserProfileId>
 
         return Result.Success;
     }
+
+    /// <summary>
+    /// Gets the identifier of the user who owns this profile.
+    /// </summary>
+    public Guid UserId { get; private set; }
+
+    /// <summary>
+    /// Gets the email address associated with this profile.
+    /// </summary>
+    public Email Email { get; private set; }
+
+    /// <summary>
+    /// Gets the personal information associated with this profile.
+    /// </summary>
+    public PersonalInfo PersonalInfo { get; private set; }
+
+    /// <summary>
+    /// Gets the date and time when this profile was created.
+    /// </summary>
+    public new DateTime CreatedAt { get; private set; }
+    public new Guid CreatedBy { get; private set; }
+    public DateTime? LastModifiedAt { get; private set; }
+    public new Guid? LastModifiedBy { get; private set; }
+
+    /// <summary>
+    /// Gets a value indicating whether this profile has been deleted.
+    /// </summary>
+    public new bool IsDeleted { get; private set; }
+
+    /// <summary>
+    /// Gets the date and time when this profile was deleted.
+    /// </summary>
+    public DateTime? DeletedAt { get; private set; }
+    public Guid? DeletedBy { get; private set; }
 }

@@ -1,5 +1,6 @@
 using Account;
 using Core.Framework;
+using Core.Identity;
 using Core.MediatR;
 using Identity;
 using Microsoft.AspNetCore.Builder;

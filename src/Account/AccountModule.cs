@@ -18,11 +18,7 @@ public static class AccountModule
         IConfiguration configuration
     )
     {
-        services.AddPlaceDbContext<AccountDbContext>(nameof(Account), configuration);
-        services.AddPlaceDbContext<IdentityApplicationDbContext>(
-            nameof(Core.Identity),
-            configuration
-        );
+        services.AddPlaceDbContext<AccountDbContext>("PlaceDb", configuration);
         services.AddScoped<IDataSeeder<AccountDbContext>, AccountDataSeeder>();
         return services;
     }

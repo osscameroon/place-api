@@ -18,7 +18,7 @@ namespace Core.EF;
 
 public abstract class AppDbContextBase : DbContext, IDbContext
 {
-    private IDbContextTransaction _currentTransaction;
+    private IDbContextTransaction _currentTransaction = null!;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
     protected AppDbContextBase(DbContextOptions options, IHttpContextAccessor httpContextAccessor)

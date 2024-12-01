@@ -15,37 +15,7 @@ public sealed record Address
     private const int MaxZipCodeLength = 10;
     private const int MaxCountryLength = 50;
 
-    /// <summary>
-    /// Gets the optional street address line.
-    /// </summary>
-    /// <value>The street address, or null if not specified.</value>
-    public string? Street { get; }
-
-    /// <summary>
-    /// Gets the optional postal/zip code.
-    /// </summary>
-    /// <value>The postal code, or null if not specified.</value>
-    public string? ZipCode { get; }
-
-    /// <summary>
-    /// Gets the city name.
-    /// </summary>
-    public string City { get; }
-
-    /// <summary>
-    /// Gets the country name.
-    /// </summary>
-    public string Country { get; }
-
-    /// <summary>
-    /// Optional additional address details.
-    /// </summary>
-    public string? AdditionalDetails { get; }
-
-    /// <summary>
-    /// Gets the geographical coordinates of the address.
-    /// </summary>
-    public GeoCoordinates? Coordinates { get; }
+    private Address() { }
 
     /// <summary>
     /// Initializes a new instance of the Address record.
@@ -190,6 +160,38 @@ public sealed record Address
 
         return baseAddress;
     }
+
+    /// <summary>
+    /// Gets the optional street address line.
+    /// </summary>
+    /// <value>The street address, or null if not specified.</value>
+    public string? Street { get; }
+
+    /// <summary>
+    /// Gets the optional postal/zip code.
+    /// </summary>
+    /// <value>The postal code, or null if not specified.</value>
+    public string? ZipCode { get; }
+
+    /// <summary>
+    /// Gets the city name.
+    /// </summary>
+    public string City { get; }
+
+    /// <summary>
+    /// Gets the country name.
+    /// </summary>
+    public string Country { get; }
+
+    /// <summary>
+    /// Optional additional address details.
+    /// </summary>
+    public string? AdditionalDetails { get; }
+
+    /// <summary>
+    /// Gets the geographical coordinates of the address.
+    /// </summary>
+    public GeoCoordinates? Coordinates { get; }
 }
 
 /// <summary>
@@ -202,20 +204,6 @@ public sealed record GeoCoordinates
     private const double MinLongitude = -180.0;
     private const double MaxLongitude = 180.0;
     private const int CoordinatePrecision = 6;
-
-    private static readonly CultureInfo InvariantCulture = CultureInfo.InvariantCulture;
-
-    /// <summary>
-    /// Gets the latitude in degrees.
-    /// </summary>
-    /// <value>The latitude value between -90 and 90 degrees.</value>
-    public double Latitude { get; }
-
-    /// <summary>
-    /// Gets the longitude in degrees.
-    /// </summary>
-    /// <value>The longitude value between -180 and 180 degrees.</value>
-    public double Longitude { get; }
 
     /// <summary>
     /// Initializes a new instance of the GeoCoordinates record.
@@ -262,4 +250,18 @@ public sealed record GeoCoordinates
     /// </summary>
     public override string ToString() =>
         $"{Latitude.ToString("F6", InvariantCulture)}, {Longitude.ToString("F6", InvariantCulture)}";
+
+    private static readonly CultureInfo InvariantCulture = CultureInfo.InvariantCulture;
+
+    /// <summary>
+    /// Gets the latitude in degrees.
+    /// </summary>
+    /// <value>The latitude value between -90 and 90 degrees.</value>
+    public double Latitude { get; }
+
+    /// <summary>
+    /// Gets the longitude in degrees.
+    /// </summary>
+    /// <value>The longitude value between -180 and 180 degrees.</value>
+    public double Longitude { get; }
 }

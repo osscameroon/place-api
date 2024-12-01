@@ -15,7 +15,9 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" />
         <PackageReference Include="NSubstitute" />
         <PackageReference Include="Respawn" />
+        <PackageReference Include="runtime.unix.System.Private.Uri" />
         <PackageReference Include="System.Net.Http" />
+        <PackageReference Include="System.Private.Uri" />
         <PackageReference Include="System.Text.RegularExpressions" />
         <PackageReference Include="Testcontainers" />
         <PackageReference Include="Testcontainers.PostgreSql" />
@@ -32,5 +34,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\Account\Account.csproj" />
+      <ProjectReference Include="..\..\src\Place.API\Place.API.csproj" />
     </ItemGroup>
 </Project>

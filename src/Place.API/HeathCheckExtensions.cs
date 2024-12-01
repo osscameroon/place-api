@@ -18,14 +18,9 @@ public static class HealthCheckExtensions
         services
             .AddHealthChecks()
             .AddNpgSql(
-                name: "profile-db",
-                connectionString: configuration.GetConnectionString("Account")!,
-                tags: new[] { "db", "profile" }
-            )
-            .AddNpgSql(
-                name: "identity-db",
-                connectionString: configuration.GetConnectionString("Identity")!,
-                tags: new[] { "db", "identity" }
+                name: "place-db",
+                connectionString: configuration.GetConnectionString("PlaceDb")!,
+                tags: new[] { "db", "place-db" }
             );
 
         return services;

@@ -11,6 +11,10 @@
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
         <PackageReference Include="FluentAssertions" />
+        <PackageReference Include="Respawn" />
+        <PackageReference Include="runtime.unix.System.Private.Uri" />
+        <PackageReference Include="runtime.win7.System.Private.Uri" />
+        <PackageReference Include="System.Private.Uri" />
         <PackageReference Include="System.Text.RegularExpressions"/>
         <PackageReference Include="System.Net.Http" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
@@ -32,6 +36,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\Identity\Identity.csproj" />
+      <ProjectReference Include="..\..\src\Place.API\Place.API.csproj" />
     </ItemGroup>
 
 </Project>

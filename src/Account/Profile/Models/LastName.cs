@@ -5,6 +5,8 @@ namespace Account.Profile.Models;
 
 public sealed partial record LastName
 {
+    private LastName() { }
+
     internal const int MaxLength = 100;
 
     /// <summary>

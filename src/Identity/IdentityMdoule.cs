@@ -15,10 +15,7 @@ public static class IdentityMdoule
         WebApplicationBuilder builder
     )
     {
-        services.AddPlaceDbContext<IdentityApplicationDbContext>(
-            nameof(Core.Identity),
-            builder.Configuration
-        );
+        services.AddPlaceDbContext<IdentityApplicationDbContext>("PlaceDb", builder.Configuration);
 
         builder
             .AddIdentity()

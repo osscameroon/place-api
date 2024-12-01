@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Account.Data.Configurations;
 using Account.Data.Models;
@@ -23,8 +24,7 @@ public class AccountDataSeeder(AccountDbContext context) : IDataSeeder<AccountDb
             return;
         }
 
-        // Create sample profiles
-        List<ProfileReadModel> profiles =
+        List<ProfileReadModel> profilesData =
         [
             new()
             {
@@ -60,8 +60,6 @@ public class AccountDataSeeder(AccountDbContext context) : IDataSeeder<AccountDb
                 CreatedBy = Guid.NewGuid(),
                 IsDeleted = false,
             },
-            // Add a soft-deleted profile for testing
-
             new()
             {
                 Id = Guid.NewGuid(),
@@ -76,7 +74,7 @@ public class AccountDataSeeder(AccountDbContext context) : IDataSeeder<AccountDb
                 DeletedBy = Guid.NewGuid(),
             },
         ];
-
+        List<UserProfile> profiles = profilesData.Select(p => p.ToDomain().Value).ToList();
         await context.Profiles.AddRangeAsync(profiles);
         await context.SaveChangesAsync();
     }
