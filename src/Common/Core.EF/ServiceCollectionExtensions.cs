@@ -8,6 +8,7 @@ using Humanizer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.Configuration;
@@ -54,6 +55,32 @@ public static class Extensions
         );
 
         services.AddScoped<IDbContext>(provider => provider.GetService<TContext>());
+
+        return services;
+    }
+
+    public static IServiceCollection AddPlaceDbContext<TContext>(
+        this IServiceCollection services,
+        Action<DbContextOptionsBuilder> optionsAction
+    )
+        where TContext : DbContext, IDbContext
+    {
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+        services.AddDbContext<TContext>(
+            (sp, options) =>
+            {
+                optionsAction(options);
+                options.ConfigureWarnings(warnings =>
+                    warnings.Ignore(RelationalEventId.PendingModelChangesWarning)
+                );
+                options.EnableSensitiveDataLogging(
+                    sp.GetService<IWebHostEnvironment>()?.IsDevelopment() ?? false
+                );
+            }
+        );
+
+        services.AddScoped<IDbContext>(provider => provider.GetService<TContext>()!);
 
         return services;
     }

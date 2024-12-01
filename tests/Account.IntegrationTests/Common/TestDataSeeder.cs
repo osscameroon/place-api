@@ -3,61 +3,94 @@ using System.Threading.Tasks;
 using Account.Data.Configurations;
 using Account.Data.Models;
 using Account.Profile.Models;
+using ErrorOr;
 using Microsoft.EntityFrameworkCore;
 
 namespace Account.IntegrationTests.Common;
 
-public class TestDataSeeder(AccountDbContext dbContext)
+public class TestDataSeeder
 {
-    public async Task<ProfileReadModel> SeedBasicProfile()
-    {
-        ProfileReadModel profile =
-            new()
-            {
-                Id = Guid.NewGuid(),
-                FirstName = "John",
-                LastName = "Doe",
-                Email = "john.doe@example.com",
-                PhoneNumber = "+33612345678",
-                Street = "123 Main St",
-                City = "Paris",
-                ZipCode = "75001",
-                Country = "France",
-                Gender = Gender.Male,
-            };
+    private readonly AccountDbContext _dbContext;
 
-        return await SeedProfile(profile);
+    public TestDataSeeder(AccountDbContext dbContext)
+    {
+        _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
     }
 
-    public async Task<ProfileReadModel> SeedProfile(ProfileReadModel profile)
+    public async Task<UserProfile> SeedBasicProfile()
     {
-        dbContext.Profiles.Add(profile);
-        await dbContext.SaveChangesAsync();
+        ProfileReadModel profile = new ProfileReadModel
+        {
+            Id = Guid.NewGuid(),
+            FirstName = "John",
+            LastName = "Doe",
+            Email = "john.doe@example.com",
+            PhoneNumber = "+33612345678",
+            Street = "123 Main St",
+            City = "Paris",
+            ZipCode = "75001",
+            Country = "France",
+            Gender = Gender.Male,
+        };
 
-        return await dbContext.Profiles.AsNoTracking().FirstAsync(p => p.Id == profile.Id);
+        ErrorOr<UserProfile> domainResult = profile.ToDomain();
+        if (domainResult.IsError)
+            throw new InvalidOperationException(
+                $"Failed to create profile: {domainResult.FirstError.Description}"
+            );
+
+        return await SeedProfile(domainResult.Value);
     }
 
-    public async Task<ProfileReadModel> SeedPartialProfile()
+    public async Task<UserProfile> SeedProfile(UserProfile profile)
     {
-        ProfileReadModel profile =
-            new()
-            {
-                Id = Guid.NewGuid(),
-                Email = "partial@example.com",
-                City = "Lyon",
-                Country = "France",
-            };
+        if (profile is null)
+            throw new ArgumentNullException(nameof(profile));
 
-        return await SeedProfile(profile);
+        _dbContext.Profiles.Add(profile);
+        await _dbContext.SaveChangesAsync();
+
+        UserProfile? savedProfile = await _dbContext
+            .Profiles.AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Id == profile.Id);
+
+        if (savedProfile is null)
+            throw new InvalidOperationException(
+                $"Failed to retrieve saved profile with ID: {profile.Id}"
+            );
+
+        return savedProfile;
     }
 
-    public async Task<ProfileReadModel[]> SeedMultipleProfiles(int count)
+    public async Task<UserProfile> SeedPartialProfile()
     {
-        ProfileReadModel[] profiles = new ProfileReadModel[count];
+        ProfileReadModel profile = new ProfileReadModel
+        {
+            Id = Guid.NewGuid(),
+            Email = "partial@example.com",
+            City = "Lyon",
+            Country = "France",
+        };
+
+        ErrorOr<UserProfile> domainResult = profile.ToDomain();
+        if (domainResult.IsError)
+            throw new InvalidOperationException(
+                $"Failed to create partial profile: {domainResult.FirstError.Description}"
+            );
+
+        return await SeedProfile(domainResult.Value);
+    }
+
+    public async Task<UserProfile[]> SeedMultipleProfiles(int count)
+    {
+        if (count <= 0)
+            throw new ArgumentException("Count must be positive", nameof(count));
+
+        UserProfile[] profiles = new UserProfile[count];
 
         for (int i = 0; i < count; i++)
         {
-            profiles[i] = new ProfileReadModel
+            ProfileReadModel readModel = new ProfileReadModel
             {
                 Id = Guid.NewGuid(),
                 FirstName = $"User{i}",
@@ -67,10 +100,18 @@ public class TestDataSeeder(AccountDbContext dbContext)
                 City = "Paris",
                 Country = "France",
             };
+
+            ErrorOr<UserProfile> domainResult = readModel.ToDomain();
+            if (domainResult.IsError)
+                throw new InvalidOperationException(
+                    $"Failed to create profile {i}: {domainResult.FirstError.Description}"
+                );
+
+            profiles[i] = domainResult.Value;
         }
 
-        dbContext.Profiles.AddRange(profiles);
-        await dbContext.SaveChangesAsync();
+        await _dbContext.Profiles.AddRangeAsync(profiles);
+        await _dbContext.SaveChangesAsync();
 
         return profiles;
     }

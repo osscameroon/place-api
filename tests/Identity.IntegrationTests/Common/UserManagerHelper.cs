@@ -32,11 +32,13 @@ public class UserManagementHelper
     /// <param name="email">The email address for the new user.</param>
     /// <param name="password">The password for the new user.</param>
     /// <param name="emailConfirmed">Whether the email should be marked as confirmed. Default is true.</param>
+    /// <param name="userName">Identity username</param>
     /// <returns>The created ApplicationUser.</returns>
     public async Task<ApplicationUser> CreateUserAsync(
         string email,
         string password,
-        bool emailConfirmed = true
+        bool emailConfirmed = true,
+        string? userName = null
     )
     {
         UserManager<ApplicationUser> userManager = _serviceProvider.GetRequiredService<
@@ -53,7 +55,7 @@ public class UserManagementHelper
         ApplicationUser user =
             new()
             {
-                UserName = email,
+                UserName = userName ?? email,
                 Email = email,
                 EmailConfirmed = emailConfirmed,
             };

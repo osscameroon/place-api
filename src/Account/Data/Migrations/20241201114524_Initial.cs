@@ -17,10 +17,10 @@ namespace Account.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Email = table.Column<string>(type: "character varying(254)", maxLength: 254, nullable: false),
+                    Email = table.Column<string>(type: "text", nullable: false),
                     FirstName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     LastName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    DateOfBirth = table.Column<DateTime>(type: "date", nullable: true),
+                    DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Gender = table.Column<int>(type: "integer", nullable: true),
                     PhoneNumber = table.Column<string>(type: "text", nullable: true),
                     Street = table.Column<string>(type: "text", nullable: true),
@@ -34,9 +34,11 @@ namespace Account.Data.Migrations
                     CreatedBy = table.Column<Guid>(type: "uuid", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifiedBy = table.Column<Guid>(type: "uuid", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uuid", nullable: true)
+                    DeletedBy = table.Column<Guid>(type: "uuid", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Version = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,27 +46,15 @@ namespace Account.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Profiles_DateOfBirth",
-                table: "Profiles",
-                column: "DateOfBirth");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Profiles_Email",
                 table: "Profiles",
                 column: "Email",
-                unique: true,
-                filter: "\"IsDeleted\" = false");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Profiles_IsDeleted",
                 table: "Profiles",
                 column: "IsDeleted");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Profiles_LastName_FirstName",
-                table: "Profiles",
-                columns: new[] { "LastName", "FirstName" },
-                filter: "\"IsDeleted\" = false");
         }
 
         /// <inheritdoc />

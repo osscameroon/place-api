@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Account.Data.Configurations;
 using Account.Data.Models;
+using Account.Profile.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,10 +20,10 @@ public class GetProfileByIdQueryHandler(AccountDbContext dbContext)
         CancellationToken cancellationToken
     )
     {
-        ProfileReadModel? profile = await dbContext
+        UserProfile? profile = await dbContext
             .Profiles.AsNoTracking()
             .FirstOrDefaultAsync(p => p.Id == request.ProfileId, cancellationToken);
 
-        return profile is null ? null : new PersonalInformationViewModel(profile);
+        return profile is null ? null : new PersonalInformationViewModel(profile.ToReadModel());
     }
 }

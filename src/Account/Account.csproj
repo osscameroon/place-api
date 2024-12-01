@@ -30,6 +30,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Data\Migrations\" />
       <Folder Include="Profile\Features\V1\" />
     </ItemGroup>
     <ItemGroup>

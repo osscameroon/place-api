@@ -12,6 +12,8 @@ public sealed partial record FirstName
     /// </summary>
     public string Value { get; }
 
+    private FirstName() { }
+
     private FirstName(string value) => Value = value;
 
     /// <summary>

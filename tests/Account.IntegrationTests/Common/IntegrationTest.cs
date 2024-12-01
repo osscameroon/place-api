@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Account.IntegrationTests.Common;
 
 [Collection(nameof(ProfileApiCollection))]
-public abstract class IntegrationTest : IAsyncLifetime
+public abstract class IntegrationTest
 {
     private readonly ProfileWebAppFactory _factory;
     private readonly IServiceScope _scope;
@@ -23,17 +23,6 @@ public abstract class IntegrationTest : IAsyncLifetime
         HttpClient = factory.CreateClient();
         Client = new ProfileHttpClient(HttpClient);
         Seeder = _scope.ServiceProvider.GetRequiredService<TestDataSeeder>();
-    }
-
-    public virtual async Task InitializeAsync()
-    {
-        await _factory.ResetDatabaseAsync();
-    }
-
-    public virtual Task DisposeAsync()
-    {
-        _scope.Dispose();
-        return Task.CompletedTask;
     }
 
     protected async Task<TResult> ExecuteInScopeAsync<TResult>(
