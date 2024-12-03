@@ -1,6 +1,5 @@
 using Account;
 using Core.Framework;
-using Core.Identity;
 using Core.MediatR;
 using Identity;
 using Microsoft.AspNetCore.Builder;
@@ -9,7 +8,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Place.API;
+using Place.Notification;
+using Place.Notification.Email;
 using Scalar.AspNetCore;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
@@ -20,6 +23,8 @@ builder.AddCoreFramework();
 builder.Services.AddIdentityModule(builder);
 
 builder.Services.AddAccountModule(configuration);
+
+builder.Services.AddEmailService(configuration);
 
 builder.Services.AddCoreMediatR(typeof(IIdentityRoot).Assembly);
 

@@ -45,6 +45,7 @@
     <PackageVersion Include="runtime.unix.System.Private.Uri" Version="4.3.2" />
     <PackageVersion Include="runtime.win7.System.Private.Uri" Version="4.3.2" />
     <PackageVersion Include="Scalar.AspNetCore" Version="1.2.43" />
+    <PackageVersion Include="SendGrid" Version="9.29.3" />
     <PackageVersion Include="Serilog.Extensions.Hosting" Version="8.0.0" />
     <PackageVersion Include="Serilog.Settings.Configuration" Version="8.0.4" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.9.0" />

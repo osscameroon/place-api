@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -81,7 +80,10 @@ public static class ServiceCollectionExtions
 
     public static IServiceCollection AddEmailSender(this IServiceCollection services)
     {
-        services.AddTransient<IEmailSender, EmailSender>();
+        services.AddTransient<
+            IEmailSender<ApplicationUser>,
+            IdentityEmailSender<ApplicationUser>
+        >();
         return services;
     }
 

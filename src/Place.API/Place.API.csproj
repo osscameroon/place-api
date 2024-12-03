@@ -10,6 +10,7 @@
         <PackageReference Include="runtime.unix.System.Private.Uri" />
         <PackageReference Include="runtime.win7.System.Private.Uri" />
         <PackageReference Include="Scalar.AspNetCore" />
+        <PackageReference Include="SendGrid" />
         <PackageReference Include="System.Private.Uri" />
     </ItemGroup>
 
@@ -17,6 +18,7 @@
       <ProjectReference Include="..\Account\Account.csproj" />
       <ProjectReference Include="..\Common\Core.Framework\Core.Framework.csproj" />
       <ProjectReference Include="..\Identity\Identity.csproj" />
+      <ProjectReference Include="..\Place.Notification\Place.Notification.csproj" />
     </ItemGroup>
 
 </Project>
