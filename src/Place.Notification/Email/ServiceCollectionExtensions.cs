@@ -15,12 +15,15 @@ public static class ServiceCollectionExtensions
     {
         IConfigurationSection section = configuration.GetSection(EmailOptions.SectionName);
 
-        section.BindOptions<EmailOptions>();
-        services.AddScoped<SmtpEmailService>();
-        services.AddScoped<SendGridEmailService>();
-        services.AddScoped<IEmailServiceFactory, EmailServiceFactory>();
+        services.Configure<EmailOptions>(section);
 
-        services.AddScoped<IEmailService>(sp =>
+        section.BindOptions<EmailOptions>();
+        services.AddSingleton<ISmtpClientFactory, SmtpClientFactory>();
+        services.AddSingleton<SmtpEmailService>();
+        services.AddSingleton<SendGridEmailService>();
+        services.AddSingleton<IEmailServiceFactory, EmailServiceFactory>();
+
+        services.AddSingleton<IEmailService>(sp =>
         {
             IEmailServiceFactory factory = sp.GetRequiredService<IEmailServiceFactory>();
             return factory.Create();

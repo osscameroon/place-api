@@ -8,14 +8,23 @@ using SendGrid.Helpers.Mail;
 
 namespace Place.Notification.Email.SendGrid;
 
-public class SendGridEmailService(
-    IOptions<EmailOptions> options,
-    ILogger<SendGridEmailService> logger
-) : IEmailService
+public class SendGridEmailService : IEmailService
 {
-    private readonly SendGridClient _client = new(options.Value.SendGrid!.ApiKey);
-    private readonly string _fromAddress = options.Value.FromAddress!;
-    private readonly string _fromName = options.Value.FromName!;
+    private readonly SendGridClient _client;
+    private readonly string _fromAddress;
+    private readonly string _fromName;
+    private readonly ILogger<SendGridEmailService> _logger;
+
+    public SendGridEmailService(
+        IOptions<EmailOptions> options,
+        ILogger<SendGridEmailService> logger
+    )
+    {
+        _logger = logger;
+        _client = new SendGridClient(options.Value.SendGrid!.ApiKey);
+        _fromAddress = options.Value.FromAddress!;
+        _fromName = options.Value.FromName!;
+    }
 
     public async Task SendAsync(EmailMessage email)
     {
@@ -35,7 +44,7 @@ public class SendGridEmailService(
 
             if (response.IsSuccessStatusCode)
             {
-                logger.LogInformation($"Email sent successfully via SendGrid to {email.To}");
+                _logger.LogInformation($"Email sent successfully via SendGrid to {email.To}");
             }
             else
             {
@@ -44,7 +53,7 @@ public class SendGridEmailService(
         }
         catch (Exception ex)
         {
-            logger.LogError(
+            _logger.LogError(
                 "Error sending email via SendGrid to {email.To} with error {Error}",
                 email.To,
                 ex
